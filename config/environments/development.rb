@@ -65,15 +65,7 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { host: 'heroku.com' }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-      user_name:      'app97235386@heroku.com',
-      password:       'o5ymovpm8029',
-      domain:         'heroku.com',
-      address:       'smtp.gmail.com',
-      port:          '587',
-      authentication: :plain,
-      enable_starttls_auto: true
-  }
+
 
 
 end
