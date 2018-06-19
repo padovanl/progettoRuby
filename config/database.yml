@@ -22,6 +22,8 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
+  adapter: postgressql
+  adapter:
   <<: *default
   database: DeviseActionMailer_development
 

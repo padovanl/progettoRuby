@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :reps
   has_many :posts
   has_many :comments
+  has_many :user_courses
 
 
   def self.new_with_session(params, session)

@@ -10,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_19_142510) do
+ActiveRecord::Schema.define(version: 2018_06_19_143427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "course_questions", force: :cascade do |t|
+    t.string "question"
+    t.integer "frequency"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "course_tips", force: :cascade do |t|
+    t.string "tip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "courses", force: :cascade do |t|
     t.string "name"
@@ -29,6 +48,12 @@ ActiveRecord::Schema.define(version: 2018_06_19_142510) do
 
   create_table "notifications", force: :cascade do |t|
     t.string "content", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
