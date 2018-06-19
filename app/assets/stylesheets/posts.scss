@@ -1,0 +1,61 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.container {
+    height:100vh !important;
+}
+
+.allegati-chat {
+    display: inline-block !important;
+    box-shadow: 0 0px 0px rgba(5, 7, 1, 0.1), 0 0 0 1px rgba(2, 7, 5, 0.1) !important;
+    padding: 0.25rem  !important;
+}
+
+.chat-post {
+    &:hover {
+      background-color: hsl(0, 0%, 96%);
+    }
+}
+
+.stuck {
+    position: fixed;
+    background-color:#ddd;
+    top: 0;
+    left: 0;
+    bottom: 10px;
+    height: 90px;
+    width: 100%;
+    transform: translateX(-50);
+    padding: 1.25rem;
+    z-index: 20;
+}
+
+
+.chat-lane {
+    //position: absolute;
+    // top: 90px;
+    //bottom: 0;
+    //overflow-y: scroll;
+    margin-top: 100px; 
+    margin-bottom: 90px;
+}
+
+
+.chat-input {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    background-color: white;
+    z-index: 20;
+    input {
+        font-size: 18px;
+        margin-right: auto;
+    }
+    a {
+        font-size: 18px;
+    }
+}
