@@ -23,11 +23,13 @@ sudo apt-get install imagemagick -y
 sudo apt install ffmpeg -y
 sudo apt-get install mupdf mupdf-tools
 
+
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
 
 * ...
+
 
 
 * Come trattare le password nel codice

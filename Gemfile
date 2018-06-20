@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+
 ruby '2.5.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -9,6 +10,7 @@ gem 'rails', '~> 5.2.0'
 # gem 'sqlite3'
 # Use postgresql as the database for Active Record
 gem 'pg'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -35,6 +37,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+<<<<<<< HEAD
 # Per il servizio di storage di S3
 gem "aws-sdk-s3", require: false
 # Per il resize delle immagini
@@ -45,6 +48,8 @@ gem "font-awesome-rails"
 # Gestione assets con webpack
 gem 'webpacker', '~> 3.5'
 
+=======
+>>>>>>> 0709780e670347b2538d0fcd4d05baf1edbf3fce
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
@@ -72,3 +77,10 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+<<<<<<< HEAD
+=======
+
+
+gem 'devise'
+gem 'omniauth-facebook'
+>>>>>>> 0709780e670347b2538d0fcd4d05baf1edbf3fce
