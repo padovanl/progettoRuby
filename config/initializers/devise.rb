@@ -283,5 +283,5 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'
   #config.omniauth :facebook, "2599363410089669", "465ea715df0ec3684286aa884a52d751", callback_url: "https://obscure-temple-51390.herokuapp.com/users/auth/facebook/callback"
 
-  config.omniauth :facebook, "1673278336053711", "74ae3b36ace60ca06e1bb2e3a8c580c9", callback_url: "https://obscure-temple-51390.herokuapp.com/users/auth/facebook/callback"
+  config.omniauth :facebook, "1673278336053711", "74ae3b36ace60ca06e1bb2e3a8c580c9", callback_url: "https://concorrente2018.herokuapp.com/users/auth/facebook/callback"
 end
