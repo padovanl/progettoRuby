@@ -1,7 +1,7 @@
 # Project Title
 
 L'applicazione consente la condivisione di materiale didattico tra gli studenti dell'università. Questi possono caricare
-e scaricare file. Il materiale è cagorizzato e organizzato per i vari corsi di studio. È possibile consultare una pagina di
+e scaricare file. Il materiale è organizzato per i vari corsi di studio. È possibile consultare una pagina di
 presentazione e statisctiche per ogni corso presente. Gli studenti inoltre possono offrire delle lezioni di ripetizione 
 agli altri studenti.
 
