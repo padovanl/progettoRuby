@@ -10,8 +10,6 @@ agli altri studenti.
 
 * Ruby version 2.5.1
 
-We will use postgresql database.
-
 ### Configuration
 
 For files storage we will use Amazon S3 service. For mails we will user sendgrid (Heroku) smtp servers. Both 
@@ -38,7 +36,6 @@ sendgrid:
   password: <sendgrid_pwd>
 ```
 
-
 ### Prerequisites
 
 * System dependencies
@@ -48,6 +45,7 @@ sudo apt install ffmpeg -y
 sudo apt-get install mupdf mupdf-tools
 ```
 
+####Install postgresql database.
 
 ### Installing
 
