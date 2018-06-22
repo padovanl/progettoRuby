@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'posts/index'
+  get 'posts/edit'
+  get 'posts/show'
+  get 'posts/new'
   get 'chat/index'
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   get 'welcome/index'
