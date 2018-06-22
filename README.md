@@ -8,7 +8,7 @@ agli altri studenti.
 
 ## Getting Started
 
-* Ruby version 2.5.
+* Ruby version 2.5.1
 
 * System dependencies
 ```
@@ -17,7 +17,20 @@ sudo apt install ffmpeg -y
 sudo apt-get install mupdf mupdf-tools
 ```
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+We will use postgresql database.
+
+* Configuration
+
+For files storage we will use Amazon S3 service. For mails we will user sendgrid (Heroku) smtp servers. Both 
+services requires credentials setup, for this purpose we can use encrypted credentials. You cannot use plain text credentials. There's only credentials.yml.enc
+
+To edit this file use:
+```
+EDITOR=vim rails credentials:edit
+```
+Option 1: Place the config/master.key file in the server. You’ll normally want to symlink this file to a shared folder in the server filesystem. Again, do not version your config/master.key file.
+Option 2: create a RAILS_MASTER_KEY ENV variable. Rails will detect it and use it as your master key, e.g. in heroku: heroku config:set RAILS_MASTER_KEY=<your-master-key-here>.
+
 
 ### Prerequisites
 
@@ -74,20 +87,6 @@ Add additional notes about how to deploy this on a live system
 * [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
 * [Maven](https://maven.apache.org/) - Dependency Management
 * [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
