@@ -45,7 +45,8 @@ sudo apt install ffmpeg -y
 sudo apt-get install mupdf mupdf-tools
 ```
 
-####Install postgresql database.
+**Install postgresql database.**
+If needed edit ```config/database.yml``` and set databse params.
 
 ### Installing
 
