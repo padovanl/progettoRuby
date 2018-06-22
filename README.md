@@ -10,7 +10,7 @@ agli altri studenti.
 
 * Ruby version 2.5.1
 
-* System dependencies
+### System dependencies
 ```
 sudo apt-get install imagemagick -y
 sudo apt install ffmpeg -y
@@ -19,7 +19,7 @@ sudo apt-get install mupdf mupdf-tools
 
 We will use postgresql database.
 
-* Configuration
+### Configuration
 
 For files storage we will use Amazon S3 service. For mails we will user sendgrid (Heroku) smtp servers. Both 
 services requires credentials setup, for this purpose we can use encrypted credentials. You cannot use plain text credentials. There's only ```config/credentials.yml.enc```
@@ -30,8 +30,8 @@ EDITOR=vim rails credentials:edit
 ```
 This will create a ```config/master.key``` file, which sotres the encryption key, this file HAVE TO remain secret. There two
 option to provide the KEY to the production environment:
-** Place the config/master.key file in the server. You’ll normally want to symlink this file to a shared folder in the server filesystem. Again, do not version your config/master.key file.
-** Create a RAILS_MASTER_KEY ENV variable. Rails will detect it and use it as your master key, e.g. in heroku: heroku config:set RAILS_MASTER_KEY=<your-master-key-here>.
+* Place the config/master.key file in the server. You’ll normally want to symlink this file to a shared folder in the server filesystem. Again, do not version your config/master.key file.
+* Create a RAILS_MASTER_KEY ENV variable. Rails will detect it and use it as your master key, e.g. in heroku: heroku config:set RAILS_MASTER_KEY=<your-master-key-here>.
 
 
 ### Prerequisites
@@ -126,10 +126,3 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
-
-* Come trattare le password nel codice
-
-EDITOR=vim rails credentials:edit
-
-Option 1: Place the config/master.key file in the server. You’ll normally want to symlink this file to a shared folder in the server filesystem. Again, do not version your config/master.key file.
-Option 2: create a RAILS_MASTER_KEY ENV variable. Rails will detect it and use it as your master key, e.g. in heroku: heroku config:set RAILS_MASTER_KEY=<your-master-key-here>.
