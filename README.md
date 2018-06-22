@@ -50,21 +50,24 @@ If needed edit ```config/database.yml``` and set databse params.
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+Install gem
 
 ```
-Give the example
+bundle install
 ```
 
-And repeat
+Create database and migrate schema
 
 ```
-until finished
+rails db:create
+rails db:migrate
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+Run puma server:
+
+```
+rails s
+```
 
 ## Running the tests
 
