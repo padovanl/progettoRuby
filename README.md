@@ -33,6 +33,18 @@ option to provide the KEY to the production environment:
 * Place the config/master.key file in the server. You’ll normally want to symlink this file to a shared folder in the server filesystem. Again, do not version your config/master.key file.
 * Create a RAILS_MASTER_KEY ENV variable. Rails will detect it and use it as your master key, e.g. in heroku: heroku config:set RAILS_MASTER_KEY=<your-master-key-here>.
 
+Template of ```config/credentials.yml.enc```:
+
+```
+aws:
+  access_key_id: <s3_access_key>
+  secret_access_key: <s3_secret_access_key>
+
+sendgrid:
+  user_name: <sendgrid_user_name>
+  password: <sendgrid_pwd>
+```
+
 
 ### Prerequisites
 
