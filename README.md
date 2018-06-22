@@ -10,13 +10,6 @@ agli altri studenti.
 
 * Ruby version 2.5.1
 
-### System dependencies
-```
-sudo apt-get install imagemagick -y
-sudo apt install ffmpeg -y
-sudo apt-get install mupdf mupdf-tools
-```
-
 We will use postgresql database.
 
 ### Configuration
@@ -48,11 +41,13 @@ sendgrid:
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+* System dependencies
+```
+sudo apt-get install imagemagick -y
+sudo apt install ffmpeg -y
+sudo apt-get install mupdf mupdf-tools
+```
 
-```
-Give examples
-```
 
 ### Installing
 
