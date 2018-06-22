@@ -8,8 +8,9 @@ agli altri studenti.
 
 ## Getting Started
 
-Prima di partire installare i seguenti pacchetti:
+* Ruby version 2.5.
 
+* System dependencies
 ```
 sudo apt-get install imagemagick -y
 sudo apt install ffmpeg -y
