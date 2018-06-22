@@ -59,15 +59,13 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-
-
-  config.action_mailer.perform_deliveries = true
+  # Setup the mailer config
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
-
-  ActionMailer::Base.smtp_settings = {
-    :user_name => Rails.application.credentials.dig(:sendgrid2, :user_name),
-    :password => Rails.application.credentials.dig(:sendgrid2, :password),
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.smtp_settings = {
+    :user_name => Rails.application.credentials.dig(:sendgrid, :user_name),
+    :password => Rails.application.credentials.dig(:sendgrid, :password),
     :domain => 'heroku.com',
     :address => 'smtp.sendgrid.net',
     :port => 587,

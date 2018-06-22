@@ -69,3 +69,6 @@ gem 'omniauth-facebook'
 gem "aws-sdk-s3", require: false
 # Per il resize delle immagini
 gem "mini_magick"
+
+# Aiuta l'integrazione con sendgrid
+gem 'sendgrid-ruby'
