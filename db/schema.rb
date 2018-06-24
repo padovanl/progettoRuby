@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_22_071033) do
+ActiveRecord::Schema.define(version: 2018_06_24_135213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,10 +40,10 @@ ActiveRecord::Schema.define(version: 2018_06_22_071033) do
     t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "users_id"
-    t.bigint "posts_id"
-    t.index ["posts_id"], name: "index_comments_on_posts_id"
-    t.index ["users_id"], name: "index_comments_on_users_id"
+    t.bigint "user_id"
+    t.bigint "post_id"
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "course_questions", force: :cascade do |t|
@@ -59,40 +59,42 @@ ActiveRecord::Schema.define(version: 2018_06_22_071033) do
     t.string "tip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "courses_id"
-    t.index ["courses_id"], name: "index_course_tips_on_courses_id"
+    t.bigint "course_id"
+    t.index ["course_id"], name: "index_course_tips_on_course_id"
   end
 
   create_table "courses", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "degree_courses_id"
-    t.index ["degree_courses_id"], name: "index_courses_on_degree_courses_id"
+    t.bigint "degree_course_id"
+    t.integer "year"
+    t.index ["degree_course_id"], name: "index_courses_on_degree_course_id"
   end
 
   create_table "degree_courses", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "tipo"
   end
 
   create_table "document_posts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "posts_id"
-    t.bigint "documents_id"
-    t.index ["documents_id"], name: "index_document_posts_on_documents_id"
-    t.index ["posts_id"], name: "index_document_posts_on_posts_id"
+    t.bigint "post_id"
+    t.bigint "document_id"
+    t.index ["document_id"], name: "index_document_posts_on_document_id"
+    t.index ["post_id"], name: "index_document_posts_on_post_id"
   end
 
   create_table "document_tags", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "tags_id"
-    t.bigint "documents_id"
-    t.index ["documents_id"], name: "index_document_tags_on_documents_id"
-    t.index ["tags_id"], name: "index_document_tags_on_tags_id"
+    t.bigint "tag_id"
+    t.bigint "document_id"
+    t.index ["document_id"], name: "index_document_tags_on_document_id"
+    t.index ["tag_id"], name: "index_document_tags_on_tag_id"
   end
 
   create_table "documents", force: :cascade do |t|
@@ -110,20 +112,20 @@ ActiveRecord::Schema.define(version: 2018_06_22_071033) do
     t.string "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "users_id"
-    t.bigint "courses_id"
-    t.index ["courses_id"], name: "index_posts_on_courses_id"
-    t.index ["users_id"], name: "index_posts_on_users_id"
+    t.bigint "user_id"
+    t.bigint "course_id"
+    t.index ["course_id"], name: "index_posts_on_course_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "reps", force: :cascade do |t|
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "users_id"
-    t.bigint "courses_id"
-    t.index ["courses_id"], name: "index_reps_on_courses_id"
-    t.index ["users_id"], name: "index_reps_on_users_id"
+    t.bigint "user_id"
+    t.bigint "course_id"
+    t.index ["course_id"], name: "index_reps_on_course_id"
+    t.index ["user_id"], name: "index_reps_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -136,10 +138,10 @@ ActiveRecord::Schema.define(version: 2018_06_22_071033) do
     t.string "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "teachers_id"
-    t.bigint "courses_id"
-    t.index ["courses_id"], name: "index_teacher_courses_on_courses_id"
-    t.index ["teachers_id"], name: "index_teacher_courses_on_teachers_id"
+    t.bigint "teacher_id"
+    t.bigint "course_id"
+    t.index ["course_id"], name: "index_teacher_courses_on_course_id"
+    t.index ["teacher_id"], name: "index_teacher_courses_on_teacher_id"
   end
 
   create_table "teachers", force: :cascade do |t|
@@ -155,16 +157,16 @@ ActiveRecord::Schema.define(version: 2018_06_22_071033) do
     t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "teachers_id"
-    t.index ["teachers_id"], name: "index_theses_on_teachers_id"
+    t.bigint "teacher_id"
+    t.index ["teacher_id"], name: "index_theses_on_teacher_id"
   end
 
   create_table "thesis_tags", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "tags_id"
+    t.bigint "tag_id"
     t.bigint "thesis_id"
-    t.index ["tags_id"], name: "index_thesis_tags_on_tags_id"
+    t.index ["tag_id"], name: "index_thesis_tags_on_tag_id"
     t.index ["thesis_id"], name: "index_thesis_tags_on_thesis_id"
   end
 
@@ -173,19 +175,19 @@ ActiveRecord::Schema.define(version: 2018_06_22_071033) do
     t.integer "course_rate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "users_id"
-    t.bigint "courses_id"
-    t.index ["courses_id"], name: "index_user_courses_on_courses_id"
-    t.index ["users_id"], name: "index_user_courses_on_users_id"
+    t.bigint "user_id"
+    t.bigint "course_id"
+    t.index ["course_id"], name: "index_user_courses_on_course_id"
+    t.index ["user_id"], name: "index_user_courses_on_user_id"
   end
 
   create_table "user_notifications", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "users_id"
-    t.bigint "notifications_id"
-    t.index ["notifications_id"], name: "index_user_notifications_on_notifications_id"
-    t.index ["users_id"], name: "index_user_notifications_on_users_id"
+    t.bigint "user_id"
+    t.bigint "notification_id"
+    t.index ["notification_id"], name: "index_user_notifications_on_notification_id"
+    t.index ["user_id"], name: "index_user_notifications_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -216,26 +218,26 @@ ActiveRecord::Schema.define(version: 2018_06_22_071033) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "comments", "posts", column: "posts_id"
-  add_foreign_key "comments", "users", column: "users_id"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
   add_foreign_key "course_questions", "courses"
-  add_foreign_key "course_tips", "courses", column: "courses_id"
-  add_foreign_key "courses", "degree_courses", column: "degree_courses_id"
-  add_foreign_key "document_posts", "documents", column: "documents_id"
-  add_foreign_key "document_posts", "posts", column: "posts_id"
-  add_foreign_key "document_tags", "documents", column: "documents_id"
-  add_foreign_key "document_tags", "tags", column: "tags_id"
-  add_foreign_key "posts", "courses", column: "courses_id"
-  add_foreign_key "posts", "users", column: "users_id"
-  add_foreign_key "reps", "courses", column: "courses_id"
-  add_foreign_key "reps", "users", column: "users_id"
-  add_foreign_key "teacher_courses", "courses", column: "courses_id"
-  add_foreign_key "teacher_courses", "teachers", column: "teachers_id"
-  add_foreign_key "theses", "teachers", column: "teachers_id"
-  add_foreign_key "thesis_tags", "tags", column: "tags_id"
+  add_foreign_key "course_tips", "courses"
+  add_foreign_key "courses", "degree_courses"
+  add_foreign_key "document_posts", "documents"
+  add_foreign_key "document_posts", "posts"
+  add_foreign_key "document_tags", "documents"
+  add_foreign_key "document_tags", "tags"
+  add_foreign_key "posts", "courses"
+  add_foreign_key "posts", "users"
+  add_foreign_key "reps", "courses"
+  add_foreign_key "reps", "users"
+  add_foreign_key "teacher_courses", "courses"
+  add_foreign_key "teacher_courses", "teachers"
+  add_foreign_key "theses", "teachers"
+  add_foreign_key "thesis_tags", "tags"
   add_foreign_key "thesis_tags", "theses"
-  add_foreign_key "user_courses", "courses", column: "courses_id"
-  add_foreign_key "user_courses", "users", column: "users_id"
-  add_foreign_key "user_notifications", "notifications", column: "notifications_id"
-  add_foreign_key "user_notifications", "users", column: "users_id"
+  add_foreign_key "user_courses", "courses"
+  add_foreign_key "user_courses", "users"
+  add_foreign_key "user_notifications", "notifications"
+  add_foreign_key "user_notifications", "users"
 end
