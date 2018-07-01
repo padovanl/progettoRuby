@@ -101,13 +101,9 @@ GEM
     execjs (2.7.0)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
-<<<<<<< HEAD
-    ffi (1.9.23)
+    ffi (1.9.25)
     font-awesome-sass (5.0.13)
       sassc (>= 1.11)
-=======
-    ffi (1.9.25)
->>>>>>> 0059417f4aa85aa0a2c3e77765f123b186125526
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     hashie (3.5.7)
