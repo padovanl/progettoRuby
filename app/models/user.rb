@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :user_courses
 
+  has_one_attached :avatar
 
   def self.new_with_session(params, session)
     super.tap do |user|

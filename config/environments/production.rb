@@ -16,7 +16,7 @@ Rails.application.configure do
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
-  # config.require_master_key = true
+  config.require_master_key = true
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
@@ -39,7 +39,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Store uploaded files on the local file system (see config/storage.yml for options)
-  config.active_storage.service = :local
+  config.active_storage.service = :amazon
 
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
@@ -93,17 +93,20 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
 
-  config.action_mailer.default_url_options = { host: 'https://concorrente2018.herokuapp.com/' }
+  
+  # Setup the mailer config
+  config.action_mailer.default_url_options = { host: 'https://aqueous-basin-84205.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
-
-  ActionMailer::Base.smtp_settings = {
-      :user_name => 'app100148598@heroku.com',
-      :password => 'bucsofyw1583',
-      :domain => 'heroku.com',
-      :address => 'smtp.sendgrid.net',
-      :port => 587,
-      :authentication => :plain,
-      :enable_starttls_auto => true
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.smtp_settings = {
+    :user_name => Rails.application.credentials.dig(:sendgrid, :user_name),
+    :password => Rails.application.credentials.dig(:sendgrid, :password),
+    :domain => 'heroku.com',
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
   }
 
+  #2193405117612648
 end

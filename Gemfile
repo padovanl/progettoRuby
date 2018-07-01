@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.0'
+ruby '2.5.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
@@ -61,12 +61,17 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-#gemme nostre
-
-#login
+# Gestione login e signup
 gem 'devise'
 gem 'omniauth-facebook'
 
-#bulma e fa
 gem 'bulma-rails', '~> 0.7.1'
 gem 'font-awesome-sass', '~> 5.0.9'
+
+# Per il servizio di storage di S3
+gem "aws-sdk-s3", require: false
+# Per il resize delle immagini
+gem "mini_magick"
+
+# Aiuta l'integrazione con sendgrid
+gem 'sendgrid-ruby'
