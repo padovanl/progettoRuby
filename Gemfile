@@ -65,6 +65,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'omniauth-facebook'
 
+gem 'bulma-rails', '~> 0.7.1'
+gem 'font-awesome-sass', '~> 5.0.9'
+
 # Per il servizio di storage di S3
 gem "aws-sdk-s3", require: false
 # Per il resize delle immagini
