@@ -84,4 +84,6 @@ bower.json
 .byebug_history
 
 
+/config/environments/development.rb
+
 # End of https://www.gitignore.io/api/rails
