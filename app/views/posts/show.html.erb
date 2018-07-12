@@ -1,15 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Titolo:</strong>
-  <%= @post.titolo %>
-</p>
-
-<p>
   <strong>Messaggio:</strong>
-  <%= @post.messaggio %>
+  <%= @post.message %>
 </p>
 
+
+<% if false %>
 <div>
   <% @post.allegati.each do |allegato| %>
     <%if allegato.variable? %>
@@ -23,8 +20,11 @@
       <%= link_to allegato.filename, 
       rails_blob_path(allegato, disposition: :attachement) %>
     <% end %>
-  <% end %>
+  <% end %> 
 </div>
+<% end %> 
+
+
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>

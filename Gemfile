@@ -75,3 +75,6 @@ gem "mini_magick"
 
 # Aiuta l'integrazione con sendgrid
 gem 'sendgrid-ruby'
+
+# Paginator
+gem 'kaminari'
