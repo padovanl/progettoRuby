@@ -78,3 +78,5 @@ gem 'sendgrid-ruby'
 
 # Paginator
 gem 'kaminari'
+
+gem 'react-rails'
