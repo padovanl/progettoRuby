@@ -6,4 +6,6 @@ class Post < ApplicationRecord
   # associazioni molti a molti
   has_many :document_posts
   has_many :documents, through: :document_posts
+
+  scope :course_posts, ->(id_post) { where("id_course = ?", id_post)}
 end

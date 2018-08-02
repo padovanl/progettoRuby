@@ -1,6 +1,10 @@
 
-<div class="container corso-thread">
 
+<%= react_component("PostsThread", {id_corso: 1, current_user: current_user}) %>
+
+
+
+<!--<div class="container corso-thread">
   <% @posts.each do |post| %>
     <%= render 'post', post: post %>
   <% end %>
@@ -8,6 +12,5 @@
 
   <%= link_to 'New Post', new_post_path %>
 
-</div>
+</div>-->
 
-<%= react_component("Post", {title: "Hello World"}) %>
