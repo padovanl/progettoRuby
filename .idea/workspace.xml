@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="938625a1-f32b-44d9-aee6-0b6f9f5d1734" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/assets/javascripts/components/posts/Comment.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/assets/javascripts/components/posts/NewPost.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/assets/javascripts/components/posts/Post.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/assets/javascripts/components/posts/PostsThread.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/javascripts/components/PostsPage.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/posts.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/posts.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/posts_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/posts_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/post.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/post.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/posts/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/posts/index.html.erb" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -48,7 +38,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PostsThread.jsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PostsThread.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/posts/PostsThread.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="480">
@@ -98,11 +88,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="posts_controller.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="posts_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/posts_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+            <state relative-caret-position="280">
+              <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -149,6 +139,7 @@
     </dirStrings>
   </component>
   <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -203,8 +194,8 @@
         <option value="$PROJECT_DIR$/app/assets/javascripts/components/posts/NewPost.jsx" />
         <option value="$PROJECT_DIR$/app/models/post.rb" />
         <option value="$PROJECT_DIR$/app/views/posts/index.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/posts_controller.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/components/posts/PostsThread.jsx" />
+        <option value="$PROJECT_DIR$/app/controllers/posts_controller.rb" />
       </list>
     </option>
   </component>
@@ -578,7 +569,7 @@
       <workItem from="1533108941937" duration="13421000" />
       <workItem from="1533148108505" duration="38000" />
       <workItem from="1533149985427" duration="10038000" />
-      <workItem from="1533232048333" duration="3334000" />
+      <workItem from="1533232048333" duration="3587000" />
     </task>
     <task id="LOCAL-00001" summary="Aggiunto ReactJS">
       <created>1533147831053</created>
@@ -587,15 +578,21 @@
       <option name="project" value="LOCAL" />
       <updated>1533147831053</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Aggiunti componenti ReactJS per la pagina dei post">
+      <created>1533235766838</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1533235766838</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72520000" />
+    <option name="totallyTimeSpent" value="72773000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="134" y="35" width="3706" height="2125" extended-state="7" />
-    <editor active="true" />
+    <frame x="134" y="35" width="3706" height="2125" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19320066" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -628,7 +625,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Aggiunto ReactJS" />
-    <option name="LAST_COMMIT_MESSAGE" value="Aggiunto ReactJS" />
+    <MESSAGE value="Aggiunti componenti ReactJS per la pagina dei post" />
+    <option name="LAST_COMMIT_MESSAGE" value="Aggiunti componenti ReactJS per la pagina dei post" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -901,17 +899,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/posts_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/posts/PostsThread.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/posts_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
         </state>
       </provider>
     </entry>
