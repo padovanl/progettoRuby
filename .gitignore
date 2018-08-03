@@ -11,6 +11,9 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
+# Ignore database.yml.
+/config/database.yml
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
@@ -85,5 +88,6 @@ bower.json
 
 
 /config/environments/development.rb
+
 
 # End of https://www.gitignore.io/api/rails

@@ -1,22 +1,84 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Kunerango la rinascita</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <title>BRAIN_STEAM</title>
+  <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
+  <link href="https://fonts.googleapis.com/css?family=Domine" rel="stylesheet">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+</head>
+
+<body>
+<nav class="navbar level is-mobile" role="navigation" aria-label="dropdown navigation">
+  <div class="container">
+    <div class="level is-mobile nav-items">
+
+      <a class="level-right" href="/">
+        <figure class="image is-48x48">
+          <%= image_tag "artificial-intelligence.png" %>
+        </figure>
+        <strong class="title is-4" id="app-name">BRAIN_STEAM</strong>
+      </a>
+
+      <% if user_signed_in? %>
+
+        <div class="level-item">
+          <a class="access">
+            Trova corsi
+          </a>
+        </div>
+
+        <div class="level-item">
+          <a class="access">
+            I miei corsi
+          </a>
+        </div>
+
+        <div class="level-item">
+          <a class="access">
+            I miei corsi
+          </a>
+        </div>
+
+        <div class="level-left">
+          <a class="access">
+            <u><%= link_to "Log out", destroy_user_session_path, method: :delete %></u>
+          </a>
+        </div>
+
+      <% else %>
+
+        <% if current_page?(new_user_registration_path) or
+            (if defined?resource_name then current_page?(new_password_path(resource_name)) else false end) %>
+
+          <div class="level-left">
+            <%= link_to(raw("<u>Login</u>"), new_user_session_path)  %>
+          </div>
+
+        <% else %>
+
+          <div class="level-left">
+            <a class="access">
+              <small>Non hai ancora un account?</small>
+            </a>
+            <%= link_to(raw("<u>Registrati</u>"), new_user_registration_path)  %>
+          </div>
+
+        <% end %>
+
+      <% end %>
+
+    </div>
+  </div>
+</nav>
 
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<%= yield %>
 
-  </head>
-
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
-    <%= yield %>
-  </body>
+</body>
 </html>

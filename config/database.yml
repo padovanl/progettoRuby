@@ -26,6 +26,7 @@ development:
   adapter:
   <<: *default
   database: pconcorrente
+
   username: pconcorrente
   password: 3478698318lP
   host: localhost
@@ -63,7 +64,8 @@ development:
 test:
   <<: *default
   database: DeviseActionMailer_test
-  username: postgres
+  username: eugenio
+  password: Eugenio93
   host: localhost
 
 # As with config/secrets.yml, you never want to store sensitive information,
