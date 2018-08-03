@@ -10,10 +10,10 @@
   <tbody>
     <%@courses.each do |course|%>
       <tr>
-        <td>course.name</td>
-      </tr>
-      <tr>
-        <td>course.year</td>
+        <td>
+          <%= render "course", course: course %>
+          <br>
+        </td>
       </tr>
     <% end %>
   </tbody>

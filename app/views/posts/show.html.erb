@@ -1,30 +1,7 @@
+<div class="container">
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Messaggio:</strong>
-  <%= @post.message %>
-</p>
+<%= render 'post', post: @post %>
 
-
-<% if false %>
-<div>
-  <% @post.allegati.each do |allegato| %>
-    <%if allegato.variable? %>
-      <%= link_to image_tag(allegato.variant(resize: "200x200")), allegato %>
-    <% elsif allegato.previewable? %>
-      <%= link_to image_tag(allegato.preview(resize: "200x200")), 
-      rails_blob_path(allegato, disposition: :attachement) %>
-    <% elsif allegato.image? %>
-      <%= link_to image_tag(allegato, width: 200), allegato %>
-    <% else %>
-      <%= link_to allegato.filename, 
-      rails_blob_path(allegato, disposition: :attachement) %>
-    <% end %>
-  <% end %> 
 </div>
-<% end %> 
-
-
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
