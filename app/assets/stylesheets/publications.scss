@@ -16,12 +16,16 @@
     border-radius: 50%;
   }
 
-  .comment, .upvote {
+  .comment, .upvote, .link-to-commets {
      text-decoration: none;
      color: black;
      span {
        margin-right: 5px;
      }
+  }
+
+  .link-to-commets {
+    color: #999999;
   }
 
 }

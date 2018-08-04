@@ -11,5 +11,7 @@ class Post < ApplicationRecord
   validates_presence_of :message
 
   scope :posts_of_a_course, -> (course_id) { where("course_id = ?", course_id)}
-  scope :with_author, -> { joins(:user).select('posts.*, users.*') }
+  scope :with_comments_count, -> { joins('left outer join comments on posts.id = comments.post_id')
+                                      .select('posts.*, count(comments.id) as comments_count').group('posts.id') }
+
 end

@@ -5,6 +5,13 @@ class Post extends React.Component {
     }
 
     render() {
+        const post = this.props.post;
+        let attachments = '';
+        if(post.documents.length > 0)
+            attachments = post.documents.map(function (doc) {
+                                return <Document key={doc.id} document={doc}></Document>
+                            });
+
         return (
             <div className="box">
                 <article className="media">
@@ -18,7 +25,7 @@ class Post extends React.Component {
                             <div className="columns is-mobile">
                                 <div className="column">
                                     <p>
-                                        <strong>Scrivi l'email</strong>
+                                        <strong>{ post.user.email }</strong>
                                         <small>31m</small>
                                     </p>
                                 </div>
@@ -31,26 +38,32 @@ class Post extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                            <p>{this.props.post.message}</p>
+                            <p>{ post.message }</p>
                             <div>
-                                allegati
+                                { attachments }
                             </div>
 
                         </div>
                         <nav className="level is-mobile">
                             <a className="level-item comment" aria-label="comment">
-                                <span className="icon is-small">
+                                <span className="icon is-medium">
+                                    <i className="far fa-comments"></i>
                                 </span>
                                 <span>Commenta</span>
                             </a>
                             <a className="level-item upvote" aria-label="like">
-                                <span className="icon is-small">
+                                <span className="icon is-medium">
+                                    <i className="far fa-thumbs-up"></i>
                                 </span>
                                 <span>Upvote</span>
                             </a>
                         </nav>
+
+                        <CommentsList comments_count={ post.comments_count } commets={ post.commets } />
                     </div>
+
                 </article>
+
             </div>
         );
     }

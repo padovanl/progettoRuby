@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Posts API', type: :request do
   # initialize test data
-  let!(:posts) { create_list(:post, 10) }
+  let!(:publications) { create_list(:post, 10) }
   let(:post_id) { posts.first.id }
 
   # Test suite for GET /todos
