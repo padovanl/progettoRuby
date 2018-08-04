@@ -1,16 +1,5 @@
 
+<% content_for :title, "Posts" %>
 
-<%= react_component("PostsThread", {id_corso: 1, current_user: current_user}) %>
-
-
-
-<!--<div class="container corso-thread">
-  <% @posts.each do |post| %>
-    <%= render 'post', post: post %>
-  <% end %>
-  <br>
-
-  <%= link_to 'New Post', new_post_path %>
-
-</div>-->
+<%= react_component("PostsThread", {course_id: 1, current_user: current_user}) %>
 

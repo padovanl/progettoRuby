@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :posts
+  resources :publications
+  resources :posts, only: [:index]
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   get 'welcome/index'
   root 'welcome#index'

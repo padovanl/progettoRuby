@@ -10,7 +10,7 @@ class PostsThread extends React.Component {
     }
 
     componentDidMount() {
-      fetch('/posts.json')
+      fetch('/publications?course_id=' + this.props.course_id)
         .then(response => response.json())
         .then(data => this.setState({ data }));
     }
