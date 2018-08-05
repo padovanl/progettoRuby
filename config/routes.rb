@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-  resources :posts
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
   get 'welcome/index'
   root 'welcome#index'
+  resources :publications, only: [:index]
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-  resources :courses
-
-
+  resources :documents
+  resources :posts do
+    resources :comments
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
