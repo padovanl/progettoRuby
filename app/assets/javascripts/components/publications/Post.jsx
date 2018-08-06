@@ -1,5 +1,5 @@
 
-class Post extends React.Component {
+class Post2 extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -26,7 +26,7 @@ class Post extends React.Component {
                                 <div className="column">
                                     <p>
                                         <strong>{ post.user.email }</strong>
-                                        <small>31m</small>
+                                        <small>{ (new Date(Date.parse(post.created_at))).toLocaleString() }</small>
                                     </p>
                                 </div>
                                 <div className="dropdown is-hoverable is-right column is-narrow">
@@ -68,3 +68,54 @@ class Post extends React.Component {
         );
     }
 }
+
+class Post extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const post = this.props.post;
+        let attachments = '';
+        if(post.documents.length > 0)
+            attachments = post.documents.map(function (doc) {
+                return <Document key={doc.id} document={doc}></Document>
+            });
+
+        return (
+            <div className="box">
+
+                <article className="media">
+                    <figure className="media-left">
+                        <p className="image is-64x64">
+                            <img src="https://bulma.io/images/placeholders/128x128.png"/>
+                        </p>
+                    </figure>
+                    <div className="media-content">
+                        <div className="content">
+                            <p>
+                                <strong>{ post.user.email }</strong>
+                                <br/>
+                                { post.message }
+                                <br/>
+                                <div>
+                                    { attachments }
+                                </div>
+                                <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+                            </p>
+
+                        </div>
+
+
+                        <CommentsList comments_count={ post.comments_count } commets={ post.commets } />
+
+                    </div>
+                </article>
+
+            </div>
+        );
+    }
+}
+
+
+

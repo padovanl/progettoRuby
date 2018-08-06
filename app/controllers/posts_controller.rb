@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    json_response(@publication)
+    json_response(@post)
   end
 
   def new
@@ -25,14 +25,11 @@ class PostsController < ApplicationController
 
     @publication = Publication.new(post_params)
     @publication.user = current_user
-    @post = Post.new
 
-    respond_to do |format|
-      if @publication.save
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    if @publication.save
+      json_response(@publication, :created)
+    else
+      # format.json { render json: @post.errors, status: :unprocessable_entity }
     end
   end
 

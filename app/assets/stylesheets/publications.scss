@@ -6,26 +6,66 @@
 .corso-thread {
 
   max-width: 1200px;
-  margin-top: 8%;
+  position: relative;
+  margin-top: 10vh;
+  overflow: hidden;
+
+  /**  STYLE 3 */
+
+  #style-1::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+  }
+
+  #style-1::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  #style-1::-webkit-scrollbar-thumb {
+    background-color: #9e9e9e;
+  }
 
   @include lg {
-      margin-top: 20%;
   }
 
-  figure img{
-    border-radius: 50%;
+
+
+  .posts-list {
+    overflow-y: scroll;
+    height: 82vh;
+    padding: 1px;
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    direction: rtl;
+
+    .box{
+      -webkit-transform: rotate(180deg);
+      transform: rotate(180deg);
+      direction: ltr;
+    }
+
+    figure img {
+      border-radius: 50%;
+    }
+
+    .comment, .upvote, .link-to-commets {
+      text-decoration: none;
+      color: black;
+      span {
+        margin-right: 5px;
+      }
+    }
+
+    .link-to-commets {
+      color: #999999;
+    }
   }
 
-  .comment, .upvote, .link-to-commets {
-     text-decoration: none;
-     color: black;
-     span {
-       margin-right: 5px;
-     }
-  }
+  .new-post {
+    margin-top: 10px;
 
-  .link-to-commets {
-    color: #999999;
+    .message-input {
+      width: 100%;
+    }
   }
 
 }
