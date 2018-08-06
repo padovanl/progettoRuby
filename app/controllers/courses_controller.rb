@@ -8,6 +8,7 @@ class CoursesController < ApplicationController
   end
 
   def create #lo fa solo l'amministratore?
+
   end
 
 end

@@ -1,26 +1,50 @@
-<h2>Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+
+<section class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container main-content">
+      <div class="columns is-desktop is-vcentered">
+        <div class="column is-two-thirds">
+          <div class="main-text">
+            <p class="title is-2">
+              BRAIN_STEAM
+            </p>
+            <p class="subtitle is-5" style="line-height: 2;">
+              Ti manca Kunerango? non hai pi&#250; nessun riferimento su cosa e come studiare? </br>Su BRAIN_STEAM troverai gruppi di tuoi pari che ti possono aiutare e fornire tutto il necessario.</br> Scarica il materiale didattico per i corsi che segui,</br> fai domande nella chat, trova persone dispote darti ripetizioni e molto altro.
+            </p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="box">
+            <p class="title is-4"><strong>Login</strong></p>
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+              <div class="field">
+                <p><small><strong>EMAIL</strong></small></p>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input is-medium", style: "border-radius: 15px;" %>
+              </div>
+              <div class="field">
+                <p><small><strong>PASSWORD</strong></small></p>
+                <%= f.password_field :password, autocomplete: "off", class: "input is-medium", style: "border-radius: 15px;" %>
+              </div>
+              <% if devise_mapping.rememberable? -%>
+                <div class="field">
+                  <%= f.check_box :remember_me %>&nbsp;Ricordami
+                </div>
+              <% end -%>
+
+              <div class="actions">
+                <%= f.submit "Log in", class: "button is-medium is-rounded submit-action is-fullwidth" %>
+              </div>
+            <% end %>
+            <br />
+            <div class="is-divider"></div>
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
+</section>
 
-<%= render "devise/shared/links" %>

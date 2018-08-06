@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Posts API', type: :request do
+RSpec.describe 'Posts api', type: :request do
   # initialize test data
   let!(:publications) { create_list(:post, 10) }
   let(:post_id) { posts.first.id }
