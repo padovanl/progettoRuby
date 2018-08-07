@@ -11,7 +11,8 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
-# Ignore database.yml.
+# Ignore database.yml and .idea/workspace.xml.
+.idea/workspace.xml
 /config/database.yml
 
 # Ignore all logfiles and tempfiles.

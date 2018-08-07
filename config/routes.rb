@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments
   end
+  get '/courses', to: 'courses#index'
+  resource :courses, only: [:show]
 
   #admin
   get '/dashboard', to: 'admin#dashboard'
@@ -19,6 +21,7 @@ Rails.application.routes.draw do
       resources :courses, only: [:index, :create, :destroy, :update]
     end
   end
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
