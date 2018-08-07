@@ -186,6 +186,7 @@ GEM
     public_suffix (3.0.2)
     puma (3.11.4)
     rack (2.0.5)
+    rack-cors (1.0.2)
     rack-protection (2.0.3)
       rack
     rack-test (1.0.0)
@@ -334,6 +335,7 @@ DEPENDENCIES
   omniauth-facebook
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
+  rack-cors
   rails (~> 5.2.0)
   react-rails
   rspec-rails (~> 3.7)
