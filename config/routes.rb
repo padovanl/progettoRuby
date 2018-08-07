@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   resources :posts
   resources :comments
 
+  get '/courses', to: 'courses#index'
+  resource :courses, only: [:show]
+
   #admin
   get '/dashboard', to: 'admin#dashboard'
 
