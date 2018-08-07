@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-=begin
+begin
 Course.destroy_all
 DegreeCourse.destroy_all
  
@@ -73,7 +73,7 @@ degree_course.courses.create!([
     { name: "Ricerca operativa", year: 2 },
     { name: "Progetto di sistemi Web", year: 2 }
 ])
-=end
+end
 
 user = User.first
 course = Course.first
