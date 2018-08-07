@@ -2,13 +2,13 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.includes([:user, :documents]).posts_of_a_course(params[:course_id])
-                        .with_comments_count
-    json_response(@posts.to_json(include: [:user, :documents]))
+    @posts = Post.posts_of_a_course(params[:course_id])
+    render json: @posts, include: %w(user comments comments.user documents)
+    # json_response(@posts.to_json(include: [:user, :documents, :comments]))
   end
 
   def show
-    json_response(@post)
+    render json: @post
   end
 
   def new
@@ -20,14 +20,11 @@ class PostsController < ApplicationController
   end
 
   def create
-
-    # logger.debug("HEEEEE #{params[:post][:allegati]}")
-
     @publication = Publication.new(post_params)
     @publication.user = current_user
 
     if @publication.save
-      json_response(@publication, :created)
+      json_response(@publication.post.to_json(include: :documents), :created)
     else
       # format.json { render json: @post.errors, status: :unprocessable_entity }
     end

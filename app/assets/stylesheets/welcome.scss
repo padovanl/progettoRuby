@@ -7,7 +7,7 @@ h1 {
   margin-top: 8%;
 }
 
-@include lg {
+@include rwd(1080) {
   h1 {
     margin-top: 20%;
   }

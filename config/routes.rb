@@ -7,9 +7,8 @@ Rails.application.routes.draw do
 
 
   resources :documents
-  resources :posts do
-    resources :comments
-  end
+  resources :posts
+  resources :comments
 
   #admin
   get '/dashboard', to: 'admin#dashboard'

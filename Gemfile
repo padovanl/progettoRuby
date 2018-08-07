@@ -91,3 +91,4 @@ gem 'sendgrid-ruby'
 gem 'kaminari'
 
 gem 'react-rails'
+gem 'active_model_serializers'

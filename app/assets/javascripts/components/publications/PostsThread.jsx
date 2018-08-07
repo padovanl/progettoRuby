@@ -1,38 +1,42 @@
 // language=JSX Harmony
 
 class PostsThread extends React.Component {
-  constructor(props) {
-      super(props);
+    constructor(props) {
+        super(props);
 
-      this.state = {
-        data: {},
-      };
-  }
+        this.state = {
+            data: [],
+        };
+    }
 
-    addNewPost(post){console.log(JSON.stringify(this.state.data))
-      console.log(post)
-      this.setState({ data: this.state.data.append(post) })
-
+    addNewPost(post) {
+        post['user'] = this.props.current_user
+        this.setState((prevState) => {
+            return {
+                data: [post].concat(prevState.data)
+            };
+        });
     }
 
     componentDidMount() {
-      fetch('/posts?course_id=' + this.props.course_id)
-        .then(response => response.json())
-        .then(data => this.setState({ data }));
+        fetch('/posts?course_id=' + this.props.course_id)
+            .then(response => response.json())
+            .then(data => this.setState({data}));
     }
 
     render() {
+        const current_user = this.props.current_user
         if (this.state.data.length > 0) {
             return (
                 <div className="container corso-thread">
                     <div className="posts-list" id="style-1">
                         {
                             this.state.data.map(function (post) {
-                                return <Post key={post.id} post={post}></Post>
+                                return <Post key={post.id} post={post} current_user={current_user}></Post>
                             })
                         }
                     </div>
-                    <NewPost addNewPost={ this.addNewPost.bind(this) } />
+                    <NewPost addNewPost={this.addNewPost.bind(this)}/>
                 </div>
             );
         }

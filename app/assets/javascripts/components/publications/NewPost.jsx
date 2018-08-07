@@ -40,7 +40,7 @@ class NewPost extends React.Component {
         .then(response => {
             return response.json();
         }).then(function(json) {
-            addNewPost(json["post"])
+            addNewPost(json)
         })
         .catch(error => console.log(error));
 

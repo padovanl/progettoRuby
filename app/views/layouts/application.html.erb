@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
 
   <title><%= yield(:title) %> | BRAIN_STEAM</title>
   <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
@@ -12,8 +14,9 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-
-
+  <script>
+    document.documentElement.requestFullscreen();
+  </script>
 </head>
 
 <body>
@@ -32,12 +35,6 @@
 
         <div class="level-item">
           <a class="access">
-            Trova corsi
-          </a>
-        </div>
-
-        <div class="level-item">
-          <a class="access">
             I miei corsi
           </a>
         </div>
@@ -49,9 +46,7 @@
         </div>
 
         <div class="level-left">
-          <a class="access">
-            <u><%= link_to "Log out", destroy_user_session_path, method: :delete %></u>
-          </a>
+            <u><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "access" %></u>
         </div>
 
       <% else %>
@@ -60,7 +55,7 @@
             (if defined?resource_name then current_page?(new_password_path(resource_name)) else false end) %>
 
           <div class="level-left">
-            <%= link_to(raw("<u>Login</u>"), new_user_session_path)  %>
+            <%= link_to(raw("<u>Login</u>"), new_user_session_path, class: "access")  %>
           </div>
 
         <% else %>
@@ -68,8 +63,9 @@
           <div class="level-left">
             <a class="access">
               <small>Non hai ancora un account?</small>
+              <%= link_to(raw("<u>Registrati</u>"), new_user_registration_path)  %>
             </a>
-            <%= link_to(raw("<u>Registrati</u>"), new_user_registration_path)  %>
+
           </div>
 
         <% end %>
@@ -80,9 +76,8 @@
   </div>
 </nav>
 
-<div style="padding: 100px 10px 10px 10px;">
-  <%= yield %>
-</div>
+
+<%= yield %>
 
 
 </body>
