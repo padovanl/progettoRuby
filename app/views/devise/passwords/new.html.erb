@@ -1,16 +1,34 @@
-<h2>Forgot your password?</h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<% content_for :title, "Recupera password" %>
+
+<section class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container main-content">
+      <div class="columns is-desktop is-vcentered">
+        <div class="column"></div>
+        <div class="column">
+          <div class="box">
+            <p class="title is-4"><strong>Dimenticato la password?</strong></p>
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+              <%= devise_error_messages! %>
+
+              <div class="field">
+                <p><small><strong>EMAIL</strong></small></p>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input is-medium", style: "border-radius: 15px;", required: true %>
+              </div>
+
+              <div class="actions">
+                <%= f.submit "Invia", class: "button is-medium is-rounded submit-action is-fullwidth" %>
+              </div>
+            <% end %>
+            <br />
+            <div class="is-divider"></div>
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+        <div class="column"></div>
+      </div>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</section>
