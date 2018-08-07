@@ -1,6 +1,7 @@
 
 
 
+<% content_for :title, "Welcome" %>
 
 <section class="hero is-fullheight">
   <div class="hero-body">
@@ -20,13 +21,14 @@
           <div class="box">
             <p class="title is-4"><strong>Login</strong></p>
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+              <%= devise_error_messages! %>
               <div class="field">
                 <p><small><strong>EMAIL</strong></small></p>
-                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input is-medium", style: "border-radius: 15px;" %>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input is-medium", style: "border-radius: 15px;", required: true %>
               </div>
               <div class="field">
                 <p><small><strong>PASSWORD</strong></small></p>
-                <%= f.password_field :password, autocomplete: "off", class: "input is-medium", style: "border-radius: 15px;" %>
+                <%= f.password_field :password, autocomplete: "off", class: "input is-medium", style: "border-radius: 15px;", required: true %>
               </div>
               <% if devise_mapping.rememberable? -%>
                 <div class="field">
