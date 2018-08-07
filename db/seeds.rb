@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+=begin
 Course.destroy_all
 DegreeCourse.destroy_all
  
@@ -71,4 +72,19 @@ degree_course.courses.create!([
     { name: "Fondamenti di intelligenza artificiale", year: 1 },
     { name: "Ricerca operativa", year: 2 },
     { name: "Progetto di sistemi Web", year: 2 }
-]) 
+])
+=end
+
+user = User.first
+course = Course.first
+10.times do
+  post = Post.create!(
+    message: Faker::HeyArnold.quote,
+    user_id: user.id,
+    course_id: course.id
+  )
+  post.comments.create!([
+      {content: Faker::Hobbit.quote, user_id: user.id},
+      {content: Faker::Hobbit.quote, user_id: user.id},
+      {content: Faker::Hobbit.quote, user_id: user.id}])
+end

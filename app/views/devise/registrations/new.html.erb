@@ -1,29 +1,65 @@
-<h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+
+
+<% content_for :title, "Sign up" %>
+
+<section class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container main-content">
+      <div class="columns is-desktop is-vcentered">
+        <div class="column is-two-thirds">
+          <div class="main-text">
+            <p class="title is-2">
+              BRAIN_STEAM
+            </p>
+            <p class="subtitle is-5" style="line-height: 2;">
+              Ti manca Kunerango? non hai pi&#250; nessun riferimento su cosa e come studiare? </br>Su BRAIN_STEAM
+              troverai gruppi di tuoi pari che ti possono aiutare e fornire tutto il necessario.</br> Scarica il
+              materiale didattico per i corsi che segui,</br> fai domande nella chat, trova persone dispote darti
+              ripetizioni e molto altro.
+            </p>
+          </div>
+        </div>
+        <div class="column">
+          <div class="box">
+            <p class="title is-4"><strong>Sign up</strong></p>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <%= devise_error_messages! %>
+
+              <div class="field">
+                <p><small><strong>NOME</strong></small></p>
+                <%= f.text_field :name, autofocus: true, class: "input is-medium", style: "border-radius: 15px;", required: true %>
+              </div>
+
+              <div class="field">
+                <p><small><strong>EMAIL</strong></small></p>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input is-medium", style: "border-radius: 15px;", required: true %>
+              </div>
+
+              <div class="field">
+                <p><small><strong>PASSWORD</strong></small></p>
+                <% if @minimum_password_length %>
+                  <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %><br />
+                <%= f.password_field :password, autocomplete: "off", class: "input is-medium", style: "border-radius: 15px;", required: true %>
+              </div>
+
+              <div class="field">
+                <p><small><strong>CONFERMA PASSWORD</strong></small></p>
+                <%= f.password_field :password_confirmation, autocomplete: "off", class: "input is-medium", style: "border-radius: 15px;", required: true %>
+              </div>
+
+              <div class="actions">
+                <%= f.submit "Sign up", class: "button is-medium is-rounded submit-action is-fullwidth"  %>
+              </div>
+            <% end %>
+            <br />
+            <div class="is-divider"></div>
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</section>

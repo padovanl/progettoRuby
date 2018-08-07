@@ -1,21 +1,64 @@
-<h1>Scegli il corso</h1>
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8">
+  </head>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3">Corsi</th>
-    </tr>
-  </thead>
+  <body>
 
-  <tbody>
-    <%@courses.each do |course|%>
+    <!-- Nodo radice usato come contenitore della nostra applicazione -->
+    <div id="root"></div>
+    <table>
+      <thead>
       <tr>
-        <td>
-          <%= render "course", course: course %>
-          <br>
-        </td>git 
+        <th colspan="3">Corsi</th>
       </tr>
-    <% end %>
-  </tbody>
+      </thead>
 
-</table>
+      <tbody>
+      <%@courses.each do |course|%>
+        <tr>
+          <td>
+            <%= render "course", course: course %>
+            <br>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+
+    </table>
+
+    <!-- Include react e react-dom -->
+    <script src="https://unpkg.com/react@15.4.2/dist/react.min.js"></script>
+    <script src="https://unpkg.com/react-dom@15.4.2/dist/react-dom.min.js"></script>
+
+    <!-- Include Babel -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+
+    <script type="text/babel">
+
+        /*  crea un oggetto di tipo React Element
+        *   La sintassi usata <h1>...</h1> NON è HTML, NON è una Stringa.
+        *   <h1>...</h1> NON è racchiusa tra virgolette
+        *   si tratta di JSX
+        */
+        const reactElement = <h1>Scegli il corso (react)</h1>;
+
+        /*  seleziona il nodo radice usato come contenitore per la nostra app*/
+        const rootNode = document.querySelector('#root');
+
+        /*  ReactDOM.render(element, container, [callback])
+        *   Se la funzione ReactDOM.render() non viene chiamata,
+        *   non viene mostrato nulla nella pagina
+        */
+        const instance = ReactDOM.render(reactElement, rootNode);
+    </script>
+
+    <h1>Scegli il corso</h1>
+
+
+  </body>
+
+
+</html>

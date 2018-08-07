@@ -30,4 +30,8 @@ class User < ApplicationRecord
       user.skip_confirmation!
     end
   end
+
+
+  # validations
+  validates_presence_of :name, :email
 end

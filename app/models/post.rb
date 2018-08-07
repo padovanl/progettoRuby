@@ -7,5 +7,11 @@ class Post < ApplicationRecord
   has_many :document_posts
   has_many :documents, through: :document_posts
 
-  scope :course_posts, ->(id_post) { where("id_course = ?", id_post)}
+  # validations
+  validates_presence_of :message
+
+  scope :posts_of_a_course, -> (course_id) { where("course_id = ?", course_id)}
+  scope :with_comments_count, -> { joins('left outer join comments on posts.id = comments.post_id')
+                           .select('posts.*, count(comments.id) as comments_count').group('posts.id').order(created_at: :desc) }
+
 end
