@@ -41,7 +41,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # uso rspec al posto di minitest
   gem 'rspec-rails', '~> 3.7'
-
+  # A library for generating fake data. We'll use this to generate test data.
+  gem 'faker'
 end
 
 group :development do
@@ -63,8 +64,6 @@ group :test do
   gem 'factory_bot_rails', '~> 4.0'
   # Provides RSpec with additional matchers.
   gem 'shoulda-matchers', '~> 3.1'
-  # A library for generating fake data. We'll use this to generate test data.
-  gem 'faker'
   # You guessed it! It literally cleans our test database to ensure a clean state in each test suite.
   gem 'database_cleaner'
 end
@@ -77,6 +76,7 @@ gem 'devise'
 gem 'omniauth-facebook'
 
 gem 'bulma-rails', '~> 0.7.1'
+gem 'bulma-extensions-rails', '~> 1.0', '>= 1.0.30'
 gem 'font-awesome-sass', '~> 5.0.9'
 
 # Per il servizio di storage di S3

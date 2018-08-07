@@ -2,19 +2,24 @@
 class NewPost extends React.Component {
     constructor(props) {
         super(props);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.fileInput = React.createRef();
+        this.state = {
+            message: '',
+            count_files: 0
+        };
+
+    }
+
+    handleChange(files) {
+        this.setState({count_files: files.length});
+    }
+    handleChangeMessage(event) {
+        this.setState({message: event.target.value});
     }
 
     handleSubmit(event) {
-        // highlight-range{4}
         event.preventDefault();
-        const form = event.target;
-        const data = new FormData(form);
-        /*const formData = new FormData(form);
-        form.get('post[attachments][]').forEach((file) => {
-            formData.append('files[]', file);
-        });*/
+        const data = new FormData(event.target);
+        const addNewPost = this.props.addNewPost
 
         var myHeaders = new Headers();
         myHeaders.append('X-CSRF-Token', Rails.csrfToken());
@@ -26,36 +31,53 @@ class NewPost extends React.Component {
             return response;
         }
 
-
         fetch('/posts.json', {
             method: 'POST',
             headers: myHeaders,
             credentials: 'same-origin',
             body: data,
         }).then(handleErrors)
-        .then(response => console.log(response.text()) )
+        .then(response => {
+            return response.json();
+        }).then(function(json) {
+            addNewPost(json["post"])
+        })
         .catch(error => console.log(error));
+
+        this.setState({message: '', count_files: 0});
+        document.getElementById("post_attachments").value = null;
     }
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-
-                <div className="control">
-                    <label htmlFor="post_message">Message</label>
-                    <textarea ref={this.message} className="textarea" type="text"
-                              name="post[message]"
-                              id="post_message" placeholder="Scrivi un post..."/>
-                </div>
-
-                <div className="field">
-                    <label htmlFor="post_attachments">Attachments</label>
-                    <input ref={this.fileInput} multiple="multiple" type="file"
-                           name="post[attachments][]" id="post_attachments"/>
-                </div>
-
-                <div className="actions">
-                    <input type="submit" name="commit" value="Create Post" />
+            <form onSubmit={ (e) => this.handleSubmit(e) } className="new-post">
+                <div>
+                    <div className="field has-addons">
+                        <p className={ "control " + (this.state.count_files ? "tooltip" : '') }
+                            data-tooltip={ this.state.count_files ? this.state.count_files + " File" : '' }>
+                            <div className="file is-medium">
+                                <label className="file-label">
+                                    <input className="file-input" type="file" multiple="multiple"
+                                       name="post[attachments][]" id="post_attachments" onChange={ (e) => this.handleChange(e.target.files) } />
+                                    <span className="file-cta">
+                                        <span className="file-icon">
+                                          <i className="fas fa-upload"></i>
+                                        </span>
+                                    </span>
+                                </label>
+                            </div>
+                        </p>
+                        <p className="control message-input">
+                            <input className="input is-medium" name="post[message]" value={ this.state.message }
+                                   id="post_message" type="text" placeholder="Scrivi un post..."
+                                   onChange={ (e) => this.handleChangeMessage(e) } />
+                        </p>
+                        <p className="control">
+                            <button className="button is-medium" type="submit" name="commit">
+                                Invia
+                            </button>
+                        </p>
+                    </div>
                 </div>
             </form>
         )
