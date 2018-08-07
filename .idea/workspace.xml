@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cd8667ba-67f6-4d0f-95a9-daa7e2ff905a" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/devise/confirmations/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/devise/confirmations/new.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/devise/mailer/confirmation_instructions.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/devise/mailer/confirmation_instructions.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/devise/passwords/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/devise/passwords/edit.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/devise/passwords/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/devise/passwords/new.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -22,14 +19,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/progettoRuby@Unnamed.rcov" NAME="Unnamed Coverage Results" MODIFIED="1533606680936" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="DeviseActionMailer" />
+    <SUITE FILE_PATH="coverage/progettoRuby@Unnamed.rcov" NAME="Unnamed Coverage Results" MODIFIED="1533651690046" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="DeviseActionMailer" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="new.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/devise/sessions/new.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-135">
+            <state relative-caret-position="45">
               <caret line="3" selection-start-line="3" selection-end-line="51" />
             </state>
           </provider>
@@ -44,11 +41,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="new.html.erb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="new.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/devise/passwords/new.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+            <state relative-caret-position="315">
+              <caret line="21" column="101" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="101" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit.html.erb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="348">
+              <caret line="57" column="209" selection-start-line="57" selection-start-column="209" selection-end-line="57" selection-end-column="209" />
+              <folding>
+                <element signature="e#1220#1226#1#HTML" expanded="true" />
+                <element signature="e#1853#1859#1#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -66,6 +76,7 @@
         <option value="$PROJECT_DIR$/app/views/devise/passwords/edit.html.erb" />
         <option value="$PROJECT_DIR$/app/views/devise/confirmations/new.html.erb" />
         <option value="$PROJECT_DIR$/app/views/devise/passwords/new.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb" />
       </list>
     </option>
   </component>
@@ -121,13 +132,6 @@
               <item name="progettoRuby" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="progettoRuby" type="b2602c69:ProjectViewProjectNode" />
-              <item name="progettoRuby" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="devise" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -136,15 +140,7 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="devise" type="462c0819:PsiDirectoryNode" />
-              <item name="confirmations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="progettoRuby" type="b2602c69:ProjectViewProjectNode" />
-              <item name="progettoRuby" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="devise" type="462c0819:PsiDirectoryNode" />
-              <item name="passwords" type="462c0819:PsiDirectoryNode" />
+              <item name="registrations" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="progettoRuby" type="b2602c69:ProjectViewProjectNode" />
@@ -248,14 +244,16 @@
       <workItem from="1533564114230" duration="5616000" />
       <workItem from="1533599939613" duration="1518000" />
       <workItem from="1533605465708" duration="1492000" />
+      <workItem from="1533650433680" duration="1258000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1647000" />
+    <option name="totallyTimeSpent" value="2905000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24959569" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -264,7 +262,7 @@
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32991803" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32991803" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -285,6 +283,27 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/views/devise/sessions/new.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/devise/confirmations/new.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="35" selection-start-line="35" selection-end-line="36" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/devise/passwords/new.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/devise/sessions/new.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="630">
@@ -440,7 +459,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/devise/sessions/new.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-135">
+        <state relative-caret-position="45">
           <caret line="3" selection-start-line="3" selection-end-line="51" />
         </state>
       </provider>
@@ -459,10 +478,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/welcome_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="11" lean-forward="true" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/devise/passwords/new.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+        <state relative-caret-position="315">
+          <caret line="21" column="101" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="101" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="57" column="209" selection-start-line="57" selection-start-column="209" selection-end-line="57" selection-end-column="209" />
+          <folding>
+            <element signature="e#1220#1226#1#HTML" expanded="true" />
+            <element signature="e#1853#1859#1#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
