@@ -91,3 +91,7 @@ gem 'sendgrid-ruby'
 gem 'kaminari'
 
 gem 'react-rails'
+
+gem 'rack-cors'
+
+gem "font-awesome-rails"
