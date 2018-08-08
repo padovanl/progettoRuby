@@ -8,7 +8,7 @@ const AllDegreeCourses = (props) => {
 
     return(
         <div>
-            <table>
+            <table className="table is-hoverable is-fullwidth">
                 <thead>
                     <tr>
                         <th>Nome</th>
