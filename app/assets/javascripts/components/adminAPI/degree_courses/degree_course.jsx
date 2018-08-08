@@ -24,13 +24,20 @@ class DegreeCourse extends React.Component{
     render(){
         let name = this.state.editable ? <input type='text' ref={input => this.name = input} defaultValue={this.props.course.name}/>:<i>{this.props.course.name}</i>;
         let tipo = <i>{this.props.course.tipo}</i>;
+
+        let pulsante;
+        if(!this.state.editable){
+            pulsante = <i className="fas fa-pen"></i>;
+        }else{
+            pulsante = <i className="fas fa-check"></i>;
+        }
         return(
             <tr key={this.props.course.id}>
                 <td>{name}</td>
                 <td>{tipo}</td>
                 <td>
-                    <button onClick={() => this.handleEdit()}>{this.state.editable? 'Submit' : 'Edit'}</button>
-                    <button onClick={() => this.props.handleDelete(this.props.course.id)}>Delete</button>
+                    <a className="button is-rounded is-success" onClick={() => this.handleEdit()}>{pulsante}</a>
+                    <a className="button is-rounded is-danger" onClick={() => this.props.handleDelete(this.props.course.id)}><i className="fas fa-trash"></i></a>
                 </td>
             </tr>
 

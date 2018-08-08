@@ -19,7 +19,7 @@
 
 <%= react_component 'MainCourses' %>
 
-<div class="dropdown" id="1" onclick="toggleClass(1)">
+<div class="dropdown dropdownDegree" id="1" onclick="toggleClass(1)">
   <div class="dropdown-trigger">
     <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
       <span>Dropdown button</span>
@@ -50,7 +50,7 @@
   </div>
 </div>
 
-<div class="dropdown" id="2" onclick="toggleClass(2)">
+<div class="dropdown dropdownDegree" id="2" onclick="toggleClass(2)">
   <div class="dropdown-trigger">
     <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
       <span>Dropdown button</span>
@@ -92,7 +92,7 @@
 
     function toggleClass(id){
         //chiudo gli altri
-        var otherDropdowns = document.querySelectorAll('.dropdown');
+        var otherDropdowns = document.querySelectorAll('.dropdownDegree');
         for(var i = 0; i < otherDropdowns.length; i++){
             if(otherDropdowns[i].id != id){
                 otherDropdowns[i].classList.remove('is-active');
@@ -105,3 +105,5 @@
 </script>
 
 <%= fa_icon "camera-retro" %>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">

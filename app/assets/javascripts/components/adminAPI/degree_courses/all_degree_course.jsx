@@ -13,6 +13,7 @@ const AllDegreeCourses = (props) => {
                     <tr>
                         <th>Nome</th>
                         <th>Tipo</th>
+                        <th>Opzioni</th>
                     </tr>
                 </thead>
                 <tbody>
