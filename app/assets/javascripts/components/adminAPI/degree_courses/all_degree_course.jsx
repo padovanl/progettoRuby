@@ -2,15 +2,24 @@ const AllDegreeCourses = (props) => {
 
     var courses = props.courses.map((course) => {
         return(
-            <div key={course.id}>
                 <DegreeCourse course={course} handleDelete={props.handleDelete} handleUpdate={props.handleUpdate} />
-            </div>
         )
     })
 
     return(
         <div>
-            {courses}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Tipo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {courses}
+                </tbody>
+            </table>
+
         </div>
     )
 }

@@ -25,14 +25,15 @@ class DegreeCourse extends React.Component{
         let name = this.state.editable ? <input type='text' ref={input => this.name = input} defaultValue={this.props.course.name}/>:<i>{this.props.course.name}</i>;
         let tipo = <i>{this.props.course.tipo}</i>;
         return(
-            <div>
-                <p>
-                    {name}&nbsp;
-                    {tipo}&nbsp;
+            <tr key={this.props.course.id}>
+                <td>{name}</td>
+                <td>{tipo}</td>
+                <td>
                     <button onClick={() => this.handleEdit()}>{this.state.editable? 'Submit' : 'Edit'}</button>
                     <button onClick={() => this.props.handleDelete(this.props.course.id)}>Delete</button>
-                </p>
-            </div>
+                </td>
+            </tr>
+
         )
     }
 }
