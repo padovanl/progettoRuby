@@ -76,7 +76,8 @@ degree_course.courses.create!([
 
 
 
-user = User.create!(name: "Admin Admin", email: "admin@admin.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391")
+user = User.create!(name: "Admin Admin", email: "admin@admin.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: true)
+User.create!(name: "User User", email: "user@user.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
 user.tags.create!([
   { id:1 , name: "Ricerca" },
   { id:2 , name: "Sviluppo Web" },
