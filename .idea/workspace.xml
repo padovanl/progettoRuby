@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd8667ba-67f6-4d0f-95a9-daa7e2ff905a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/models/tag.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/tag.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
@@ -25,16 +22,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="seeds.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="seeds.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db/seeds.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="759">
-              <caret line="92" column="3" selection-start-line="92" selection-start-column="3" selection-end-line="92" selection-end-column="3" />
+            <state relative-caret-position="444">
+              <caret line="82" column="38" selection-start-line="82" selection-start-column="38" selection-end-line="82" selection-end-column="38" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="20180809201834_add_user_to_tag.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="20180809201834_add_user_to_tag.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/migrate/20180809201834_add_user_to_tag.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state>
@@ -104,10 +101,10 @@
         <option value="$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/tag/body_tag.jsx" />
         <option value="$PROJECT_DIR$/app/models/user.rb" />
         <option value="$PROJECT_DIR$/app/models/tag.rb" />
-        <option value="$PROJECT_DIR$/db/seeds.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20180809201834_add_user_to_tags.rb" />
         <option value="$PROJECT_DIR$/db/migrate/20180809201834_add_user_to_tag.rb" />
         <option value="$PROJECT_DIR$/db/schema.rb" />
+        <option value="$PROJECT_DIR$/db/seeds.rb" />
       </list>
     </option>
   </component>
@@ -339,12 +336,12 @@
       <workItem from="1533766314325" duration="6235000" />
       <workItem from="1533773707676" duration="1718000" />
       <workItem from="1533822757669" duration="8447000" />
-      <workItem from="1533844497931" duration="2182000" />
+      <workItem from="1533844497931" duration="2644000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38291000" />
+    <option name="totallyTimeSpent" value="38753000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
@@ -354,9 +351,9 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32991803" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32991803" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24959569" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24959569" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32991803" />
@@ -644,13 +641,6 @@
     <entry file="file://$PROJECT_DIR$/db/migrate/20180624133703_add_type_to_degree_course.rb">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/seeds.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="759">
-          <caret line="92" column="3" selection-start-line="92" selection-start-column="3" selection-end-line="92" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/migrate/20180624135213_add_year_to_course.rb">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -698,6 +688,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="18" selection-start-column="18" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/seeds.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="82" column="38" selection-start-line="82" selection-start-column="38" selection-end-line="82" selection-end-column="38" />
         </state>
       </provider>
     </entry>
