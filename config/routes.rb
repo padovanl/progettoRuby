@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   #admin
   get '/dashboard', to: 'admin#dashboard'
 
+
   namespace :api do
     namespace :v1 do
       resources :courses, only: [:index, :create, :destroy, :update]

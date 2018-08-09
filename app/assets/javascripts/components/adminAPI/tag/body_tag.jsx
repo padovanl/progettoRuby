@@ -13,6 +13,7 @@ class BodyTag extends React.Component {
         this.updateTag = this.updateTag.bind(this)
     }
 
+
     handleUpdate(tag){
         if(tag.name != ''){
             fetch(`http://localhost:3000/api/v1/tags/${tag.id}`,
@@ -100,7 +101,6 @@ class BodyTag extends React.Component {
     render(){
         return(
             <div>
-
                 <AllTags tags={this.state.tags} handleDelete={this.handleDelete}  handleUpdate = {this.handleUpdate} />
                 <table className="table is-hoverable is-fullwidth">
                     <tbody>
