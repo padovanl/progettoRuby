@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :comments
   has_many :user_courses
+  has_many :tags
 
   has_one_attached :avatar
 
