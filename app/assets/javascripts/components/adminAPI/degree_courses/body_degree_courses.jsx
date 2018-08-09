@@ -85,8 +85,13 @@ class BodyDegreeCourses extends React.Component {
     render(){
         return(
             <div>
-                <NewDegreeCourse handleFormSubmit={this.handleFormSubmit} />
+
                 <AllDegreeCourses courses={this.state.courses} handleDelete={this.handleDelete}  handleUpdate = {this.handleUpdate} />
+                <table className="table is-hoverable is-fullwidth">
+                    <tbody>
+                        <NewDegreeCourse handleFormSubmit={this.handleFormSubmit} />
+                    </tbody>
+                </table>
             </div>
         )
     }

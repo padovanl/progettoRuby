@@ -36,7 +36,7 @@ class DegreeCourse extends React.Component{
                 <td>{name}</td>
                 <td>{tipo}</td>
                 <td>
-                    <a className="button is-rounded is-success" onClick={() => this.handleEdit()}>{pulsante}</a>
+                    <a className="button is-rounded is-success" onClick={() => this.handleEdit()}>{pulsante}</a>&nbsp;
                     <a className="button is-rounded is-danger" onClick={() => this.props.handleDelete(this.props.course.id)}><i className="fas fa-trash"></i></a>
                 </td>
             </tr>
