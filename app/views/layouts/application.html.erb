@@ -41,11 +41,14 @@
           </a>
         </div>
 
-        <div class="level-item">
-          <a class="access">
-            I miei corsi
-          </a>
-        </div>
+        <% if user_signed_in?  && current_user.admin then %>
+          <div class="level-item">
+            <a class="access" href="/dashboard">
+              Dashboard
+            </a>
+          </div>
+        <% end %>
+
 
         <div class="level-left">
           <a class="access">
