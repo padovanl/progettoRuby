@@ -1,4 +1,4 @@
-class DegreeCourse extends React.Component{
+class Tag extends React.Component{
 
     constructor(props){
         super(props);
@@ -11,10 +11,9 @@ class DegreeCourse extends React.Component{
     handleEdit(){
         if(this.state.editable){
             let name = this.name.value;
-            //let tipo = this.tipo.value;
-            let id = this.props.course.id;
-            let course = {id: id, name: name, tipo: this.props.course.tipo};
-            this.props.handleUpdate(course);
+            let id = this.props.tag.id;
+            let tag = {id: id, name: name};
+            this.props.handleUpdate(tag);
         }
         this.setState({
             editable: !this.state.editable
@@ -22,8 +21,7 @@ class DegreeCourse extends React.Component{
     }
 
     render(){
-        let name = this.state.editable ? <input required={true} type='text'className="input is-medium"  ref={input => this.name = input} defaultValue={this.props.course.name}/>:<i>{this.props.course.name}</i>;
-        let tipo = <i>{this.props.course.tipo}</i>;
+        let name = this.state.editable ? <input required={true} type='text'className="input is-medium"  ref={input => this.name = input} defaultValue={this.props.tag.name}/>:<i>{this.props.tag.name}</i>;
 
         let pulsante;
         if(!this.state.editable){
@@ -32,12 +30,11 @@ class DegreeCourse extends React.Component{
             pulsante = <i className="fas fa-check"></i>;
         }
         return(
-            <tr key={this.props.course.id}>
+            <tr key={this.props.tag.id}>
                 <td>{name}</td>
-                <td>{tipo}</td>
                 <td>
                     <a className="button is-rounded is-success" onClick={() => this.handleEdit()} title="Modifica">{pulsante}</a>&nbsp;
-                    <a className="button is-rounded is-danger" onClick={() => this.props.handleDelete(this.props.course.id)} title="Elimina"><i className="fas fa-trash"></i></a>
+                    <a className="button is-rounded is-danger" onClick={() => this.props.handleDelete(this.props.tag.id)} title="Elimina"><i className="fas fa-trash"></i></a>
                 </td>
             </tr>
 

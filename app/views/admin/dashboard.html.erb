@@ -1,4 +1,13 @@
-<h1>Questa e' la dashboard</h1>
+<h1>Qui puoi inserire e gestire i tag che classificano gli oggetti su Brain_Steam.</h1>
+<div class="columns">
+  <div class="column"></div>
+  <div class="column is-8">
+    <%= react_component 'MainTag' %>
+  </div>
+  <div class="column"></div>
+</div>
+
+<h1>Qui puoi inserire e gestire i corsi di laurea presenti su Brain_Steam.</h1>
 <div class="columns">
   <div class="column"></div>
   <div class="column is-8">
@@ -50,7 +59,7 @@
   </div>
 </div>
 
-<div class="dropdown dropdownDegree" id="2" onclick="toggleClass(2)">
+<!--<div class="dropdown dropdownDegree" id="2" onclick="toggleClass(2)">
   <div class="dropdown-trigger">
     <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
       <span>Dropdown button</span>
@@ -102,8 +111,51 @@
         var dropdown = document.getElementById(id);
         dropdown.classList.toggle('is-active');
     }
-</script>
+</script>-->
 
 <%= fa_icon "camera-retro" %>
+
+<div class="tabs is-centered is-boxed">
+  <ul>
+    <li id="tab1" class="is-active temp">
+      <a onclick="changeTab(1)">
+        <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
+        <span>Pictures</span>
+      </a>
+        <div id="divTab1">Contentuto 1</div>
+    </li>
+    <li id="tab2" class="temp">
+      <a onclick="changeTab(2)">
+        <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span>
+        <span>Music</span>
+      </a>
+        <div id="divTab2" hidden="true">Contentuto 2</div>
+    </li>
+    <li id="tab3" class="temp">
+      <a onclick="changeTab(3)">
+        <span class="icon is-small"><i class="fas fa-film" aria-hidden="true"></i></span>
+        <span>Videos</span>
+      </a>
+        <div id="divTab3" hidden="true">Contentuto 3</div>
+    </li>
+  </ul>
+</div>
+
+<script type="text/javascript">
+  function changeTab(id){
+      var otherTab =  document.querySelectorAll('.temp');
+      for (var i = 0; i < otherTab.length; i++) {
+          if (otherTab[i].id != 'tab' + id) {
+              otherTab[i].classList.remove('is-active');
+              var contentTab = document.getElementById('divTab' + otherTab[i].id.charAt(3));
+              contentTab.setAttribute('hidden', 'true');
+          }
+      }
+      var selectedTab = document.getElementById('tab' + id);
+      selectedTab.classList.add('is-active');
+      var divTab = document.getElementById('divTab' + id);
+      divTab.removeAttribute('hidden')
+  }
+</script>
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">

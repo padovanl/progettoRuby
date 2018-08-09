@@ -14,16 +14,21 @@ class BodyDegreeCourses extends React.Component {
     }
 
     handleUpdate(course){
-        fetch(`http://localhost:3000/api/v1/degree_courses/${course.id}`,
-            {
-                method: 'PUT',
-                body: JSON.stringify({degree_course: course}),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then((response) => {
-            this.updateCourse(course)
-        })
+        if(course.name != ''){
+            fetch(`http://localhost:3000/api/v1/degree_courses/${course.id}`,
+                {
+                    method: 'PUT',
+                    body: JSON.stringify({degree_course: course}),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then((response) => {
+                this.updateCourse(course)
+            })
+        }else{
+            alert("Il nome del corso di laurea non può essere vuoto!")
+        }
+
     }
 
     updateCourse(course){
