@@ -22,7 +22,7 @@ class DegreeCourse extends React.Component{
     }
 
     render(){
-        let name = this.state.editable ? <input type='text' ref={input => this.name = input} defaultValue={this.props.course.name}/>:<i>{this.props.course.name}</i>;
+        let name = this.state.editable ? <input type='text'className="input is-medium"  ref={input => this.name = input} defaultValue={this.props.course.name}/>:<i>{this.props.course.name}</i>;
         let tipo = <i>{this.props.course.tipo}</i>;
 
         let pulsante;

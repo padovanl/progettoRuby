@@ -5,7 +5,7 @@ const NewDegreeCourse = (props) => {
     return(
         <tr>
             <td>
-                <input ref={input => formFields.name = input} placeholder='Inserisci il nome del corso di laurea' className="input is-medium" required="true" />
+                <input ref={input => formFields.name = input} placeholder='Inserisci il nome del corso di laurea' className="input is-medium" required id="insertNewDegree"/>
             </td>
             <td>
                 <div className="select">
@@ -16,7 +16,7 @@ const NewDegreeCourse = (props) => {
                 </div>
             </td>
             <td>
-                <a className="button is-rounded is-link is-fullwidth" onClick={ () => props.handleFormSubmit(formFields.name.value, formFields.tipo.value)}>Submit</a>
+                <a className="button is-rounded is-link is-fullwidth" onClick={ () => props.handleFormSubmit(formFields.name.value, formFields.tipo.value)}>Inserisci</a>
             </td>
         </tr>
     )

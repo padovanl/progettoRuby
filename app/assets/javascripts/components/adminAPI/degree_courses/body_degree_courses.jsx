@@ -42,7 +42,11 @@ class BodyDegreeCourses extends React.Component {
                     'Content-Type': 'application/json'
                 }
             }).then((response) => {
-            this.deleteCourse(id)
+                if (response.ok){
+                    this.deleteCourse(id)
+                }else{
+                    alert("errore")
+                }
         })
     }
 
@@ -56,16 +60,22 @@ class BodyDegreeCourses extends React.Component {
     handleFormSubmit(name, tipo){
         let body = JSON.stringify({degree_course: {name: name, tipo:   tipo } })
 
-        fetch('http://localhost:3000/api/v1/degree_courses', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: body,
-        }).then((response) => {return response.json()})
-            .then((course)=>{
-                this.addNewCourse(course)
-            })
+        if(name != ''){
+            fetch('http://localhost:3000/api/v1/degree_courses', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: body,
+            }).then((response) => {return response.json()})
+                .then((course)=>{
+                    this.addNewCourse(course)
+                    document.getElementById('insertNewDegree').value = '';
+                })
+        }else{
+            alert('Inserisci il nome del corso di laurea.')
+        }
+
 
     }
 
