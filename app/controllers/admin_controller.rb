@@ -6,7 +6,7 @@ class AdminController < ApplicationController
     if isAdmin then
       render 'dashboard'
     else
-      render 'admin/accessDenied'
+      render 'admin/accessDenied', layout: false
     end
 
   end
