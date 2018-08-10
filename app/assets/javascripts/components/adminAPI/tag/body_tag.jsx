@@ -16,7 +16,7 @@ class BodyTag extends React.Component {
 
     handleUpdate(tag){
         if(tag.name != ''){
-            fetch(`http://localhost:3000/api/v1/tags/${tag.id}`,
+            fetch(`/api/v1/tags/${tag.id}`,
                 {
                     method: 'PUT',
                     body: JSON.stringify({tag: tag}),
@@ -42,7 +42,7 @@ class BodyTag extends React.Component {
 
     handleDelete(id){
         if(confirm('Sei sicuro di voler eliminare questo tag?')){
-            fetch(`http://localhost:3000/api/v1/tags/${id}`,
+            fetch(`/api/v1/tags/${id}`,
                 {
                     method: 'DELETE',
                     headers: {
@@ -70,7 +70,7 @@ class BodyTag extends React.Component {
         let body = JSON.stringify({tag: {name: name} })
 
         if(name != ''){
-            fetch('http://localhost:3000/api/v1/tags', {
+            fetch('/api/v1/tags', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
