@@ -41,19 +41,22 @@ class BodyTag extends React.Component {
     }
 
     handleDelete(id){
-        fetch(`http://localhost:3000/api/v1/tags/${id}`,
-            {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
+        if(confirm('Sei sicuro di voler eliminare questo tag?')){
+            fetch(`http://localhost:3000/api/v1/tags/${id}`,
+                {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then((response) => {
+                if (response.ok){
+                    this.deleteTag(id)
+                }else{
+                    alert("errore")
                 }
-            }).then((response) => {
-            if (response.ok){
-                this.deleteTag(id)
-            }else{
-                alert("errore")
-            }
-        })
+            })
+        }
+
     }
 
     deleteTag(id){
