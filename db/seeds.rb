@@ -84,6 +84,13 @@ user.tags.create!([
   { id:3 , name: "Sviluppo Desktop" },
   { id:4 , name: "Sviluppo mobile" }
 ])
+
+Teacher.create!(name: "Cesare", surname: "Stefanelli", link_cv: "http://docente.unife.it/cesare.stefanelli")
+Teacher.create!(name: "Evelina", surname: "Lamma", link_cv: "http://docente.unife.it/evelina.lamma")
+Teacher.create!(name: "Marco", surname: "Gavanelli", link_cv: "http://docente.unife.it/marco.gavanelli")
+
+
+
 end
 
 user = User.first
