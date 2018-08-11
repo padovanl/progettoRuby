@@ -14,16 +14,21 @@ class BodyDegreeCourses extends React.Component {
     }
 
     handleUpdate(course){
-        fetch(`http://localhost:3000/api/v1/degree_courses/${course.id}`,
-            {
-                method: 'PUT',
-                body: JSON.stringify({degree_course: course}),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then((response) => {
-            this.updateCourse(course)
-        })
+        if(course.name != ''){
+            fetch(`http://localhost:3000/api/v1/degree_courses/${course.id}`,
+                {
+                    method: 'PUT',
+                    body: JSON.stringify({degree_course: course}),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then((response) => {
+                this.updateCourse(course)
+            })
+        }else{
+            alert("Il nome del corso di laurea non può essere vuoto!")
+        }
+
     }
 
     updateCourse(course){
@@ -42,7 +47,11 @@ class BodyDegreeCourses extends React.Component {
                     'Content-Type': 'application/json'
                 }
             }).then((response) => {
-            this.deleteCourse(id)
+                if (response.ok){
+                    this.deleteCourse(id)
+                }else{
+                    alert("errore")
+                }
         })
     }
 
@@ -56,16 +65,22 @@ class BodyDegreeCourses extends React.Component {
     handleFormSubmit(name, tipo){
         let body = JSON.stringify({degree_course: {name: name, tipo:   tipo } })
 
-        fetch('http://localhost:3000/api/v1/degree_courses', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: body,
-        }).then((response) => {return response.json()})
-            .then((course)=>{
-                this.addNewCourse(course)
-            })
+        if(name != ''){
+            fetch('http://localhost:3000/api/v1/degree_courses', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: body,
+            }).then((response) => {return response.json()})
+                .then((course)=>{
+                    this.addNewCourse(course)
+                    document.getElementById('insertNewDegree').value = '';
+                })
+        }else{
+            alert('Inserisci il nome del corso di laurea.')
+        }
+
 
     }
 
@@ -85,8 +100,13 @@ class BodyDegreeCourses extends React.Component {
     render(){
         return(
             <div>
-                <NewDegreeCourse handleFormSubmit={this.handleFormSubmit} />
+
                 <AllDegreeCourses courses={this.state.courses} handleDelete={this.handleDelete}  handleUpdate = {this.handleUpdate} />
+                <table className="table is-hoverable is-fullwidth">
+                    <tbody>
+                        <NewDegreeCourse handleFormSubmit={this.handleFormSubmit} />
+                    </tbody>
+                </table>
             </div>
         )
     }

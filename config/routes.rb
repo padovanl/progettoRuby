@@ -10,8 +10,9 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments
   end
+
+  get '/allcourses', to: 'courses#allcourses'
   get '/courses', to: 'courses#index'
-  resource :courses, only: [:show]
 
   #admin
   get '/dashboard', to: 'admin#dashboard'
@@ -25,6 +26,12 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :degree_courses, only: [:index, :create, :destroy, :update]
+    end
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :tags, only: [:index, :create, :destroy, :update]
     end
   end
 

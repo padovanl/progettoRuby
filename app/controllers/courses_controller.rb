@@ -1,6 +1,7 @@
 class CoursesController < ApplicationController
   def index
-    @courses = Course.all
+    render json: Course.all
+
   end
 
   def show

@@ -73,6 +73,12 @@ degree_course.courses.create!([
     { name: "Ricerca operativa", year: 2 },
     { name: "Progetto di sistemi Web", year: 2 }
 ])
+
+Tag.create!(id:1 , name: "Ricerca")
+Tag.create!(id:2 , name: "Sviluppo Web")
+Tag.create!(id:3 , name: "Sviluppo Desktop")
+Tag.create!(id:4 , name: "Sviluppo mobile")
+
 end
 
 user = User.first
