@@ -74,11 +74,16 @@ degree_course.courses.create!([
     { name: "Progetto di sistemi Web", year: 2 }
 ])
 
-Tag.create!(id:1 , name: "Ricerca")
-Tag.create!(id:2 , name: "Sviluppo Web")
-Tag.create!(id:3 , name: "Sviluppo Desktop")
-Tag.create!(id:4 , name: "Sviluppo mobile")
 
+
+user = User.create!(name: "Admin Admin", email: "admin@admin.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: true)
+User.create!(name: "User User", email: "user@user.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
+user.tags.create!([
+  { id:1 , name: "Ricerca" },
+  { id:2 , name: "Sviluppo Web" },
+  { id:3 , name: "Sviluppo Desktop" },
+  { id:4 , name: "Sviluppo mobile" }
+])
 end
 
 user = User.first

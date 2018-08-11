@@ -1,10 +1,14 @@
 class Api::V1::TagsController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :authenticate_user!
+
   def index
     render json: Tag.all
   end
   def create
     tag = Tag.create(tag_params)
+    tag.user = current_user
+    tag.save
     render json: tag
   end
 

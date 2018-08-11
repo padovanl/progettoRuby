@@ -13,9 +13,10 @@ class BodyTag extends React.Component {
         this.updateTag = this.updateTag.bind(this)
     }
 
+
     handleUpdate(tag){
         if(tag.name != ''){
-            fetch(`http://localhost:3000/api/v1/tags/${tag.id}`,
+            fetch(`/api/v1/tags/${tag.id}`,
                 {
                     method: 'PUT',
                     body: JSON.stringify({tag: tag}),
@@ -40,19 +41,22 @@ class BodyTag extends React.Component {
     }
 
     handleDelete(id){
-        fetch(`http://localhost:3000/api/v1/tags/${id}`,
-            {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
+        if(confirm('Sei sicuro di voler eliminare questo tag?')){
+            fetch(`/api/v1/tags/${id}`,
+                {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then((response) => {
+                if (response.ok){
+                    this.deleteTag(id)
+                }else{
+                    alert("errore")
                 }
-            }).then((response) => {
-            if (response.ok){
-                this.deleteTag(id)
-            }else{
-                alert("errore")
-            }
-        })
+            })
+        }
+
     }
 
     deleteTag(id){
@@ -66,7 +70,7 @@ class BodyTag extends React.Component {
         let body = JSON.stringify({tag: {name: name} })
 
         if(name != ''){
-            fetch('http://localhost:3000/api/v1/tags', {
+            fetch('/api/v1/tags', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -100,7 +104,6 @@ class BodyTag extends React.Component {
     render(){
         return(
             <div>
-
                 <AllTags tags={this.state.tags} handleDelete={this.handleDelete}  handleUpdate = {this.handleUpdate} />
                 <table className="table is-hoverable is-fullwidth">
                     <tbody>
