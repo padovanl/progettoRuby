@@ -41,12 +41,14 @@
           </a>
         </div>
 
-        <% if user_signed_in?  && current_user.admin then %>
-          <div class="level-item">
-            <a class="access" href="/dashboard">
-              Dashboard
-            </a>
-          </div>
+        <% if user_signed_in? then %>
+          <% if current_user.admin then %>
+            <div class="level-item">
+              <a class="access" href="/dashboard">
+                Dashboard
+              </a>
+            </div>
+          <% end %>
         <% end %>
 
 
