@@ -11,6 +11,8 @@ class BodyThesis extends React.Component {
         this.deleteThesis = this.deleteThesis.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
         this.updateThesis = this.updateThesis.bind(this)
+
+        this.foo = null;
     }
 
 
@@ -31,13 +33,16 @@ class BodyThesis extends React.Component {
         }
 
     }
+    
 
     updateThesis(t){
-        let newThesis = this.state.theses.filter((f) => f.id !== t.id)
-        newThesis.push(t)
-        this.setState({
-            theses: newThesis
-        })
+        //let newThesis = this.state.theses.filter((f) => f.id !== t.id)
+        //this.getThesis(t.id);
+        //newThesis.push(foo)
+        //this.setState({
+        //   theses: newThesis
+        //})
+        this.componentDidMount();
     }
 
     handleDelete(id){

@@ -7,7 +7,8 @@ class Api::V1::ThesesController < ApplicationController
   end
   def create
     t = Thesis.create(t_params)
-    render json: t
+    #render json: t
+    json_response(t.to_json(include: [:teacher]))
   end
 
   def destroy
@@ -17,7 +18,13 @@ class Api::V1::ThesesController < ApplicationController
   def update
     t = Thesis.find(params[:id])
     t.update_attributes(t_params)
-    render json: t
+    #render json: t
+    json_response(t.to_json(include: [:teacher]))
+  end
+
+  def getThesis
+    t = Thesis.find(params[:id])
+    json_response(t.to_json(include: [:teacher]))
   end
 
   private
