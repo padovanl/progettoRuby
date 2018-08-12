@@ -1,7 +1,9 @@
 class Api::V1::ThesesController < ApplicationController
   skip_before_action :verify_authenticity_token
   def index
-    render json: Thesis.all
+    #render json: Thesis.all
+    @theses = Thesis.includes([:teacher]).all
+    json_response(@theses.to_json(include: [:teacher]))
   end
   def create
     t = Thesis.create(t_params)
