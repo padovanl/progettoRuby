@@ -25,7 +25,7 @@ class Teacher extends React.Component{
     render(){
         let name = this.state.editable ? <input required={true} type='text'className="input is-medium"  ref={input => this.name = input} defaultValue={this.props.teacher.name}/>:<i>{this.props.teacher.name}</i>;
         let surname = this.state.editable ? <input required={true} type='text'className="input is-medium"  ref={input => this.surname = input} defaultValue={this.props.teacher.surname}/>:<i>{this.props.teacher.surname}</i>;
-        let link_cv = this.state.editable ? <input required={true} type='text'className="input is-medium"  ref={input => this.link_cv = input} defaultValue={this.props.teacher.link_cv}/>:<i><a href={this.props.teacher.link_cv}>Link alla pagina UNIFE</a></i>;
+        let link_cv = this.state.editable ? <input required={true} type='text'className="input is-medium"  ref={input => this.link_cv = input} defaultValue={this.props.teacher.link_cv}/>:<i><a target="_blank" href={this.props.teacher.link_cv}>Link alla pagina UNIFE</a></i>;
 
         let pulsante;
         if(!this.state.editable){

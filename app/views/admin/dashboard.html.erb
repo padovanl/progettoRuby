@@ -8,7 +8,14 @@
   </div>
   <div class="column"></div>
 </div>
-
+<h1>Qui puoi inserire e gestire le tesi collegate ai Professori su Brain_Steam.</h1>
+<div class="columns">
+  <div class="column"></div>
+  <div class="column is-8">
+    <%= react_component 'MainThesis' %>
+  </div>
+  <div class="column"></div>
+</div>
 <h1>Qui puoi inserire e gestire i tag che classificano gli oggetti su Brain_Steam.</h1>
 <div class="columns">
   <div class="column"></div>
@@ -40,7 +47,7 @@
 
 <%= react_component 'MainCourses' %>
 
-<div class="dropdown dropdownDegree" id="1" onclick="toggleClass(1)">
+<!--<div class="dropdown dropdownDegree" id="1" onclick="toggleClass(1)">
   <div class="dropdown-trigger">
     <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
       <span>Dropdown button</span>
@@ -69,7 +76,7 @@
       </a>
     </div>
   </div>
-</div>
+</div>-->
 
 <!--<div class="dropdown dropdownDegree" id="2" onclick="toggleClass(2)">
   <div class="dropdown-trigger">
@@ -127,7 +134,7 @@
 
 <%= fa_icon "camera-retro" %>
 
-<div class="tabs is-centered is-boxed">
+<!--<div class="tabs is-centered is-boxed">
   <ul>
     <li id="tab1" class="is-active temp">
       <a onclick="changeTab(1)">
@@ -168,6 +175,39 @@
       var divTab = document.getElementById('divTab' + id);
       divTab.removeAttribute('hidden')
   }
-</script>
+</script>-->
+
+<!--modal-->
+
+<!--<button class="button" id="showModal">Show</button>
+<div class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Modal title</p>
+      <button class="delete" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success">Save changes</button>
+      <button class="button">Cancel</button>
+    </footer>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $("#showModal").click(function () {
+        $(".modal").addClass("is-active");
+    });
+
+    $(".delete").click(function () {
+        $(".modal").removeClass("is-active");
+    });
+</script>-->
+
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
