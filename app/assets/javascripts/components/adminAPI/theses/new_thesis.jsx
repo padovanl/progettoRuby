@@ -27,12 +27,6 @@
 
 class NewThesis extends React.Component {
 
-    //constructor(props){
-    //    super(props)
-    //    this.state = {
-    //        teachers: []
-    //    };
-    //}
     constructor(props){
         super(props);
         this.temp = [];
@@ -57,11 +51,13 @@ class NewThesis extends React.Component {
                     <textarea ref={input => formFields.content = input} placeholder='Inserisci la descrizione...' className="input is-medium" required id="insertNewThesis2"/>
                 </td>
                 <td>
-                    <select ref={input => formFields.teacher_id = input} >
-                        {teachersList.map(function(t){
-                            return <option value={t.id}>{t.name}&nbsp;{t.surname}</option>
-                        })}
-                    </select>
+                    <div className="select">
+                        <select ref={input => formFields.teacher_id = input} className="input is-medium" >
+                            {teachersList.map(function(t){
+                                return <option value={t.id}>{t.name}&nbsp;{t.surname}</option>
+                            })}
+                        </select>
+                    </div>
                 </td>
                 <td>
                     <a className="button is-rounded is-link is-fullwidth" onClick={ () => this.props.handleFormSubmit(formFields.title.value, formFields.content.value, formFields.teacher_id.value)}>Inserisci</a>
