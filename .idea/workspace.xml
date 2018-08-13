@@ -57,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="seeds.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="seeds.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db/seeds.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="88" column="53" selection-start-line="88" selection-start-column="53" selection-end-line="88" selection-end-column="53" />
+            <state relative-caret-position="328">
+              <caret line="97" lean-forward="true" selection-start-line="97" selection-end-line="97" />
             </state>
           </provider>
         </entry>
@@ -94,7 +94,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.erb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/publications/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
@@ -171,7 +171,6 @@
         <option value="$PROJECT_DIR$/app/assets/javascripts/components/publications/Document.jsx" />
         <option value="$PROJECT_DIR$/app/controllers/publications_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/post.rb" />
-        <option value="$PROJECT_DIR$/db/seeds.rb" />
         <option value="$PROJECT_DIR$/app/views/welcome/index.html.erb" />
         <option value="$PROJECT_DIR$/app/models/publication.rb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/components/publications/NewPost.jsx" />
@@ -198,6 +197,7 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/config/database.yml" />
         <option value="$PROJECT_DIR$/app/views/publications/index.html.erb" />
+        <option value="$PROJECT_DIR$/db/seeds.rb" />
       </list>
     </option>
   </component>
@@ -670,7 +670,7 @@
       <workItem from="1533623772409" duration="14562000" />
       <workItem from="1533674167081" duration="3106000" />
       <workItem from="1533758781009" duration="2103000" />
-      <workItem from="1534143961697" duration="3648000" />
+      <workItem from="1534143961697" duration="4621000" />
     </task>
     <task id="LOCAL-00001" summary="Aggiunto ReactJS">
       <created>1533147831053</created>
@@ -732,7 +732,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="178338000" />
+    <option name="totallyTimeSpent" value="179311000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -751,7 +751,7 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.10070005" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.53904146" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.21540119" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.37156704" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22139303" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.3297402" />
@@ -1029,13 +1029,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/seeds.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="88" column="53" selection-start-line="88" selection-start-column="53" selection-end-line="88" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/helpers/publications_helper.rb">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1043,6 +1036,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="3" column="62" selection-start-line="3" selection-start-column="62" selection-end-line="3" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/seeds.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="97" lean-forward="true" selection-start-line="97" selection-end-line="97" />
         </state>
       </provider>
     </entry>
