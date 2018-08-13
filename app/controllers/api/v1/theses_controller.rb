@@ -22,10 +22,10 @@ class Api::V1::ThesesController < ApplicationController
     json_response(t.to_json(include: [:teacher]))
   end
 
-  def getThesis
-    t = Thesis.find(params[:id])
-    json_response(t.to_json(include: [:teacher]))
-  end
+  #def getThesis
+  #  t = Thesis.find(params[:id])
+  #  json_response(t.to_json(include: [:teacher]))
+  #end
 
   private
   def t_params

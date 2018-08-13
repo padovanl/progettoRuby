@@ -33,7 +33,7 @@ class BodyThesis extends React.Component {
         }
 
     }
-    
+
 
     updateThesis(t){
         //let newThesis = this.state.theses.filter((f) => f.id !== t.id)

@@ -41,22 +41,28 @@
           </a>
         </div>
 
-        <% if user_signed_in? then %>
-          <% if current_user.admin then %>
-            <div class="level-item">
-              <a class="access" href="/dashboard">
-                Dashboard
-              </a>
-            </div>
-          <% end %>
+        <% if current_user.admin then %>
+          <div class="level-item">
+            <a class="access" href="/dashboard">
+              Dashboard
+            </a>
+          </div>
         <% end %>
 
+
+        <div class="level-left">
+          <a class="access">
+            <u><%= link_to "Il mio profilo", edit_user_registration_path %></u>
+          </a>
+        </div>
 
         <div class="level-left">
           <a class="access">
             <u><%= link_to "Log out", destroy_user_session_path, method: :delete %></u>
           </a>
         </div>
+
+
 
       <% else %>
 
