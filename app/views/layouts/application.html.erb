@@ -17,83 +17,6 @@
 
 <body>
 
-<!--vecchia navbar-->
-<% if false %>
-  <nav class="navbar level is-mobile" role="navigation" aria-label="dropdown navigation">
-    <div class="container">
-      <div class="level is-mobile nav-items">
-
-        <a class="level-right" href="/">
-          <figure class="image is-48x48">
-            <%= image_tag "artificial-intelligence.png" %>
-          </figure>
-          <strong class="title is-4" id="app-name">BRAIN_STEAM</strong>
-        </a>
-
-        <% if user_signed_in? %>
-
-          <div class="level-item">
-            <a class="access">
-              Trova corsi
-            </a>
-          </div>
-
-          <div class="level-item">
-            <a class="access">
-              I miei corsi
-            </a>
-          </div>
-
-          <% if current_user.admin then %>
-            <div class="level-item">
-              <a class="access" href="/dashboard">
-                Dashboard
-              </a>
-            </div>
-          <% end %>
-
-
-          <div class="level-left">
-            <a class="access">
-              <u><%= link_to "Il mio profilo", edit_user_registration_path %></u>
-            </a>
-          </div>
-
-          <div class="level-left">
-            <a class="access">
-              <u><%= link_to "Log out", destroy_user_session_path, method: :delete %></u>
-            </a>
-          </div>
-
-
-
-        <% else %>
-
-          <% if current_page?(new_user_registration_path) or
-              (if defined?resource_name then current_page?(new_password_path(resource_name)) else false end) %>
-
-            <div class="level-left">
-              <%= link_to(raw("<u>Login</u>"), new_user_session_path)  %>
-            </div>
-
-          <% else %>
-
-            <div class="level-left">
-              <a class="access">
-                <small>Non hai ancora un account?</small>
-              </a>
-              <%= link_to(raw("<u>Registrati</u>"), new_user_registration_path)  %>
-            </div>
-
-          <% end %>
-
-        <% end %>
-
-      </div>
-    </div>
-  </nav>
-<% end %>
-
 
   <nav class="navbar" style="opacity: 1.0; height: 6%;">
     <div class="navbar-brand">
@@ -210,9 +133,8 @@
       });
   </script>
 
-<div>
-  <%= yield %>
-</div>
+
+<%= yield %>
 
 
 </body>

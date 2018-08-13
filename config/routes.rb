@@ -7,9 +7,9 @@ Rails.application.routes.draw do
 
 
   resources :documents
-  resources :posts do
-    resources :comments
-  end
+  resources :posts
+  resources :comments
+
   get '/courses', to: 'courses#index'
   resource :courses, only: [:show]
 

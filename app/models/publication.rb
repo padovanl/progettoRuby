@@ -3,7 +3,7 @@ class Publication
 
   include ActiveModel::Model
 
-  attr_accessor :message, :attachments, :user
+  attr_accessor :message, :attachments, :user, :post
 
   def save
     return false if invalid?
@@ -18,12 +18,13 @@ class Publication
         end
       end
     end
+    #documents = post.documents
 
     true
-  rescue ActiveRecord::StatementInvalid => e
-    # Handle exception that caused the transaction to fail
-    # e.message and e.cause.message can be helpful
-    errors.add(:base, e.message)
+    rescue ActiveRecord::StatementInvalid => e
+      # Handle exception that caused the transaction to fail
+      # e.message and e.cause.message can be helpful
+      errors.add(:base, e.message)
 
     false
   end

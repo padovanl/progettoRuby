@@ -41,8 +41,6 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # uso rspec al posto di minitest
   gem 'rspec-rails', '~> 3.7'
-  # A library for generating fake data. We'll use this to generate test data.
-  gem 'faker'
 end
 
 group :development do
@@ -91,7 +89,9 @@ gem 'sendgrid-ruby'
 gem 'kaminari'
 
 gem 'react-rails'
+gem 'active_model_serializers'
 
-gem 'rack-cors'
+# A library for generating fake data. We'll use this to generate test data.
+gem 'faker'
 
 gem "font-awesome-rails"

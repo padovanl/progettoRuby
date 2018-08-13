@@ -2,38 +2,31 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
 .corso-thread {
-
+  /* General style */
   max-width: 1200px;
   position: relative;
-  margin-top: 10vh;
+  margin-top: 7vh;
   overflow: hidden;
 
   /**  STYLE 3 */
-
   #style-1::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
   }
-
   #style-1::-webkit-scrollbar {
     width: 6px;
   }
-
   #style-1::-webkit-scrollbar-thumb {
     background-color: #9e9e9e;
   }
 
-  @include lg {
-  }
-
-
-
+  /* Lista Posts style */
   .posts-list {
     overflow-y: scroll;
-    height: 82vh;
+    overflow-x: hidden;
+    height: 93vh;
     padding: 1px;
-    -webkit-transform: rotate(180deg);
+    /*-webkit-transform: rotate(180deg);
     transform: rotate(180deg);
     direction: rtl;
 
@@ -41,7 +34,7 @@
       -webkit-transform: rotate(180deg);
       transform: rotate(180deg);
       direction: ltr;
-    }
+    }*/
 
     figure img {
       border-radius: 50%;
@@ -60,12 +53,38 @@
     }
   }
 
+  .add-post {
+    position: absolute;
+    cursor: pointer;
+    bottom: 3vh;
+    right: 3vw;
+  }
+
   .new-post {
     margin-top: 10px;
 
     .message-input {
       width: 100%;
     }
+
+    figure img {
+      border-radius: 50%;
+    }
   }
 
+  .comment-form {
+    width: 100%;
+    @include md {
+      textarea, buntton {
+        font-size: 170%;
+      }
+    }
+  }
+
+  @include md {
+    font-size: 170%;
+    .is-medium {
+      font-size: 180%;
+    }
+  }
 }

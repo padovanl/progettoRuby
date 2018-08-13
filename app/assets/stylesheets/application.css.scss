@@ -4,8 +4,7 @@
 @import "common/mixin";
 @import "*";
 
-
-
+/*
 html {
   background-image: url("bg5.png");
   background-position: center center;
@@ -13,6 +12,13 @@ html {
   background-attachment: fixed;
   background-size: cover;
   background-color: #464646;
+}*/
+
+html {
+  background: url("bg5.png") no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
 }
 
 .is-vcentered {
@@ -29,7 +35,7 @@ html {
   width: 100%;
   margin: 0 auto;
   filter: alpha(opacity=30); /* For IE8 and earlier */
-  height: 10%;
+  height: 7vh;
   border: 1px solid #e0e0e0;
 
 
@@ -53,7 +59,7 @@ html {
   .nav-items {
     width: 100%;
   }
-  @include lg {
+  @include rwd(1080) {
 
     padding: 0 5% 0 5%;
 
@@ -66,6 +72,7 @@ html {
     }
 
   }
+
 }
 
 

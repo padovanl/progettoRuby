@@ -12,6 +12,6 @@ class Post < ApplicationRecord
 
   scope :posts_of_a_course, -> (course_id) { where("course_id = ?", course_id)}
   scope :with_comments_count, -> { joins('left outer join comments on posts.id = comments.post_id')
-                           .select('posts.*, count(comments.id) as comments_count').group('posts.id').order(created_at: :desc) }
+                           .select('posts.*, count(comments.id) as comments_count').group('posts.id').order(created_at: :asc) }
 
 end

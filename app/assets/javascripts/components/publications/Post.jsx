@@ -1,4 +1,3 @@
-
 class Post2 extends React.Component {
     constructor(props) {
         super(props);
@@ -7,10 +6,10 @@ class Post2 extends React.Component {
     render() {
         const post = this.props.post;
         let attachments = '';
-        if(post.documents.length > 0)
+        if (post.documents !== undefined)
             attachments = post.documents.map(function (doc) {
-                                return <Document key={doc.id} document={doc}></Document>
-                            });
+                return <Document key={doc.id} document={doc}></Document>
+            });
 
         return (
             <div className="box">
@@ -25,8 +24,8 @@ class Post2 extends React.Component {
                             <div className="columns is-mobile">
                                 <div className="column">
                                     <p>
-                                        <strong>{ post.user.email }</strong>
-                                        <small>{ (new Date(Date.parse(post.created_at))).toLocaleString() }</small>
+                                        <strong>{post.user.email}</strong>
+                                        <small>{(new Date(Date.parse(post.created_at))).toLocaleString()}</small>
                                     </p>
                                 </div>
                                 <div className="dropdown is-hoverable is-right column is-narrow">
@@ -38,9 +37,9 @@ class Post2 extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                            <p>{ post.message }</p>
+                            <p>{post.message}</p>
                             <div>
-                                { attachments }
+                                {attachments}
                             </div>
 
                         </div>
@@ -59,7 +58,7 @@ class Post2 extends React.Component {
                             </a>
                         </nav>
 
-                        <CommentsList comments_count={ post.comments_count } commets={ post.commets } />
+                        <CommentsList comments_count={post.comments_count} comments={post.comments}/>
                     </div>
 
                 </article>
@@ -77,7 +76,7 @@ class Post extends React.Component {
     render() {
         const post = this.props.post;
         let attachments = '';
-        if(post.documents.length > 0)
+        if (post.documents !== undefined)
             attachments = post.documents.map(function (doc) {
                 return <Document key={doc.id} document={doc}></Document>
             });
@@ -94,20 +93,20 @@ class Post extends React.Component {
                     <div className="media-content">
                         <div className="content">
                             <p>
-                                <strong>{ post.user.email }</strong>
+                                <strong>{post.user.email}</strong>
                                 <br/>
-                                { post.message }
+                                {post.message}
                                 <br/>
                                 <div>
-                                    { attachments }
+                                    {attachments}
                                 </div>
-                                <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+                                <small><a>Like</a> · <a>Reply</a> · {(new  Date(Date.parse(post.created_at))).toLocaleTimeString()}</small>
                             </p>
 
                         </div>
 
 
-                        <CommentsList comments_count={ post.comments_count } commets={ post.commets } />
+                        <CommentsList post_id={post.id} comments={post.comments} current_user={this.props.current_user}/>
 
                     </div>
                 </article>
