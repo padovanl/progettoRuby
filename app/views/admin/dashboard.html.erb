@@ -1,4 +1,32 @@
-<h1>Questa e' la dashboard</h1>
+
+
+<h1>Qui puoi inserire e gestire i professori presenti su Brain_Steam.</h1>
+<div class="columns">
+  <div class="column"></div>
+  <div class="column is-8">
+    <%= react_component 'MainTeacher' %>
+  </div>
+  <div class="column"></div>
+</div>
+<h1>Qui puoi inserire e gestire le tesi collegate ai Professori su Brain_Steam.</h1>
+<div class="columns">
+  <div class="column"></div>
+  <div class="column is-8">
+    <%= react_component 'MainThesis' %>
+  </div>
+  <div class="column"></div>
+</div>
+<h1>Qui puoi inserire e gestire i tag che classificano gli oggetti su Brain_Steam.</h1>
+<div class="columns">
+  <div class="column"></div>
+  <div class="column is-8">
+    <%= react_component 'MainTag' %>
+  </div>
+  <div class="column"></div>
+</div>
+
+
+<h1>Qui puoi inserire e gestire i corsi di laurea presenti su Brain_Steam.</h1>
 <div class="columns">
   <div class="column"></div>
   <div class="column is-8">
@@ -19,13 +47,43 @@
 
 <%= react_component 'MainCourses' %>
 
-
-<div class="dropdown is-active">
+<!--<div class="dropdown dropdownDegree" id="1" onclick="toggleClass(1)">
   <div class="dropdown-trigger">
     <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
       <span>Dropdown button</span>
       <span class="icon is-small">
-        <i class="fas fa-angle-down" aria-hidden="true"></i>
+        <i class="fa fa-angle-down" aria-hidden="true"></i>
+      </span>
+    </button>
+  </div>
+  <div class="dropdown-menu" id="dropdown-menu" role="menu">
+    <div class="dropdown-content">
+      <a href="#" class="dropdown-item">
+        Dropdown item
+      </a>
+      <a class="dropdown-item">
+        Other dropdown item
+      </a>
+      <a href="#" class="dropdown-item is-active">
+        Active dropdown item
+      </a>
+      <a href="#" class="dropdown-item">
+        Other dropdown item
+      </a>
+      <hr class="dropdown-divider">
+      <a href="#" class="dropdown-item">
+        With a divider
+      </a>
+    </div>
+  </div>
+</div>-->
+
+<!--<div class="dropdown dropdownDegree" id="2" onclick="toggleClass(2)">
+  <div class="dropdown-trigger">
+    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+      <span>Dropdown button</span>
+      <span class="icon is-small">
+        <i class="fa fa-angle-down" aria-hidden="true"></i>
       </span>
     </button>
   </div>
@@ -53,5 +111,103 @@
 
 
 
+<script type="text/javascript">
+    //var dropdown = document.querySelectorAll('.dropdown');
+    //dropdown.addEventListener('click', function (event) {
+    //    event.stopPropagation();
+    //    dropdown.classList.toggle('is-active');
+    //});
+
+    function toggleClass(id){
+        //chiudo gli altri
+        var otherDropdowns = document.querySelectorAll('.dropdownDegree');
+        for(var i = 0; i < otherDropdowns.length; i++){
+            if(otherDropdowns[i].id != id){
+                otherDropdowns[i].classList.remove('is-active');
+            }
+        }
+        //e apro
+        var dropdown = document.getElementById(id);
+        dropdown.classList.toggle('is-active');
+    }
+</script>-->
 
 <%= fa_icon "camera-retro" %>
+
+<!--<div class="tabs is-centered is-boxed">
+  <ul>
+    <li id="tab1" class="is-active temp">
+      <a onclick="changeTab(1)">
+        <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
+        <span>Pictures</span>
+      </a>
+        <div id="divTab1">Contentuto 1</div>
+    </li>
+    <li id="tab2" class="temp">
+      <a onclick="changeTab(2)">
+        <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span>
+        <span>Music</span>
+      </a>
+        <div id="divTab2" hidden="true">Contentuto 2</div>
+    </li>
+    <li id="tab3" class="temp">
+      <a onclick="changeTab(3)">
+        <span class="icon is-small"><i class="fas fa-film" aria-hidden="true"></i></span>
+        <span>Videos</span>
+      </a>
+        <div id="divTab3" hidden="true">Contentuto 3</div>
+    </li>
+  </ul>
+</div>
+
+<script type="text/javascript">
+  function changeTab(id){
+      var otherTab =  document.querySelectorAll('.temp');
+      for (var i = 0; i < otherTab.length; i++) {
+          if (otherTab[i].id != 'tab' + id) {
+              otherTab[i].classList.remove('is-active');
+              var contentTab = document.getElementById('divTab' + otherTab[i].id.charAt(3));
+              contentTab.setAttribute('hidden', 'true');
+          }
+      }
+      var selectedTab = document.getElementById('tab' + id);
+      selectedTab.classList.add('is-active');
+      var divTab = document.getElementById('divTab' + id);
+      divTab.removeAttribute('hidden')
+  }
+</script>-->
+
+<!--modal-->
+
+<!--<button class="button" id="showModal">Show</button>
+<div class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Modal title</p>
+      <button class="delete" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success">Save changes</button>
+      <button class="button">Cancel</button>
+    </footer>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $("#showModal").click(function () {
+        $(".modal").addClass("is-active");
+    });
+
+    $(".delete").click(function () {
+        $(".modal").removeClass("is-active");
+    });
+</script>-->
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">

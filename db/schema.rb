@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_24_135213) do
+ActiveRecord::Schema.define(version: 2018_08_09_213019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -132,6 +132,8 @@ ActiveRecord::Schema.define(version: 2018_06_24_135213) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_tags_on_user_id"
   end
 
   create_table "teacher_courses", force: :cascade do |t|
@@ -214,6 +216,7 @@ ActiveRecord::Schema.define(version: 2018_06_24_135213) do
     t.string "uid"
     t.string "name"
     t.text "image"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -231,6 +234,7 @@ ActiveRecord::Schema.define(version: 2018_06_24_135213) do
   add_foreign_key "posts", "users"
   add_foreign_key "reps", "courses"
   add_foreign_key "reps", "users"
+  add_foreign_key "tags", "users"
   add_foreign_key "teacher_courses", "courses"
   add_foreign_key "teacher_courses", "teachers"
   add_foreign_key "theses", "teachers"

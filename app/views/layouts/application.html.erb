@@ -35,15 +35,26 @@
           </a>
         </div>
 
-        <div class="level-item">
+        <% if current_user.admin then %>
+          <div class="level-item">
+            <a class="access" href="/dashboard">
+              Dashboard
+            </a>
+          </div>
+        <% end %>
+
+
+        <div class="level-left">
           <a class="access">
-            I miei corsi
+            <u><%= link_to "Il mio profilo", edit_user_registration_path %></u>
           </a>
         </div>
 
         <div class="level-left">
             <u><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "access" %></u>
         </div>
+
+
 
       <% else %>
 
