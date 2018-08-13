@@ -2,39 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88b3b2e0-c908-4d84-a76f-3996a45af68f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/assets/images/add_post.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/assets/images/add_round_button.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/assets/javascripts/components/publications/Comment.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/assets/javascripts/components/publications/NewComment.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/assets/javascripts/components/publications/PostsThread.jsx.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/serializers/comment_serializer.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/serializers/post_serializer.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/serializers/user_serializer.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/DeviseActionMailer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/DeviseActionMailer.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/javascripts/application.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/javascripts/application.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/javascripts/components/publications/CommentsList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/javascripts/components/publications/CommentsList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/javascripts/components/publications/NewPost.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/javascripts/components/publications/NewPost.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/javascripts/components/publications/Post.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/javascripts/components/publications/Post.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/javascripts/components/publications/PostsThread.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.css.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.css.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/common/mixin.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/common/mixin.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/publications.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/publications.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/welcome.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/welcome.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/comments_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/comments_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/posts_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/posts_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/post.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/post.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/publication.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/publication.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/publications/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/publications/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/welcome/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/welcome/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/initializers/devise.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/initializers/devise.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20180621135936_add_user_to_post.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20180621135936_add_user_to_post.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/migrate/20180621140525_add_course_to_post.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20180621140525_add_course_to_post.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -44,7 +12,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/progettoRuby@Unnamed.rcov" NAME="Unnamed Coverage Results" MODIFIED="1534194225574" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="DeviseActionMailer" />
+    <SUITE FILE_PATH="coverage/progettoRuby@Unnamed.rcov" NAME="Unnamed Coverage Results" MODIFIED="1534194763548" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="DeviseActionMailer" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
@@ -66,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.html.erb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="application.html.erb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="78" column="63" selection-start-line="78" selection-start-column="63" selection-end-line="78" selection-end-column="63" />
+            <state relative-caret-position="180">
+              <caret line="114" lean-forward="true" selection-start-line="114" selection-end-line="114" />
               <folding>
                 <element signature="e#652#658#0#HTML" expanded="true" />
                 <element signature="e#2135#2141#0#HTML" expanded="true" />
@@ -78,20 +46,6 @@
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Gemfile" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gemfile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="96" column="24" selection-start-line="96" selection-start-column="24" selection-end-line="96" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="application.css.scss" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css.scss">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="welcome_controller.rb" pinned="false" current-in-tab="false">
@@ -151,8 +105,8 @@
         <option value="$PROJECT_DIR$/config/environments/production.rb" />
         <option value="$PROJECT_DIR$/app/views/devise/sessions/new.html.erb" />
         <option value="$PROJECT_DIR$/app/views/devise/registrations/new.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/Gemfile" />
+        <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
       </list>
     </option>
   </component>
@@ -380,12 +334,12 @@
       <workItem from="1534119352102" duration="657000" />
       <workItem from="1534122202678" duration="55000" />
       <workItem from="1534187798837" duration="6033000" />
-      <workItem from="1534193988850" duration="239000" />
+      <workItem from="1534193988850" duration="780000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26658000" />
+    <option name="totallyTimeSpent" value="27199000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
@@ -749,16 +703,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="78" column="63" selection-start-line="78" selection-start-column="63" selection-end-line="78" selection-end-column="63" />
-          <folding>
-            <element signature="e#652#658#0#HTML" expanded="true" />
-            <element signature="e#2135#2141#0#HTML" expanded="true" />
-            <element signature="e#3426#3432#0#HTML" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-88" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile">
@@ -768,8 +715,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css.scss">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="114" lean-forward="true" selection-start-line="114" selection-end-line="114" />
+          <folding>
+            <element signature="e#652#658#0#HTML" expanded="true" />
+            <element signature="e#2135#2141#0#HTML" expanded="true" />
+            <element signature="e#3426#3432#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
 </project>

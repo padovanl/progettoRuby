@@ -45,31 +45,33 @@
 
     <div id="navMenubd-example" class="navbar-menu">
       <div class="navbar-start">
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link  is-active" href="#">
-            Trova corsi
-          </a>
-          <div class="navbar-dropdown ">
-            <a class="navbar-item " href="#">
-              1
+        <% if user_signed_in? %>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link  is-active" href="#">
+              Trova corsi
             </a>
-            <a class="navbar-item " href="#">
-              2
-            </a>
-            <a class="navbar-item " href="#">
-              3
-            </a>
+            <div class="navbar-dropdown ">
+              <a class="navbar-item " href="#">
+                1
+              </a>
+              <a class="navbar-item " href="#">
+                2
+              </a>
+              <a class="navbar-item " href="#">
+                3
+              </a>
 
-            <hr class="navbar-divider">
-            <a class="navbar-item " href="#">
-              4
-            </a>
+              <hr class="navbar-divider">
+              <a class="navbar-item " href="#">
+                4
+              </a>
+            </div>
           </div>
-        </div>
 
-        <a class="navbar-item " href="#">
-          <span class="bd-emoji"><%= fa_icon "graduation-cap" %></span>&nbsp;I miei corsi
-        </a>
+          <a class="navbar-item " href="#">
+            <span class="bd-emoji"><%= fa_icon "graduation-cap" %></span>&nbsp;I miei corsi
+          </a>
+        <% end %>
 
       </div>
 
@@ -111,6 +113,11 @@
     </div>
   </nav>
 
+
+
+
+<%= yield %>
+
   <script type="text/javascript">
       document.addEventListener('DOMContentLoaded', function () {
           // Get all "navbar-burger" elements
@@ -132,10 +139,5 @@
           }
       });
   </script>
-
-
-<%= yield %>
-
-
 </body>
 </html>
