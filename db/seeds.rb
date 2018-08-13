@@ -100,7 +100,7 @@ teacher.theses.create!([
 
 ])
 
-user = User.find(5)
+user = User.first
 course = Course.first
 10.times do
   post = Post.create!(
