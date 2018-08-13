@@ -7,11 +7,13 @@ Rails.application.routes.draw do
 
 
   resources :documents
-  resources :posts do
-    resources :comments
-  end
+
 
   get '/allcourses', to: 'courses#allcourses'
+
+  resources :posts
+  resources :comments
+
   get '/courses', to: 'courses#index'
 
   #admin
@@ -35,6 +37,19 @@ Rails.application.routes.draw do
       resources :tags, only: [:index, :create, :destroy, :update]
     end
   end
+
+  namespace :api do
+    namespace :v1 do
+      resources :teachers, only: [:index, :create, :destroy, :update]
+    end
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :theses, only: [:index, :create, :destroy, :update]
+    end
+  end
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

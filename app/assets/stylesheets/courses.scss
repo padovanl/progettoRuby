@@ -1,3 +1,16 @@
 // Place all the styles related to the Courses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+h2 {
+  margin-top: 8%;
+  font-size:2.7em;
+  font-style: inherit;
+}
+
+@include lg {
+  h1-big{
+    margin-top: 20%;
+  }
+}

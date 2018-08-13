@@ -21,7 +21,7 @@
     <div class="level is-mobile nav-items">
 
       <a class="level-right" href="/">
-        <figure class="image is-48x48">
+        <figure class="image is-32x32">
           <%= image_tag "artificial-intelligence.png" %>
         </figure>
         <strong class="title is-4" id="app-name">BRAIN_STEAM</strong>
@@ -31,32 +31,30 @@
 
         <div class="level-item">
           <a class="access">
-            Trova corsi
-          </a>
-        </div>
-
-        <div class="level-item">
-          <a class="access">
             I miei corsi
           </a>
         </div>
 
-        <% if user_signed_in? then %>
-          <% if current_user.admin then %>
-            <div class="level-item">
-              <a class="access" href="/dashboard">
-                Dashboard
-              </a>
-            </div>
-          <% end %>
+        <% if current_user.admin then %>
+          <div class="level-item">
+            <a class="access" href="/dashboard">
+              Dashboard
+            </a>
+          </div>
         <% end %>
 
 
         <div class="level-left">
           <a class="access">
-            <u><%= link_to "Log out", destroy_user_session_path, method: :delete %></u>
+            <u><%= link_to "Il mio profilo", edit_user_registration_path %></u>
           </a>
         </div>
+
+        <div class="level-left">
+            <u><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "access" %></u>
+        </div>
+
+
 
       <% else %>
 
@@ -64,7 +62,7 @@
             (if defined?resource_name then current_page?(new_password_path(resource_name)) else false end) %>
 
           <div class="level-left">
-            <%= link_to(raw("<u>Login</u>"), new_user_session_path)  %>
+            <%= link_to(raw("<u>Login</u>"), new_user_session_path, class: "access")  %>
           </div>
 
         <% else %>
@@ -72,8 +70,9 @@
           <div class="level-left">
             <a class="access">
               <small>Non hai ancora un account?</small>
+              <%= link_to(raw("<u>Registrati</u>"), new_user_registration_path)  %>
             </a>
-            <%= link_to(raw("<u>Registrati</u>"), new_user_registration_path)  %>
+
           </div>
 
         <% end %>
@@ -84,9 +83,8 @@
   </div>
 </nav>
 
-<div>
-  <%= yield %>
-</div>
+
+<%= yield %>
 
 
 </body>

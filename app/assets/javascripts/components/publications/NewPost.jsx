@@ -40,7 +40,7 @@ class NewPost extends React.Component {
         .then(response => {
             return response.json();
         }).then(function(json) {
-            addNewPost(json["post"])
+            addNewPost(json)
         })
         .catch(error => console.log(error));
 
@@ -51,33 +51,55 @@ class NewPost extends React.Component {
     render() {
         return (
             <form onSubmit={ (e) => this.handleSubmit(e) } className="new-post">
-                <div>
-                    <div className="field has-addons">
-                        <p className={ "control " + (this.state.count_files ? "tooltip" : '') }
-                            data-tooltip={ this.state.count_files ? this.state.count_files + " File" : '' }>
-                            <div className="file is-medium">
-                                <label className="file-label">
-                                    <input className="file-input" type="file" multiple="multiple"
-                                       name="post[attachments][]" id="post_attachments" onChange={ (e) => this.handleChange(e.target.files) } />
-                                    <span className="file-cta">
+                <div className="card">
+                    <div className="card-content">
+                        <article className="media">
+                            <figure className="media-left">
+                                <p className="image is-64x64">
+                                    <img src="https://bulma.io/images/placeholders/128x128.png"/>
+                                </p>
+                            </figure>
+                            <div className="media-content">
+                                <div className="content">
+                                    <p>
+                                        <strong>John Smith</strong>
+                                        <small>@johnsmith</small>
+                                        <small>31m</small>
+                                        <br />
+                                        <textarea className="textarea" rows="2" name="post[message]" value={ this.state.message }
+                                                  id="post_message" type="text" placeholder="Scrivi un post..."
+                                                  onChange={ (e) => this.handleChangeMessage(e) } />
+                                    </p>
+                                    <p className={ "control " + (this.state.count_files ? "tooltip" : '') }
+                                       data-tooltip={ this.state.count_files ? this.state.count_files + " File" : '' }>
+                                        <div className="file is-medium">
+                                            <label className="file-label">
+                                                <input className="file-input" type="file" multiple="multiple"
+                                                       name="post[attachments][]" id="post_attachments" onChange={ (e) => this.handleChange(e.target.files) } />
+                                                <span className="file-cta">
                                         <span className="file-icon">
                                           <i className="fas fa-upload"></i>
                                         </span>
                                     </span>
-                                </label>
+                                            </label>
+                                        </div>
+                                    </p>
+                                </div>
                             </div>
-                        </p>
-                        <p className="control message-input">
-                            <input className="input is-medium" name="post[message]" value={ this.state.message }
-                                   id="post_message" type="text" placeholder="Scrivi un post..."
-                                   onChange={ (e) => this.handleChangeMessage(e) } />
-                        </p>
-                        <p className="control">
+                        </article>
+                    </div>
+                    <footer className="card-footer">
+                        <p className="card-footer-item">
                             <button className="button is-medium" type="submit" name="commit">
                                 Invia
                             </button>
                         </p>
-                    </div>
+                        <p className="card-footer-item">
+                          <span>
+                            Share on <a href="#">Facebook</a>
+                          </span>
+                        </p>
+                    </footer>
                 </div>
             </form>
         )
