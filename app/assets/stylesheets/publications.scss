@@ -6,7 +6,7 @@
 
   max-width: 1200px;
   position: relative;
-  margin-top: 10vh;
+  margin-top: 7vh;
   overflow: hidden;
 
   /**  STYLE 3 */
@@ -25,7 +25,8 @@
 
   .posts-list {
     overflow-y: scroll;
-    height: 82vh;
+    overflow-x: hidden;
+    height: 93vh;
     padding: 1px;
     /*-webkit-transform: rotate(180deg);
     transform: rotate(180deg);

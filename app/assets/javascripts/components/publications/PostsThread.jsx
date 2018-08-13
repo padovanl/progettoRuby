@@ -24,7 +24,7 @@ class PostsThread extends React.Component {
             .then(data => this.setState({data}));
     }
 
-    render() {
+    render() {// <NewPost addNewPost={this.addNewPost.bind(this)}/>
         const current_user = this.props.current_user
         if (this.state.data.length > 0) {
             return (
@@ -36,7 +36,13 @@ class PostsThread extends React.Component {
                             })
                         }
                     </div>
-                    <NewPost addNewPost={this.addNewPost.bind(this)}/>
+
+                    <figure className="media-left">
+                        <p className="image is-64x64">
+                            <img src="add_round_button.png"/>
+                        </p>
+                    </figure>
+
                 </div>
             );
         }
