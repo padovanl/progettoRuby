@@ -6,6 +6,7 @@ class PostsThread extends React.Component {
 
         this.state = {
             data: [],
+            adding_post: false
         };
     }
 
@@ -13,9 +14,18 @@ class PostsThread extends React.Component {
         post['user'] = this.props.current_user
         this.setState((prevState) => {
             return {
-                data: [post].concat(prevState.data)
+                data: [post].concat(prevState.data),
+                adding_post: false
             };
         });
+    }
+
+    viewNewPostModal() {
+        this.setState({adding_post: true});
+    }
+
+    closeNewPostModal() {
+        this.setState({adding_post: false});
     }
 
     componentDidMount() {
@@ -24,7 +34,7 @@ class PostsThread extends React.Component {
             .then(data => this.setState({data}));
     }
 
-    render() {// <NewPost addNewPost={this.addNewPost.bind(this)}/>
+    render() {
         const current_user = this.props.current_user
         if (this.state.data.length > 0) {
             return (
@@ -37,16 +47,26 @@ class PostsThread extends React.Component {
                         }
                     </div>
 
-                    <figure className="media-left">
+                    <figure className="media-left add-post" onClick={this.viewNewPostModal.bind(this)}>
                         <p className="image is-64x64">
-                            <img src="add_round_button.png"/>
+                            <%= image_tag "add_post.png" %>
                         </p>
                     </figure>
+
+                    <div className={ "modal " + (this.state.adding_post ? "is-active" : "") }>
+                        <div className="modal-background" onClick={this.closeNewPostModal.bind(this)}></div>
+                        <div className="modal-content">
+
+                            <NewPost addNewPost={this.addNewPost.bind(this)}/>
+
+                        </div>
+                        <button className="modal-close is-large" aria-label="close" onClick={this.closeNewPostModal.bind(this)}></button>
+                    </div>
 
                 </div>
             );
         }
 
-        return (<span>Loading...</span>);
+        return (<div className="pageloader"><span className="title">Loading</span></div>);
     }
 }

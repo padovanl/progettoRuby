@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.posts_of_a_course(params[:course_id])
+    @posts = Post.posts_of_a_course(params[:course_id]).order(created_at: :desc)
     render json: @posts, include: %w(user comments comments.user documents)
     # json_response(@posts.to_json(include: [:user, :documents, :comments]))
   end

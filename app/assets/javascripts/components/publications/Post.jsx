@@ -58,7 +58,7 @@ class Post2 extends React.Component {
                             </a>
                         </nav>
 
-                        <CommentsList comments_count={post.comments_count} commets={post.commets}/>
+                        <CommentsList comments_count={post.comments_count} comments={post.comments}/>
                     </div>
 
                 </article>

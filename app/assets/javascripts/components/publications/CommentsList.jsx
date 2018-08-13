@@ -19,7 +19,7 @@ class CommentsList extends React.Component {
     render() {
         let comment_list;
         const comments = this.state.comments
-        if(comments.length > 0)
+        if(comments !== undefined)
             comment_list = comments.map(function (comment) {
                 return <Comment key={comment.id} comment={comment}></Comment>
             })
