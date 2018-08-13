@@ -60,8 +60,8 @@
       <file leaf-file-name="seeds.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/db/seeds.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+            <state relative-caret-position="581">
+              <caret line="85" column="29" lean-forward="true" selection-start-line="85" selection-start-column="29" selection-end-line="85" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -676,7 +676,7 @@
       <workItem from="1533623772409" duration="14562000" />
       <workItem from="1533674167081" duration="3106000" />
       <workItem from="1533758781009" duration="2103000" />
-      <workItem from="1534143961697" duration="5450000" />
+      <workItem from="1534143961697" duration="5850000" />
     </task>
     <task id="LOCAL-00001" summary="Aggiunto ReactJS">
       <created>1533147831053</created>
@@ -738,7 +738,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="180140000" />
+    <option name="totallyTimeSpent" value="180540000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -757,7 +757,7 @@
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.10070005" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.53904146" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.37749058" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.31502423" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22139303" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.3297402" />
@@ -1047,8 +1047,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db/seeds.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+        <state relative-caret-position="581">
+          <caret line="85" column="29" lean-forward="true" selection-start-line="85" selection-start-column="29" selection-end-line="85" selection-end-column="29" />
         </state>
       </provider>
     </entry>
