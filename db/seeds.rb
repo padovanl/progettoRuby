@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-begin
+=begin
 Course.destroy_all
 DegreeCourse.destroy_all
  
@@ -96,11 +96,9 @@ teacher.theses.create!([
 
 ])
 
+=end
 
-
-end
-
-user = User.first
+user = User.find(5)
 course = Course.first
 10.times do
   post = Post.create!(
