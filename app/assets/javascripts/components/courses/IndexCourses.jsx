@@ -39,12 +39,18 @@ class IndexCourses extends React.Component{
         if (this.state.error){
             message = <span className='message is-danger'>{this.state.error}</span>;
         }
-//        const Course = props =>( <li > {props.course.name}  {props.course.year} </li>);
 
         var items = this.state.allcourses.map((item) => {
             return(
-                <div className="nested">
-                    <div  key={item.id}>{item.name} <br /> Anno: {item.year}</div>
+                <div>
+                    <div className="nested" key={item.id}>
+                        <div> IMMAGINE </div>
+                        <div>Corso: {item.name} </div>
+                        <div>Anno: {item.year}</div>
+                    </div>
+                    <div className="segui">
+                        <div>Segui</div>
+                    </div>
                 </div>
             )
         });
@@ -53,6 +59,9 @@ class IndexCourses extends React.Component{
             <div>
                 <p>{message}</p>
                 <div className="wrapper">{items}</div>
+                <div className="next is-right">
+                    <span>Next</span>
+                </div>
             </div>
         )
     }
