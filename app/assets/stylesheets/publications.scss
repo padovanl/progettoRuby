@@ -8,12 +8,20 @@
   position: relative;
   margin-top: 7vh;
   overflow: hidden;
+  line-height: normal;
+
+  @include sm {
+    margin-top: 9vh;
+  }
 
   .tabs {
     margin-bottom: 0;
+    @include md {
+      font-size: 110%;
+    }
   }
 
-  /**  STYLE 3 */
+  /**  STYLE 1 */
   #style-1::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
   }
@@ -24,25 +32,18 @@
     background-color: #9e9e9e;
   }
 
+  figure img {
+    border-radius: 50%;
+  }
+
+
   /* Lista Posts style */
   .posts-list {
     overflow-y: scroll;
     overflow-x: hidden;
     height: 89vh;
     padding: 1px;
-    /*-webkit-transform: rotate(180deg);
-    transform: rotate(180deg);
-    direction: rtl;
 
-    .box{
-      -webkit-transform: rotate(180deg);
-      transform: rotate(180deg);
-      direction: ltr;
-    }*/
-
-    figure img {
-      border-radius: 50%;
-    }
 
     .comment, .upvote, .link-to-commets {
       text-decoration: none;
@@ -57,22 +58,12 @@
     }
   }
 
-  .add-post {
-    position: absolute;
-    cursor: pointer;
-    bottom: 3vh;
-    right: 3vw;
-  }
 
   .new-post {
     margin-top: 10px;
 
     .message-input {
       width: 100%;
-    }
-
-    figure img {
-      border-radius: 50%;
     }
 
     .submit-button {
@@ -83,19 +74,54 @@
 
   .comment-form {
     width: 100%;
-    @include md {
-      textarea, buntton {
-        font-size: 170%;
-      }
-    }
-
-
   }
 
-  @include md {
-    font-size: 170%;
-    .is-medium {
-      font-size: 180%;
+}
+
+.add-post {
+  position: absolute;
+  cursor: pointer;
+  bottom: 5vh;
+  right: 13vw;
+  @include sm {
+    img {
+      height: 55px;
+      width: 55px;
     }
+    right: 3vw;
+    bottom: 3vh;
+  }
+  @include md {
+    right: 4vw;
+    bottom: 4vh;
+  }
+  @include lg {
+    right: 4vw;
+    bottom: 4vh;
+  }
+  @include xl {
+    right: 15vw;
+    bottom: 5vh;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/*-webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    direction: rtl;
+
+    .box{
+      -webkit-transform: rotate(180deg);
+      transform: rotate(180deg);
+      direction: ltr;
+    }*/

@@ -47,7 +47,7 @@ class NewComment extends React.Component {
         return (
             <article className="media">
                 <figure className="media-left">
-                    <p className="image is-48x48">
+                    <p className="image is-32x32">
                         <img src="https://bulma.io/images/placeholders/96x96.png"/>
                     </p>
                 </figure>
@@ -57,7 +57,7 @@ class NewComment extends React.Component {
                         <div className="field">
                             <p className="control">
                                 <textarea className="textarea" placeholder="Aggiungi un commento..." name="comment[content]"
-                                          rows="2" value={ this.state.content }  onChange={ (e) => this.handleChange(e) } />
+                                          rows="1" value={ this.state.content }  onChange={ (e) => this.handleChange(e) } />
                             </p>
                         </div>
                         <div className="field">

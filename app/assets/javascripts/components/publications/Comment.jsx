@@ -9,7 +9,7 @@ class Comment extends React.Component {
         return (
             <article className="media">
                 <figure className="media-left">
-                    <p className="image is-48x48">
+                    <p className="image is-32x32">
                         <img src="https://bulma.io/images/placeholders/96x96.png"/>
                     </p>
                 </figure>

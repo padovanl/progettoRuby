@@ -86,7 +86,7 @@ class Post extends React.Component {
 
                 <article className="media">
                     <figure className="media-left">
-                        <p className="image is-64x64">
+                        <p className="image is-48x48">
                             <img src="https://bulma.io/images/placeholders/128x128.png"/>
                         </p>
                     </figure>
