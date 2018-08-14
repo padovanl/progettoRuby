@@ -11,81 +11,143 @@
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 </head>
 
 <body>
-<nav class="navbar level is-mobile" role="navigation" aria-label="dropdown navigation">
-  <div class="container">
-    <div class="level is-mobile nav-items">
 
-      <a class="level-right" href="/">
-        <figure class="image is-32x32">
-          <%= image_tag "artificial-intelligence.png" %>
-        </figure>
-        <strong class="title is-4" id="app-name">BRAIN_STEAM</strong>
+
+  <nav class="navbar" style="opacity: 1.0; height: 6%;">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        <%= image_tag "artificial-intelligence.png" %>&nbsp;<strong class="title is-4 is-hidden-mobile" id="app-name">BRAIN_STEAM</strong>
       </a>
 
-      <% if user_signed_in? %>
+      <!--<a class="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma" target="_blank">
+      <span class="icon" style="color: #333;">
+        <i class="fa fa-github"></i>
+      </span>
+      </a>-->
 
-        <div class="level-item">
-          <a class="access">
-            I miei corsi
-          </a>
-        </div>
+      <!--<a class="navbar-item is-hidden-desktop" href="https://twitter.com/jgthms" target="_blank">
+      <span class="icon" style="color: #55acee;">
+        <i class="fa fa-twitter"></i>
+      </span>
+      </a>-->
 
-        <% if current_user.admin then %>
-          <div class="level-item">
-            <a class="access" href="/dashboard">
-              Dashboard
-            </a>
-          </div>
-        <% end %>
-
-
-        <div class="level-left">
-          <a class="access">
-            <u><%= link_to "Il mio profilo", edit_user_registration_path %></u>
-          </a>
-        </div>
-
-        <div class="level-left">
-            <u><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "access" %></u>
-        </div>
-
-
-
-      <% else %>
-
-        <% if current_page?(new_user_registration_path) or
-            (if defined?resource_name then current_page?(new_password_path(resource_name)) else false end) %>
-
-          <div class="level-left">
-            <%= link_to(raw("<u>Login</u>"), new_user_session_path, class: "access")  %>
-          </div>
-
-        <% else %>
-
-          <div class="level-left">
-            <a class="access">
-              <small>Non hai ancora un account?</small>
-              <%= link_to(raw("<u>Registrati</u>"), new_user_registration_path)  %>
-            </a>
-
-          </div>
-
-        <% end %>
-
-      <% end %>
-
+      <div class="navbar-burger burger" data-target="navMenubd-example" onclick="openMenu();">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
-  </div>
-</nav>
+
+    <div id="navMenubd-example" class="navbar-menu">
+      <div class="navbar-start">
+        <% if user_signed_in? %>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link  is-active" href="#">
+              Trova corsi
+            </a>
+            <div class="navbar-dropdown ">
+              <a class="navbar-item " href="#">
+                1
+              </a>
+              <a class="navbar-item " href="#">
+                2
+              </a>
+              <a class="navbar-item " href="#">
+                3
+              </a>
+
+              <hr class="navbar-divider">
+              <a class="navbar-item " href="#">
+                4
+              </a>
+            </div>
+          </div>
+
+          <a class="navbar-item " href="#">
+            <span class="bd-emoji"><%= fa_icon "graduation-cap" %></span>&nbsp;I miei corsi
+          </a>
+        <% end %>
+
+      </div>
+
+      <div class="navbar-end">
+        <% if user_signed_in? %>
+          <% if current_user.admin %>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link  is-active" href="#">
+                Dashboard
+              </a>
+              <div class="navbar-dropdown ">
+                <a class="navbar-item " href="<%= dashboard_path %>">
+                  Dashboard
+                </a>
+                <a class="navbar-item " href="#">
+                  Segnalazioni
+                </a>
+              </div>
+            </div>
+          <% end %>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link  is-active" href="#">
+              Ciao <%= current_user.name %>!
+            </a>
+            <div class="navbar-dropdown ">
+              <a class="navbar-item " href="<%= edit_user_registration_path %>">
+                Modifica account
+              </a>
+              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "navbar-item" %>
+            </div>
+          </div>
+        <% else %>
+          <a class="navbar-item" href="/users/sign_up">
+            <span class="bd-emoji"><%= fa_icon "user" %></span>&nbsp;Registrati!
+          </a>
+        <% end %>
+
+      </div>
+    </div>
+  </nav>
+
+
 
 
 <%= yield %>
 
+  <script type="text/javascript">
+      /*document.addEventListener('DOMContentLoaded', function () {
+          // Get all "navbar-burger" elements
+          var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+          // Check if there are any nav burgers
+          if ($navbarBurgers.length > 0) {
+              // Add a click event on each of them
+              $navbarBurgers.forEach(function ($el) {
+                  $el.addEventListener('click', function () {
+                      // Get the target from the "data-target" attribute
+                      var target = $el.dataset.target;
+                      var $target = document.getElementById(target);
+                      // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+                      $el.classList.toggle('is-active');
+                      $target.classList.toggle('is-active');
 
+                  });
+              });
+          }
+      });*/
+
+      function openMenu() {
+
+          var $navbarBurgers = document.querySelector('.navbar-burger')
+          var target = $navbarBurgers.dataset.target;
+          var $target = document.getElementById(target);
+          // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+          $navbarBurgers.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+      }
+  </script>
 </body>
 </html>

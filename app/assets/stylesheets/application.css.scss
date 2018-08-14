@@ -19,6 +19,8 @@ html {
   background-size: cover;
   height: 100%;
   overflow: hidden;
+  #overflow-x: hidden;
+  #overflow-y: scroll;
 }
 
 .is-vcentered {

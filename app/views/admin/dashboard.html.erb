@@ -1,51 +1,55 @@
 
 
-<h1>Qui puoi inserire e gestire i professori presenti su Brain_Steam.</h1>
-<div class="columns">
-  <div class="column"></div>
-  <div class="column is-8">
-    <%= react_component 'MainTeacher' %>
+<% content_for :title, "Dashboard" %>
+<div style="overflow-y: scroll; height: 1000px;">
+  <h1>Qui puoi inserire e gestire i professori presenti su Brain_Steam.</h1>
+  <div class="columns">
+    <div class="column"></div>
+    <div class="column is-8">
+      <%= react_component 'MainTeacher' %>
+    </div>
+    <div class="column"></div>
   </div>
-  <div class="column"></div>
-</div>
-<h1>Qui puoi inserire e gestire le tesi collegate ai Professori su Brain_Steam.</h1>
-<div class="columns">
-  <div class="column"></div>
-  <div class="column is-8">
-    <%= react_component 'MainThesis' %>
+  <h1>Qui puoi inserire e gestire le tesi collegate ai Professori su Brain_Steam.</h1>
+  <div class="columns">
+    <div class="column"></div>
+    <div class="column is-8">
+      <%= react_component 'MainThesis' %>
+    </div>
+    <div class="column"></div>
   </div>
-  <div class="column"></div>
-</div>
-<h1>Qui puoi inserire e gestire i tag che classificano gli oggetti su Brain_Steam.</h1>
-<div class="columns">
-  <div class="column"></div>
-  <div class="column is-8">
-    <%= react_component 'MainTag' %>
+  <h1>Qui puoi inserire e gestire i tag che classificano gli oggetti su Brain_Steam.</h1>
+  <div class="columns">
+    <div class="column"></div>
+    <div class="column is-8">
+      <%= react_component 'MainTag' %>
+    </div>
+    <div class="column"></div>
   </div>
-  <div class="column"></div>
-</div>
 
 
-<h1>Qui puoi inserire e gestire i corsi di laurea presenti su Brain_Steam.</h1>
-<div class="columns">
-  <div class="column"></div>
-  <div class="column is-8">
-    <%= react_component 'MainDegreeCourses' %>
+  <h1>Qui puoi inserire e gestire i corsi di laurea presenti su Brain_Steam.</h1>
+  <div class="columns">
+    <div class="column"></div>
+    <div class="column is-8">
+      <%= react_component 'MainDegreeCourses' %>
+    </div>
+    <div class="column"></div>
   </div>
-  <div class="column"></div>
+
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+
+  <%= react_component 'MainCourses' %>
 </div>
 
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-
-<%= react_component 'MainCourses' %>
 
 <!--<div class="dropdown dropdownDegree" id="1" onclick="toggleClass(1)">
   <div class="dropdown-trigger">

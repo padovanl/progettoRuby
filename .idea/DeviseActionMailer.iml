@@ -74,6 +74,7 @@
     <orderEntry type="library" scope="PROVIDED" name="faker (v1.9.1, rbenv: 2.5.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="faraday (v0.12.2, rbenv: 2.5.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ffi (v1.9.25, rbenv: 2.5.1) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="font-awesome-rails (v4.7.0.4, rbenv: 2.5.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="font-awesome-sass (v5.0.13, rbenv: 2.5.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="globalid (v0.4.1, rbenv: 2.5.1) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="hashie (v3.5.7, rbenv: 2.5.1) [gem]" level="application" />

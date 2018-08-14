@@ -93,3 +93,5 @@ gem 'active_model_serializers'
 
 # A library for generating fake data. We'll use this to generate test data.
 gem 'faker'
+
+gem "font-awesome-rails"
