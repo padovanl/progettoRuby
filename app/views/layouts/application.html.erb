@@ -36,7 +36,7 @@
       </span>
       </a>-->
 
-      <div class="navbar-burger burger" data-target="navMenubd-example">
+      <div class="navbar-burger burger" data-target="navMenubd-example" onclick="openMenu();">
         <span></span>
         <span></span>
         <span></span>
@@ -84,10 +84,10 @@
               </a>
               <div class="navbar-dropdown ">
                 <a class="navbar-item " href="<%= dashboard_path %>">
-                  Gestisci tutto
+                  Dashboard
                 </a>
                 <a class="navbar-item " href="#">
-                  Gestisci segnalazioni
+                  Segnalazioni
                 </a>
               </div>
             </div>
@@ -119,7 +119,7 @@
 <%= yield %>
 
   <script type="text/javascript">
-      document.addEventListener('DOMContentLoaded', function () {
+      /*document.addEventListener('DOMContentLoaded', function () {
           // Get all "navbar-burger" elements
           var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
           // Check if there are any nav burgers
@@ -137,7 +137,17 @@
                   });
               });
           }
-      });
+      });*/
+
+      function openMenu() {
+
+          var $navbarBurgers = document.querySelector('.navbar-burger')
+          var target = $navbarBurgers.dataset.target;
+          var $target = document.getElementById(target);
+          // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+          $navbarBurgers.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+      }
   </script>
 </body>
 </html>
