@@ -18,3 +18,19 @@ const getAll = () => {
     const errorMessage = 'Errore durante il download dei dati';
     return makeReq(baseURL, errorMessage);
 };
+
+
+const redirect = (superhero) => {
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(superhero)
+    };
+
+    const errorMessage = 'Errore nel collegamento col server';
+
+    return makeReq(baseURL, errorMessage, options);
+};

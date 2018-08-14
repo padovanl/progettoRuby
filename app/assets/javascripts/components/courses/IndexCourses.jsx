@@ -1,9 +1,10 @@
 class IndexCourses extends React.Component{
     constructor(props) {
         super(props);
-        this.state = {allcourses: [], error: 'pino'};
+        this.state = {allcourses: [], error: ''};
 
         this.handleError = this.handleError.bind(this);
+        this.handleSubmit = this.handleChose.bind(this);
     }
 
 
@@ -12,6 +13,14 @@ class IndexCourses extends React.Component{
             setTimeout(() => this.setState({error: ''}), 10000)
         );
     }
+
+
+
+    handleChose(id) {
+        redirect(id) //da sistemare
+            .catch(this.handleError);
+    }
+
 
 
     componentDidMount(){
@@ -25,15 +34,17 @@ class IndexCourses extends React.Component{
 
     render(){
         let message;
+        let count=0;
+
         if (this.state.error){
-            message = <span className= 'message is-danger'>{this.state.error}</span>;
+            message = <span className='message is-danger'>{this.state.error}</span>;
         }
 //        const Course = props =>( <li > {props.course.name}  {props.course.year} </li>);
 
         var items = this.state.allcourses.map((item) => {
             return(
-                <div key={item.id}>
-                    <li>{item.name}</li>
+                <div className="nested">
+                    <div  key={item.id}>{item.name} <br /> Anno: {item.year}</div>
                 </div>
             )
         });
@@ -41,7 +52,7 @@ class IndexCourses extends React.Component{
         return(
             <div>
                 <p>{message}</p>
-                <ul>{items}</ul>
+                <div className="wrapper">{items}</div>
             </div>
         )
     }
