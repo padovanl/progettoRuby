@@ -14,6 +14,7 @@ const AllTeachers = (props) => {
                     <th>Nome</th>
                     <th>Cognome</th>
                     <th>Link</th>
+                    <th>Opzioni</th>
                 </tr>
                 </thead>
                 <tbody>
