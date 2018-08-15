@@ -48,7 +48,7 @@ class NewComment extends React.Component {
             <article className="media">
                 <figure className="media-left">
                     <p className="image is-32x32">
-                        <img src="https://bulma.io/images/placeholders/96x96.png"/>
+                        <img src={ this.props.current_user_avatar }/>
                     </p>
                 </figure>
                 <form onSubmit={ (e) => this.handleSubmit(e) } className="comment-form">

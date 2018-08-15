@@ -74,7 +74,7 @@ class Post extends React.Component {
     }
 
     render() {
-        const post = this.props.post;
+        const { post, current_user, current_user_avatar } = this.props;
         let attachments = '';
         if (post.documents !== undefined)
             attachments = post.documents.map(function (doc) {
@@ -87,26 +87,27 @@ class Post extends React.Component {
                 <article className="media">
                     <figure className="media-left">
                         <p className="image is-48x48">
-                            <img src="https://bulma.io/images/placeholders/128x128.png"/>
+                            <img src={post.user.avatar_url}/>
                         </p>
                     </figure>
                     <div className="media-content">
                         <div className="content">
                             <p>
-                                <strong>{post.user.email}</strong>
+                                <strong>{post.user.name}</strong>
                                 <br/>
                                 {post.message}
                                 <br/>
                                 <div>
                                     {attachments}
                                 </div>
-                                <small><a>Like</a> · <a>Reply</a> · {(new  Date(Date.parse(post.created_at))).toLocaleTimeString()}</small>
+                                <small><a>Upvote</a> · {(new  Date(Date.parse(post.created_at))).toLocaleTimeString()}</small>
                             </p>
 
                         </div>
 
 
-                        <CommentsList post_id={post.id} comments={post.comments} current_user={this.props.current_user}/>
+                        <CommentsList post_id={post.id} comments={post.comments} current_user={current_user}
+                                      current_user_avatar={current_user_avatar}/>
 
                     </div>
                 </article>

@@ -24,18 +24,6 @@
         <%= image_tag "artificial-intelligence.png" %>&nbsp;<strong class="title is-5" id="app-name">BRAIN_STEAM</strong>
       </a>
 
-      <!--<a class="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma" target="_blank">
-      <span class="icon" style="color: #333;">
-        <i class="fa fa-github"></i>
-      </span>
-      </a>-->
-
-      <!--<a class="navbar-item is-hidden-desktop" href="https://twitter.com/jgthms" target="_blank">
-      <span class="icon" style="color: #55acee;">
-        <i class="fa fa-twitter"></i>
-      </span>
-      </a>-->
-
       <div class="navbar-burger burger" data-target="navMenubd-example" onclick="openMenu();">
         <span></span>
         <span></span>
@@ -105,7 +93,7 @@
           </div>
         <% else %>
           <a class="navbar-item" href="/users/sign_up">
-            <span class="bd-emoji"><%= fa_icon "user" %></span>&nbsp;Registrati!
+            <small class="is-hidden-mobile">Non hai ancora un account?</small>&nbsp;<u>Registrati!</u>
           </a>
         <% end %>
 

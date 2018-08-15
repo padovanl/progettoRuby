@@ -10,17 +10,17 @@ class Comment extends React.Component {
             <article className="media">
                 <figure className="media-left">
                     <p className="image is-32x32">
-                        <img src="https://bulma.io/images/placeholders/96x96.png"/>
+                        <img src={user.avatar_url}/>
                     </p>
                 </figure>
                 <div className="media-content">
                     <div className="content">
                         <p>
-                            <strong>{user.email}</strong>
+                            <strong>{ user.name }</strong>
                             <br/>
                             {content}
                             <br/>
-                            <small>{(new  Date(Date.parse(created_at))).toLocaleTimeString()}</small>
+                            <small>{ created_at ? (new  Date(Date.parse(created_at))).toLocaleTimeString() : (new  Date).toLocaleTimeString() }</small>
                         </p>
                     </div>
                 </div>

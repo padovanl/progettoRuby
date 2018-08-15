@@ -13,6 +13,7 @@ class PostsThread extends React.Component {
 
     addNewPost(post) {
         post['user'] = this.props.current_user
+        post['user']['avatar_url'] = this.props.current_user_avatar
         this.setState((prevState) => {
             return {
                 data: [post].concat(prevState.data),
@@ -38,7 +39,7 @@ class PostsThread extends React.Component {
 
 
     render() {
-        const {current_user} = this.props
+        const {current_user, current_user_avatar} = this.props
         const {activeTabIndex, data, adding_post} = this.state
         return (
             <div>
@@ -60,7 +61,8 @@ class PostsThread extends React.Component {
                     <div className="posts-list" id="style-1">
                         {
                             data.map(function (post) {
-                                return <Post key={post.id} post={post} current_user={current_user}></Post>
+                                return <Post key={post.id} post={post} current_user={current_user}
+                                             current_user_avatar={current_user_avatar}></Post>
                             })
                         }
                     </div>

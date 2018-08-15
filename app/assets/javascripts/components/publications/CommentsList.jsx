@@ -9,6 +9,7 @@ class CommentsList extends React.Component {
 
     addNewComment(comment) {
         comment['user'] = this.props.current_user
+        comment['user']['avatar_url'] = this.props.current_user_avatar
         this.setState((prevState) => {
             return {
                 comments: prevState.comments.concat(comment)
@@ -18,6 +19,7 @@ class CommentsList extends React.Component {
 
     render() {
         let comment_list;
+        const { post_id, current_user_avatar } = this.props
         const comments = this.state.comments
         if(comments !== undefined)
             comment_list = comments.map(function (comment) {
@@ -27,7 +29,8 @@ class CommentsList extends React.Component {
         return (
             <div>
                 { comment_list }
-                <NewComment post_id={this.props.post_id} addNewComment={this.addNewComment.bind(this)} />
+                <NewComment post_id={ post_id } current_user_avatar={ current_user_avatar }
+                            addNewComment={this.addNewComment.bind(this)} />
             </div>
         )
 
