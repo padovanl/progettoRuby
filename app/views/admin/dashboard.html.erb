@@ -12,7 +12,9 @@
   </div>
   <h1>Qui puoi inserire e gestire le tesi collegate ai Professori su Brain_Steam.</h1>
   <div class="columns">
-    <div class="column"></div>
+    <div class="column">
+      <button class="button" id="showModalTesi">Nuova tesi</button>
+    </div>
     <div class="column is-8">
       <%= react_component 'MainThesis' %>
     </div>
@@ -49,6 +51,18 @@
 
   <%= react_component 'MainCourses' %>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $("#showModalTesi").click(function () {
+        $("#modalTesi").addClass("is-active");
+    });
+
+    //$(".closeModalTesi").click(function () {
+    //    $("#modalTesi").removeClass("is-active");
+    //});
+</script>
 
 
 <!--<div class="dropdown dropdownDegree" id="1" onclick="toggleClass(1)">

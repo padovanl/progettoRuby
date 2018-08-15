@@ -111,11 +111,8 @@ class BodyThesis extends React.Component {
         return(
             <div>
                 <AllTheses theses={this.state.theses} handleDelete={this.handleDelete}  handleUpdate = {this.handleUpdate} />
-                <table className="table is-hoverable is-fullwidth">
-                    <tbody>
-                    <NewThesis handleFormSubmit={this.handleFormSubmit} />
-                    </tbody>
-                </table>
+                <NewThesis handleFormSubmit={this.handleFormSubmit} />
+
             </div>
         )
     }
