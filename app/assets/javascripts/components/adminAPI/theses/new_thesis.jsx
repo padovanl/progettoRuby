@@ -37,10 +37,18 @@ class NewThesis extends React.Component {
             .then((data) => {this.temp = data});
     }
 
+
+
     render(){
         let formFields = {};
         this.getTeachers();
         var teachersList = this.temp;
+        const centerStyle = {
+            marginRight: 'auto',
+            marginLeft: 'auto',
+            marginTop: 0,
+            marginBottom: 0,
+        };
 
         return(
 
@@ -48,7 +56,7 @@ class NewThesis extends React.Component {
                 <div className="modal-background"></div>
                 <div className="modal-card">
                     <header className="modal-card-head">
-                        <p className="modal-card-title">Modal title</p>
+                        <p className="modal-card-title">Nuova tesi</p>
                         <button className="delete" aria-label="close" onClick={function () {
                             $("#modalTesi").removeClass("is-active");
                         }}></button>
@@ -56,21 +64,29 @@ class NewThesis extends React.Component {
                     <section className="modal-card-body">
                         <input ref={input => formFields.title = input} placeholder='Inserisci il titolo...' className="input is-medium" required id="insertNewThesis1"/>
                         <br/>
-                        <textarea ref={input => formFields.content = input} placeholder='Inserisci la descrizione...' className="input is-medium" required id="insertNewThesis2"/>
                         <br/>
-                        <div className="select">
-                            <select ref={input => formFields.teacher_id = input} className="input is-medium" >
-                                {teachersList.map(function(t){
-                                    return <option value={t.id}>{t.name}&nbsp;{t.surname}</option>
-                                })}
-                            </select>
+                        <textarea style={{height: 300}} ref={input => formFields.content = input} placeholder='Inserisci la descrizione...' className="input is-medium" required id="insertNewThesis2"/>
+                        <br/>
+                        <br/>
+                        <div className="columns">
+                            <div className="column"></div>
+                            <div className="column  is-5">
+                                <div className="select" style={centerStyle}>
+                                    <select ref={input => formFields.teacher_id = input} className="input is-medium" >
+                                        {teachersList.map(function(t){
+                                            return <option value={t.id}>{t.name}&nbsp;{t.surname}</option>
+                                        })}
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="column"></div>
                         </div>
                     </section>
                     <footer className="modal-card-foot">
                         <a className="button is-rounded is-link" onClick={ () => this.props.handleFormSubmit(formFields.title.value, formFields.content.value, formFields.teacher_id.value)}>Inserisci</a>
-                        <button className="button" onClick={function () {
+                        <button className="button is-rounded" onClick={function () {
                             $("#modalTesi").removeClass("is-active");
-                        }}>Cancel</button>
+                        }}>Chiudi</button>
                     </footer>
                 </div>
             </div>

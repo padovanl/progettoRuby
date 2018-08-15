@@ -86,6 +86,7 @@ class BodyThesis extends React.Component {
                     this.addNewThesis(t);
                     document.getElementById('insertNewThesis1').value = '';
                     document.getElementById('insertNewThesis2').value = '';
+                    $("#modalTesi").removeClass("is-active");
                 })
         }else{
             alert('Il titolo e la descrizione della tesi non possono essere vuoti!')
