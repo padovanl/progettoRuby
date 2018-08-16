@@ -1,27 +1,24 @@
+<html>
+  <body>
+    <br/>
+    <div align="center">
+      <h2>Tutti i corsi disponibili</h2>
+    </div>
 
-<body>
-  <br/>
-  <div align="center">
-    <h2>Tutti i corsi disponibili</h2>
-  </div>
 
-  <%= paginate @tcs %>
-
-  <% @tcs.each do |tc| %>
-    <ul>
-      <li> id tc: <%= tc.id%> </li>
-      <li> data: <%= tc.data%> </li>
-      <li> nome corso: <%= tc.course.name%> </li>
-      <li> id corso: <%= tc.course.id%> </li>
-      <li> teacher name: <%= tc.teacher.name%> </li>
-      <li> teacher surname: <%= tc.teacher.surname%> </li>
-    </ul>
-    <br />
-  <% end %>
-
-  <%= react_component 'Main'%>
-
-</body>
+    <%= form_tag(allcourses_path, :method => "get", id: "search-form", class:"search-form pull-right") do %>
+      <div class="form-group">
+        <%= text_field_tag :search, params[:search], placeholder:"Search Courses", class:'form-control' %>
+      </div>
+      <%= submit_tag "Search", :name => nil, class:'btn btn-primary' %>
+    <%end%>
 
 
 
+    <%= react_component 'Main'%>
+
+  </body>
+
+
+
+</html>

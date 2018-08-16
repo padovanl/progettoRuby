@@ -18,9 +18,9 @@ html {
   background: url("bg5.png") no-repeat center center fixed;
   background-size: cover;
   height: 100%;
-  overflow: hidden;
+  #overflow: hidden;
   #overflow-x: hidden;
-  #overflow-y: scroll;
+  overflow-y: scroll;
 }
 
 .is-vcentered {

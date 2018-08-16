@@ -6,4 +6,10 @@ class Course < ApplicationRecord
   has_many :posts
   has_many :user_courses
   has_many :teacher_courses
+
+
+  def self.search(query)
+    where("name like ?", "%#{query}%")
+  end
+
 end
