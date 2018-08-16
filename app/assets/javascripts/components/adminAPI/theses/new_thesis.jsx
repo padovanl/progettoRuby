@@ -68,8 +68,12 @@ class NewThesis extends React.Component {
                         <textarea style={{height: 300}} ref={input => formFields.content = input} placeholder='Inserisci la descrizione...' className="input is-medium" required id="insertNewThesis2"/>
                         <br/>
                         <br/>
-                        <div className="columns">
-                            <div className="column"></div>
+                        <div className="columns is-desktop">
+                            <div className="column">
+                                <div style={{lineHeight: 2.5}}>
+                                    <strong>Professore collegato:</strong>
+                                </div>
+                            </div>
                             <div className="column  is-5">
                                 <div className="select" style={centerStyle}>
                                     <select ref={input => formFields.teacher_id = input} className="input is-medium" >
@@ -81,6 +85,8 @@ class NewThesis extends React.Component {
                             </div>
                             <div className="column"></div>
                         </div>
+                        <br/>
+
                     </section>
                     <footer className="modal-card-foot">
                         <a className="button is-rounded is-link" onClick={ () => this.props.handleFormSubmit(formFields.title.value, formFields.content.value, formFields.teacher_id.value)}>Inserisci</a>
