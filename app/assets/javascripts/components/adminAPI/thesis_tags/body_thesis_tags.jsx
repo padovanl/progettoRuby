@@ -15,7 +15,7 @@ class BodyThesisTags extends React.Component {
 
     handleDelete(id){
         let linkDelete = '/api/v1/theses/' + this.props.thesis_id + '/thesis_tags/' + id;
-        if(confirm('Sei sicuro di voler eliminare questo professore?')){
+        if(confirm('Sei sicuro di voler eliminare questo tag?')){
             fetch(linkDelete,
                 {
                     method: 'DELETE',
