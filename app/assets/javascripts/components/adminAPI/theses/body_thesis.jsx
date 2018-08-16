@@ -86,6 +86,7 @@ class BodyThesis extends React.Component {
                     this.addNewThesis(t);
                     document.getElementById('insertNewThesis1').value = '';
                     document.getElementById('insertNewThesis2').value = '';
+                    $("#modalTesi").removeClass("is-active");
                 })
         }else{
             alert('Il titolo e la descrizione della tesi non possono essere vuoti!')
@@ -111,11 +112,8 @@ class BodyThesis extends React.Component {
         return(
             <div>
                 <AllTheses theses={this.state.theses} handleDelete={this.handleDelete}  handleUpdate = {this.handleUpdate} />
-                <table className="table is-hoverable is-fullwidth">
-                    <tbody>
-                    <NewThesis handleFormSubmit={this.handleFormSubmit} />
-                    </tbody>
-                </table>
+                <NewThesis handleFormSubmit={this.handleFormSubmit} />
+                <AddTagsThesis />
             </div>
         )
     }

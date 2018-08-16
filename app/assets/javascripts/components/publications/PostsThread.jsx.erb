@@ -6,12 +6,14 @@ class PostsThread extends React.Component {
 
         this.state = {
             data: [],
-            adding_post: false
+            adding_post: false,
+            activeTabIndex: 0
         };
     }
 
     addNewPost(post) {
         post['user'] = this.props.current_user
+        post['user']['avatar_url'] = this.props.current_user_avatar
         this.setState((prevState) => {
             return {
                 data: [post].concat(prevState.data),
@@ -28,45 +30,83 @@ class PostsThread extends React.Component {
         this.setState({adding_post: false});
     }
 
-    componentDidMount() {
-        fetch('/posts?course_id=' + this.props.course_id)
-            .then(response => response.json())
-            .then(data => this.setState({data}));
+    // Toggle currently active tab
+    handleTabClick(tabIndex) {
+        if (tabIndex !== this.state.activeTabIndex) {
+            this.fetchPosts(tabIndex)
+        }
     }
 
+
     render() {
-        const current_user = this.props.current_user
-        if (this.state.data.length > 0) {
-            return (
+        const {current_user, current_user_avatar} = this.props
+        const {activeTabIndex, data, adding_post} = this.state
+        return (
+            <div>
                 <div className="container corso-thread">
+                    <div className="tabs is-centered">
+
+                        <ul>
+                            <li className={activeTabIndex === 0 ? "is-active" : ""}><a
+                                onClick={() => this.handleTabClick(0)}><strong>Tutti i post</strong></a></li>
+                            <li className={activeTabIndex === 1 ? "is-active" : ""}><a
+                                onClick={() => this.handleTabClick(1)}><strong>Upvotes</strong></a></li>
+                            <li className={activeTabIndex === 2 ? "is-active" : ""}><a
+                                onClick={() => this.handleTabClick(2)}><strong>I miei post</strong></a></li>
+                        </ul>
+
+                    </div>
+
+
                     <div className="posts-list" id="style-1">
                         {
-                            this.state.data.map(function (post) {
-                                return <Post key={post.id} post={post} current_user={current_user}></Post>
+                            data.map(function (post) {
+                                return <Post key={post.id} post={post} current_user={current_user}
+                                             current_user_avatar={current_user_avatar}></Post>
                             })
                         }
                     </div>
 
-                    <figure className="media-left add-post" onClick={this.viewNewPostModal.bind(this)}>
-                        <p className="image is-64x64">
-                            <%= image_tag "add_post.png" %>
-                        </p>
-                    </figure>
-
-                    <div className={ "modal " + (this.state.adding_post ? "is-active" : "") }>
+                    <div className={"modal " + (adding_post ? "is-active" : "")}>
                         <div className="modal-background" onClick={this.closeNewPostModal.bind(this)}></div>
                         <div className="modal-content">
 
                             <NewPost addNewPost={this.addNewPost.bind(this)}/>
 
                         </div>
-                        <button className="modal-close is-large" aria-label="close" onClick={this.closeNewPostModal.bind(this)}></button>
+                        <button className="modal-close is-large" aria-label="close"
+                                onClick={this.closeNewPostModal.bind(this)}></button>
                     </div>
-
                 </div>
-            );
-        }
+                <figure className="media-left add-post" onClick={this.viewNewPostModal.bind(this)}>
+                    <p className="image is-64x64">
+                      <%= image_tag "add_post.png" %>
+                    </p>
+                </figure>
 
-        return (<div className="pageloader"><span className="title">Loading</span></div>);
+            </div>
+        );
+
+    }
+
+    componentDidMount() {
+        const {activeTabIndex} = this.state
+        this.fetchPosts(activeTabIndex)
+    }
+
+    fetchPosts(activeTabIndex) {
+        const {course_id, current_user} = this.props
+
+        URL = '/posts?course_id=' + course_id
+        if (activeTabIndex === 1)
+            URL += '&upvoter_id=' + current_user.id
+        if (activeTabIndex === 2)
+            URL += '&user_id=' + current_user.id
+
+        fetch(URL, {
+            credentials: 'same-origin'
+        })
+            .then(response => response.json())
+            .then(data => this.setState({data, activeTabIndex}));
     }
 }

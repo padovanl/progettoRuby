@@ -4,23 +4,18 @@
 @import "common/mixin";
 @import "*";
 
-/*
 html {
-  background-image: url("bg5.png");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-color: #464646;
-}*/
-
-html {
-  background: url("bg5.png") no-repeat center center fixed;
+  background: url("bg8.png") no-repeat center center fixed;
   background-size: cover;
   height: 100%;
-  #overflow: hidden;
-  #overflow-x: hidden;
   overflow-y: scroll;
+  overflow-x: hidden;
+  @include sm {
+    font-size: 89%;
+  }
+  @include md {
+    font-size: 89%;
+  }
 }
 
 .is-vcentered {
@@ -31,15 +26,18 @@ html {
 
 
 .navbar {
-  opacity: 0.8;
   position: fixed;
   top: 0;
   width: 100%;
   margin: 0 auto;
   filter: alpha(opacity=30); /* For IE8 and earlier */
-  height: 7vh;
+  height: 6vh;
   border: 1px solid #e0e0e0;
+  padding: 0 10vw;
 
+  @include rwd(1087) {
+    padding: 0 0 0 3vw;
+  }
 
   a {
     text-decoration: none;
@@ -61,20 +59,24 @@ html {
   .nav-items {
     width: 100%;
   }
+
   @include rwd(1080) {
-
-    padding: 0 5% 0 5%;
-
     .access {
       font-size: 170%;
     }
 
     #app-name {
-      font-size: 185%;
+      font-size: 115%;
     }
 
   }
 
+  @include medium-large(1087) {
+    .navbar-burger {
+      width: 6vh;
+      height: 6vh;
+    }
+  }
 }
 
 

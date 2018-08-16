@@ -93,5 +93,7 @@ gem 'active_model_serializers'
 
 # A library for generating fake data. We'll use this to generate test data.
 gem 'faker'
+# https://github.com/chrisfrank/rack-reducer
+gem 'rack-reducer', require: 'rack/reducer'
 
 gem "font-awesome-rails"

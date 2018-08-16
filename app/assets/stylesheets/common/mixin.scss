@@ -44,3 +44,10 @@ $screen-xl-min: 1200px;
     @content;
   }
 }
+
+// Large devices
+@mixin medium-large($max) {
+  @media screen and (min-width: #{$screen-sm-min}) and (max-width: $max+'px') {
+    @content;
+  }
+}

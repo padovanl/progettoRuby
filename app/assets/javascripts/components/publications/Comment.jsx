@@ -9,19 +9,19 @@ class Comment extends React.Component {
         return (
             <article className="media">
                 <figure className="media-left">
-                    <p className="image is-48x48">
-                        <img src="https://bulma.io/images/placeholders/96x96.png"/>
+                    <p className="image is-32x32">
+                        <img src={user.avatar_url}/>
                     </p>
                 </figure>
                 <div className="media-content">
                     <div className="content">
-                        <p>
-                            <strong>{user.email}</strong>
-                            <br/>
-                            {content}
-                            <br/>
-                            <small>{(new  Date(Date.parse(created_at))).toLocaleTimeString()}</small>
-                        </p>
+                        <div className="content">
+                            <p className="content-author"><strong>{user.name}</strong></p>
+                            <p className="content-date">{ created_at ? (new  Date(Date.parse(created_at))).toLocaleTimeString() : (new  Date).toLocaleTimeString() }</p>
+                            <div>
+                                <p>{content}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </article>
