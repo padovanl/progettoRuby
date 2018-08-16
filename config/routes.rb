@@ -51,7 +51,15 @@ Rails.application.routes.draw do
     end
   end
 
-  get "/dashboard/thesis/:id/tags", to: "admin#thesis_tags"
+  namespace :api do
+    namespace :v1 do
+      resources :theses do
+        resources :thesis_tags, only: [:index, :create, :destroy, :update]
+      end
+    end
+  end
+
+  get "/dashboard/thesis/tags/:thesis_id", to: "admin#thesis_tags"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

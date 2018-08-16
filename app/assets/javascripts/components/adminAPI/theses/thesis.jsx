@@ -41,7 +41,7 @@ class Thesis extends React.Component{
 
 
         let link = "/theses/" + this.props.thesis.id;
-        let link_to_tags = "/dashboard/thesis/" + this.props.thesis.id + '/tags';
+        let link_to_tags = "/dashboard/thesis/tags/" + this.props.thesis.id;
 
         return(
             <tr key={this.props.thesis.id}>

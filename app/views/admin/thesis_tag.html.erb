@@ -1,3 +1,5 @@
 <% content_for :title, "Gestisci tag collegati alla tesi" %>
 
-<h1>In questa pagina puoi gestire i tag collegati alla tesi <%= params['id'] %>.</h1>
+<h1>In questa pagina puoi gestire i tag collegati alla tesi <%= params['thesis_id'] %>.</h1>
+
+<%= react_component('MainThesisTags',{thesis_id: params['thesis_id']}) %>

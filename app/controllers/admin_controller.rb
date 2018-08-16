@@ -11,7 +11,7 @@ class AdminController < ApplicationController
   end
 
   def thesis_tags
-    id_tesi = params[:id]
+    id_tesi = params[:thesis_]
     isAdmin = current_user.admin
     if isAdmin then
       render 'thesis_tag'
