@@ -29,7 +29,6 @@ class ThesisTag extends React.Component{
 
         return(
             <tr key={this.props.thesisTag.id}>
-                <td>{thesis_id}</td>
                 <td>{tag_id}</td>
                 <td>
                     <a className="button is-rounded is-danger" onClick={() => this.props.handleDelete(this.props.thesisTag.id)} title="Elimina"><i className="fas fa-times"></i></a>

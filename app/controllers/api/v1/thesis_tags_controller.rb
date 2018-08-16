@@ -5,6 +5,14 @@ class Api::V1::ThesisTagsController < ApplicationController
     json_response(thesisTags.to_json(include: [:tag]))
   end
   def create
+    temp = params['thesisTag']['tag_id']
+    #data_parsed = json_decode(temp)
+    tagCollegati = ThesisTag.where(thesis_id: params['thesis_id']).where(tag_id: temp).all
+    if tagCollegati.length > 0 then
+      json_response({error: "Tag gia collegato"})
+      return
+    end
+
     thesisTags = ThesisTag.create(thesisTags_params)
     json_response(thesisTags.to_json(include: [:tag]))
   end

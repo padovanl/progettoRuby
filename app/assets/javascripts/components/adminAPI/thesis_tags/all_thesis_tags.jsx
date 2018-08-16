@@ -18,8 +18,7 @@ class AllThesisTags extends React.Component {
                 <table className="table is-hoverable is-fullwidth">
                     <thead>
                     <tr>
-                        <th>Id tesi</th>
-                        <th>Id_tag</th>
+                        <th>Tag</th>
                         <th>Opzioni</th>
                     </tr>
                     </thead>

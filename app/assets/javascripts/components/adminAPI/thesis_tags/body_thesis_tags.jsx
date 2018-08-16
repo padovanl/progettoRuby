@@ -52,9 +52,12 @@ class BodyThesisTags extends React.Component {
                 body: body,
             }).then((response) => {return response.json()})
                 .then((thesisTag)=>{
-                    this.addNewThesisTags(thesisTag);
-                    document.getElementById('insertNewThesisTag1').value = '';
-                    document.getElementById('insertNewThesisTag2').value = '';
+                    if(thesisTag.error){
+                        alert("Errore!")
+                    }else{
+                        this.addNewThesisTags(thesisTag);
+                    }
+
                 })
         }else{
             alert('I campi non possono essere vuoti!')
