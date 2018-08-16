@@ -8,6 +8,15 @@ class AdminController < ApplicationController
     else
       render 'admin/accessDenied', layout: false
     end
+  end
 
+  def thesis_tags
+    id_tesi = params[:id]
+    isAdmin = current_user.admin
+    if isAdmin then
+      render 'thesis_tag'
+    else
+      render 'admin/accessDenied', layout: false
+    end
   end
 end

@@ -39,7 +39,10 @@ class Thesis extends React.Component{
             pulsante = <i className="fas fa-check"></i>;
         }
 
+
         let link = "/theses/" + this.props.thesis.id;
+        let link_to_tags = "/dashboard/thesis/" + this.props.thesis.id + '/tags';
+
         return(
             <tr key={this.props.thesis.id}>
                 <td>{title}</td>
@@ -48,9 +51,7 @@ class Thesis extends React.Component{
                 <td>
                     <a className="button is-rounded is-success" onClick={() => this.handleEdit()} title="Modifica">{pulsante}</a>&nbsp;
                     <a className="button is-rounded is-primary" target="_blank" href={link} title="Vai alla pagina della tesi">&nbsp;<i className="fas fa-info"></i>&nbsp;</a>&nbsp;
-                    <a className="button is-rounded is-warning" target="_blank" title="Gestisci tag collegati" onClick={function () {
-                        $("#addTagsThesisModal").addClass('is-active')
-                    }}><i className="fas fa-tags"></i></a>&nbsp;
+                    <a className="button is-rounded is-warning" href={link_to_tags} title="Gestisci tag collegati"><i className="fas fa-tags"></i></a>&nbsp;
                     <a className="button is-rounded is-danger" onClick={() => this.props.handleDelete(this.props.thesis.id)} title="Elimina"><i className="fas fa-trash"></i></a>
                 </td>
             </tr>

@@ -51,6 +51,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get "/dashboard/thesis/:id/tags", to: "admin#thesis_tags"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
