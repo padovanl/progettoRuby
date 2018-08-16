@@ -6,18 +6,18 @@ class Api::V1::ThesisTagsController < ApplicationController
   end
   def create
     thesisTags = ThesisTag.create(thesisTags_params)
-    render json: thesisTags
+    json_response(thesisTags.to_json(include: [:tag]))
   end
 
   def destroy
     ThesisTag.destroy(params[:id])
   end
 
-  def update
-    thesisTags = ThesisTag.find(params[:id])
-    thesisTags.update_attributes(thesisTags_params)
-    render json: thesisTags
-  end
+  #def update
+  #  thesisTags = ThesisTag.find(params[:id])
+  #  thesisTags.update_attributes(thesisTags_params)
+  #  render json: thesisTags
+  #end
 
   private
   def thesisTags_params

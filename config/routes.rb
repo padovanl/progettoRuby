@@ -54,7 +54,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :theses do
-        resources :thesis_tags, only: [:index, :create, :destroy, :update]
+        resources :thesis_tags, only: [:index, :create, :destroy] #tolto :update
       end
     end
   end

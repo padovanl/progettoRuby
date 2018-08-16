@@ -23,7 +23,7 @@ class ThesisTag extends React.Component{
 
     render(){
         let thesis_id = <i>{this.props.thesisTag.thesis_id}</i>;
-        let tag_id = <i>{this.props.thesisTag.tag_id}</i>;
+        let tag_id = <i>{this.props.thesisTag.tag.name}</i>;
         let pulsante = <i className="fas fa-pen"></i>;
 
 
