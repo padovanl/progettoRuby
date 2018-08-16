@@ -4,7 +4,7 @@ class IndexCourses extends React.Component{
         this.state = {allcourses: [], error: ''};
 
         this.handleError = this.handleError.bind(this);
-        this.handleSubmit = this.handleChose.bind(this);
+        this.handleChose = this.handleChose.bind(this);
     }
 
 
@@ -25,8 +25,8 @@ class IndexCourses extends React.Component{
 
     componentDidMount(){
         getAll()
-            .then(courses => {
-                this.setState({allcourses: courses})
+            .then(teacher_courses => {
+                this.setState({allcourses: teacher_courses})
             })
             .catch(this.handleError);
     }
@@ -40,30 +40,38 @@ class IndexCourses extends React.Component{
             message = <span className='message is-danger'>{this.state.error}</span>;
         }
 
-        var items = this.state.allcourses.map((item) => {
+
+        if (this.state.allcourses.nil)
+            return <div> Nessun corso presente </div>
+        else
+
+            var items = this.state.allcourses.map((item) => {
+                return(
+                    <div>
+                        <div className="nested" key={item.id}>
+                            <div>Corso: {item.course.name}</div>
+                            <div>Anno: {item.course.year}</div>
+                            <div>Data: {item.data}</div>
+                            <div>Professore:
+                                <a href={item.teacher.link_cv}> {item.teacher.name} {item.teacher.surname}</a>
+                            </div>
+                        </div>
+                        <div className="segui">
+                            <div>Segui</div>
+                        </div>
+                    </div>
+                )
+            });
+
             return(
                 <div>
-                    <div className="nested" key={item.id}>
-                        <div> IMMAGINE </div>
-                        <div>Corso: {item.name} </div>
-                        <div>Anno: {item.year}</div>
-                    </div>
-                    <div className="segui">
-                        <div>Segui</div>
+                    <p>{message}</p>
+                    <div className="wrapper">{items}</div>
+                    <div className="buttonnext">
+                        <span>Next</span>
                     </div>
                 </div>
             )
-        });
-
-        return(
-            <div>
-                <p>{message}</p>
-                <div className="wrapper">{items}</div>
-                <div className="next is-right">
-                    <span>Next</span>
-                </div>
-            </div>
-        )
     }
 }
 

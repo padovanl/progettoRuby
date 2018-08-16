@@ -6,21 +6,25 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
+Comment.destroy_all
+Post.destroy_all
+TeacherCourse.destroy_all
 Course.destroy_all
 DegreeCourse.destroy_all
 Thesis.destroy_all
 Teacher.destroy_all
 Tag.destroy_all
 User.destroy_all
+TeacherCourse.destroy_all
+
  
 degree_course = DegreeCourse.create!( id: 1, name: "Ingegneria civile e ambientale", tipo: "triennale" )
 
 degree_course.courses.create!([
-    { name: "Analisi Matematica I", year: 1 },
-    { name: "Geometria", year: 1 },
-    { name: "Fisica Generale", year: 1 },
-    { name: "Disegno Civile", year: 1 }
+    { id:1, name: "Analisi Matematica I", year: 1 },
+    { id:2, name: "Geometria", year: 1 },
+    { id:3, name: "Fisica Generale", year: 1 },
+    { id:4, name: "Disegno Civile", year: 1 }
 ])
 
 degree_course = DegreeCourse.create!( id: 2, name: "Ingegneria elettronica e informatica", tipo: "triennale" )
@@ -89,16 +93,39 @@ user.tags.create!([
   { id:4 , name: "Sviluppo mobile" }
 ])
 
-Teacher.create!(name: "Cesare", surname: "Stefanelli", link_cv: "http://docente.unife.it/cesare.stefanelli")
+#Teacher.create!(name: "Cesare", surname: "Stefanelli", link_cv: "http://docente.unife.it/cesare.stefanelli")
 Teacher.create!(name: "Evelina", surname: "Lamma", link_cv: "http://docente.unife.it/evelina.lamma")
-teacher = Teacher.create!(name: "Marco", surname: "Gavanelli", link_cv: "http://docente.unife.it/marco.gavanelli")
+teacher = Teacher.create!(name: "Marco", surname: "Gavanelli", link_cv: "http://docente.unife.it/marco.gavanelli/curriculum")
 
 teacher.theses.create!([
     {title: "Titolo Uno", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
     {title: "Titolo Due", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
-    {title: "Titolo Tre", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
-
+    {title: "Titolo Tre", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
 ])
+
+teacher.teacher_courses.create!([
+    {data: "2017-2018", teacher_id: teacher.id, course_id: 3},
+    {data: "2015-2016", teacher_id: teacher.id, course_id: 4},
+    {data: "2011-2012", teacher_id: teacher.id, course_id: 3}
+])
+
+
+teacher = Teacher.create!( name: "Torto", surname: "Mauronesi", link_cv:"https://de.unife.it/en/research/research-1/information-technology/computer-science/distributed-systems-group/people/mauro-tortonesi")
+
+teacher.teacher_courses.create!([
+    {data: "2017-2018", teacher_id: teacher.id, course_id: 1},
+    {data: "2016-2017", teacher_id: teacher.id, course_id: 1},
+    {data: "2015-2016", teacher_id: teacher.id, course_id: 2}
+])
+teacher = Teacher.create!( name: "Stefano", surname: "Cesarelli", link_cv:"http://docente.unife.it/cesare.stefanelli/curriculum")
+
+teacher.teacher_courses.create!([
+    {data: "2017-2018", teacher_id: teacher.id, course_id: 4},
+    {data: "2013-2014", teacher_id: teacher.id, course_id: 4},
+    {data: "2010-2011", teacher_id: teacher.id, course_id: 2}
+])
+
+
 
 user = User.first
 course = Course.first
