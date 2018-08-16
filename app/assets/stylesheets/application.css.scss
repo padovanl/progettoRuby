@@ -8,7 +8,9 @@ html {
   background: url("bg8.png") no-repeat center center fixed;
   background-size: cover;
   height: 100%;
-  overflow: hidden;
+  #overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
   @include sm {
     font-size: 89%;
   }

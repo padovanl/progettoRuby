@@ -69,7 +69,7 @@ class NewThesis extends React.Component {
                         <br/>
                         <br/>
                         <div className="columns is-desktop">
-                            <div className="column">
+                            <div className="column is-4">
                                 <div style={{lineHeight: 2.5}}>
                                     <strong>Professore collegato:</strong>
                                 </div>
