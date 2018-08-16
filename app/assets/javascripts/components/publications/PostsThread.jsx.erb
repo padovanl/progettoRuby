@@ -99,9 +99,9 @@ class PostsThread extends React.Component {
 
         URL = '/posts?course_id=' + course_id
         if (activeTabIndex === 1)
-            URL += '&user_id=' + current_user.id
+            URL += '&upvoter_id=' + current_user.id
         if (activeTabIndex === 2)
-            URL += '&user_id=' + 2
+            URL += '&user_id=' + current_user.id
 
         fetch(URL, {
             credentials: 'same-origin'

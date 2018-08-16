@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :upvotes
   get 'welcome/index'
   root 'welcome#index'
   resources :publications, only: [:index]

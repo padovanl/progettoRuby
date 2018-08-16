@@ -15,13 +15,13 @@ class Comment extends React.Component {
                 </figure>
                 <div className="media-content">
                     <div className="content">
-                        <p>
-                            <strong>{ user.name }</strong>
-                            <br/>
-                            {content}
-                            <br/>
-                            <small>{ created_at ? (new  Date(Date.parse(created_at))).toLocaleTimeString() : (new  Date).toLocaleTimeString() }</small>
-                        </p>
+                        <div className="content">
+                            <p className="content-author"><strong>{user.name}</strong></p>
+                            <p className="content-date">{ created_at ? (new  Date(Date.parse(created_at))).toLocaleTimeString() : (new  Date).toLocaleTimeString() }</p>
+                            <div>
+                                <p>{content}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </article>

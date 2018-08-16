@@ -9,11 +9,13 @@ class Post < ApplicationRecord
   has_many :document_posts
   has_many :documents, through: :document_posts
 
+  # un post può essere votato da più utenti
+  has_many :upvotes, dependent: :destroy
+  has_many :users, through: :upvotes
+
   # validations
   validates_presence_of :message
 
-  scope :course_id, -> (course_id) { where course_id: course_id}
-  scope :user_id, -> (user_id) { where user_id: user_id }
 
   # Configure by calling
   # `reduces(some_initial_scope, filters: [an, array, of, lambdas])`
@@ -23,6 +25,7 @@ class Post < ApplicationRecord
   reduces self.all, filters: [
       ->(course_id:) { where course_id: course_id },
       ->(user_id:) { where user_id: user_id },
+      ->(upvoter_id:) { joins(:upvotes).where("upvotes.user_id = ?", upvoter_id) }
   ]
 
 =begin

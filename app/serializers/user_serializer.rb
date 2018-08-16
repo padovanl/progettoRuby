@@ -3,8 +3,6 @@ class UserSerializer < ActiveModel::Serializer
 
   attributes :id, :email, :avatar_url, :name
 
-  has_many :posts
-
   def avatar_url
     if object.avatar.attached?
       variant = object.avatar.variant(resize: "100x100")

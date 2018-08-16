@@ -4,4 +4,12 @@ class PostSerializer < ActiveModel::Serializer
   has_many :documents
   belongs_to :user
 
+  attribute :upvoters
+
+  def upvoters
+    object.upvotes.map do |ii|
+      UpvoteSerializer.new(ii)
+    end
+  end
+
 end

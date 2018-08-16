@@ -12,6 +12,10 @@ class User < ApplicationRecord
   has_many :user_courses
   has_many :tags
 
+  # un utente vota un post
+  has_many :upvotes, dependent: :destroy
+  has_many :posts, through: :upvotes
+
   has_one_attached :avatar
 
   def self.new_with_session(params, session)
