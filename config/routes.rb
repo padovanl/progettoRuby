@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :upvotes
   get 'welcome/index'
   root 'welcome#index'
   resources :publications, only: [:index]
@@ -7,11 +8,14 @@ Rails.application.routes.draw do
 
 
   resources :documents
+
+
+  get '/allcourses', to: 'courses#allcourses'
+
   resources :posts
   resources :comments
 
   get '/courses', to: 'courses#index'
-  resource :courses, only: [:show]
 
   #admin
   get '/dashboard', to: 'admin#dashboard'

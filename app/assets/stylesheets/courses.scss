@@ -1,3 +1,176 @@
 // Place all the styles related to the Courses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+h2 {
+  margin-top: 8%;
+  font-size:2.7em;
+  font-style: inherit;
+}
+
+@include lg {
+  h2{
+    margin-top: 20%;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding in columns */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+  margin-bottom: 20px;
+}
+
+/* Responsive columns - one column layout (vertical) on small screens */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+
+
+
+
+
+.nested{
+  display: grid;
+  grid-template-rows: repeat(3, 0fr);
+  grid-gap: 1em;
+}
+
+.nested > div{
+  border: #333 1px solid;
+  padding: auto;
+}
+
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1em;
+  grid-auto-rows: minmax(100px, auto);
+  grid-auto-columns: minmax(100px, auto);
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.wrapper > div {
+  background: #eee;
+  padding: 1em;
+}
+
+
+.wrapper >div:nth-child(odd){
+  background: #ddd;
+}
+
+
+.segui  {
+  display: inline-block;
+  align-items:center;
+  padding: 6px 15px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  border-radius: 12px;
+  background-color: #4CAF50;
+  color: black;
+  border: 2px solid #f1f1f1;
+  box-shadow: 0 5px #999;
+  margin-top: 1em;
+}
+
+.segui:hover {background-color: #3e8e41}
+
+.segui:active {
+  background-color: #3e8e41;
+  box-shadow: 0 1px #666;
+  transform: translateY(4px);
+}
+
+
+
+.right {
+  left:right;
+}
+
+.next {
+  display: inline-block;
+  border-radius: 8px;
+  box-shadow: 0 5px #999;
+  background-color: blue;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 24px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 1em;
+}
+
+.next span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.next span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.next:hover span {
+  padding-right: 25px;
+}
+
+.next:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+
+.next:active {
+  background-color: darkblue;
+  box-shadow: 0 1px darkblue;
+  transform: translateY(4px);
+}

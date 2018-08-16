@@ -20,23 +20,11 @@
 <body>
 
 
-  <nav class="navbar" style="opacity: 1.0; height: 6%;">
+  <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item" href="/">
-        <%= image_tag "artificial-intelligence.png" %>&nbsp;<strong class="title is-4 is-hidden-mobile" id="app-name">BRAIN_STEAM</strong>
+        <%= image_tag "artificial-intelligence.png" %>&nbsp;<strong class="title is-5" id="app-name">BRAIN_STEAM</strong>
       </a>
-
-      <!--<a class="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma" target="_blank">
-      <span class="icon" style="color: #333;">
-        <i class="fa fa-github"></i>
-      </span>
-      </a>-->
-
-      <!--<a class="navbar-item is-hidden-desktop" href="https://twitter.com/jgthms" target="_blank">
-      <span class="icon" style="color: #55acee;">
-        <i class="fa fa-twitter"></i>
-      </span>
-      </a>-->
 
       <div class="navbar-burger burger" data-target="navMenubd-example" onclick="openMenu();">
         <span></span>
@@ -107,7 +95,7 @@
           </div>
         <% else %>
           <a class="navbar-item" href="/users/sign_up">
-            <span class="bd-emoji"><%= fa_icon "user" %></span>&nbsp;Registrati!
+            <small class="is-hidden-mobile">Non hai ancora un account?</small>&nbsp;<u>Registrati!</u>
           </a>
         <% end %>
 
@@ -120,36 +108,17 @@
 
 <%= yield %>
 
-  <script type="text/javascript">
-      /*document.addEventListener('DOMContentLoaded', function () {
-          // Get all "navbar-burger" elements
-          var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-          // Check if there are any nav burgers
-          if ($navbarBurgers.length > 0) {
-              // Add a click event on each of them
-              $navbarBurgers.forEach(function ($el) {
-                  $el.addEventListener('click', function () {
-                      // Get the target from the "data-target" attribute
-                      var target = $el.dataset.target;
-                      var $target = document.getElementById(target);
-                      // Toggle the class on both the "navbar-burger" and the "navbar-menu"
-                      $el.classList.toggle('is-active');
-                      $target.classList.toggle('is-active');
+<script type="text/javascript">
+    function openMenu() {
 
-                  });
-              });
-          }
-      });*/
+        var $navbarBurgers = document.querySelector('.navbar-burger')
+        var target = $navbarBurgers.dataset.target;
+        var $target = document.getElementById(target);
+        // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+        $navbarBurgers.classList.toggle('is-active');
+        $target.classList.toggle('is-active');
+    }
+</script>
 
-      function openMenu() {
-
-          var $navbarBurgers = document.querySelector('.navbar-burger')
-          var target = $navbarBurgers.dataset.target;
-          var $target = document.getElementById(target);
-          // Toggle the class on both the "navbar-burger" and the "navbar-menu"
-          $navbarBurgers.classList.toggle('is-active');
-          $target.classList.toggle('is-active');
-      }
-  </script>
 </body>
 </html>

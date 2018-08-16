@@ -1,14 +1,9 @@
 class CoursesController < ApplicationController
   def index
-    @courses = Course.all
+    render json: Course.first(9);
   end
 
   def show
 
   end
-
-  def create #lo fa solo l'amministratore?
-
-  end
-
 end

@@ -90,14 +90,9 @@ class NewPost extends React.Component {
                     </div>
                     <footer className="card-footer">
                         <p className="card-footer-item">
-                            <button className="button is-medium" type="submit" name="commit">
+                            <button className="button submit-button" type="submit" name="commit">
                                 Invia
                             </button>
-                        </p>
-                        <p className="card-footer-item">
-                          <span>
-                            Share on <a href="#">Facebook</a>
-                          </span>
                         </p>
                     </footer>
                 </div>
