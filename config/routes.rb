@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   get 'welcome/index'
   root 'welcome#index'
   resources :publications, only: [:index]
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks"}
+  resources :upvotes, only: [:create, :destroy]
+  devise_for :users, controllers: {omniauth_callbacks: "users/omniauth_callbacks"}
 
 
   resources :documents
@@ -60,6 +61,8 @@ Rails.application.routes.draw do
   end
 
   get "/dashboard/thesis/tags/:thesis_id", to: "admin#thesis_tags"
+
+  mount ActionCable.server, at: '/cable'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
