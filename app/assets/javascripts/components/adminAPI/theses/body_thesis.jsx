@@ -113,7 +113,6 @@ class BodyThesis extends React.Component {
             <div>
                 <AllTheses theses={this.state.theses} handleDelete={this.handleDelete}  handleUpdate = {this.handleUpdate} />
                 <NewThesis handleFormSubmit={this.handleFormSubmit} />
-                <AddTagsThesis />
             </div>
         )
     }

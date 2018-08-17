@@ -12,6 +12,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -114,6 +115,8 @@
 
 <%= yield %>
 
+  <div class="se-pre-con"></div>
+
 <script type="text/javascript">
     function openMenu() {
 
@@ -126,5 +129,19 @@
     }
 </script>
 
+
+
+
+  <script type="text/javascript">
+      $(window).load(loaded());
+
+      function loaded() {
+          $(".se-pre-con").fadeOut("slow");
+      }
+  </script>
+
+
 </body>
+
+
 </html>
