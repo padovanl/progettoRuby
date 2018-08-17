@@ -1,8 +1,11 @@
 class Api::V1::CoursesController < ApplicationController
   skip_before_action :verify_authenticity_token
   def index
-    render json: Course.all
+    courses = Course.where(:degree_course_id => params['degree_course_id']).includes([:degree_course])
+    json_response(courses.to_json(include: [:degree_course]))
   end
+
+
   def create
     course = Course.create(course_params)
     render json: course
@@ -23,3 +26,4 @@ class Api::V1::CoursesController < ApplicationController
     params.require(:course).permit(:name, :year, :degree_course_id)
   end
 end
+

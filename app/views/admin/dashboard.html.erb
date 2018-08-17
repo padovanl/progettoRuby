@@ -12,7 +12,6 @@
         <button class="tablinks" onclick="openCity(event, 'thesis')">Proposte di tesi</button>
         <button class="tablinks" onclick="openCity(event, 'tags')">Tag</button>
         <button class="tablinks" onclick="openCity(event, 'degree')">Corsi di laurea</button>
-        <button class="tablinks" onclick="openCity(event, 'course')">Corsi</button>
       </div>
 
       <!-- Tab content -->
@@ -61,18 +60,6 @@
           <div class="column"></div>
           <div class="column is-8">
             <%= react_component 'MainDegreeCourses' %>
-          </div>
-          <div class="column"></div>
-        </div>
-      </div>
-
-      <div id="course" class="tabcontent">
-        <h4>Qui puoi inserire e gestire i corsi presenti su Brain_Steam.</h4>
-        <br />
-        <div class="columns">
-          <div class="column"></div>
-          <div class="column is-8">
-            <%= react_component 'MainCourses' %>
           </div>
           <div class="column"></div>
         </div>

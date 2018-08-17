@@ -22,11 +22,11 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'admin#dashboard'
 
 
-  namespace :api do
-    namespace :v1 do
-      resources :courses, only: [:index, :create, :destroy, :update]
-    end
-  end
+  #namespace :api do
+  #  namespace :v1 do
+  #    resources :courses, only: [:index, :create, :destroy, :update]
+  #  end
+  #end
 
   namespace :api do
     namespace :v1 do
@@ -60,7 +60,16 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :degree_courses do
+        resources :courses, only: [:index, :create, :destroy, :update]
+      end
+    end
+  end
+
   get "/dashboard/thesis/tags/:thesis_id", to: "admin#thesis_tags"
+  get "/dashboard/cdl/courses/:degree_course_id", to: "admin#courses"
 
   mount ActionCable.server, at: '/cable'
 

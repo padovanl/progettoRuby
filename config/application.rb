@@ -17,5 +17,6 @@ module DeviseActionMailer
     # the framework and any gems in your application.
 
     config.generators.test_framework :rspec
+
   end
 end

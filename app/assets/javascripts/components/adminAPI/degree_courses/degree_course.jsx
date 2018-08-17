@@ -26,6 +26,9 @@ class DegreeCourse extends React.Component{
         let tipo = <i>{this.props.course.tipo}</i>;
 
         let pulsante;
+
+        let link = "/dashboard/cdl/courses/" + this.props.course.id;
+
         if(!this.state.editable){
             pulsante = <i className="fas fa-pen"></i>;
         }else{
@@ -37,6 +40,7 @@ class DegreeCourse extends React.Component{
                 <td>{tipo}</td>
                 <td>
                     <a className="button is-rounded is-success" onClick={() => this.handleEdit()} title="Modifica">{pulsante}</a>&nbsp;
+                    <a className="button is-rounded is-warning" href={link} title="Gestisci corsi collegati"><i className="fas fa-graduation-cap"></i></a>&nbsp;
                     <a className="button is-rounded is-danger" onClick={() => this.props.handleDelete(this.props.course.id)} title="Elimina"><i className="fas fa-trash"></i></a>
                 </td>
             </tr>

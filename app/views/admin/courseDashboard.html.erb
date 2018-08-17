@@ -1,0 +1,21 @@
+<% content_for :title, "Gestisci corsi collegati al CdL" %>
+
+<h1>In questa pagina puoi gestire i corsi collegati al CdL <%= params['degree_course_id'] %>.</h1>
+
+<div class="columns">
+  <div class="column"></div>
+  <div class="column">
+    <%= react_component('MainCourses2', {degree_course_id: params['degree_course_id']}) %>
+  </div>
+  <div class="column"></div>
+</div>
+<div class="columns">
+  <div class="column">
+    <div style="margin: 0 auto; width: 50%;">
+      <a class="button is-rounded is-primary" href="/dashboard"><%= fa_icon "arrow-left" %>&nbsp;Torna alla
+        dashboard</a>
+    </div>
+  </div>
+  <div class="column"></div>
+  <div class="column"></div>
+</div>

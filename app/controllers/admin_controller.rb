@@ -19,4 +19,14 @@ class AdminController < ApplicationController
       render 'admin/accessDenied', layout: false
     end
   end
+
+  def courses
+    id_d_course = params[:degree_course_id]
+    isAdmin = current_user.admin
+    if isAdmin then
+      render 'courseDashboard'
+    else
+      render 'admin/accessDenied', layout: false
+    end
+  end
 end
