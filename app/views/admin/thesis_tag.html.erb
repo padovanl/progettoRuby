@@ -1,0 +1,20 @@
+<% content_for :title, "Gestisci tag collegati alla tesi" %>
+
+<h1>In questa pagina puoi gestire i tag collegati alla tesi <%= params['thesis_id'] %>.</h1>
+
+<div class="columns">
+  <div class="column"></div>
+  <div class="column">
+    <%= react_component('MainThesisTags',{thesis_id: params['thesis_id']}) %>
+  </div>
+  <div class="column"></div>
+</div>
+<div class="columns">
+  <div class="column">
+    <div style="margin: 0 auto; width: 50%;">
+      <a class="button is-rounded is-primary" href="/dashboard"><%= fa_icon "arrow-left" %>&nbsp;Torna alla dashboard</a>
+    </div>
+  </div>
+  <div class="column"></div>
+  <div class="column"></div>
+</div>

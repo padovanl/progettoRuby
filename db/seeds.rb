@@ -100,6 +100,12 @@ teacher.theses.create!([
 
 ])
 
+ThesisTag.create!(id: 1, thesis_id: 1, tag_id: 1)
+ThesisTag.create!(id: 2, thesis_id: 1, tag_id: 2)
+ThesisTag.create!(id: 3, thesis_id: 1, tag_id: 3)
+ThesisTag.create!(id: 4, thesis_id: 2, tag_id: 1)
+ThesisTag.create!(id: 5, thesis_id: 3, tag_id: 1)
+
 user = User.first
 course = Course.first
 10.times do

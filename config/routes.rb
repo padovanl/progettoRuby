@@ -52,6 +52,15 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :theses do
+        resources :thesis_tags, only: [:index, :create, :destroy] #tolto :update
+      end
+    end
+  end
+
+  get "/dashboard/thesis/tags/:thesis_id", to: "admin#thesis_tags"
 
   mount ActionCable.server, at: '/cable'
 

@@ -1,7 +1,7 @@
 
 
 <% content_for :title, "Dashboard" %>
-<div style="overflow-y: scroll; height: 1000px;">
+<div>
   <h1>Qui puoi inserire e gestire i professori presenti su Brain_Steam.</h1>
   <div class="columns">
     <div class="column"></div>
@@ -19,7 +19,7 @@
     <div class="column is-8">
       <%= react_component 'MainThesis' %>
     </div>
-    <div class="column"></div>
+    <div class="column" id="contentModalThesis"></div>
   </div>
   <h1>Qui puoi inserire e gestire i tag che classificano gli oggetti su Brain_Steam.</h1>
   <div class="columns">
@@ -229,4 +229,3 @@
 </script>-->
 
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
