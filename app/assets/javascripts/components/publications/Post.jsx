@@ -4,20 +4,33 @@ class Post extends React.Component {
 
         this.state = {
             user_upvoted: false,
-            upvote_id: ''
+            upvote_id: '',
+            upvoters: this.props.post.upvoters
         };
+    }
+
+    // Callback function to setState in App from Line Action Cable
+    updatePostStateUpvote(upvoters) {
+        console.log('updatePostStateUpvote: ', this.state.upvoters)
+        this.setState({
+            upvoters: upvoters,
+            user_upvoted: false,
+            upvote_id: ''
+        })
     }
 
     render() {
         const { post, current_user, current_user_avatar } = this.props;
+        const { upvoters } = this.state
         let attachments = '';
         if (post.documents !== undefined)
             attachments = post.documents.map(function (doc) {
                 return <Document key={doc.id} document={doc}></Document>
             });
         let upvoters_count = ""
-        if (post.upvoters.length > 0) upvoters_count = "· " + post.upvoters.length
-        post.upvoters.forEach((up) => {
+
+        if (upvoters.length > 0) upvoters_count = "· " + upvoters.length
+        upvoters.forEach((up) => {
             if (up.user.id === current_user.id) {
                 this.state.user_upvoted = true
                 this.state.upvote_id = up.id
@@ -26,6 +39,12 @@ class Post extends React.Component {
 
         return (
             <div className="box">
+
+                <UpvotesWebSocket
+                    data-cableApp={ window.App }
+                    data-updateApp={ this.updatePostStateUpvote.bind(this) }
+                    postData={ post.id }
+                />
 
                 <article className="media">
                     <figure className="media-left">
