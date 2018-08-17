@@ -115,6 +115,8 @@
 
 <%= yield %>
 
+  <div class="se-pre-con"></div>
+
 <script type="text/javascript">
     function openMenu() {
 
@@ -127,5 +129,19 @@
     }
 </script>
 
+
+
+
+  <script type="text/javascript">
+      $(window).load(loaded());
+
+      function loaded() {
+          $(".se-pre-con").fadeOut();
+      }
+  </script>
+
+
 </body>
+
+
 </html>
