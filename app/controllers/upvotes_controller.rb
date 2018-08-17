@@ -28,11 +28,12 @@ class UpvotesController < ApplicationController
 
     def broadcast_to_channel
       @post = Post.find(@upvote.post_id)
-=begin
+
       serialized_data = ActiveModelSerializers::Adapter::Json.new(
-          UpvoteSerializer.new(Upvote.find_by(post_id: @post.id))
+          PostSerializer.new(@post), { include: %w(user comments comments.user documents) }
       ).serializable_hash
-=end
-      UpvoteChannel.broadcast_to(@post, {post: @post, upvoters: Upvote.where(post_id: @post.id).as_json(include: :user)})
+
+      UpvoteChannel.broadcast_to @post, serialized_data
+      head :ok
     end
 end
