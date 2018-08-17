@@ -4,7 +4,8 @@ class Comment extends React.Component {
     }
 
     render() {
-        const {content, created_at, user} = this.props.comment
+        const { id, content, created_at, user} = this.props.comment
+        const { deleteComment } = this.props
 
         return (
             <article className="media">
@@ -17,12 +18,15 @@ class Comment extends React.Component {
                     <div className="content">
                         <div className="content">
                             <p className="content-author"><strong>{user.name}</strong></p>
-                            <p className="content-date">{ created_at ? (new  Date(Date.parse(created_at))).toLocaleTimeString() : (new  Date).toLocaleTimeString() }</p>
+                            <p className="content-date">{ (new  Date(Date.parse(created_at))).toLocaleDateString('it-IT', options) }</p>
                             <div>
                                 <p>{content}</p>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div className="media-right">
+                    <button className="delete" onClick={ () => deleteComment(id) }></button>
                 </div>
             </article>
         );
