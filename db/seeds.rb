@@ -122,7 +122,10 @@ teacher = Teacher.create!( name: "Stefano", surname: "Cesarelli", link_cv:"http:
 teacher.teacher_courses.create!([
     {data: "2017-2018", teacher_id: teacher.id, course_id: 4},
     {data: "2013-2014", teacher_id: teacher.id, course_id: 4},
-    {data: "2010-2011", teacher_id: teacher.id, course_id: 2}
+    {data: "2010-2011", teacher_id: teacher.id, course_id: 2},
+    {data: "2003-2004", teacher_id: teacher.id, course_id: 1},
+    {data: "2002-2003", teacher_id: teacher.id, course_id: 1},
+    {data: "2001-2002", teacher_id: teacher.id, course_id: 1}
 ])
 
 

@@ -6,16 +6,16 @@
     </div>
 
 
-    <%= form_tag(allcourses_path, :method => "get", id: "search-form", class:"search-form pull-right") do %>
-      <div class="form-group">
-        <%= text_field_tag :search, params[:search], placeholder:"Search Courses", class:'form-control' %>
-      </div>
-      <%= submit_tag "Search", :name => nil, class:'btn btn-primary' %>
-    <%end%>
+
+
+    <div class="column is-12">
+      <%= react_component 'Main'%>
+    </div>
 
 
 
-    <%= react_component 'Main'%>
+
+
 
   </body>
 

@@ -1,7 +1,7 @@
 class IndexCourses extends React.Component{
     constructor(props) {
         super(props);
-        this.state = {allcourses: [], error: ''};
+        this.state = {allcourses: [], error: '', search:''};
 
         this.handleError = this.handleError.bind(this);
         this.handleChose = this.handleChose.bind(this);
@@ -22,6 +22,9 @@ class IndexCourses extends React.Component{
     }
 
 
+    updateSearch(event){
+        this.setState({search: event.target.value.substr(0,20)});
+    }
 
     componentDidMount(){
         getAll()
@@ -33,8 +36,12 @@ class IndexCourses extends React.Component{
 
 
     render(){
+        let filteredCourses = this.state.allcourses.filter((item) => {
+            return item.course.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1; //tutti
+            }
+
+        );
         let message;
-        let count=0;
 
         if (this.state.error){
             message = <span className='message is-danger'>{this.state.error}</span>;
@@ -45,7 +52,7 @@ class IndexCourses extends React.Component{
             return <div> Nessun corso presente </div>
         else
 
-            var items = this.state.allcourses.map((item) => {
+            var items = filteredCourses.map((item) => {
                 return(
                     <div>
                         <div className="nested" key={item.id}>
@@ -64,8 +71,9 @@ class IndexCourses extends React.Component{
             });
 
             return(
-                <div>
+                <div className="column is-12">
                     <p>{message}</p>
+                    <input className='search-form' type="text" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="Search Courses by name"/>
                     <div className="wrapper">{items}</div>
                     <div className="buttonnext">
                         <span>Next</span>
@@ -74,6 +82,8 @@ class IndexCourses extends React.Component{
             )
     }
 }
+
+
 
 //export default IndexCourses
 /*
