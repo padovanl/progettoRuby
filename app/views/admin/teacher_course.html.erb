@@ -1,0 +1,20 @@
+<% content_for :title, "Gestisci professori collegati al corso" %>
+
+<h1>In questa pagina puoi gestire i professori collegati al corso <%= params['course_id'] %>.</h1>
+
+<div class="columns">
+  <div class="column"></div>
+  <div class="column">
+    <%= react_component('MainTeacherCourses', {course_id: params['course_id']}) %>
+  </div>
+  <div class="column"></div>
+</div>
+<div class="columns">
+  <div class="column">
+    <div style="margin: 0 auto; width: 50%;">
+      <a class="button is-rounded is-primary" href="/dashboard/cdl/courses/<%= params['course_id'] %>"><%= fa_icon "arrow-left" %>&nbsp;Indietro</a>
+    </div>
+  </div>
+  <div class="column"></div>
+  <div class="column"></div>
+</div>
