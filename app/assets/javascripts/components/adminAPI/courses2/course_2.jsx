@@ -5,33 +5,45 @@ class Course2 extends React.Component{
         this.state = {
             editable: false
         }
-        //this.handleEdit = this.handleEdit.bind(this)
+        this.handleEdit = this.handleEdit.bind(this)
     }
 
-    /*handleEdit(){
+    handleEdit(){
         if(this.state.editable){
-            let thesis_id = this.thesis_id.value;
-            let tag_id = this.tag_id.value;
-            let id = this.props.thesisTag.id;
-            let thesisTag = {id: id, thesis_id: thesis_id, tag_id: tag_id};
-            this.props.handleUpdate(thesisTag);
+            let degree_course_id = this.props.degree_course_id;
+            let year = this.year.value;
+            let name = this.name.value;
+            let id = this.props.course.id;
+            let course = {id: id, name: name, year: year, degree_course_id: degree_course_id};
+            this.props.handleUpdate(course);
         }
         this.setState({
             editable: !this.state.editable
         })
-    }*/
+    }
 
     render(){
-        let name = <i>{this.props.course.name}</i>;
-        let anno = <i>{this.props.course.year}</i>;
+
+        let anno = this.state.editable ? <input required={true} type='text'className="input is-medium"  ref={input => this.year = input} defaultValue={this.props.course.year}/>:<i>{this.props.course.year}</i>;
+
+        let name = this.state.editable ? <input required={true} type='text'className="input is-medium"  ref={input => this.name = input} defaultValue={this.props.course.name}/>:<i>{this.props.course.name}</i>;
+
         //let pulsante = <i className="fas fa-pen"></i>;
 
+        let pulsante = null;
+
+        if(!this.state.editable){
+            pulsante = <i className="fas fa-pen"></i>;
+        }else{
+            pulsante = <i className="fas fa-check"></i>;
+        }
 
         return(
             <tr key={this.props.course.id}>
                 <td>{name}</td>
                 <td>{anno}</td>
                 <td>
+                    <a className="button is-rounded is-success" onClick={() => this.handleEdit()} title="Modifica">{pulsante}</a>&nbsp;
                     <a className="button is-rounded is-danger" onClick={() => this.props.handleDelete(this.props.course.id)} title="Elimina"><i className="fas fa-times"></i></a>
                 </td>
             </tr>

@@ -9,7 +9,7 @@ class AllCourses2 extends React.Component {
 
         var courses = this.props.courses.map((course) => {
             return(
-                <Course2 course={course} handleDelete={this.props.handleDelete} handleUpdate={this.props.handleUpdate} />
+                <Course2 course={course} handleDelete={this.props.handleDelete} handleUpdate={this.props.handleUpdate} degree_course_id={this.props.degree_course_id} />
             )
         })
 

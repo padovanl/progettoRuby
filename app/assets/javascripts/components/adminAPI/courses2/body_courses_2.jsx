@@ -9,7 +9,38 @@ class BodyCourses2 extends React.Component {
         this.addNewCourse = this.addNewCourse.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.deleteCourse = this.deleteCourse.bind(this);
+        this.handleUpdate = this.handleUpdate.bind(this);
+        this.updateCourse = this.updateCourse.bind(this);
     }
+
+    handleUpdate(course){
+        if(course.name != '' && course.year != ''){
+            let link = '/api/v1/degree_courses/' + this.props.degree_course_id + '/courses/' + course.id;
+            fetch(link,
+                {
+                    method: 'PUT',
+                    body: JSON.stringify({course: course}),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then((response) => {
+                this.updateCourse(course)
+            })
+        }else{
+            alert("I campi non possone essere vuoti!")
+        }
+
+    }
+
+    updateCourse(course){
+        let newCourses = this.state.courses.filter((f) => f.id !== course.id)
+        newCourses.push(course)
+        this.setState({
+            courses: newCourses
+        })
+    }
+
+
 
 
 

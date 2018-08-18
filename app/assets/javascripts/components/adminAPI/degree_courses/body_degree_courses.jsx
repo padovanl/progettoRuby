@@ -10,7 +10,7 @@ class BodyDegreeCourses extends React.Component {
         this.handleDelete = this.handleDelete.bind(this);
         this.deleteCourse = this.deleteCourse.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
-        this.updateCourse = this.updateCourse.bind(this)
+        this.updateCourse = this.updateCourse.bind(this);
     }
 
     handleUpdate(course){
