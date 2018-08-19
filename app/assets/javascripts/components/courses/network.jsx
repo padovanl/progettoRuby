@@ -1,5 +1,4 @@
-const baseURL = "/courses";
-
+const baseURL = "/allcourses.json";
 
 
 function makeReq(url, errorMessage = '', options = {}) {
@@ -20,14 +19,14 @@ const getAll = () => {
 };
 
 
-const redirect = (superhero) => {
+const redirect = (course) => {
     const options = {
         method: 'POST',
         headers: {
             'Content-type': 'application/json',
             'Accept': 'application/json'
         },
-        body: JSON.stringify(superhero)
+        body: JSON.stringify(course)
     };
 
     const errorMessage = 'Errore nel collegamento col server';

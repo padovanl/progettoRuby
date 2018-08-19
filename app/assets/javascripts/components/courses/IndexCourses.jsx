@@ -1,7 +1,9 @@
+import './courses_actions'
+
 class IndexCourses extends React.Component{
     constructor(props) {
         super(props);
-        this.state = {allcourses: [], error: '', search:''};
+        this.state = {allcourses: [], error: '', search:'', page:1};
 
         this.handleError = this.handleError.bind(this);
         this.handleChose = this.handleChose.bind(this);
@@ -26,18 +28,27 @@ class IndexCourses extends React.Component{
         this.setState({search: event.target.value.substr(0,20)});
     }
 
-    componentDidMount(){
+
+
+    componentDidMount() {
+        this.props.fetchCourses(this.state.page);
+        this.setState = ({ page: this.state.page += 1 });
+    }
+
+
+
+/*    componentDidMount(){
         getAll()
             .then(teacher_courses => {
                 this.setState({allcourses: teacher_courses})
             })
             .catch(this.handleError);
     }
-
+*/
 
     render(){
         let filteredCourses = this.state.allcourses.filter((item) => {
-            return item.course.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1; //tutti
+            return item.course_name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1; //tutti
             }
 
         );
@@ -56,11 +67,11 @@ class IndexCourses extends React.Component{
                 return(
                     <div>
                         <div className="nested" key={item.id}>
-                            <div>Corso: {item.course.name}</div>
-                            <div>Anno: {item.course.year}</div>
+                            <div>Corso: {item.course_name}</div>
+                            <div>Anno: {item.course_year}</div>
                             <div>Data: {item.data}</div>
                             <div>Professore:
-                                <a href={item.teacher.link_cv}> {item.teacher.name} {item.teacher.surname}</a>
+                                <a href={item.teacher_link_cv}> {item.teacher_name} {item.teacher_surname}</a>
                             </div>
                         </div>
                         <div className="segui">
@@ -71,7 +82,7 @@ class IndexCourses extends React.Component{
             });
 
             return(
-                <div className="column is-12">
+                <div>
                     <p>{message}</p>
                     <input className='search-form' type="text" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="Search Courses by name"/>
                     <div className="wrapper">{items}</div>
