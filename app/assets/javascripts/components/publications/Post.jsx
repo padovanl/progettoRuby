@@ -99,9 +99,13 @@ class Post extends React.Component {
 
 
         fetchCall
-            .then(response => response.json())
-            .then(data => this.setState({}))
-            .catch(error => console.log(error));
+            .then((response) => response.json())
+            .then((responseJson) => {
+                return responseJson;
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }
 
 
@@ -114,9 +118,13 @@ class Post extends React.Component {
             headers: myHeaders,
             credentials: 'same-origin'
         })
-        .then(response => response.json())
-        .then(data => this.setState({}))
-        .catch(error => console.log(error));
+        .then((response) => response.json())
+        .then((responseJson) => {
+            return responseJson;
+        })
+        .catch((error) => {
+            console.error(error);
+        });
     }
 }
 

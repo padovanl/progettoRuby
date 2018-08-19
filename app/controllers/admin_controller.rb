@@ -1,5 +1,8 @@
 class AdminController < ApplicationController
   before_action :authenticate_user!
+  # hey qui ci starebbe un
+  # before_action :user_ha_il_roulo
+  # cosi da eliminare gli gli if
 
   def dashboard
     isAdmin = current_user.admin
@@ -39,4 +42,8 @@ class AdminController < ApplicationController
       render 'admin/accessDenied', layout: false
     end
   end
+
+  # private
+  # def user_ha_il_roulo
+  # controllo sul ruolo se no redirect to accessDenied
 end

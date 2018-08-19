@@ -2,17 +2,13 @@ class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy]
   include DocumentsHelper
 
-  # GET /documents
-  # GET /documents.json
   def index
     @documents = Document.all
-    json_response(docs_file_name_and_link(@documents))
+    render json: docs_file_name_and_link(@documents)
   end
 
-  # GET /documents/1
-  # GET /documents/1.json
   def show
-    json_response(doc_file_name_and_link(@document))
+    render json: doc_file_name_and_link(@document)
   end
 
   # GET /documents/new
@@ -31,11 +27,11 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
-        format.html { redirect_to @document, notice: 'Document was successfully created.' }
-        format.json { render :show, status: :created, location: @document }
+        format.html {redirect_to @document, notice: 'Document was successfully created.'}
+        format.json {render :show, status: :created, location: @document}
       else
-        format.html { render :new }
-        format.json { render json: @document.errors, status: :unprocessable_entity }
+        format.html {render :new}
+        format.json {render json: @document.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -45,11 +41,11 @@ class DocumentsController < ApplicationController
   def update
     respond_to do |format|
       if @document.update(document_params)
-        format.html { redirect_to @document, notice: 'Document was successfully updated.' }
-        format.json { render :show, status: :ok, location: @document }
+        format.html {redirect_to @document, notice: 'Document was successfully updated.'}
+        format.json {render :show, status: :ok, location: @document}
       else
-        format.html { render :edit }
-        format.json { render json: @document.errors, status: :unprocessable_entity }
+        format.html {render :edit}
+        format.json {render json: @document.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -59,19 +55,19 @@ class DocumentsController < ApplicationController
   def destroy
     @document.destroy
     respond_to do |format|
-      format.html { redirect_to documents_url, notice: 'Document was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html {redirect_to documents_url, notice: 'Document was successfully destroyed.'}
+      format.json {head :no_content}
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_document
-      @document = Document.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_document
+    @document = Document.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def document_params
-      params.fetch(:document, {})
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def document_params
+    params.fetch(:document, {})
+  end
 end
