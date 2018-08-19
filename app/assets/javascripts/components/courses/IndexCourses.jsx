@@ -1,12 +1,15 @@
-import './courses_actions'
+/*import Waypoint from 'react-waypoint';
 
+var infinite = new Waypoint.Infinite({
+    element: $('.infinite-container')[0]
+})
+*/
 class IndexCourses extends React.Component{
     constructor(props) {
         super(props);
         this.state = {allcourses: [], error: '', search:'', page:1};
 
         this.handleError = this.handleError.bind(this);
-        this.handleChose = this.handleChose.bind(this);
     }
 
 
@@ -18,11 +21,6 @@ class IndexCourses extends React.Component{
 
 
 
-    handleChose(id) {
-        redirect(id) //da sistemare
-            .catch(this.handleError);
-    }
-
 
     updateSearch(event){
         this.setState({search: event.target.value.substr(0,20)});
@@ -30,21 +28,15 @@ class IndexCourses extends React.Component{
 
 
 
-    componentDidMount() {
-        this.props.fetchCourses(this.state.page);
-        this.setState = ({ page: this.state.page += 1 });
-    }
 
-
-
-/*    componentDidMount(){
+    componentDidMount(){
         getAll()
             .then(teacher_courses => {
                 this.setState({allcourses: teacher_courses})
             })
             .catch(this.handleError);
     }
-*/
+
 
     render(){
         let filteredCourses = this.state.allcourses.filter((item) => {
@@ -85,7 +77,7 @@ class IndexCourses extends React.Component{
                 <div>
                     <p>{message}</p>
                     <input className='search-form' type="text" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="Search Courses by name"/>
-                    <div className="wrapper">{items}</div>
+                    <div className="wrapper infinite-container">{items}</div>
                     <div className="buttonnext">
                         <span>Next</span>
                     </div>
@@ -94,23 +86,3 @@ class IndexCourses extends React.Component{
     }
 }
 
-
-
-//export default IndexCourses
-/*
-const coursesNode = document.querySelector('#coursesNode');
-
-const Course = props =>( <li > {props.course.name}  {props.course.year} </li>)
-
-
-const AllUserCourses = ({courses}) => {
-    const allcourses = courses.map(course => <Course key={course.id} />);
-    ciao
-
-    return(
-        <ul>{allcourses}</ul>
-    )
-}
-
-ReactDom.render(<AllUserCourses />, coursesNode)
-*/

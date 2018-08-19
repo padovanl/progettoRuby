@@ -13,9 +13,9 @@ class CoursesController < ApplicationController
 
   def allcourses
     if params[:search]
-      @tcs = TeacherCourse.includes(:course, :teacher).search(params[:search]).order(data: :desc).page(params[:page]).per(10)
+      @tcs = TeacherCourse.includes(:course, :teacher).search(params[:search]).order(year: :desc).page(params[:page]).per(9)
     else
-      @tcs = TeacherCourse.includes(:course, :teacher).order(data: :desc).page(params[:page]).per(10)
+      @tcs = TeacherCourse.includes(:course, :teacher).order(year: :desc).page(params[:page]).per(9)
     end
   end
 
