@@ -1,4 +1,4 @@
-class BodyDegreeCourses extends React.Component {
+class BodyCourses2 extends React.Component {
 
     constructor(props) {
         super(props);
@@ -14,11 +14,12 @@ class BodyDegreeCourses extends React.Component {
     }
 
     handleUpdate(course){
-        if(course.name != ''){
-            fetch(`http://localhost:3000/api/v1/degree_courses/${course.id}`,
+        if(course.name != '' && course.year != ''){
+            let link = '/api/v1/degree_courses/' + this.props.degree_course_id + '/courses/' + course.id;
+            fetch(link,
                 {
                     method: 'PUT',
-                    body: JSON.stringify({degree_course: course}),
+                    body: JSON.stringify({course: course}),
                     headers: {
                         'Content-Type': 'application/json'
                     }
@@ -26,7 +27,7 @@ class BodyDegreeCourses extends React.Component {
                 this.updateCourse(course)
             })
         }else{
-            alert("Il nome del corso di laurea non può essere vuoto!")
+            alert("I campi non possone essere vuoti!")
         }
 
     }
@@ -39,34 +40,42 @@ class BodyDegreeCourses extends React.Component {
         })
     }
 
+
+
+
+
     handleDelete(id){
-        fetch(`http://localhost:3000/api/v1/degree_courses/${id}`,
-            {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then((response) => {
+        let linkDelete = '/api/v1/degree_courses/' + this.props.degree_course_id + '/courses/' + id;
+        if(confirm('Sei sicuro di voler eliminare corso?')){
+            fetch(linkDelete,
+                {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then((response) => {
                 if (response.ok){
                     this.deleteCourse(id)
                 }else{
                     alert("errore")
                 }
-        })
+            })
+        }
+
     }
 
     deleteCourse(id){
-        newCourse = this.state.courses.filter((course) => course.id !== id)
+        let newCourses = this.state.courses.filter((f) => f.id !== id)
         this.setState({
-            courses: newCourse
+            courses: newCourses
         })
     }
 
-    handleFormSubmit(name, tipo){
-        let body = JSON.stringify({degree_course: {name: name, tipo:   tipo } })
-
-        if(name != ''){
-            fetch('http://localhost:3000/api/v1/degree_courses', {
+    handleFormSubmit(degree_course_id, name, year){
+        let body = JSON.stringify({course: {degree_course_id: degree_course_id, name: name, year: year}});
+        let linkNew = '/api/v1/degree_courses/' + this.props.degree_course_id + '/courses';
+        if(name != '' && year != ''){
+            fetch(linkNew, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -74,11 +83,15 @@ class BodyDegreeCourses extends React.Component {
                 body: body,
             }).then((response) => {return response.json()})
                 .then((course)=>{
-                    this.addNewCourse(course)
-                    document.getElementById('insertNewDegree').value = '';
+                    if(course.error){
+                        alert("Errore!")
+                    }else{
+                        this.addNewCourse(course);
+                    }
+
                 })
         }else{
-            alert('Inserisci il nome del corso di laurea.')
+            alert('I campi non possono essere vuoti!')
         }
 
 
@@ -91,7 +104,8 @@ class BodyDegreeCourses extends React.Component {
     }
 
     componentDidMount(){
-        fetch('/api/v1/degree_courses.json')
+        let linkGet = '/api/v1/degree_courses/' + this.props.degree_course_id + '/courses.json';
+        fetch(linkGet)
             .then((response) => {return response.json()})
             .then((data) => {this.setState({ courses: data }) });
     }
@@ -100,11 +114,10 @@ class BodyDegreeCourses extends React.Component {
     render(){
         return(
             <div>
-
-                <AllDegreeCourses courses={this.state.courses} handleDelete={this.handleDelete}  handleUpdate = {this.handleUpdate} />
+                <AllCourses2 courses={this.state.courses} handleDelete={this.handleDelete}  handleUpdate = {this.handleUpdate} degree_course_id={this.props.degree_course_id} />
                 <table className="table is-hoverable is-fullwidth">
                     <tbody>
-                        <NewDegreeCourse handleFormSubmit={this.handleFormSubmit} />
+                    <NewCourse2 handleFormSubmit={this.handleFormSubmit} degree_course_id={this.props.degree_course_id} />
                     </tbody>
                 </table>
             </div>

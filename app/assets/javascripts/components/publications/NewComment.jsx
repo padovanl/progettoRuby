@@ -27,7 +27,7 @@ class NewComment extends React.Component {
             return response;
         }
 
-        fetch('/comments.json', {
+        fetch('/comments', {
             method: 'POST',
             headers: myHeaders,
             credentials: 'same-origin',

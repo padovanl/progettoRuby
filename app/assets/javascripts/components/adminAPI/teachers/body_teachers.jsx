@@ -15,7 +15,7 @@ class BodyTeacher extends React.Component {
 
 
     handleUpdate(teacher){
-        if(teacher.name != '' && teacher.surname != ''){
+        if(teacher.name != '' && teacher.surname != '' && teacher.link_cv != ''){
             fetch(`/api/v1/teachers/${teacher.id}`,
                 {
                     method: 'PUT',
@@ -27,7 +27,7 @@ class BodyTeacher extends React.Component {
                 this.updateTeacher(teacher)
             })
         }else{
-            alert("Il nome e il cognome del professore non possono essere vuoti!")
+            alert("I campi non possono essere vuoti!")
         }
 
     }
@@ -69,7 +69,7 @@ class BodyTeacher extends React.Component {
     handleFormSubmit(name, surname, link_cv){
         let body = JSON.stringify({teacher: {name: name, surname: surname, link_cv: link_cv} })
 
-        if(name != '' && surname != ''){
+        if(name != '' && surname != '' && link_cv != ''){
             fetch('/api/v1/teachers', {
                 method: 'POST',
                 headers: {
@@ -84,7 +84,7 @@ class BodyTeacher extends React.Component {
                     document.getElementById('insertNewTeacher3').value = '';
                 })
         }else{
-            alert('Il nome e il cognome del professore non possono essere vuoti!')
+            alert('I campi non possono essere vuoti!')
         }
 
 

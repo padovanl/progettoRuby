@@ -1,4 +1,4 @@
-class DegreeCourse extends React.Component{
+class Course2 extends React.Component{
 
     constructor(props){
         super(props);
@@ -10,10 +10,11 @@ class DegreeCourse extends React.Component{
 
     handleEdit(){
         if(this.state.editable){
+            let degree_course_id = this.props.degree_course_id;
+            let year = this.year.value;
             let name = this.name.value;
-            //let tipo = this.tipo.value;
             let id = this.props.course.id;
-            let course = {id: id, name: name, tipo: this.props.course.tipo};
+            let course = {id: id, name: name, year: year, degree_course_id: degree_course_id};
             this.props.handleUpdate(course);
         }
         this.setState({
@@ -22,26 +23,30 @@ class DegreeCourse extends React.Component{
     }
 
     render(){
+
+        let anno = this.state.editable ? <input required={true} type='text'className="input is-medium"  ref={input => this.year = input} defaultValue={this.props.course.year}/>:<i>{this.props.course.year}</i>;
+
         let name = this.state.editable ? <input required={true} type='text'className="input is-medium"  ref={input => this.name = input} defaultValue={this.props.course.name}/>:<i>{this.props.course.name}</i>;
-        let tipo = <i>{this.props.course.tipo}</i>;
 
-        let pulsante;
+        //let pulsante = <i className="fas fa-pen"></i>;
 
-        let link = "/dashboard/cdl/courses/" + this.props.course.id;
+        let pulsante = null;
+        let link = "/dashboard/course/teachers/" + this.props.course.id;
 
         if(!this.state.editable){
             pulsante = <i className="fas fa-pen"></i>;
         }else{
             pulsante = <i className="fas fa-check"></i>;
         }
+
         return(
             <tr key={this.props.course.id}>
                 <td>{name}</td>
-                <td>{tipo}</td>
+                <td>{anno}</td>
                 <td>
                     <a className="button is-rounded is-success" onClick={() => this.handleEdit()} title="Modifica">{pulsante}</a>&nbsp;
-                    <a className="button is-rounded is-warning" href={link} title="Gestisci corsi collegati"><i className="fas fa-graduation-cap"></i></a>&nbsp;
-                    <a className="button is-rounded is-danger" onClick={() => this.props.handleDelete(this.props.course.id)} title="Elimina"><i className="fas fa-trash"></i></a>
+                    <a className="button is-rounded is-warning" href={link} title="Gestisci i professori collegati"><i className="fas fa-graduation-cap"></i></a>&nbsp;
+                    <a className="button is-rounded is-danger" onClick={() => this.props.handleDelete(this.props.course.id)} title="Elimina"><i className="fas fa-times"></i></a>
                 </td>
             </tr>
 
