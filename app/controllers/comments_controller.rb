@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
       post = @comment.post
 
       serialized_data = ActiveModelSerializers::Adapter::Json.new(
-          PostSerializer.new(post), { include: %w(user comments comments.user documents) }
+          PostSerializer.new(post), { include: %w(upvoters user comments comments.user documents) }
       ).serializable_hash
 
       UpvoteChannel.broadcast_to post, serialized_data
