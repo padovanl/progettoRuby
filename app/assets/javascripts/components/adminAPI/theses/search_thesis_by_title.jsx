@@ -17,7 +17,7 @@ class SearchThesisByTitle extends React.Component{
     render() {
         return (
                 <div>
-                    <input type="text" placeholder="Titolo tesi.." onChange={this.onChange.bind(this)} className="input is-medium"/>
+                    <input type="text" placeholder="Titolo tesi.." onChange={this.onChange.bind(this)} className="input is-medium" id="textBoxThesisSearch"/>
                     You typed: <code>{this.state.typed}</code>
                 </div>
             )
