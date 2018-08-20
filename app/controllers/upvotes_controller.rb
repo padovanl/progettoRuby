@@ -2,12 +2,9 @@ class UpvotesController < ApplicationController
   before_action :authenticate_user!
   after_action :broadcast_to_channel
 
-  rescue_from ActiveRecord::RecordNotFound do |e|
-    render_json_error :not_found, :upvotes_not_found
-  end
-
   def create
-    @upvote = current_user.upvotes.new()
+    @upvote = Upvote.new()
+    @upvote.upvoter = current_user
     @upvote.post_id = params['post_id']
 
     if !@upvote.save
@@ -20,7 +17,7 @@ class UpvotesController < ApplicationController
 
 
   def destroy
-    @upvote = current_user.upvotes.find(params[:id])
+    @upvote = Upvote.current_upvoter(current_user, params[:id]).first
 
     if !@upvote.destroy
       render_json_validation_error @upvote

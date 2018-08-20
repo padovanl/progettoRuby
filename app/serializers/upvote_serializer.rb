@@ -1,8 +1,5 @@
 class UpvoteSerializer < ActiveModel::Serializer
   attributes :id
-  belongs_to :user
+  belongs_to :upvoter
 
-  class UserSerializer < ActiveModel::Serializer
-    attributes :id
-  end
 end

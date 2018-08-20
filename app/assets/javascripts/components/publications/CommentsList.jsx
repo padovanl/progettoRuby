@@ -32,9 +32,9 @@
 class CommentsList extends React.Component {
     render() {
         let comment_list;
-        const { post_id, current_user_avatar, comments, deleteComment, can_delete } = this.props
+        const { post_id, current_user_avatar, comments, deleteComment, current_user } = this.props
         comment_list = comments.map(function (comment) {
-            return <Comment key={comment.id} comment={comment} deleteComment={deleteComment} can_delete={can_delete}></Comment>
+            return <Comment key={comment.id} comment={comment} deleteComment={deleteComment} current_user={current_user}></Comment>
         })
 
         return (
