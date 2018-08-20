@@ -4,7 +4,8 @@
 
 
 h2 {
-  margin-top: 8%;
+  margin-top: 5%;
+  margin-bottom: 1em;
   font-size:2.7em;
   font-style: inherit;
 }
@@ -65,7 +66,7 @@ body {
 
 .nested{
   display: grid;
-  grid-template-rows: repeat(3, 0fr);
+  grid-template-rows: repeat(4, 0fr);
   grid-gap: 1em;
 }
 
@@ -123,11 +124,8 @@ body {
 
 
 
-.right {
-  left:right;
-}
 
-.next {
+.buttonnext {
   display: inline-block;
   border-radius: 8px;
   box-shadow: 0 5px #999;
@@ -135,42 +133,49 @@ body {
   border: none;
   color: #FFFFFF;
   text-align: center;
-  font-size: 24px;
-  padding: 20px;
+  font-size: 20px;
+  padding: 18px;
   width: 200px;
   transition: all 0.5s;
   cursor: pointer;
   margin: 1em;
 }
 
-.next span {
+.buttonnext span {
   cursor: pointer;
   display: inline-block;
   position: relative;
-  transition: 0.5s;
 }
 
-.next span:after {
+.buttonnext span:after {
   content: '\00bb';
   position: absolute;
   opacity: 0;
   top: 0;
   right: -20px;
+}
+
+.buttonnext:hover span {
+  padding-right: 25px;
   transition: 0.5s;
 }
 
-.next:hover span {
-  padding-right: 25px;
-}
-
-.next:hover span:after {
+.buttonnext:hover span:after {
   opacity: 1;
   right: 0;
+  transition: 0.5s;
 }
 
 
-.next:active {
+.buttonnext:active {
   background-color: darkblue;
   box-shadow: 0 1px darkblue;
   transform: translateY(4px);
+}
+
+
+.search-form {
+  display: inline-block;
+  padding: 10px;
+  margin: 1em;
 }

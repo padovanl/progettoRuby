@@ -14,7 +14,7 @@ class Post < ApplicationRecord
   has_many :users, through: :upvotes, :dependent => :destroy
 
   # validations
-  validates_presence_of :message
+  validates_presence_of :message, :user
 
 
   # Configure by calling

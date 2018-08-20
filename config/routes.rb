@@ -16,8 +16,6 @@ Rails.application.routes.draw do
   resources :posts
   resources :comments
 
-  get '/courses', to: 'courses#index'
-
   #admin
   get '/dashboard', to: 'admin#dashboard'
 

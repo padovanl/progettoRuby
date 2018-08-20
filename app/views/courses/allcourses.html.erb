@@ -1,19 +1,24 @@
 <html>
 
-<head></head>
 
-<body>
-  <br/>
-  <div align="center">
-    <h2>Tutti i corsi disponibili</h2>
-  </div>
+  <body>
+    <br/>
+    <div align="center">
+      <h2>Tutti i corsi disponibili</h2>
+    </div>
+
+    <%= paginate @tcs %>
+
+    <div>
+      <%= react_component 'Main'%>
+    </div>
 
 
 
-  <%= react_component 'Main'%>
 
-</body>
+
+  </body>
+
+
 
 </html>
-
-
