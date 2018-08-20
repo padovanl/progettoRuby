@@ -62,20 +62,19 @@ class PostsThread extends React.Component {
                         {
                             data.map(function (post) {
                                 return <Post key={post.id} post={post} current_user={current_user}
-                                             current_user_avatar={current_user_avatar}></Post>
+                                             current_user_avatar={current_user_avatar} />
                             })
                         }
                     </div>
 
                     <div className={"modal " + (adding_post ? "is-active" : "")}>
-                        <div className="modal-background" onClick={this.closeNewPostModal.bind(this)}></div>
-                        <div className="modal-content">
+                        <div className="modal-background" onClick={this.closeNewPostModal.bind(this)} />
 
-                            <NewPost addNewPost={this.addNewPost.bind(this)}/>
+                        <NewPost addNewPost={this.addNewPost.bind(this)} current_user={current_user}
+                                 current_user_avatar={current_user_avatar}/>
 
-                        </div>
                         <button className="modal-close is-large" aria-label="close"
-                                onClick={this.closeNewPostModal.bind(this)}></button>
+                                onClick={this.closeNewPostModal.bind(this)} />
                     </div>
                 </div>
                 <figure className="media-left add-post" onClick={this.viewNewPostModal.bind(this)}>

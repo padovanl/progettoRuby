@@ -4,7 +4,8 @@ class NewPost extends React.Component {
         super(props);
         this.state = {
             message: '',
-            count_files: 0
+            count_files: 0,
+            showError: false
         };
 
     }
@@ -18,6 +19,11 @@ class NewPost extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        if (this.state.message === '') {
+            this.setState({showError: true});
+            return
+        }
+
         const data = new FormData(event.target);
         const addNewPost = this.props.addNewPost
 
@@ -31,7 +37,7 @@ class NewPost extends React.Component {
             return response;
         }
 
-        fetch('/posts.json', {
+        fetch('/posts', {
             method: 'POST',
             headers: myHeaders,
             credentials: 'same-origin',
@@ -44,31 +50,32 @@ class NewPost extends React.Component {
         })
         .catch(error => console.log(error));
 
-        this.setState({message: '', count_files: 0});
+        this.setState({
+            message: '',
+            count_files: 0,
+            showError: false
+        });
         document.getElementById("post_attachments").value = null;
     }
 
     render() {
         return (
-            <form onSubmit={ (e) => this.handleSubmit(e) } className="new-post">
-                <div className="card">
-                    <div className="card-content">
+            <form onSubmit={ (e) => this.handleSubmit(e) } className="modal-card">
+                <section className="modal-card-body">
                         <article className="media">
                             <figure className="media-left">
-                                <p className="image is-64x64">
-                                    <img src="https://bulma.io/images/placeholders/128x128.png"/>
+                                <p className="image is-48x48">
+                                    <img src={ this.props.current_user_avatar }/>
                                 </p>
                             </figure>
                             <div className="media-content">
                                 <div className="content">
                                     <p>
-                                        <strong>John Smith</strong>
-                                        <small>@johnsmith</small>
-                                        <small>31m</small>
-                                        <br />
+                                        <p className="content-author"><strong>{ this.props.current_user.name }</strong></p>
                                         <textarea className="textarea" rows="2" name="post[message]" value={ this.state.message }
                                                   id="post_message" type="text" placeholder="Scrivi un post..."
                                                   onChange={ (e) => this.handleChangeMessage(e) } />
+                                        { this.state.showError ? <ErrorMessage message="Il campo non può essere vuoto" /> : "" }
                                     </p>
                                     <p className={ "control " + (this.state.count_files ? "tooltip" : '') }
                                        data-tooltip={ this.state.count_files ? this.state.count_files + " File" : '' }>
@@ -85,17 +92,14 @@ class NewPost extends React.Component {
                                         </div>
                                     </p>
                                 </div>
+                                <button className="button is-medium submit-button" type="submit" name="commit">
+                                    Salva
+                                </button>
                             </div>
                         </article>
-                    </div>
-                    <footer className="card-footer">
-                        <p className="card-footer-item">
-                            <button className="button submit-button" type="submit" name="commit">
-                                Invia
-                            </button>
-                        </p>
-                    </footer>
-                </div>
+
+                </section>
+
             </form>
         )
     }
