@@ -90,7 +90,7 @@ bower.json
 
 /config/environments/development.rb
 
-/.idea
+.idea
 
 
 # End of https://www.gitignore.io/api/rails
