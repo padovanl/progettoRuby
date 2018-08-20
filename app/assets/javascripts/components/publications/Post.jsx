@@ -8,7 +8,8 @@ class Post extends React.Component {
         this.state = {
             user_upvoted: false,
             upvote_id: '',
-            post: this.props.post
+            post: this.props.post,
+            can_delete: true
         };
     }
 
@@ -23,7 +24,7 @@ class Post extends React.Component {
 
     render() {
         const { current_user, current_user_avatar } = this.props;
-        const { post } = this.state
+        const { post, can_delete } = this.state
         let attachments = '';
         if (post.documents !== undefined)
             attachments = post.documents.map(function (doc) {
@@ -69,9 +70,12 @@ class Post extends React.Component {
                         </div>
 
 
-                        <CommentsList post_id={post.id} comments={post.comments} current_user={current_user}
+                        <CommentsList post_id={post.id} comments={post.comments} current_user={current_user} can_delete={can_delete}
                                       current_user_avatar={current_user_avatar} deleteComment={ this.deleteComment.bind(this) }/>
 
+                    </div>
+                    <div className="media-right">
+                        <DropMenu cancella={ this.deletePost.bind(this) } id={post.id} can_delete={can_delete} risorsa="post"/>
                     </div>
                 </article>
 
@@ -109,7 +113,9 @@ class Post extends React.Component {
     }
 
 
-    deleteComment(comment_id) {
+    deleteComment(event, comment_id) {
+        event.preventDefault();
+
         var myHeaders = new Headers();
         myHeaders.append('X-CSRF-Token', Rails.csrfToken());
 
@@ -125,6 +131,28 @@ class Post extends React.Component {
         .catch((error) => {
             console.error(error);
         });
+    }
+
+    deletePost(event, post_id) {
+        event.preventDefault();
+        if(this.state.post.user.id !== this.props.current_user.id)
+            return;
+
+        var myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+
+        fetch(`/posts/${post_id}`, {
+            method: 'DELETE',
+            headers: myHeaders,
+            credentials: 'same-origin'
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                return responseJson;
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }
 }
 

@@ -1,14 +1,14 @@
 class DocumentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_document, only: [:show, :edit, :update, :destroy]
-  include DocumentsHelper
 
   def index
-    @documents = Document.all
-    render json: docs_file_name_and_link(@documents)
+    documents = Document.all
+    render json: documents
   end
 
   def show
-    render json: doc_file_name_and_link(@document)
+    render json: @document
   end
 
   # GET /documents/new

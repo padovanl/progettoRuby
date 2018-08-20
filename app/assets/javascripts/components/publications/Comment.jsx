@@ -5,7 +5,7 @@ class Comment extends React.Component {
 
     render() {
         const { id, content, created_at, user} = this.props.comment
-        const { deleteComment } = this.props
+        const { deleteComment, can_delete } = this.props
 
         return (
             <article className="media">
@@ -26,7 +26,7 @@ class Comment extends React.Component {
                     </div>
                 </div>
                 <div className="media-right">
-                    <button className="delete" onClick={ () => deleteComment(id) }></button>
+                    <DropMenu cancella={deleteComment} id={id} can_delete={can_delete} risorsa="commento"/>
                 </div>
             </article>
         );

@@ -3,7 +3,8 @@ class NewComment extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            content: ''
+            content: '',
+            showError: false
         };
 
     }
@@ -14,33 +15,34 @@ class NewComment extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        const data = new FormData(event.target);
-        const addNewComment = this.props.addNewComment
 
+        if (this.state.content === '') {
+            this.setState({showError: true});
+            return
+        }
+
+        const data = new FormData(event.target);
         var myHeaders = new Headers();
         myHeaders.append('X-CSRF-Token', Rails.csrfToken());
-
-        function handleErrors(response) {
-            if (!response.ok) {
-                throw Error(response.statusText);
-            }
-            return response;
-        }
 
         fetch('/comments', {
             method: 'POST',
             headers: myHeaders,
             credentials: 'same-origin',
             body: data,
-        }).then(handleErrors)
-            .then(response => {
-                return response.json();
-            }).then(function(json) {
-            addNewComment(json)
         })
-            .catch(error => console.log(error));
+        .then((response) => response.json())
+        .then((responseJson) => {
+            return responseJson;
+        })
+        .catch((error) => {
+            console.error(error);
+        });
 
-        this.setState({content: ''});
+        this.setState({
+            content: '',
+            showError: false
+        });
     }
 
     render() {
@@ -59,6 +61,7 @@ class NewComment extends React.Component {
                                 <textarea className="textarea" placeholder="Aggiungi un commento..." name="comment[content]"
                                           rows="1" value={ this.state.content }  onChange={ (e) => this.handleChange(e) } />
                             </p>
+                            { this.state.showError ? <ErrorMessage message="Il campo non può essere vuoto" /> : "" }
                         </div>
                         <div className="field">
                             <p className="control">
