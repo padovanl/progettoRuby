@@ -2,19 +2,22 @@
 
 
   <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+
     <br/>
     <div align="center">
       <h2>Tutti i corsi disponibili</h2>
     </div>
 
-    <%= paginate @tcs %>
 
     <div>
       <%= react_component 'Main'%>
     </div>
 
 
-
+  <%= paginate @tcs %>
 
 
   </body>
