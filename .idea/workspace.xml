@@ -2,40 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc1c681f-675d-497f-980d-3605d86d7764" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/views/courses/_course.json.jbuilder" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/courses/allcourses.json.jbuilder" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/courses/courses.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/courses/js/infinite.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/courses/js/jquery.waypoints.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/locales/errors.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/theses/search_thesis_by_teacher.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/DeviseActionMailer.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/DeviseActionMailer.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/javascripts/components/courses/IndexCourses.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/javascripts/components/courses/IndexCourses.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/javascripts/components/courses/network.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/javascripts/components/courses/network.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/javascripts/components/publications/NewComment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/javascripts/components/publications/NewComment.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/javascripts/components/publications/Post.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/javascripts/components/publications/Post.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/courses.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/courses.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/comments_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/comments_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/concerns/exception_handler.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/concerns/exception_handler.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/concerns/response.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/concerns/response.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/courses_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/courses_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/documents_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/documents_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/posts_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/posts_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/upvotes_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/upvotes_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/comment.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/comment.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/course.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/course.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/document.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/document.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/post.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/post.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/teacher_course.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/teacher_course.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/courses/allcourses.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/courses/allcourses.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/theses/body_thesis.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/theses/body_thesis.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/theses/search_thesis_by_title.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/theses/search_thesis_by_title.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/v1/theses_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/v1/theses_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/dashboard.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/dashboard.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
     </list>
+    <ignored path="$PROJECT_DIR$/.bundle/" />
+    <ignored path="$PROJECT_DIR$/components/" />
+    <ignored path="$PROJECT_DIR$/public/system/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <ignored path="$PROJECT_DIR$/vendor/bundle/" />
+    <ignored path="$PROJECT_DIR$/vendor/cache/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +25,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/progettoRuby@Unnamed.rcov" NAME="Unnamed Coverage Results" MODIFIED="1534726480449" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="DeviseActionMailer" />
+    <SUITE FILE_PATH="coverage/progettoRuby@Unnamed.rcov" NAME="Unnamed Coverage Results" MODIFIED="1534771509123" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="DeviseActionMailer" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
@@ -51,25 +33,16 @@
         <entry file="file://$PROJECT_DIR$/config/routes.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="417">
-              <caret line="79" column="60" selection-start-line="79" selection-start-column="60" selection-end-line="79" selection-end-column="60" />
+              <caret line="80" column="44" selection-start-line="80" selection-start-column="44" selection-end-line="80" selection-end-column="44" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="theses_controller.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="theses_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/theses_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="30" column="39" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="database.yml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/config/database.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
+            <state relative-caret-position="357">
+              <caret line="42" column="46" lean-forward="true" selection-start-line="42" selection-start-column="46" selection-end-line="42" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -77,8 +50,8 @@
       <file leaf-file-name="body_thesis.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/theses/body_thesis.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="477">
-              <caret line="123" column="67" selection-start-line="123" selection-start-column="55" selection-end-line="123" selection-end-column="67" />
+            <state relative-caret-position="282">
+              <caret line="121" column="64" selection-start-line="121" selection-start-column="64" selection-end-line="121" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -86,20 +59,17 @@
       <file leaf-file-name="search_thesis_by_title.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/theses/search_thesis_by_title.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+            <state relative-caret-position="285">
+              <caret line="19" column="102" selection-start-line="19" selection-start-column="102" selection-end-line="19" selection-end-column="102" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="new_thesis.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/theses/new_thesis.jsx">
+      <file leaf-file-name="dashboard.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/admin/dashboard.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="43" column="16" selection-start-line="43" selection-end-line="44" selection-end-column="37" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+            <state relative-caret-position="285">
+              <caret line="37" column="17" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -113,6 +83,11 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/config/database.yml" />
+        <option value="$PROJECT_DIR$/app/views/admin/dashboard.html.erb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/theses/body_thesis.jsx" />
+        <option value="$PROJECT_DIR$/config/routes.rb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/theses/search_thesis_by_title.jsx" />
+        <option value="$PROJECT_DIR$/app/controllers/api/v1/theses_controller.rb" />
       </list>
     </option>
   </component>
@@ -133,6 +108,12 @@
     <packageJsonPaths>
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="625" />
+    <option name="y" value="35" />
+    <option name="width" value="2319" />
+    <option name="height" value="1900" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -243,6 +224,9 @@
       </pane>
     </panes>
   </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -286,7 +270,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6a0539e5-d2fc-412c-bb8f-ab5812c0b370" name="Default" comment="" />
+      <changelist id="bc1c681f-675d-497f-980d-3605d86d7764" name="Default" comment="" />
       <created>1534546838779</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -298,23 +282,25 @@
       <workItem from="1534719739866" duration="1000" />
       <workItem from="1534719774501" duration="189000" />
       <workItem from="1534722761686" duration="3864000" />
+      <workItem from="1534767765480" duration="3861000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="192000" />
+    <option name="totallyTimeSpent" value="4053000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <frame x="63" y="25" width="1857" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24932542" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24878837" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32910052" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32910052" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -328,17 +314,13 @@
       <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/teacher_courses/all_teacher_courses.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="32" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/teacher_courses/teacher_course.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -619,9 +601,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/theses/all_theses.jsx">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/theses/thesis.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -636,53 +615,67 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="79" column="60" selection-start-line="79" selection-start-column="60" selection-end-line="79" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/seeds.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1170" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/theses/body_thesis.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="123" column="67" selection-start-line="123" selection-start-column="55" selection-end-line="123" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/theses/search_thesis_by_title.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/theses/new_thesis.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="43" column="16" selection-start-line="43" selection-end-line="44" selection-end-column="37" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/theses_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="30" column="39" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/database.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/theses/new_thesis.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="78" column="116" selection-start-line="78" selection-start-column="88" selection-end-line="78" selection-end-column="116" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/admin/dashboard.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="37" column="17" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/theses/body_thesis.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="121" column="64" selection-start-line="121" selection-start-column="64" selection-end-line="121" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/routes.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="80" column="44" selection-start-line="80" selection-start-column="44" selection-end-line="80" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/theses/search_thesis_by_teacher.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="35" column="117" selection-start-line="35" selection-start-column="89" selection-end-line="35" selection-end-column="117" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/theses/search_thesis_by_title.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="102" selection-start-line="19" selection-start-column="102" selection-end-line="19" selection-end-column="102" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/theses_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="42" column="46" lean-forward="true" selection-start-line="42" selection-start-column="46" selection-end-line="42" selection-end-column="46" />
         </state>
       </provider>
     </entry>

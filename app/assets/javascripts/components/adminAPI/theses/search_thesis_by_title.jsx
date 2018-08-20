@@ -1,32 +1,25 @@
 
 
-class SearchThesisByProf extends React.Component{
+class SearchThesisByTitle extends React.Component{
 
     constructor(props) {
         super(props);
         this.state = {
-            value: 0
+            typed: ''
         };
-        this.change = this.change.bind(this);
+        this.onChange= this.onChange.bind(this);
     }
 
-
-    change(event){
-        this.setState({value: event.target.value});
-        this.props.searchByProf(event.target.value);
+    onChange(event) {
+        this.setState({typed: event.target.value});
+        this.props.searchByTitle(event.target.value);
     }
-    render(){
-        return(
-            <div>
-                <select id="lang" onChange={this.change} value={this.state.value}>
-                    <option value="0">Tutti</option>
-                    <option value="1">Stefanelli</option>
-                    <option value="2">Lamma</option>
-                    <option value="3">Gavanelli</option>
-                </select>
-                <p></p>
-                <p>{this.state.value}</p>
-            </div>
-        );
+    render() {
+        return (
+                <div>
+                    <input type="text" placeholder="Titolo tesi.." onChange={this.onChange.bind(this)} className="input is-medium"/>
+                    You typed: <code>{this.state.typed}</code>
+                </div>
+            )
     }
 }
