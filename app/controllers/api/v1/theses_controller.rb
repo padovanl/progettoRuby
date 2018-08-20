@@ -38,7 +38,7 @@ class Api::V1::ThesesController < ApplicationController
 
   def searchByTitle
     if params['string'] != nil then
-      theses = Thesis.where("title like ?", "%" + params['string'] + "%").includes([:teacher]).all
+      theses = Thesis.where("lower(title) like ?", "%" + params['string'].downcase + "%").includes([:teacher]).all
     else
       theses = Thesis.includes([:teacher]).all
     end
