@@ -1,4 +1,3 @@
-const baseURL = "/allcourses.json";
 
 
 function makeReq(url, errorMessage = '', options = {}) {
@@ -13,7 +12,12 @@ function makeReq(url, errorMessage = '', options = {}) {
 }
 
 React.export
-const getAll = () => {
+const getAll = (page) => {
     const errorMessage = 'Errore durante il download dei dati';
+    if (page===1){
+        baseURL = "/allcourses.json";
+    }
+    else
+        baseURL = baseURL = "/allcourses.json?page="+page;
     return makeReq(baseURL, errorMessage);
 };

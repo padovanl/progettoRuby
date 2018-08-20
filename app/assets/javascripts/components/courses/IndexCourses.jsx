@@ -1,15 +1,16 @@
-/*import Waypoint from 'react-waypoint';
-
-var infinite = new Waypoint.Infinite({
-    element: $('.infinite-container')[0]
-})
-*/
 class IndexCourses extends React.Component{
     constructor(props) {
         super(props);
-        this.state = {allcourses: [], error: '', search:'', page:1};
+        this.state = {
+            allcourses: [],
+            error: '',
+            search:'',
+            page:1
+        };
 
         this.handleError = this.handleError.bind(this);
+        // bind function in constructor instead of render (https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md)
+        this.onChangePage = this.onChangePage.bind(this);
     }
 
 
@@ -21,26 +22,40 @@ class IndexCourses extends React.Component{
 
 
 
-
     updateSearch(event){
         this.setState({search: event.target.value.substr(0,20)});
     }
 
 
 
-
-    componentDidMount(){
-        getAll()
+    getCourses(){
+        getAll(this.state.page)
             .then(teacher_courses => {
-                this.setState({allcourses: teacher_courses})
+                const newCourses = this.state.allcourses.concat(teacher_courses);
+                this.setState({allcourses: newCourses})
             })
             .catch(this.handleError);
+        this.setState({page: this.state.page +=1});
     }
+
+
+    componentDidMount(){
+        this.getCourses();
+    }
+
+
+    //--------------
+    onChangePage() {
+        // update state with new page of items
+        this.getCourses();
+    }
+    //-------------
+
 
 
     render(){
         let filteredCourses = this.state.allcourses.filter((item) => {
-            return item.course_name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1; //tutti
+                return item.course_name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1; //tutti
             }
 
         );
@@ -57,8 +72,8 @@ class IndexCourses extends React.Component{
 
             var items = filteredCourses.map((item) => {
                 return(
-                    <div>
-                        <div className="nested" key={item.id}>
+                    <div key={item.id}>
+                        <div className="nested infinite-item">
                             <div>Corso: {item.course_name}</div>
                             <div>Anno: {item.course_year}</div>
                             <div>Data: {item.data}</div>
@@ -73,16 +88,16 @@ class IndexCourses extends React.Component{
                 )
             });
 
-            return(
-                <div>
-                    <p>{message}</p>
-                    <input className='search-form' type="text" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="Search Courses by name"/>
-                    <div className="wrapper infinite-container">{items}</div>
-                    <div className="buttonnext">
-                        <span>Next</span>
-                    </div>
+        return(
+            <div>
+                <p>{message}</p>
+                <input className='search-form' type="text" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="Search Courses by name"/>
+                <div className="wrapper infinite-container">{items}</div>
+                <div className='buttonnext' onClick={this.onChangePage}>
+                    Next
                 </div>
-            )
+            </div>
+        )
     }
 }
 

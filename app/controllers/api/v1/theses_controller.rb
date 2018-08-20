@@ -36,6 +36,15 @@ class Api::V1::ThesesController < ApplicationController
     json_response(theses.to_json(include: [:teacher]))
   end
 
+  def searchByTitle
+    if params['string'] != nil then
+      theses = Thesis.where("lower(title) like ?", "%" + params['string'].downcase + "%").includes([:teacher]).all
+    else
+      theses = Thesis.includes([:teacher]).all
+    end
+    json_response(theses.to_json(include: [:teacher]))
+  end
+
   private
   def t_params
     params.require(:thesis).permit(:title, :content, :teacher_id)
