@@ -77,6 +77,8 @@ Rails.application.routes.draw do
   get "/dashboard/thesis/tags/:thesis_id", to: "admin#thesis_tags"
   get "/dashboard/cdl/courses/:degree_course_id", to: "admin#courses"
   get "/dashboard/course/teachers/:course_id", to: "admin#teacher_courses"
+  get "/api/v1/theses/search/prof/:teacher_id", to: "api/v1/theses#searchByProf"
+  get "/api/v1/theses/search/title/(:string)", to: "api/v1/theses#searchByTitle"
 
   mount ActionCable.server, at: '/cable'
 

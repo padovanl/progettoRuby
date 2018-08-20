@@ -8,7 +8,8 @@ class Post extends React.Component {
         this.state = {
             user_upvoted: false,
             upvote_id: '',
-            post: this.props.post
+            post: this.props.post,
+            view_post: true
         };
     }
 
@@ -23,60 +24,69 @@ class Post extends React.Component {
 
     render() {
         const { current_user, current_user_avatar } = this.props;
-        const { post } = this.state
+        const { post } = this.state;
         let attachments = '';
-        if (post.documents !== undefined)
-            attachments = post.documents.map(function (doc) {
-                return <Document key={doc.id} document={doc}></Document>
-            });
-        let upvoters_count = ""
+        if(post.documents.length > 0)
+          attachments = (<div className="level"> <div className="level-left">
+            { post.documents.map(function (doc) {
+                        return <div className="level-item"><Document key={doc.id} document={doc}></Document></div>
+                    }) }
+            </div></div>);
+        let upvoters_count = "";
 
-        if (post.upvoters.length > 0) upvoters_count = "· " + post.upvoters.length
-        post.upvoters.forEach((up) => {
-            if (up.user.id === current_user.id) {
+        if (post.upvotes.length > 0) upvoters_count = "· " + post.upvotes.length
+        post.upvotes.forEach((up) => {
+            if (up.upvoter_id === current_user.id) {
                 this.state.user_upvoted = true
                 this.state.upvote_id = up.id
             }
         })
 
-        return (
-            <div className="box">
+        let can_delete_post = (post.user.id === current_user.id) ? true : false;
+        if (this.state.view_post)
+            return (
+                <div className="box">
 
-                <UpvotesWebSocket
-                    data-updateApp={ this.updatePostStateUpvote.bind(this) }
-                    postData={ post.id }
-                />
+                    <UpvotesWebSocket
+                        data-updateApp={ this.updatePostStateUpvote.bind(this) }
+                        postData={ post.id }
+                    />
 
-                <article className="media">
-                    <figure className="media-left">
-                        <p className="image is-48x48">
-                            <img src={ post.user.avatar_url }/>
-                        </p>
-                    </figure>
-                    <div className="media-content">
-                        <div className="content">
-                            <p className="content-author"><strong>{post.user.name}</strong></p>
-                            <p className="content-date">{(new  Date(Date.parse(post.created_at))).toLocaleDateString('it-IT', options)}</p>
-                            <div>
-                                <p>{post.message}</p>
-                            </div>
-                            <div>
+                    <article className="media">
+                        <figure className="media-left">
+                            <p className="image is-48x48">
+                                <img src={ post.user.avatar_url }/>
+                            </p>
+                        </figure>
+                        <div className="media-content">
+                            <div className="content">
+                                <p className="content-author"><strong>{post.user.name}</strong></p>
+                                <p className="content-date">{(new  Date(Date.parse(post.created_at))).toLocaleDateString('it-IT', options)}</p>
+                                <div>
+                                    <p>{post.message}</p>
+                                </div>
+
                                 {attachments}
+
+                                <br/>
+                                <a className={ `button ${this.state.user_upvoted ? "is-info" : "is-light"} is-rounded upvote-button` }
+                                   onClick={() => this.toggleUpvote()}>{ `Upvote ${upvoters_count}` }</a>
                             </div>
-                            <br/>
-                            <a className={ `button ${this.state.user_upvoted ? "is-info" : "is-light"} is-rounded upvote-button` }
-                               onClick={() => this.toggleUpvote()}>{ `Upvote ${upvoters_count}` }</a>
+
+
+                            <CommentsList post_id={post.id} comments={post.comments} current_user={current_user}
+                                          current_user_avatar={current_user_avatar} deleteComment={ this.deleteComment.bind(this) }/>
+
                         </div>
+                        <div className="media-right">
+                            <DropMenu cancella={ this.deletePost.bind(this) } id={post.id} can_delete={can_delete_post} risorsa="post"/>
+                        </div>
+                    </article>
 
-
-                        <CommentsList post_id={post.id} comments={post.comments} current_user={current_user}
-                                      current_user_avatar={current_user_avatar} deleteComment={ this.deleteComment.bind(this) }/>
-
-                    </div>
-                </article>
-
-            </div>
-        );
+                </div>
+            );
+        else
+            return <div></div>
     }
 
     toggleUpvote() {
@@ -109,7 +119,9 @@ class Post extends React.Component {
     }
 
 
-    deleteComment(comment_id) {
+    deleteComment(event, comment_id) {
+        event.preventDefault();
+
         var myHeaders = new Headers();
         myHeaders.append('X-CSRF-Token', Rails.csrfToken());
 
@@ -125,6 +137,30 @@ class Post extends React.Component {
         .catch((error) => {
             console.error(error);
         });
+    }
+
+    deletePost(event, post_id) {
+        event.preventDefault();
+        if(this.state.post.user.id !== this.props.current_user.id)
+            return;
+
+        var myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+
+        fetch(`/posts/${post_id}`, {
+            method: 'DELETE',
+            headers: myHeaders,
+            credentials: 'same-origin'
+        })
+            .then((response) => response)
+            .then((response) => {
+                this.setState({
+                    view_post: false
+                })
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }
 }
 

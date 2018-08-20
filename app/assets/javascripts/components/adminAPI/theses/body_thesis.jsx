@@ -13,6 +13,9 @@ class BodyThesis extends React.Component {
         this.updateThesis = this.updateThesis.bind(this)
 
         this.foo = null;
+
+        this.searchByProf = this.searchByProf.bind(this);
+        this.searchByTitle = this.searchByTitle.bind(this);
     }
 
 
@@ -107,10 +110,24 @@ class BodyThesis extends React.Component {
             .then((data) => {this.setState({ theses: data }) });
     }
 
+    searchByProf(prof){
+        fetch('/api/v1/theses/search/prof/' + prof)
+            .then((response) => {return response.json()})
+            .then((data) => {this.setState({ theses: data }) });
+    }
+
+    searchByTitle(stringa){
+        fetch('/api/v1/theses/search/title/' + stringa)
+            .then((response) => {return response.json()})
+            .then((data) => {this.setState({ theses: data }) });
+    }
+
 
     render(){
         return(
             <div>
+                <SearchThesisByProf searchByProf={this.searchByProf}/>
+                <SearchThesisByTitle searchByTitle={this.searchByTitle} />
                 <AllTheses theses={this.state.theses} handleDelete={this.handleDelete}  handleUpdate = {this.handleUpdate} />
                 <NewThesis handleFormSubmit={this.handleFormSubmit} />
             </div>

@@ -3,7 +3,7 @@ class PostsController < ApplicationController
 
   def index
     posts = Post.reduce(params).order(created_at: :desc)
-    render json: posts, include: %w(user comments comments.user documents)
+    render json: posts, include: %w(upvoters user comments comments.user documents)
   end
 
   def create
@@ -15,12 +15,12 @@ class PostsController < ApplicationController
       return
     end
 
-    render json: publication, status: :created
+    render json: publication.post, include: %w(upvoters user comments comments.user documents), status: :created
   end
 
 
   def destroy
-    @post = current_user.posts.find(params[:id])
+    @post = Post.current_user_post(current_user, params[:id]).first
 
     if !@post.destroy
       render_json_validation_error @post

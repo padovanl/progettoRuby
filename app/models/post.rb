@@ -11,7 +11,7 @@ class Post < ApplicationRecord
 
   # un post può essere votato da più utenti
   has_many :upvotes, dependent: :destroy, :dependent => :destroy
-  has_many :users, through: :upvotes, :dependent => :destroy
+  has_many :upvoters, through: :upvotes, dependent: :destroy, class_name: 'User', source: :upvoter
 
   # validations
   validates_presence_of :message, :user
@@ -25,9 +25,10 @@ class Post < ApplicationRecord
   reduces self.all, filters: [
       ->(course_id:) { where course_id: course_id },
       ->(user_id:) { where user_id: user_id },
-      ->(upvoter_id:) { joins(:upvotes).where("upvotes.user_id = ?", upvoter_id) }
+      ->(upvoter_id:) { joins(:upvotes).where("upvotes.upvoter_id = ?", upvoter_id) }
   ]
 
+  scope :current_user_post,   ->(user, id){ where(user_id: user.id, id: id) }
 =begin
   scope :upvotes_of_user, -> (location_id) { where location_id: location_id }upvotes_of_user
   scope :with_comments_count, -> { joins('left outer join comments on posts.id = comments.post_id')
