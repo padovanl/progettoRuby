@@ -11,7 +11,6 @@ function makeReq(url, errorMessage = '', options = {}) {
         });
 }
 
-React.export
 const getAll = (page) => {
     const errorMessage = 'Errore durante il download dei dati';
     if (page===1){
@@ -19,5 +18,12 @@ const getAll = (page) => {
     }
     else
         baseURL = baseURL = "/allcourses.json?page="+page;
+    return makeReq(baseURL, errorMessage);
+};
+
+
+const searchAll = (course_name) => {
+    const errorMessage = 'Errore durante il search dei dati';
+    baseURL = "/allcourses.json?utf8=✓&search="+course_name;
     return makeReq(baseURL, errorMessage);
 };

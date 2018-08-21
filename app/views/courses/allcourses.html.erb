@@ -12,12 +12,19 @@
     </div>
 
 
+
+    <% form_tag(allcourses_path, :method => "get", id: "search-form", class:"search-form pull-right") do %>
+      <div class="form-group">
+        <% text_field_tag :search, params[:search], placeholder:"Search Courses in all pages", class:'form-control' %>
+      </div>
+      <% submit_tag "Search", :name => nil, class:'btn btn-primary' %>
+    <%end%>
+
+
     <div>
-      <%= react_component 'Main'%>
+      <%= react_component 'IndexCourses', search: @search%>
     </div>
 
-
-  <%= paginate @tcs %>
 
 
   </body>

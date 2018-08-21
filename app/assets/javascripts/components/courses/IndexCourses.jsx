@@ -1,16 +1,20 @@
 class IndexCourses extends React.Component{
     constructor(props) {
         super(props);
+        console.log(props);
         this.state = {
             allcourses: [],
-            error: '',
-            search:'',
-            page:1
+            error: props.search,
+            search: '',
+            page:1,
+            autoCompleteResults: []
         };
 
         this.handleError = this.handleError.bind(this);
         // bind function in constructor instead of render (https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md)
         this.onChangePage = this.onChangePage.bind(this);
+        this.searchButtonClick = this.searchButtonClick.bind(this);
+
     }
 
 
@@ -29,18 +33,21 @@ class IndexCourses extends React.Component{
 
 
     getCourses(){
-        getAll(this.state.page)
-            .then(teacher_courses => {
-                const newCourses = this.state.allcourses.concat(teacher_courses);
-                this.setState({allcourses: newCourses})
-            })
-            .catch(this.handleError);
-        this.setState({page: this.state.page +=1});
+            getAll(this.state.page)
+                .then(teacher_courses => {
+                    const newCourses = this.state.allcourses.concat(teacher_courses);
+                    if (teacher_courses.length === 0)
+                        return "Non ci sono altri corsi."
+                    this.setState({allcourses: newCourses})
+                })
+                .catch(this.handleError);
+            this.setState({page: this.state.page +=1});
     }
 
 
     componentDidMount(){
-        this.getCourses();
+        if (this.state.search ==='')
+            this.getCourses();
     }
 
 
@@ -49,6 +56,23 @@ class IndexCourses extends React.Component{
         // update state with new page of items
         this.getCourses();
     }
+
+
+
+
+
+    searchButtonClick(){
+        searchAll(this.state.search)
+            .then(newCourses => {
+                if (newCourses.length === 0)
+                    return <div> Nessun corso trovato. </div>
+                this.setState({allcourses: newCourses})
+            })
+            .catch(this.handleError);
+    }
+
+
+
     //-------------
 
 
@@ -66,7 +90,7 @@ class IndexCourses extends React.Component{
         }
 
 
-        if (this.state.allcourses.nil)
+        if (this.state.allcourses.length === 0)
             return <div> Nessun corso presente </div>
         else
 
@@ -76,9 +100,9 @@ class IndexCourses extends React.Component{
                         <div className="nested infinite-item">
                             <div>Corso: {item.course_name}</div>
                             <div>Anno: {item.course_year}</div>
-                            <div>Data: {item.data}</div>
+                            <div>Data: {item.year}</div>
                             <div>Professore:
-                                <a href={item.teacher_link_cv}> {item.teacher_name} {item.teacher_surname}</a>
+                                <a href={item.teacher_cv}> {item.teacher_name} {item.teacher_surname}</a>
                             </div>
                         </div>
                         <div className="segui">
@@ -88,13 +112,30 @@ class IndexCourses extends React.Component{
                 )
             });
 
+
+        let searchButton;
+        if (this.state.search === ''){
+            searchButton = <div className=' button-search disabled'> <span>Search in all pages </span> </div>
+        }
+        else{
+            searchButton = <div className=' button-search' onClick={this.searchButtonClick}> <span>Search in all pages </span></div>
+        }
+
         return(
             <div>
                 <p>{message}</p>
-                <input className='search-form' type="text" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="Search Courses by name"/>
+                <div className='row'>
+                    <form >
+                        <div className='myColumn'>
+                            <input id="searchBar" className='search-form' type="text" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="Search Courses by name"/>
+                            {searchButton}
+                            Fare che in un click fa la ricerca e col secondo torna come prima
+                        </div>
+                    </form>
+                </div>
                 <div className="wrapper infinite-container">{items}</div>
                 <div className='buttonnext' onClick={this.onChangePage}>
-                    Next
+                    <span> Next</span>
                 </div>
             </div>
         )

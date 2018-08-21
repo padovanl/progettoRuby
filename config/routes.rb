@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
 
   get '/allcourses', to: 'courses#allcourses'
+  get :searchCourses, controller: :courses
+
 
   #admin
   get '/dashboard', to: 'admin#dashboard'
