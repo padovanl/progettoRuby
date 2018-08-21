@@ -1,20 +1,20 @@
 Rails.application.routes.draw do
 
-  resources :upvotes
   get 'welcome/index'
   root 'welcome#index'
-  resources :publications, only: [:index]
-  resources :upvotes, only: [:create, :destroy]
+
   devise_for :users, controllers: {omniauth_callbacks: "users/omniauth_callbacks"}
 
-
+  resources :upvotes
+  resources :publications, only: [:index]
+  resources :upvotes, only: [:create, :destroy]
+  resources :resources, only: [:index]
   resources :documents
+  resources :posts
+  resources :comments
 
 
   get '/allcourses', to: 'courses#allcourses'
-
-  resources :posts
-  resources :comments
 
   #admin
   get '/dashboard', to: 'admin#dashboard'

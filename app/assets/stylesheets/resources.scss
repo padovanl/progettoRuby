@@ -1,0 +1,75 @@
+
+
+
+
+
+
+.filter-control{
+  margin-bottom: 8px;
+  width: 50vw;
+  .search-input {
+    border: 0;
+  }
+}
+
+
+
+
+/* Lista Posts style */
+.resources-list {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 87vh;
+  padding: 3px 4px 0px 1px;
+
+  .truncate {
+    width: 250px;
+  }
+
+
+  .comment, .upvote, .link-to-commets {
+    text-decoration: none;
+    color: black;
+    span {
+      margin-right: 5px;
+    }
+  }
+
+  .link-to-commets {
+    color: #999999;
+  }
+  .drop-menu {
+    cursor: pointer;
+    i {
+      color: #999999;
+    }
+  }
+
+  .level{
+    margin-bottom: 0;
+    margin-top: 1rem;
+    .truncate {
+      width: 100px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .image {
+      margin-bottom: 0;
+    }
+  }
+  .resource-name {
+    margin-bottom: 3px;
+  }
+  hr{
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+  .content-date {
+    font-size: 85%;
+    color: #999999;
+  }
+  .upvote-button {
+    font-size: 85%;
+  }
+}
