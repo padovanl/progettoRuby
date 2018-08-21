@@ -45,7 +45,7 @@ class Course2 extends React.Component{
                 <td>{anno}</td>
                 <td>
                     <a className="button is-rounded is-success" onClick={() => this.handleEdit()} title="Modifica">{pulsante}</a>&nbsp;
-                    <a className="button is-rounded is-warning" href={link} title="Gestisci i professori collegati"><i className="fas fa-graduation-cap"></i></a>&nbsp;
+                    <a className="button is-rounded is-warning" href={link} title="Gestisci i professori collegati"><i className="fas fa-chalkboard-teacher"></i></a>&nbsp;
                     <a className="button is-rounded is-danger" onClick={() => this.props.handleDelete(this.props.course.id)} title="Elimina"><i className="fas fa-times"></i></a>
                 </td>
             </tr>

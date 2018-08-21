@@ -80,6 +80,8 @@ Rails.application.routes.draw do
   get "/api/v1/theses/search/prof/:teacher_id", to: "api/v1/theses#searchByProf"
   get "/api/v1/theses/search/title/(:string)", to: "api/v1/theses#searchByTitle"
 
+  get "/api/v1/users", to: "api/v1/users#index"
+
   mount ActionCable.server, at: '/cable'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
