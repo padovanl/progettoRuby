@@ -135,7 +135,7 @@ class BodyThesis extends React.Component {
             <div>
                 {/*<SearchThesisByProf searchByProf={this.searchByProf}/>*/}
                 <SearchThesisByTitle searchByTitle={this.searchByTitle} />
-                <br/>
+
                 <ClearThesisFilter getAll={this.getAll} />
                 <br/>
                 <AllTheses theses={this.state.theses} handleDelete={this.handleDelete}  handleUpdate = {this.handleUpdate} />

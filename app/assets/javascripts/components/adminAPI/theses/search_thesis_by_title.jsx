@@ -23,7 +23,8 @@ class SearchThesisByTitle extends React.Component{
                 <div className="column is-9">
                     <input type="search" placeholder="Titolo tesi.." onChange={this.onChange.bind(this)} className="input is-normal is-half" id="textBoxThesisSearch"/>
                 </div>
-                <div className="column"></div>
+                <div className="column">
+                </div>
             </div>
             )
     }
