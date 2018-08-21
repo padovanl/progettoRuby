@@ -74,6 +74,16 @@
 
       <div class="navbar-end">
         <% if user_signed_in? %>
+
+          <!--icona notifiche-->
+          <a class="navbar-item" href="#">
+            <span class="badge is-badge-primary" data-badge="8"><%= fa_icon "globe-americas" %></span>
+          </a>
+          <br />
+          <br>
+
+
+
           <% if current_user.admin %>
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link  is-active" href="#">
