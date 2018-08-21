@@ -85,6 +85,10 @@ Rails.application.routes.draw do
   get "/api/v1/users", to: "api/v1/users#index"
   post "/api/v1/users/set_admin/:user_id", to: "api/v1/users#setAdmin"
 
+
+  #route index notifiche
+  get "/notifications", to: "notifications#index"
+
   mount ActionCable.server, at: '/cable'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
