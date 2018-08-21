@@ -13,11 +13,14 @@ class CoursesController < ApplicationController
 
   def allcourses
     if params[:search]
-      @tcs = Course.search(params[:search]).includes(:teacher_courses).includes(teacher_courses: :teacher).order('teacher_courses.year DESC').page(params[:page]).per(3)
-      #@tcs = TeacherCourse.includes(:course, :teacher).search(params[:search]).order(year: :desc).page(params[:page]).per(3)
+      #ho usato eager_load in quanto fa una left join e quindi lavora su entrambe le tab, con includes mi dava errore in quanto courses non si trova nella tab: teacherCourse
+      @tcs = TeacherCourse.eager_load(:course, :teacher).where('courses.name LIKE ?', "%#{params[:search]}%").order(year: :desc).page(params[:page]).per(30)
+      @search = 'Analisii'
+      @page = :page
     else
-      @tcs = Course.includes(:teacher_courses).includes(teacher_courses: :teacher).order('teacher_courses.year DESC').page(params[:page]).per(3)
-      #@tcs = TeacherCourse.includes(:course, :teacher).order(year: :desc).page(params[:page]).per(3)
+      @tcs = TeacherCourse.includes(:course, :teacher).order(year: :desc).page(params[:page]).per(3)
+      @search = ''
+      @page = :page
     end
   end
 

@@ -22,8 +22,8 @@ const getAll = (page) => {
 };
 
 
-const searchCourses = (course_name) => {
+const searchAll = (course_name) => {
     const errorMessage = 'Errore durante il search dei dati';
-    baseURL = "/allcourses.json?search?q="+course_name;
+    baseURL = "/allcourses.json?utf8=✓&search="+course_name;
     return makeReq(baseURL, errorMessage);
 };

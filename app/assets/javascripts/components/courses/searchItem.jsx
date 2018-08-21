@@ -41,10 +41,11 @@ class SearchItem extends React.Component {
         )
     }
 }
-
+/*
 document.addEventListener('DOMContentLoaded', () => {
     ReactDOM.render(
         <SearchItem />,
         document.body.appendChild(document.createElement('div')),
     )
 });
+*/
