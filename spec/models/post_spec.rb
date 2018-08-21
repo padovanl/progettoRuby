@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe Post, type: :model do
   # Association test
   # ensure Post model has a 1:m relationship with the Documents_post model
-  it { should have_many(:documents) }
+  it { should have_many(:resources) }
   # ensure a post record belongs to a single user
   it { should belong_to(:user) }
 
