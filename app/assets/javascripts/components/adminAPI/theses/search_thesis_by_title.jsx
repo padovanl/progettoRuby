@@ -12,13 +12,15 @@ class SearchThesisByTitle extends React.Component{
     }
 
     onChange(event) {
-        this.setState({typed: event.target.value});
-        this.props.searchByTitle(event.target.value);
+            this.setState({typed: event.target.value});
+            this.props.searchByTitle(event.target.value);
     }
 
     clickFn(){
-        document.getElementById('textBoxThesisSearch').value = '';
-        this.props.getAll();
+        if(document.getElementById('textBoxThesisSearch').value != '') {
+            document.getElementById('textBoxThesisSearch').value = '';
+            this.props.getAll();
+        }
     }
 
     render() {
@@ -30,10 +32,10 @@ class SearchThesisByTitle extends React.Component{
                 <div className="column is-9">
                     <div className="field has-addons">
                         <div className="control">
-                            <input type="search" placeholder="Titolo tesi.." onChange={this.onChange.bind(this)} className="input is-normal is-half is-rounded" id="textBoxThesisSearch"/>
+                            <input type="search" placeholder="Titolo tesi.." onChange={this.onChange.bind(this)} className="input is-normal is-rounded" id="textBoxThesisSearch"/>
                         </div>
-                        <div className="control">
-                            <a className="button is-rounded is-danger" onClick={this.clickFn}>
+                        <div id="divCancelFilter" className="control">
+                            <a className="button is-rounded is-danger" onClick={this.clickFn} id="buttonFilter">
                                 <i className="fas fa-times"></i>
                             </a>
                         </div>
