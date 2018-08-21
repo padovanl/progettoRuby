@@ -10,11 +10,7 @@ class ClearThesisFilter extends React.Component{
 
 
 
-    clickFn(){
 
-        document.getElementById('textBoxThesisSearch').value = '';
-        this.props.getAll();
-    }
 
     render(){
 
