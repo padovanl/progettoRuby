@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
 
   get '/allcourses', to: 'courses#allcourses'
+  get :searchCourses, controller: :courses
+
 
   resources :posts
   resources :comments
