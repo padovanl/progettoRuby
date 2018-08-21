@@ -46,7 +46,7 @@ class Thesis extends React.Component{
         return(
             <tr key={this.props.thesis.id}>
                 <td>{title}</td>
-                <td>{content}</td>
+                <td className="is-hidden-mobile">{content}</td>
                 <td>{teacher_id}</td>
                 <td>
                     <a className="button is-rounded is-success" onClick={() => this.handleEdit()} title="Modifica">{pulsante}</a>&nbsp;

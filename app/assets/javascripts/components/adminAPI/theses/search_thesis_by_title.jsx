@@ -16,10 +16,15 @@ class SearchThesisByTitle extends React.Component{
     }
     render() {
         return (
-                <div>
-                    <input type="text" placeholder="Titolo tesi.." onChange={this.onChange.bind(this)} className="input is-medium" id="textBoxThesisSearch"/>
-                    You typed: <code>{this.state.typed}</code>
+            <div className="columns">
+                <div className="column">
+                    <p><b>Cerca per titolo:</b></p>
                 </div>
+                <div className="column is-9">
+                    <input type="search" placeholder="Titolo tesi.." onChange={this.onChange.bind(this)} className="input is-normal is-half" id="textBoxThesisSearch"/>
+                </div>
+                <div className="column"></div>
+            </div>
             )
     }
 }

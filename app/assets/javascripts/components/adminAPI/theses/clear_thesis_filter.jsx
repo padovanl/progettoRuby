@@ -11,9 +11,9 @@ class ClearThesisFilter extends React.Component{
 
 
     clickFn(){
-        this.props.getAll();
-        document.getElementById('lang').selectedIndex = 0;
+
         document.getElementById('textBoxThesisSearch').value = '';
+        this.props.getAll();
     }
 
     render(){
