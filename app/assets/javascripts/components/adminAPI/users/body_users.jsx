@@ -11,6 +11,7 @@ class BodyUsers extends React.Component {
         this.deleteTeacher = this.deleteTeacher.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
         this.updateTeacher = this.updateTeacher.bind(this)*/
+        this.handleSetAdmin = this.handleSetAdmin.bind(this);
     }
 
 
@@ -22,11 +23,29 @@ class BodyUsers extends React.Component {
             .then((data) => {this.setState({ users: data }) });
     }
 
+    handleSetAdmin(id){
+        if(confirm('Sei sicuro di voler promuovere questo utente ad amministratore?')){
+            fetch('/api/v1/users/set_admin/' + id,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then((response) => {
+                if (response.ok){
+                    this.componentDidMount()
+                }else{
+                    alert("errore")
+                }
+            })
+        }
+    }
+
 
     render(){
         return(
             <div>
-                <AllUsers users={this.state.users} />
+                <AllUsers users={this.state.users} handleSetAdmin={this.handleSetAdmin}/>
             </div>
         )
     }

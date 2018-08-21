@@ -81,6 +81,7 @@ Rails.application.routes.draw do
   get "/api/v1/theses/search/title/(:string)", to: "api/v1/theses#searchByTitle"
 
   get "/api/v1/users", to: "api/v1/users#index"
+  post "/api/v1/users/set_admin/:user_id", to: "api/v1/users#setAdmin"
 
   mount ActionCable.server, at: '/cable'
 

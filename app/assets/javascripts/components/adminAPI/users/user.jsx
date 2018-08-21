@@ -38,8 +38,11 @@ class User extends React.Component{
             ruolo = <i></i>
         }
 
-        let pulsante = <i className="fas fa-level-up-alt"></i>;
-
+        let pulsante = '';
+        if(!this.props.user.admin)
+            pulsante = <a className="button is-rounded is-success" title="Promuovi ad amministratore" onClick={() => this.props.handleSetAdmin(this.props.user.id)}><i className="fas fa-level-up-alt"></i></a>;
+        else
+            pulsante = '';
         return(
             <tr key={this.props.user.id}>
                 <td>{image}</td>
@@ -47,7 +50,7 @@ class User extends React.Component{
                 <td>{email}</td>
                 <td>{ruolo}</td>
                 <td>
-                    <a className="button is-rounded is-success" title="Promuovi ad amministratore">{pulsante}</a>&nbsp;
+                    {pulsante}
                 </td>
             </tr>
 

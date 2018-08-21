@@ -4,4 +4,10 @@ class Api::V1::UsersController < ApplicationController
     render json: User.all
   end
 
+  def setAdmin
+    user = User.find(params[:user_id])
+    user.admin = true;
+    user.save
+    render json: user
+  end
 end
