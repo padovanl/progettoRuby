@@ -31,7 +31,7 @@ class Course2 extends React.Component{
         //let pulsante = <i className="fas fa-pen"></i>;
 
         let pulsante = null;
-        let link = "/dashboard/course/teachers/" + this.props.course.id;
+        let link = "/dashboard/degree_course/" + this.props.degree_course_id + "/course/teachers/" + this.props.course.id;
 
         if(!this.state.editable){
             pulsante = <i className="fas fa-pen"></i>;

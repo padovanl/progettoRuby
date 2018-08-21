@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "documents/index", type: :view do
   before(:each) do
-    assign(:documents, [
+    assign(:resources, [
       Document.create!(),
       Document.create!()
     ])

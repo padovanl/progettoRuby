@@ -12,7 +12,7 @@ const AllTheses = (props) => {
                 <thead>
                 <tr>
                     <th>Titolo</th>
-                    <th>Descrizione</th>
+                    <th className="is-hidden-mobile">Descrizione</th>
                     <th>Professore</th>
                     <th>Opzioni</th>
                 </tr>

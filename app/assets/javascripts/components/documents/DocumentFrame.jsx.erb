@@ -1,0 +1,16 @@
+class DocumentFrame extends React.Component {
+    render() {
+        const { document } = this.props
+
+        return (<div className="tile is-parent"><article className="tile is-child box">
+
+                   { document.file_url ? <figure class="image image is-4by3"><a className="link-to-commets" href={ document.path } target="_blank">
+                    <img src={ document.file_url } /> </a>
+                   </figure> : '' }
+                { document.file_url ?<hr />: '' }
+                <p className="resource-name"><strong> { document.filename } </strong></p>
+                <p className="content-date">{(new  Date(Date.parse(document.created_at))).toLocaleDateString('it-IT', options)}</p>
+                <p>#subtitle #cose</p>
+        </article></div>)
+    }
+}
