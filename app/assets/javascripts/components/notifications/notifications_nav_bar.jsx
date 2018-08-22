@@ -3,17 +3,18 @@ class NotificationsNavBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            count: 0
+            temp: 0
         };
+        //this.temp = ''
     }
 
 
 
 
-    getCountNew(){
+    componentDidMount(){
         fetch('/api/v1/new_notifications.json')
             .then((response) => {return response.json()})
-            .then((data) => { this.setState({count: data})});
+            .then((data) => { this.setState({temp: data})});
     }
 
 
@@ -22,11 +23,13 @@ class NotificationsNavBar extends React.Component {
         let style = {
             margin: 8,
         };
+
+        //this.getCountNew();
         //this.getCountNew();
         return(
             <div style={style}>
                 <a className="navbar-item" href="/notifications">
-                    <span className="badge is-badge-primary bd-emoji" data-badge="1"><i className="fas fa-globe-americas"></i></span>
+                    <span className="badge is-badge-primary bd-emoji" data-badge={this.state.temp}><i className="fas fa-globe-americas"></i></span>
                 </a>
             </div>
 
