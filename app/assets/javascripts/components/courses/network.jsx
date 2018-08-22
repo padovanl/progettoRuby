@@ -18,12 +18,14 @@ const getAll = (page) => {
     }
     else
         baseURL = baseURL = "/allcourses.json?page="+page;
+    console.log("baseURL: "+baseURL)
     return makeReq(baseURL, errorMessage);
 };
 
 
-const searchAll = (course_name) => {
+const searchAll = (course_name, page) => {
     const errorMessage = 'Errore durante il search dei dati';
-    baseURL = "/allcourses.json?utf8=✓&search="+course_name;
+    baseURL = "/allcourses.json?"+"page="+page+"?utf8=✓&search="+course_name;
+    console.log("baseURL: "+baseURL)
     return makeReq(baseURL, errorMessage);
 };
