@@ -10,6 +10,10 @@ class Course < ApplicationRecord
 
 
   def self.search(query)
-    where("name like ?", "%#{query}%")
+    if query
+      where("name like ?", "%#{query}%")
+    else
+      all
+    end
   end
 end

@@ -12,17 +12,26 @@
     </div>
 
 
+    <% link_to "Advanced Search", searchCourses_path %>
 
-    <% form_tag(allcourses_path, :method => "get", id: "search-form", class:"search-form pull-right") do %>
-      <div class="form-group">
-        <% text_field_tag :search, params[:search], placeholder:"Search Courses in all pages", class:'form-control' %>
-      </div>
-      <% submit_tag "Search", :name => nil, class:'btn btn-primary' %>
-    <%end%>
+    <h4>Advanced Search</h4>
+    <div class="row">
+      <%= form_tag(allcourses_path, :method => "get", id: "search-form") do %>
+          <%= text_field_tag :search, params[:name], placeholder:"Search courses by name", class:'form-control gap' %>
+          <%= text_field_tag :search, params[:year], placeholder:"Search courses by year", class:'form-control gap' %>
+          <%= text_field_tag :search, params[:teacher], placeholder:"Search courses by teacher's surname", class:'form-control gap' %>
+          <%= text_field_tag :search, params[:module], placeholder:"Search courses by module", class:'form-control gap' %>
+          <%= submit_tag "Search courses", :name => nil, class:'button-search'%>
+      <%end%>
+    </div>
 
 
-    <div>
-      <%= react_component 'IndexCourses', search: @search%>
+    <div class="row">
+      <%= react_component 'SearchItem', categories: @categories%>
+    </div>
+
+    <div class="row">
+      <%= react_component 'IndexCourses', last_page: @last_page%>
     </div>
 
 

@@ -1,4 +1,4 @@
-
+const baseURL = "/allcourses.json";
 
 function makeReq(url, errorMessage = '', options = {}) {
     return fetch(url, options)
@@ -12,18 +12,31 @@ function makeReq(url, errorMessage = '', options = {}) {
 }
 
 const getAll = (page) => {
+    let url =baseURL;
     const errorMessage = 'Errore durante il download dei dati';
-    if (page===1){
-        baseURL = "/allcourses.json";
-    }
-    else
-        baseURL = baseURL = "/allcourses.json?page="+page;
-    return makeReq(baseURL, errorMessage);
+    if (page!==1)
+        url += "?page="+page;
+    console.log("baseURL: "+url)
+    return makeReq(url, errorMessage);
 };
 
 
-const searchAll = (course_name) => {
+const searchAll = (category, query, page='') => {
+    let url=baseURL;
     const errorMessage = 'Errore durante il search dei dati';
-    baseURL = "/allcourses.json?utf8=✓&search="+course_name;
-    return makeReq(baseURL, errorMessage);
+    if (page !== '')
+        url = url+ "?page="+page+"?utf8=✓";
+    url = url+ "&search="+query+"&category="+category;
+  /*  if (category === "Name")
+        url = url + "&search="+query+"&category="+category;
+    if (category === "Year")
+        url = url + "&search="+query;
+    if (category === "Teacher")
+        url = url + "search="+query;
+    if (category === "Module")
+        url = url + "search="+query;
+*/
+
+    console.log("url: "+url);
+    return makeReq(url, errorMessage);
 };
