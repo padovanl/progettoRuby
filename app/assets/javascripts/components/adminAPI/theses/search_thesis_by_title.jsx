@@ -24,6 +24,9 @@ class SearchThesisByTitle extends React.Component{
     }
 
     render() {
+        let hoverStyle = {
+
+        };
         return (
             <div className="columns">
                 <div className="column">
@@ -32,7 +35,7 @@ class SearchThesisByTitle extends React.Component{
                 <div className="column is-9">
                     <div className="field has-addons">
                         <div className="control">
-                            <input type="search" placeholder="Titolo tesi.." onChange={this.onChange.bind(this)} className="input is-normal is-rounded" id="textBoxThesisSearch"/>
+                            <input type="text" placeholder="Titolo tesi.." onChange={this.onChange.bind(this)} className="input is-normal is-rounded" id="textBoxThesisSearch"/>
                         </div>
                         <div id="divCancelFilter" className="control">
                             <a className="button is-rounded is-danger" onClick={this.clickFn} id="buttonFilter">

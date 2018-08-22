@@ -26,8 +26,8 @@ development:
   adapter:
   <<: *default
   database: pconcorrente
-  username: eugenio
-  password: Eugenio93
+  username: pconcorrente
+  password: 3478698318lP
   host: localhost
 
   # The specified database role being used to connect to postgres.
@@ -63,8 +63,8 @@ development:
 test:
   <<: *default
   database: pconcorrente
-  username: eugenio
-  password: Eugenio93
+  username: pconcorrente
+  password: 3478698318lP
   host: localhost
 
 # As with config/secrets.yml, you never want to store sensitive information,

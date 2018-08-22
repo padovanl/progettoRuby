@@ -82,6 +82,19 @@ Rails.application.routes.draw do
   get "/api/v1/theses/search/prof/:teacher_id", to: "api/v1/theses#searchByProf"
   get "/api/v1/theses/search/title/(:string)", to: "api/v1/theses#searchByTitle"
 
+  get "/api/v1/users", to: "api/v1/users#index"
+  post "/api/v1/users/set_admin/:user_id", to: "api/v1/users#setAdmin"
+
+
+  #route index notifiche
+  get "/notifications", to: "notifications#index"
+  get "/api/v1/new_notifications", to: "api/v1/notifications#getCount"
+  namespace :api do
+    namespace :v1 do
+      resources :notifications, only: [:index, :destroy]
+    end
+  end
+
   mount ActionCable.server, at: '/cable'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
