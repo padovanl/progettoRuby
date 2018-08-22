@@ -89,6 +89,11 @@ Rails.application.routes.draw do
   #route index notifiche
   get "/notifications", to: "notifications#index"
   get "/api/v1/new_notifications", to: "api/v1/notifications#getCount"
+  namespace :api do
+    namespace :v1 do
+      resources :notifications, only: [:index, :destroy]
+    end
+  end
 
   mount ActionCable.server, at: '/cable'
 

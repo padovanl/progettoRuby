@@ -22,11 +22,11 @@ class NotificationsNavBar extends React.Component {
         let style = {
             margin: 8,
         };
-        this.getCountNew();
+        //this.getCountNew();
         return(
             <div style={style}>
                 <a className="navbar-item" href="/notifications">
-                    <span className="badge is-badge-primary bd-emoji" data-badge={this.state.count}><i className="fas fa-globe-americas"></i></span>
+                    <span className="badge is-badge-primary bd-emoji" data-badge="1"><i className="fas fa-globe-americas"></i></span>
                 </a>
             </div>
 
