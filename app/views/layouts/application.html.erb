@@ -146,11 +146,13 @@
 
 
   <script type="text/javascript">
-      $(window).load(loaded());
+      //$(window).load(loaded());
 
-      function loaded() {
+      $(window).on('load', function () {
           $(".se-pre-con").fadeOut("slow");
-      }
+      })
+
+
   </script>
 
 
