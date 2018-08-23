@@ -2,6 +2,6 @@
 <% content_for :title, "Posts" %>
 
 <%= react_component("PostsThread", { course_id: Course.first.id, current_user: current_user,
-          current_user_avatar: (@current_user_avatar.blank? ? image_url("dragon.png") : @current_user_avatar)
+          current_user_avatar: @current_user_avatar
 }) %>
 

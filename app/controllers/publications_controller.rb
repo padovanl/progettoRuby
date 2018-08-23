@@ -2,7 +2,6 @@ class PublicationsController < ApplicationController
   before_action :authenticate_user!
   def index
     @current_user_avatar = get_avatar_image
-    current_user.avatar.purge
   end
 
   private
@@ -12,6 +11,8 @@ class PublicationsController < ApplicationController
       return rails_representation_url(current_user.avatar.variant(resize: "100x100"), only_path: true)
     elsif not current_user.image.blank?
       return current_user.image
+    else
+      return ActionController::Base.helpers.asset_path("dragon.png")
     end
   end
 end
