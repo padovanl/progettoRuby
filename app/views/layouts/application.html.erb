@@ -99,10 +99,13 @@
             <a class="navbar-link  is-active" href="#">
               Ciao <%= current_user.name %>!
             </a>
+
             <div class="navbar-dropdown ">
-              <a class="navbar-item " href="<%= edit_user_registration_path %>">
-                Modifica account
-              </a>
+              <% if current_user.provider != 'facebook' then %>
+                <a class="navbar-item " href="<%= edit_user_registration_path %>">
+                  Modifica account
+                </a>
+              <% end %>
               <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "navbar-item" %>
             </div>
           </div>

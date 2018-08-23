@@ -18,68 +18,68 @@ User.destroy_all
 TeacherCourse.destroy_all
 
  
-degree_course = DegreeCourse.create!( id: 1, name: "Ingegneria civile e ambientale", tipo: "triennale" )
+  degree_course = DegreeCourse.create!( id: 1, name: "Ingegneria civile e ambientale", tipo: "triennale" )
 
-degree_course.courses.create!([
-    { id:1, name: "Analisi Matematica I", year: 1 },
-    { id:2, name: "Geometria", year: 1 },
-    { id:3, name: "Fisica Generale", year: 1 },
-    { id:4, name: "Disegno Civile", year: 1 }
-])
-
-degree_course = DegreeCourse.create!( id: 2, name: "Ingegneria elettronica e informatica", tipo: "triennale" )
-
-degree_course.courses.create!([
-    { name: "Analisi Matematica I.A", year: 1 },
-    { name: "Geometria e Algebra", year: 1 },
-    { name: "Analisi matematica I.B", year: 1 },
-    { name: "Fisica I", year: 1 }
+  degree_course.courses.create!([
+      { id:1, name: "Analisi Matematica I", year: 1 },
+      { id:2, name: "Geometria", year: 1 },
+      { id:3, name: "Fisica Generale", year: 1 },
+      { id:4, name: "Disegno Civile", year: 1 }
   ])
+
+  degree_course = DegreeCourse.create!( id: 2, name: "Ingegneria elettronica e informatica", tipo: "triennale" )
+
+  degree_course.courses.create!([
+      { id:5, name: "Analisi Matematica I.A", year: 1 },
+      { id:6, name: "Geometria e Algebra", year: 1 },
+      { id:7, name: "Analisi matematica I.B", year: 1 },
+      { id:8, name: "Fisica I", year: 1 }
+    ])
 
   degree_course = DegreeCourse.create!( id: 3, name: "Ingegneria meccanica", tipo: "triennale" )
 
   degree_course.courses.create!([
-    { name: "Fondamenti di Chimica e Materiali", year: 1 },
-    { name: "Geometria e Algebra", year: 1 },
-    { name: "Disegno tecnico industriale", year: 1 },
-    { name: "Informatica Industriale", year: 1 }
+    { id:9, name: "Fondamenti di Chimica e Materiali", year: 1 },
+    { id:10, name: "Geometria e Algebra", year: 1 },
+    { id:11, name: "Disegno tecnico industriale", year: 1 },
+    { id:12, name: "Informatica Industriale", year: 1 }
   ])
 
   degree_course = DegreeCourse.create!( id: 4, name: "Ingegneria civile", tipo: "magistrale" )
 
   degree_course.courses.create!([
-    { name: "Tecnica delle Costruzioni", year: 1 },
-    { name: "Progettazione in zona sismica", year: 1 },
-    { name: "Progetti di strutture", year: 1 },
-    { name: "Organizzazione del cantiere", year: 2 }
+    { id:13, name: "Tecnica delle Costruzioni", year: 1 },
+    { id:14, name: "Progettazione in zona sismica", year: 1 },
+    { id:15, name: "Progetti di strutture", year: 1 },
+    { id:16, name: "Organizzazione del cantiere", year: 2 }
   ])
 
   degree_course = DegreeCourse.create!( id: 5, name: "Ingegneria elettronica e delle telecomunicazioni", tipo: "magistrale" )
 
   degree_course.courses.create!([
-    { name: "Architetture per sistemi embedded", year: 1 },
-    { name: "Tecniche di decisione, stima e sensing distribuito", year: 1 },
-    { name: "Progettazione dei sistemi elettronici ad elevata affidabilità", year: 1 },
-    { name: "Laboratorio FPGA", year: 2 }
+    { id:17, name: "Architetture per sistemi embedded", year: 1 },
+    { id:18, name: "Tecniche di decisione, stima e sensing distribuito", year: 1 },
+    { id:19, name: "Progettazione dei sistemi elettronici ad elevata affidabilità", year: 1 },
+    { id:20, name: "Laboratorio FPGA", year: 2 }
 ]) 
 
 
 degree_course = DegreeCourse.create!( id: 6, name: "Ingegneria meccanica", tipo: "magistrale" )
 
 degree_course.courses.create!([
-    { name: "STATISTICA E MODELLI DI DATI SPERIMENTALI", year: 1 },
-    { name: "TERMOFLUIDODINAMICA NUMERICA", year: 1 },
-    { name: "MECCANICA DELLE VIBRAZIONI", year: 2 },
-    { name: "MATERIALI POLIMERICI E COMPOSITI", year: 2 }
+    { id:21, name: "STATISTICA E MODELLI DI DATI SPERIMENTALI", year: 1 },
+    { id:22, name: "TERMOFLUIDODINAMICA NUMERICA", year: 1 },
+    { id:23, name: "MECCANICA DELLE VIBRAZIONI", year: 2 },
+    { id:24, name: "MATERIALI POLIMERICI E COMPOSITI", year: 2 }
 ])
 
 degree_course = DegreeCourse.create!( id: 7, name: "Ingegneria informatica e dell'automazione", tipo: "magistrale" )
 
 degree_course.courses.create!([
-    { name: "Sistemi distribuiti e mobili", year: 1 },
-    { name: "Fondamenti di intelligenza artificiale", year: 1 },
-    { name: "Ricerca operativa", year: 2 },
-    { name: "Progetto di sistemi Web", year: 2 }
+    { id:25, name: "Sistemi distribuiti e mobili", year: 1 },
+    { id:26, name: "Fondamenti di intelligenza artificiale", year: 1 },
+    { id:27, name: "Ricerca operativa", year: 2 },
+    { id:28, name: "Progetto di sistemi Web", year: 2 }
 ])
 
 
@@ -104,28 +104,28 @@ teacher.theses.create!([
 ])
 
 teacher.teacher_courses.create!([
-    {data: "2017-2018", teacher_id: teacher.id, course_id: 3},
-    {data: "2015-2016", teacher_id: teacher.id, course_id: 4},
-    {data: "2011-2012", teacher_id: teacher.id, course_id: 3}
+    {year: "2017-2018", teacher_id: teacher.id, course_id: 3},
+    {year: "2015-2016", teacher_id: teacher.id, course_id: 4},
+    {year: "2011-2012", teacher_id: teacher.id, course_id: 3}
 ])
 
 
 teacher = Teacher.create!( name: "Torto", surname: "Mauronesi", link_cv:"https://de.unife.it/en/research/research-1/information-technology/computer-science/distributed-systems-group/people/mauro-tortonesi")
 
 teacher.teacher_courses.create!([
-    {data: "2017-2018", teacher_id: teacher.id, course_id: 1},
-    {data: "2016-2017", teacher_id: teacher.id, course_id: 1},
-    {data: "2015-2016", teacher_id: teacher.id, course_id: 2}
+    {year: "2017-2018", teacher_id: teacher.id, course_id: 1},
+    {year: "2016-2017", teacher_id: teacher.id, course_id: 1},
+    {year: "2015-2016", teacher_id: teacher.id, course_id: 2}
 ])
 teacher = Teacher.create!( name: "Stefano", surname: "Cesarelli", link_cv:"http://docente.unife.it/cesare.stefanelli/curriculum")
 
 teacher.teacher_courses.create!([
-    {data: "2017-2018", teacher_id: teacher.id, course_id: 4},
-    {data: "2013-2014", teacher_id: teacher.id, course_id: 4},
-    {data: "2010-2011", teacher_id: teacher.id, course_id: 2},
-    {data: "2003-2004", teacher_id: teacher.id, course_id: 1},
-    {data: "2002-2003", teacher_id: teacher.id, course_id: 1},
-    {data: "2001-2002", teacher_id: teacher.id, course_id: 1}
+    {year: "2017-2018", teacher_id: teacher.id, course_id: 4},
+    {year: "2013-2014", teacher_id: teacher.id, course_id: 4},
+    {year: "2010-2011", teacher_id: teacher.id, course_id: 2},
+    {year: "2003-2004", teacher_id: teacher.id, course_id: 1},
+    {year: "2002-2003", teacher_id: teacher.id, course_id: 1},
+    {year: "2001-2002", teacher_id: teacher.id, course_id: 1}
 ])
 
 
