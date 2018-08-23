@@ -2,6 +2,7 @@ class PublicationsController < ApplicationController
   before_action :authenticate_user!
   def index
     @current_user_avatar = get_avatar_image
+    current_user.avatar.purge
   end
 
   private
