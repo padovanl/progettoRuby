@@ -1,6 +1,12 @@
 function externalSetStateCourses(data){
     this.setState({courses: data})
 }
+function setClickedButtonSearch(data){
+    this.setState({clickedButtonSearch: data})
+}
+function externalConcatStateCourses(data){
+    this.setState({courses: this.state.courses.concat(data)})
+}
 
 class IndexCourses extends React.Component{
     constructor(props) {
@@ -10,6 +16,7 @@ class IndexCourses extends React.Component{
             error: '',
             search: '',
             page:1,
+            clickedButtonSearch: false,
             autoCompleteResults: [],
             last_page: props.last_page,
         };
@@ -17,6 +24,8 @@ class IndexCourses extends React.Component{
         // bind function in constructor instead of render (https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md)
         this.onChangePage = this.onChangePage.bind(this);
         externalSetStateCourses = externalSetStateCourses.bind(this);
+        setClickedButtonSearch = setClickedButtonSearch.bind(this);
+        externalConcatStateCourses = externalConcatStateCourses.bind(this);
     }
 
     componentDidMount(){
@@ -74,7 +83,7 @@ class IndexCourses extends React.Component{
             return "Corsi non trovati.";
 
         let buttonNext;
-        if (this.state.page !== this.state.last_page+1){
+        if (this.state.page !== this.state.last_page+1 && this.state.clickedButtonSearch === false){
             buttonNext= <div className='buttonnext' onClick={this.onChangePage} >
                             <span> Next </span>
                         </div>
@@ -104,14 +113,13 @@ class IndexCourses extends React.Component{
         });
 
         return(
-            <div>
+            <div className='myColumn-lg'>
+                <hr className='gap'/>
                 <p>{message}</p>
-                <div className="row">
-                </div>
                 <div className="wrapper infinite-container">{items}</div>
                 <div className='row'>
                     {buttonNext}
-                    <input id="searchBar" className='search-form' type="text" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="Filter courses by name"/>
+                    <input className='input-form gap' type="text" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="Filter courses by name"/>
                 </div>
             </div>
         )

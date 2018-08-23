@@ -16,11 +16,11 @@ class TeacherCourse < ApplicationRecord
 
       case category
       when 'Name'
-        eager_load(:course, :teacher).order(year: :desc).where("courses.name like ?", "%#{query}%")
+        eager_load(:course, :teacher).order(year: :desc).where("courses.name ILIKE ?", "%#{query}%")
       when 'Year'
         eager_load(:course, :teacher).order("courses.name desc").where("teacher_courses.year LIKE ?", "%#{query}%")
       when 'Teacher'
-        eager_load(:course, :teacher).order(year: :desc).where("teachers.surname LIKE ?", "%#{query}%")
+        eager_load(:course, :teacher).order(year: :desc).where("teachers.surname ILIKE ?", "%#{query}%")
       when  'Module'
         eager_load(:course, :teacher).order(year: :desc).where("courses.year =?", "#{query}")
       else
