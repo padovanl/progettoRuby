@@ -49,3 +49,39 @@
   </div>
 </section>
 
+
+
+<div class="footer1" id="footer">
+  <p style="margin: 20px;">Questo sito utilizza soltanto cookie tecnici. Non utilizziamo nessun cookie di terze parti. Effettuando il login accetti l'utilizzo dei cookies.</p>
+  <span class="close" onclick="CloseCookie();"><i class="fa fa-times" aria-hidden="true" style="color: white;"></i></span>
+</div>
+
+<script>
+    function CloseCookie(){
+        $('#footer').remove();
+    }
+</script>
+
+<style>
+  .footer1 {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(186, 186, 197);
+    color: white;
+    text-align: center;
+    z-index: 10;
+    height: 70px;
+    opacity: 0.7;
+  }
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    padding: 10px 10px;
+  }
+</style>
+
+

@@ -15,7 +15,7 @@ class BodyDegreeCourses extends React.Component {
 
     handleUpdate(course){
         if(course.name != ''){
-            fetch(`http://localhost:3000/api/v1/degree_courses/${course.id}`,
+            fetch(`/api/v1/degree_courses/${course.id}`,
                 {
                     method: 'PUT',
                     body: JSON.stringify({degree_course: course}),
@@ -40,7 +40,7 @@ class BodyDegreeCourses extends React.Component {
     }
 
     handleDelete(id){
-        fetch(`http://localhost:3000/api/v1/degree_courses/${id}`,
+        fetch(`/api/v1/degree_courses/${id}`,
             {
                 method: 'DELETE',
                 headers: {
@@ -66,7 +66,7 @@ class BodyDegreeCourses extends React.Component {
         let body = JSON.stringify({degree_course: {name: name, tipo:   tipo } })
 
         if(name != ''){
-            fetch('http://localhost:3000/api/v1/degree_courses', {
+            fetch('/api/v1/degree_courses', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

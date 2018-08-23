@@ -208,7 +208,7 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="625" />
     <option name="y" value="35" />
     <option name="width" value="2319" />
@@ -543,12 +543,12 @@
       <workItem from="1534865581179" duration="81000" />
       <workItem from="1534865676253" duration="15332000" />
       <workItem from="1534890289792" duration="9778000" />
-      <workItem from="1534962189420" duration="5045000" />
+      <workItem from="1534962189420" duration="5361000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75159000" />
+    <option name="totallyTimeSpent" value="75475000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="134" y="35" width="3706" height="2125" extended-state="6" />
@@ -562,7 +562,7 @@
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32956383" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.34679592" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.25794291" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3817986" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
