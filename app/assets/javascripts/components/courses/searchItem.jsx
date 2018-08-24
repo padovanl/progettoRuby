@@ -1,3 +1,7 @@
+function backupCoursesIndex(data){
+    this.setState({coursesBackup: data});
+}
+
 class SearchItem extends React.Component {
     constructor(props) {
         super(props);
@@ -15,9 +19,13 @@ class SearchItem extends React.Component {
             coursesBackup: [],
             showItemSelected: false
         };
-
+        backupCoursesIndex = backupCoursesIndex.bind(this);
+        this.resetParameters = this.resetParameters.bind(this);
     }
 
+    resetParameters(){
+        this.setState({page:1, data:[], last_page:false, changedInputSearch:false})
+    }
 
     updateSearch(event){
         this.setState({query: event.target.value.substr(0,20).toLowerCase(), changedInputSearch: true, page: 1, last_page:false});
@@ -59,7 +67,8 @@ class SearchItem extends React.Component {
     }
 
     returnSearchCourses(){ // completare questa funz corrente
-        externalSetStateCourses(this.state.coursesBackup); //da fare la funzione per fare il backup qui
+        //ritorno i primi corsi che aveva prima della ricerca
+        externalSetStateCourses(this.state.coursesBackup);
         resetParameters(); //resetto lo state tranne che per la categoria che deve camminare insieme a quella che è stata selezionata
         //riabilito il tasto Next
         //disabilito tasto search (se input è vuoto, magari lascio così com'è)
@@ -105,6 +114,7 @@ class SearchItem extends React.Component {
                             <input required className='input-form gap' type="text" value={this.state.name} onChange={this.updateSearch.bind(this)} placeholder="Search courses"/>
                         </div>
                         <div className='myColumn myColumn-sm'> {searchButton} </div>
+                        <div className='myColumn myColumn-sm'> {backButton} </div>
                     </div>
                 </form>
 

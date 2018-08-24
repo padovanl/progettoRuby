@@ -30,6 +30,7 @@ class IndexCourses extends React.Component{
 
     componentDidMount(){
         this.getCourses();
+        backupCoursesIndex(this.state.courses);
     }
 
 
