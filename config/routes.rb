@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get 'welcome/index'
   root 'welcome#index'
 
+  get '/javascript_disabled', to: 'welcome#jsDisabled', as: 'jsDisabled'
+
   devise_for :users, controllers: {omniauth_callbacks: "users/omniauth_callbacks"}
 
   resources :upvotes
