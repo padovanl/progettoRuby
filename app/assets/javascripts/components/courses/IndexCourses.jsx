@@ -1,4 +1,5 @@
 function externalSetStateCourses(data){
+    console.log("data: " + data);
     this.setState({courses: data})
 }
 function setClickedButtonSearch(data){
@@ -6,6 +7,9 @@ function setClickedButtonSearch(data){
 }
 function externalConcatStateCourses(data){
     this.setState({courses: this.state.courses.concat(data)})
+}
+function externalBackCourses() {
+    this.setState({courses: [],clickedButtonSearch: false, page: 1},this.getCourses());
 }
 
 class IndexCourses extends React.Component{
@@ -26,13 +30,21 @@ class IndexCourses extends React.Component{
         externalSetStateCourses = externalSetStateCourses.bind(this);
         setClickedButtonSearch = setClickedButtonSearch.bind(this);
         externalConcatStateCourses = externalConcatStateCourses.bind(this);
+        externalBackCourses = externalBackCourses.bind(this);
     }
 
     componentDidMount(){
         this.getCourses();
-        backupCoursesIndex(this.state.courses);
     }
 
+    componentWillUpdate(nextProps, nextState){
+        console.log("IC componentDidUpdate");
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        console.log("prevState: "+prevState.page);
+        console.log("IC componentDidUpdate");
+    }
 
     handleError(error){
         this.setState({error: `Error: ${error.message}`}, () =>
@@ -57,12 +69,12 @@ class IndexCourses extends React.Component{
                 this.setState({courses: newCourses})
             })
             .catch(this.handleError);
-        this.setState({page: this.state.page +=1});
+
     }
 
     onChangePage() {
+        this.setState({page: this.state.page +=1},this.getCourses());
         // update state with new page of items
-        this.getCourses();
     }
 
 
@@ -84,7 +96,7 @@ class IndexCourses extends React.Component{
             return "Corsi non trovati.";
 
         let buttonNext;
-        if (this.state.page !== this.state.last_page+1 && this.state.clickedButtonSearch === false){
+        if (this.state.page !== this.state.last_page && this.state.clickedButtonSearch === false){
             buttonNext= <div className='buttonnext' onClick={this.onChangePage} >
                             <span> Next </span>
                         </div>

@@ -17,6 +17,7 @@ class SearchItem extends React.Component {
             autoCompleteResults: [],
             itemSelected: {},
             coursesBackup: [],
+            setCourses: false,
             showItemSelected: false
         };
         backupCoursesIndex = backupCoursesIndex.bind(this);
@@ -24,7 +25,7 @@ class SearchItem extends React.Component {
     }
 
     resetParameters(){
-        this.setState({page:1, data:[], last_page:false, changedInputSearch:false})
+        this.setState({page:1, data:[], last_page:false, changedInputSearch:false, setCourses:false})
     }
 
     updateSearch(event){
@@ -45,6 +46,7 @@ class SearchItem extends React.Component {
                     if (data.length ===0 )
                         this.setState({last_page: true});
                     externalSetStateCourses(data);
+                    this.setState({setCourses: true});
                     console.log("data: "+ data.length)
                 })
                 .catch(this.handleError);
@@ -54,22 +56,23 @@ class SearchItem extends React.Component {
                 .then(data=> {
                     if (data.length ===0 )
                         this.setState({last_page: true});
-                    else
+                    else{
                         externalConcatStateCourses(data);
+                        this.setState({setCourses: true});
+                    }
                 })
                 .catch(this.handleError);
         }
         setClickedButtonSearch(true);
-        this.setState({changedInputSearch: false});
+        this.setState({changedInputSearch: false, page: this.state.page+1});
         console.log("last page: "+this.state.last_page);
         console.log("changed: "+ this.state.changedInputSearch);
-        this.setState({page: this.state.page+1});
     }
 
     returnSearchCourses(){ // completare questa funz corrente
         //ritorno i primi corsi che aveva prima della ricerca
-        externalSetStateCourses(this.state.coursesBackup);
-        resetParameters(); //resetto lo state tranne che per la categoria che deve camminare insieme a quella che è stata selezionata
+        externalBackCourses();
+        this.resetParameters(); //resetto lo state tranne che per la categoria che deve camminare insieme a quella che è stata selezionata
         //riabilito il tasto Next
         //disabilito tasto search (se input è vuoto, magari lascio così com'è)
     }
@@ -86,10 +89,10 @@ class SearchItem extends React.Component {
 
 
         let backButton;
-        if (this.state.query === '' || (this.state.last_page === true && this.state.changedInputSearch===false))
-            backButton = <div className=' button-search gap disabled'> <span>Search</span> </div>;
+        if (!this.state.setCourses)
+            backButton = <div className=' button-search gap disabled'> <span>Back</span> </div>;
         else
-            backButton = <div className=' button-search gap' onClick={this.returnSearchCourses.bind(this)} > <span>Search</span></div>;
+            backButton = <div className=' button-search gap' onClick={this.returnSearchCourses.bind(this)} > <span>Back</span></div>;
 
 
 
