@@ -16,7 +16,7 @@
 config/database.yml
 /.idea/workspace.xml
 /config/database.yml
-
+.idea
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
