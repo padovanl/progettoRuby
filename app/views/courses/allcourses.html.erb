@@ -16,12 +16,10 @@
 
     <div class="myColumn-lg">
       <div class="row">
-        <%= react_component 'SearchItem', categories: @categories%>
+        <%= react_component 'SearchItem2', categories: @categories, last_page: @last_page%>
       </div>
 
-      <div class="row">
-        <%= react_component 'IndexCourses', last_page: @last_page%>
-      </div>
+
     </div>
 
 
