@@ -55,6 +55,25 @@
               </div>
             <% end %>
             <br />
+            <div id="errorMessageContainer" hidden="true">
+              <article class="message is-danger">
+                <div class="message-header">
+                  <p>Risolvi i seguenti errori per continuare:</p>
+                  <button class="delete" aria-label="delete" id="btnCloseErrorPanel"></button>
+                </div>
+                <div class="message-body" id="errorDiv">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>,
+                  tempus
+                  quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus
+                  diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus.
+                  Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a
+                  neque.
+                  Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+                </div>
+              </article>
+
+            </div>
+
             <div class="is-divider"></div>
             <%= render "devise/shared/links" %>
           </div>
@@ -63,3 +82,45 @@
     </div>
   </div>
 </section>
+
+<script>
+  $("#new_user").on('submit', function () {
+      var pwd = $("#user_password").val();
+      var rePwd = $('#user_password_confirmation').val();
+      if(pwd != rePwd){
+          $("#user_password").addClass("errorPassword");
+          $('#user_password_confirmation').addClass("errorPassword");
+          $("#errorMessageContainer").removeAttr('hidden');
+          $('#errorDiv').html('<ul><li>Le due password non coincidono.</li></ul>');
+          //alert("Le password non coincidono")
+          return false;
+      }else{
+          $("#user_password").removeClass("errorPassword");
+          $('#user_password_confirmation').removeClass("errorPassword");
+          return true;
+      }
+  })
+
+
+  $("#user_password_confirmation").on('blur', function () {
+      var pwd = $("#user_password").val();
+      var rePwd = $('#user_password_confirmation').val();
+      if(pwd != rePwd){
+          $('#user_password_confirmation').addClass("errorPassword");
+
+      }else{
+          $('#user_password_confirmation').removeClass("errorPassword");
+      }
+  })
+
+  $('#btnCloseErrorPanel').on('click', function () {
+      $("#errorMessageContainer").attr('hidden', 'true');
+      $('#errorDiv').html('');
+  })
+</script>
+
+<style>
+  .errorPassword {
+    border-color: #FF0000;
+  }
+</style>

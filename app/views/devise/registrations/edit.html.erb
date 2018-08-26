@@ -30,6 +30,24 @@
               <% end %>
 
               <div class="field">
+                <p><small><strong>AVATAR</strong></small></p>
+                <div class="file">
+                  <label class="file-label">
+                    <input class="file-input" type="file" name="resume">
+                    <span class="file-cta">
+                      <span class="file-icon">
+                        <i class="fas fa-upload"></i>
+                      </span>
+                      <%= f.label :avatar do %>
+                        <%= f.file_field :avatar, id: "inputFile" %>
+                      <% end %>
+                    </span>
+                  </label>
+                </div>
+
+              </div>
+
+              <div class="field">
                 <p><small><strong>PASSWORD</strong></small>&nbsp;<i>(lasciala bianca se non vuoi cambiarla)</i></p>
                 <%= f.password_field :password, autocomplete: "off", class: "input is-medium", style: "border-radius: 15px;" %>
                 <% if @minimum_password_length %>
@@ -48,14 +66,10 @@
                 <%= f.password_field :current_password, autocomplete: "off", class: "input is-medium", style: "border-radius: 15px;", required: true %>
               </div>
 
-              <div class="field">
-                <%= f.label :avatar do %>
-                  <%= f.file_field :avatar %>
-                <% end %>
-              </div>
+
 
               <div class="actions">
-                <%= f.submit "Update", class: "button is-medium is-rounded submit-action is-fullwidth" %>
+                <%= f.submit "Modifica", class: "button is-medium is-rounded submit-action is-fullwidth", id: "btnSubmit" %>
               </div>
             <% end %>
             <br/>
@@ -67,3 +81,18 @@
     </div>
   </div>
 </section>
+
+<script type="text/javascript">
+    $("#inputFile").on("change", function () {
+        var input = document.getElementById('inputFile').files[0].name;
+        var ext = input.split('.').pop();
+        var estensioni = ['jpeg', 'jpg', 'png', 'gif'];
+        if(!estensioni.includes(ext)){
+            $('#btnSubmit').prop('disabled', true)
+            alert("L'avatar deve avere uno dei seguenti formati: jpeg, jpg, png, gif.")
+        }else{
+            $('#btnSubmit').prop('disabled', false)
+        }
+
+    });
+</script>

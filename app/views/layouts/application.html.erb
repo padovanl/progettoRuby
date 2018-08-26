@@ -16,6 +16,10 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <noscript>
+    <meta HTTP-EQUIV="Refresh" content="0;URL=<%= jsDisabled_path %>" >
+  </noscript>
+
 </head>
 
 <body>
@@ -123,6 +127,10 @@
 
 
 <%= yield %>
+
+  <!-- mancavano questi, forse e' per questo che non comparivano gli avvisi di devise (comunque bisogna trovare un bel posto dove metterli)-->
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 
   <div class="se-pre-con"></div>
 

@@ -11,32 +11,31 @@ function makeReq(url, errorMessage = '', options = {}) {
         });
 }
 
-const getAll = (page) => {
-    let url =baseURL;
+
+const updateUrl=(page, category='', query='')=>{
+    let url = "/allcourses.json?page="+page;
+    if (query!=='') //se ho fatto la ricerca
+        url = url+ "?utf8=✓"+ "&search="+query+"&category="+category;
+    return url;
+};
+
+const getCourses = (url) => {
     const errorMessage = 'Errore durante il download dei dati';
-    if (page!==1)
-        url += "?page="+page;
-    console.log("baseURL: "+url)
+    console.log("url usato nella ricerca: "+url);
     return makeReq(url, errorMessage);
 };
 
-
+/*
 const searchAll = (category, query, page='') => {
     let url=baseURL;
     const errorMessage = 'Errore durante il search dei dati';
     if (page !== '')
         url = url+ "?page="+page+"?utf8=✓";
     url = url+ "&search="+query+"&category="+category;
-  /*  if (category === "Name")
-        url = url + "&search="+query+"&category="+category;
-    if (category === "Year")
-        url = url + "&search="+query;
-    if (category === "Teacher")
-        url = url + "search="+query;
-    if (category === "Module")
-        url = url + "search="+query;
-*/
 
     console.log("url: "+url);
     return makeReq(url, errorMessage);
 };
+
+
+*/
