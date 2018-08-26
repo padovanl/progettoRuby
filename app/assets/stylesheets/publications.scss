@@ -14,11 +14,16 @@
     margin-top: 9vh;
   }
 
+  ::-webkit-scrollbar {
+    width: 0;
+  }
   .tabs {
     margin-bottom: 0;
+    overflow-x: scroll;
     @include md {
       font-size: 110%;
     }
+
   }
 
   /**  STYLE 1 */

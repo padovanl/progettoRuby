@@ -48,7 +48,7 @@ class DocumentsPage extends React.Component {
         for (let i = 0; i < data.length; i += N) {
             docs = data.slice(i, i+N);
             temp_list = docs.map((doc) => {
-                return (<DocumentFrame key={doc.id} document={doc}></DocumentFrame>)
+                return (<DocumentFrame key={doc.id} document={doc} current_user={current_user}></DocumentFrame>)
             });
             documents_list.push(<div className="tile is-ancestor"> { temp_list } </div>);
         }
@@ -83,8 +83,7 @@ class DocumentsPage extends React.Component {
                     </div>
                 </div>
             </div>
-
-    );
+        );
 
     }
 
@@ -110,4 +109,6 @@ class DocumentsPage extends React.Component {
         .then(response => response.json())
         .then(data => this.setState({data, activeTabIndex}));
     }
-    }
+
+
+}
