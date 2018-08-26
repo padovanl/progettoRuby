@@ -94,7 +94,14 @@ user.tags.create!([
 ])
 
 #Teacher.create!(name: "Cesare", surname: "Stefanelli", link_cv: "http://docente.unife.it/cesare.stefanelli")
-Teacher.create!(name: "Evelina", surname: "Lamma", link_cv: "http://docente.unife.it/evelina.lamma")
+teacher = Teacher.create!(name: "Evelina", surname: "Lamma", link_cv: "http://docente.unife.it/evelina.lamma")
+teacher.teacher_courses.create!([
+      {year: "1990-1991", teacher_id: teacher.id, course_id: 1},
+      {year: "1992-1993", teacher_id: teacher.id, course_id: 1},
+      {year: "1994-1995", teacher_id: teacher.id, course_id: 1}
+  ])
+
+
 teacher = Teacher.create!(name: "Marco", surname: "Gavanelli", link_cv: "http://docente.unife.it/marco.gavanelli/curriculum")
 
 teacher.theses.create!([
@@ -110,14 +117,14 @@ teacher.teacher_courses.create!([
 ])
 
 
-teacher = Teacher.create!( name: "Torto", surname: "Mauronesi", link_cv:"https://de.unife.it/en/research/research-1/information-technology/computer-science/distributed-systems-group/people/mauro-tortonesi")
+teacher = Teacher.create!( name: "Mauro", surname: "Tortonesi", link_cv:"https://de.unife.it/en/research/research-1/information-technology/computer-science/distributed-systems-group/people/mauro-tortonesi")
 
 teacher.teacher_courses.create!([
     {year: "2017-2018", teacher_id: teacher.id, course_id: 1},
     {year: "2016-2017", teacher_id: teacher.id, course_id: 1},
     {year: "2015-2016", teacher_id: teacher.id, course_id: 2}
 ])
-teacher = Teacher.create!( name: "Stefano", surname: "Cesarelli", link_cv:"http://docente.unife.it/cesare.stefanelli/curriculum")
+teacher = Teacher.create!( name: "Cesare", surname: "Stefanelli", link_cv:"http://docente.unife.it/cesare.stefanelli/curriculum")
 
 teacher.teacher_courses.create!([
     {year: "2017-2018", teacher_id: teacher.id, course_id: 4},

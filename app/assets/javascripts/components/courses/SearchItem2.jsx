@@ -8,11 +8,10 @@ class SearchItem2 extends React.Component {
             query: '',
             courses: [],
             page: 1,
+            disabledNext: false,
             url: "/allcourses.json"
         };
         this.onChangePage = this.onChangePage.bind(this)
-        //backupCoursesIndex = backupCoursesIndex.bind(this);
-       // this.resetParameters = this.resetParameters.bind(this);
     }
 
     componentWillMount(){
@@ -25,23 +24,20 @@ class SearchItem2 extends React.Component {
     }
 
     getAllCourses(){
-        console.log("page:"+this.state.page+ " url:"+this.state.url+" categ:"+this.state.category+" query:"+this.state.query);
-        let newUrl = updateUrl(this.state.page, this.state.category, this.state.query);
-        console.log("SI newUrl:"+newUrl);
-        this.setState({url: newUrl}, ()=> {
-            getCourses(this.state.url)
+        this.setState({url: updateUrl(this.state.page, this.state.category, this.state.query)},
+            () =>  getCourses(this.state.url)
                 .then(teacher_courses => {
                     const newCourses = this.state.courses.concat(teacher_courses);
                     if (teacher_courses.length === 0)
-                        return "Non ci sono altri corsi.";
+                        this.setState({disabledNext: true});
                     this.setState({courses: newCourses})
                 })
                 .catch(this.handleError)
-        })
+        )
     }
 
     updateSearch(event){
-        this.setState({query: event.target.value.substr(0,20).toLowerCase(),  page: 1});
+        this.setState({query: event.target.value.substr(0,20).toLowerCase()});
     }
 
     selectChanged(e){
@@ -50,33 +46,15 @@ class SearchItem2 extends React.Component {
 
     searchCourses(){
         console.log("cat: "+this.state.category+ ", query "+ this.state.query + ", page "+ this.state.page);
-        let newUrl = updateUrl(this.state.page, this.state.category, this.state.query);
-
-        getCourses(newUrl)
+        this.setState({page: 1, disabledNext:false}, ()=>
+        getCourses(updateUrl(this.state.page, this.state.category, this.state.query))
                 .then(data => {
                     console.log("data: "+data);
-                    if (this.state.page===1)
-                        this.setState({courses: data});
-                    else
-                        this.setState({courses: this.state.course.concat(data)});
+                    this.setState({courses: data});
                     console.log("data: "+ data.length)
                 })
                 .catch(this.handleError)
-
-
-     /*   getCourses(this.state.page, this.state.url, this.state.category, this.state.query)
-            .then(data => {
-                console.log("data: "+data);
-                if (this.state.page===1)
-                    this.setState({courses: data[0], url: data[1]});
-                else
-                    this.setState({courses: this.state.course.concat(data[0]), url:data[1]});
-
-                console.log("data: "+ data.length)
-            })
-            .catch(this.handleError);
-*/
-    }
+        )}
 
 
     onChangePage() {
@@ -87,7 +65,7 @@ class SearchItem2 extends React.Component {
     render(){
         let searchButton;
         if (this.state.query === '' || (this.props.last_page === true && this.state.changedInputSearch===false))
-            searchButton = <div className=' button-search gap disabled'> <span>Search</span> </div>;
+            searchButton = <div className={' button-search gap'} onClick={this.searchCourses.bind(this)}> <span>All</span> </div>;
         else
             searchButton = <div className=' button-search gap' onClick={this.searchCourses.bind(this)} > <span>Search</span></div>;
 
@@ -118,7 +96,7 @@ class SearchItem2 extends React.Component {
                                last_page={this.props.last_page}
                                url={this.state.url}
                                onChangePage={this.onChangePage}
-                             //  query={this.state.query}
+                               disabledNext={this.state.disabledNext}
                 />
             </div>
         )

@@ -48,7 +48,7 @@ class IndexCourses2 extends React.Component{
 
 
         let buttonNext;
-        if (this.props.page !== this.props.last_page ){
+        if (this.props.page !== this.props.last_page && !this.props.disabledNext){
             buttonNext= <div className='buttonnext' onClick={() => this.props.onChangePage()}>
                         <span> Next </span> </div>
         }

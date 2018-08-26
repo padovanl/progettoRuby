@@ -20,7 +20,13 @@ class TeacherCourse < ApplicationRecord
       when 'Year'
         eager_load(:course, :teacher).order("courses.name desc").where("teacher_courses.year LIKE ?", "%#{query}%")
       when 'Teacher'
-        eager_load(:course, :teacher).order(year: :desc).where("teachers.surname ILIKE ?", "%#{query}%")
+        eager_load(:course, :teacher).order(year: :desc).where(
+                "teachers.surname ILIKE ? or
+                 teachers.name ILIKE ? or
+                (teachers.name || ' ' || teachers.surname) ILIKE ? or
+                (teachers.surname || ' ' || teachers.name) ILIKE ?",
+                 "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%")
+        .references(:teacher)
       when  'Module'
         eager_load(:course, :teacher).order(year: :desc).where("courses.year =?", "#{query}")
       else
