@@ -2,8 +2,13 @@ class  DocumentSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
 
   attributes :id, :created_at, :file_url, :filename, :path
-
+  belongs_to :user
   has_many :tags
+
+  class UserSerializer < ActiveModel::Serializer
+    attributes :id
+  end
+
 
   def file_url
     if object.file.variable?
@@ -15,7 +20,7 @@ class  DocumentSerializer < ActiveModel::Serializer
     elsif object.file.image?
       return rails_blob_path(object.file, disposition: :attachement, only_path: true)
     else
-      return ''
+      return ActionController::Base.helpers.asset_path("g2-file.png")
     end
   end
 

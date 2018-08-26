@@ -4,7 +4,7 @@ class DocumentsController < ApplicationController
 
   def index
     documents = Document.all
-    render json: documents, include: %w(user)
+    render json: documents, include: %w(user tags)
   end
 
   def show

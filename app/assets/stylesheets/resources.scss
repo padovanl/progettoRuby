@@ -1,13 +1,16 @@
 
 
-
 .filter-control{
   margin-bottom: 8px;
-  width: 50vw;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 40vw;
   .search-input {
-    border: 0;
+
   }
 }
+
+
 
 
 
@@ -19,11 +22,6 @@
   height: 87vh;
   padding: 3px 4px 0px 1px;
 
-  .truncate {
-    width: 250px;
-  }
-
-
   .comment, .upvote, .link-to-commets {
     text-decoration: none;
     color: black;
@@ -32,41 +30,128 @@
     }
   }
 
-  .link-to-commets {
-    color: #999999;
-  }
-  .drop-menu {
-    cursor: pointer;
-    i {
-      color: #999999;
+
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(12vw, 1fr));
+    @include rwd(575) {
+      grid-template-columns: repeat(auto-fill,minmax(90vw, 1fr));
+    }
+    @include custom-range(576, 767) {
+      grid-template-columns: repeat(auto-fill,minmax(47vw, 1fr));
+    }
+    @include custom-range(768, 1088) {
+      grid-template-columns: repeat(auto-fill,minmax(30vw, 1fr));
+    }
+    @include custom-range(1089, 1200) {
+      grid-template-columns: repeat(auto-fill,minmax(25vw, 1fr));
+    }
+    @include custom-range(1201, 1600) {
+      grid-template-columns: repeat(auto-fill,minmax(15vw, 1fr));
+    }
+    /*margin: auto;
+     max-width: 960px;
+    width: 50%;*/
+
+    .box {
+      margin-bottom: 0.8rem;
+      padding: 0;
     }
   }
 
-  .level{
-    margin-bottom: 0;
-    margin-top: 1rem;
-    .truncate {
-      width: 100px;
-      white-space: nowrap;
+
+  .container__item {
+    display: flex;
+    flex-basis: 1;
+    align-content: center;
+    justify-self: center;
+    justify-content: center;
+    margin: 0.4rem;
+
+    flex-direction: column;
+    overflow: hidden;
+
+    // maintain aspect ratio
+    width: 12vw;
+    height: 12vw;
+    @include rwd(575) {
+      width: 90vw;
+      height: 90vw;
+    }
+    @include custom-range(576, 767) {
+      width: 47vw;
+      height: 47vw;
+    }
+    @include custom-range(768, 1088) {
+      width: 30vw;
+      height: 30vw;
+    }
+    @include custom-range(1089, 1200) {
+      width: 25vw;
+      height: 25vw;
+    }
+    @include custom-range(1201, 1600) {
+      width: 15vw;
+      height: 15vw;
+    }
+
+    .doc-info{
+      padding: 0 10px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      .media {
+        margin-bottom: 10px;
+        .media-content{
+          width: 80%;
+        }
+        .truncate {
+           width: 100%;
+           color: #424242;
+        }
+      }
+      .tag-content{
+         display: flex;
+         flex-direction: row;
+         overflow-x: scroll;
+         padding-bottom: 3px;
+         font-size: 70%;
+       }
+
+      #style-1::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: #bdbdbd;
+      }
+    }
+
+    .thumbnail {
+      position: relative;
       overflow: hidden;
-      text-overflow: ellipsis;
+      width: 100%;
+      height: 90%;
+      img {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        height: 100%;
+        width: auto;
+        -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+      }
+      img.portrait {
+        width: 100%;
+        height: auto;
+      }
     }
-    .image {
-      margin-bottom: 0;
+
+
+    .dropdown {
+      cursor: pointer;
+      i {
+        color: #999999;
+      }
     }
   }
-  .resource-name {
-    margin-bottom: 3px;
-  }
-  hr{
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-  }
-  .content-date {
-    font-size: 85%;
-    color: #999999;
-  }
-  .upvote-button {
-    font-size: 85%;
-  }
+
 }

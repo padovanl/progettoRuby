@@ -41,18 +41,9 @@ class DocumentsPage extends React.Component {
         const {current_user, current_user_avatar} = this.props
         const {activeTabIndex, data, adding_post} = this.state
 
-        const N = 4;
-        let documents_list = []
-        let temp_list = ''
-        let docs = []
-        for (let i = 0; i < data.length; i += N) {
-            docs = data.slice(i, i+N);
-            temp_list = docs.map((doc) => {
-                return (<DocumentFrame key={doc.id} document={doc} current_user={current_user}></DocumentFrame>)
-            });
-            documents_list.push(<div className="tile is-ancestor"> { temp_list } </div>);
-        }
-
+        let documents_list = data.map(function (doc) {
+            return (<DocumentFrame key={doc.id} document={doc} current_user={current_user}></DocumentFrame>)
+        });
 
         return (
             <div>
@@ -61,7 +52,7 @@ class DocumentsPage extends React.Component {
 
                         <div className="field">
                             <div className="control">
-                                <input className="input is-medium search-input" type="email" placeholder="Cerca" />
+                                <input className="input is-medium is-rounded" id="search-input" type="email" placeholder="Cerca" />
                             </div>
                         </div>
 
@@ -69,8 +60,14 @@ class DocumentsPage extends React.Component {
 
 
                     <div className="resources-list" id="style-1">
-                        { documents_list }
+
+                        <div className="grid-container">
+                            { documents_list }
+                        </div>
+
                     </div>
+
+
 
                     <div className={"modal " + (adding_post ? "is-active" : "")}>
                         <div className="modal-background" onClick={this.closeNewPostModal.bind(this)} />

@@ -14,7 +14,7 @@ class Publication
 
       unless attachments.nil?
         attachments.each do |file|
-          @post.documents.create!(file: file)
+          @post.documents.create!(file: file, user: user)
         end
       end
     end

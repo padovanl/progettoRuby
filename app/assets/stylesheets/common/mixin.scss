@@ -51,3 +51,10 @@ $screen-xl-min: 1200px;
     @content;
   }
 }
+
+// Large devices
+@mixin custom-range($min, $max) {
+  @media screen and (min-width: $min+'px') and (max-width: $max+'px') {
+    @content;
+  }
+}

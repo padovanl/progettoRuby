@@ -140,7 +140,7 @@ course = Course.first
 10.times do
   post = Post.create!(
     message: Faker::HeyArnold.quote,
-    user_id: user.id,
+    upvoter_id: user.id,
     course_id: course.id
   )
   post.comments.create!([
