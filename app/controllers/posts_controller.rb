@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     publication = Publication.new(post_params)
     publication.user = current_user
 
-    if !publication.save
+    unless publication.save
       render_json_validation_error publication
       return
     end

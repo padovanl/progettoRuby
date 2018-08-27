@@ -10,12 +10,11 @@ class Publication
 
     ActiveRecord::Base.transaction do
       course = Course.find(course_id)
-      byebug
-      post = Post.create!(message: message, user: user, course: course)
+      @post = Post.create!(message: message, user: user, course: course)
 
-      unless attachments.nil?
+      if !attachments.nil?
         attachments.each do |file|
-          post.documents.create!(file: file, user: user, course: course)
+          @post.documents.create!(file: file, user: user, course: course)
         end
       end
     end
