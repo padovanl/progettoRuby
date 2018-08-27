@@ -1,12 +1,18 @@
 
 
-.filter-control{
-  margin-bottom: 8px;
-  margin-left: 10px;
-  margin-right: 10px;
-  width: 40vw;
-  .search-input {
+.corso-thread{
+  .level {
+    margin: 5px 10px;
+    #search-input {
+      width: 40vw;
+    }
+    a {
+      text-decoration: none;
+      color: black;
+      margin-right: 5px;
 
+
+    }
   }
 }
 
@@ -21,15 +27,6 @@
   overflow-x: hidden;
   height: 87vh;
   padding: 3px 4px 0px 1px;
-
-  .comment, .upvote, .link-to-commets {
-    text-decoration: none;
-    color: black;
-    span {
-      margin-right: 5px;
-    }
-  }
-
 
 
   .grid-container {
@@ -109,6 +106,12 @@
            width: 100%;
            color: #424242;
         }
+
+        .media-right{
+          i {
+            cursor: pointer;
+          }
+        }
       }
       .tag-content{
          display: flex;
@@ -145,13 +148,18 @@
       }
     }
 
-
-    .dropdown {
-      cursor: pointer;
-      i {
-        color: #999999;
+    .box{
+      padding: 20px;
+      font-size: 120%;
+      .is-two-fifths{
+        text-align: right;
+      }
+      .column {
+        margin-top: 20px;
+        margin-bottom: 20px;
       }
     }
+
   }
 
 }

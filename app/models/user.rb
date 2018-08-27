@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :omniauthable, :omniauth_providers => [:facebook]
+         :confirmable, :omniauthable, omniauth_providers: [:facebook]
 
   has_many :notifications
   has_many :reps
@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :tags
 
   # un utente vota un post
-  has_many :upvotes, dependent: :destroy
+  has_many :upvotes
   has_many :posts, through: :upvotes
 
   has_one_attached :avatar

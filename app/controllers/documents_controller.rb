@@ -3,7 +3,7 @@ class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy]
 
   def index
-    documents = Document.all
+    documents = Document.reduce(params).order(created_at: :desc)
     render json: documents, include: %w(user tags)
   end
 

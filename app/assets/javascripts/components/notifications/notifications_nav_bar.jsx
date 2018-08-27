@@ -3,7 +3,7 @@ class NotificationsNavBar extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            temp: 0
+            temp: "0"
         };
         //this.temp = ''
     }
@@ -26,10 +26,11 @@ class NotificationsNavBar extends React.Component {
 
         //this.getCountNew();
         //this.getCountNew();
+        let num = 0
         return(
             <div style={style}>
                 <a className="navbar-item" href="/notifications">
-                    <span className="badge is-badge-primary bd-emoji" data-badge={this.state.temp}><i className="fas fa-globe-americas"></i></span>
+                    <span className="badge is-badge-primary bd-emoji" data-badge={num}><i className="fas fa-globe-americas"></i></span>
                 </a>
             </div>
 

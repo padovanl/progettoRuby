@@ -11,8 +11,8 @@ class DocumentsPage extends React.Component {
     }
 
     addNewPost(post) {
-        post['user'] = this.props.current_user
-        post['user']['avatar_url'] = this.props.current_user_avatar
+        post['user'] = this.props.current_user;
+        post['user']['avatar_url'] = this.props.current_user_avatar;
         this.setState((prevState) => {
             return {
                 data: [post].concat(prevState.data),
@@ -38,8 +38,8 @@ class DocumentsPage extends React.Component {
 
 
     render() {
-        const {current_user, current_user_avatar} = this.props
-        const {activeTabIndex, data, adding_post} = this.state
+        const {current_user, current_user_avatar} = this.props;
+        const {data, adding_post, view_doc_menu} = this.state;
 
         let documents_list = data.map(function (doc) {
             return (<DocumentFrame key={doc.id} document={doc} current_user={current_user}></DocumentFrame>)
@@ -48,23 +48,27 @@ class DocumentsPage extends React.Component {
         return (
             <div>
                 <div className="container corso-thread">
-                    <div className="filter-control">
+                    <div className="level is-mobile">
 
-                        <div className="field">
+                        <div className="level-left" id="search-input">
                             <div className="control">
-                                <input className="input is-medium is-rounded" id="search-input" type="email" placeholder="Cerca" />
+                                <input className="input is-medium is-rounded"  type="email" placeholder="Cerca" />
                             </div>
+                        </div>
+
+                        <div className="level-right">
+                            <div className="level-item"><a className="button is-light">Tutti i file</a></div>
+                            <div className="level-item"><a className="button is-light">I miei file</a></div>
+                            <div className="level-item"><a className="button is-light">Carica file</a></div>
                         </div>
 
                     </div>
 
 
                     <div className="resources-list" id="style-1">
-
                         <div className="grid-container">
                             { documents_list }
                         </div>
-
                     </div>
 
 
