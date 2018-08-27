@@ -76,12 +76,14 @@ class PostsThread extends React.Component {
                         <button className="modal-close is-large" aria-label="close"
                                 onClick={this.closeNewPostModal.bind(this)} />
                     </div>
+
+                    <figure className="add-button" onClick={this.viewNewPostModal.bind(this)}>
+                        <p className="image is-64x64">
+                          <%= image_tag "add_post.png" %>
+                        </p>
+                    </figure>
                 </div>
-                <figure className="media-left add-post" onClick={this.viewNewPostModal.bind(this)}>
-                    <p className="image is-64x64">
-                      <%= image_tag "add_post.png" %>
-                    </p>
-                </figure>
+
 
             </div>
         );

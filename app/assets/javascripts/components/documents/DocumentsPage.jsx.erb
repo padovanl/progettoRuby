@@ -5,28 +5,28 @@ class DocumentsPage extends React.Component {
 
         this.state = {
             data: [],
-            adding_post: false,
+            adding_doc: false,
             activeTabIndex: 0
         };
     }
 
-    addNewPost(post) {
-        post['user'] = this.props.current_user;
-        post['user']['avatar_url'] = this.props.current_user_avatar;
+    addNewDoc(doc) {
+        doc['user'] = this.props.current_user;
+        doc['user']['avatar_url'] = this.props.current_user_avatar;
         this.setState((prevState) => {
             return {
-                data: [post].concat(prevState.data),
+                data: [doc].concat(prevState.data),
                 adding_post: false
             };
         });
     }
 
-    viewNewPostModal() {
-        this.setState({adding_post: true});
+    viewNewDocModal() {
+        this.setState({adding_doc: true});
     }
 
-    closeNewPostModal() {
-        this.setState({adding_post: false});
+    closeNewDocModal() {
+        this.setState({adding_doc: false});
     }
 
     // Toggle currently active tab
@@ -38,8 +38,8 @@ class DocumentsPage extends React.Component {
 
 
     render() {
-        const {current_user, current_user_avatar} = this.props;
-        const {data, adding_post, view_doc_menu} = this.state;
+        const {current_user, current_user_avatar, course_id} = this.props;
+        const { data, adding_doc } = this.state;
 
         let documents_list = data.map(function (doc) {
             return (<DocumentFrame key={doc.id} document={doc} current_user={current_user}></DocumentFrame>)
@@ -55,12 +55,13 @@ class DocumentsPage extends React.Component {
                                 <input className="input is-medium is-rounded"  type="email" placeholder="Cerca" />
                             </div>
                         </div>
+                        <div className="level-item"><div id="style-2" className="tabs is-centered">
+                            <ul>
+                                <li className="is-active"><a><strong>Tutti i file</strong></a></li>
+                                <li><a><strong>I miei file</strong></a></li>
+                            </ul>
 
-                        <div className="level-right">
-                            <div className="level-item"><a className="button is-light">Tutti i file</a></div>
-                            <div className="level-item"><a className="button is-light">I miei file</a></div>
-                            <div className="level-item"><a className="button is-light">Carica file</a></div>
-                        </div>
+                        </div></div>
 
                     </div>
 
@@ -73,15 +74,21 @@ class DocumentsPage extends React.Component {
 
 
 
-                    <div className={"modal " + (adding_post ? "is-active" : "")}>
-                        <div className="modal-background" onClick={this.closeNewPostModal.bind(this)} />
+                    <div className={"modal " + (adding_doc ? "is-active" : "")}>
+                        <div className="modal-background" onClick={this.closeNewDocModal.bind(this)} />
 
-                        <NewPost addNewPost={this.addNewPost.bind(this)} current_user={current_user}
+                        <NewDoc addNewPost={this.addNewDoc.bind(this)} current_user={current_user} course_id={course_id}
                                  current_user_avatar={current_user_avatar}/>
 
                         <button className="modal-close is-large" aria-label="close"
-                                onClick={this.closeNewPostModal.bind(this)} />
+                                onClick={this.closeNewDocModal.bind(this)} />
                     </div>
+
+                    <figure className="add-button" onClick={this.viewNewDocModal.bind(this)}>
+                        <p className="image is-64x64">
+                          <%= image_tag "add_post.png" %>
+                        </p>
+                    </figure>
                 </div>
             </div>
         );

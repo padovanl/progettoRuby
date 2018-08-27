@@ -110,34 +110,37 @@
     width: 100%;
   }
 
+
+  .add-button {
+    position: absolute;
+    cursor: pointer;
+    bottom: 4vh;
+    right: 4vw;
+    @include sm {
+      img {
+        height: 55px;
+        width: 55px;
+      }
+      /*right: 3vw;
+      bottom: 3vh;*/
+    }
+    /*@include md {
+      right: 4vw;
+      bottom: 4vh;
+    }
+    @include lg {
+      right: 10vw;
+      bottom: 4vh;
+    }
+    @include xl {
+      right: 18vw;
+      bottom: 5vh;
+    }*/
+  }
+
 }
 
-.add-post {
-  position: absolute;
-  cursor: pointer;
-  bottom: 5vh;
-  right: 13vw;
-  @include sm {
-    img {
-      height: 55px;
-      width: 55px;
-    }
-    right: 3vw;
-    bottom: 3vh;
-  }
-  @include md {
-    right: 4vw;
-    bottom: 4vh;
-  }
-  @include lg {
-    right: 10vw;
-    bottom: 4vh;
-  }
-  @include xl {
-    right: 18vw;
-    bottom: 5vh;
-  }
-}
+
 
 
 
