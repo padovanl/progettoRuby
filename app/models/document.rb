@@ -1,4 +1,6 @@
 class Document < ApplicationRecord
+  extend Rack::Reducer
+
   has_many :document_tags, dependent: :destroy
 
   belongs_to :user
@@ -14,7 +16,7 @@ class Document < ApplicationRecord
   has_one_attached :file
 
   # validations
-  validates_presence_of :user
+  validates_presence_of :user, :course
 
   reduces self.all, filters: [
       ->(course_id:) { where course_id: course_id },

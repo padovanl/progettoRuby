@@ -3,22 +3,22 @@ class Publication
 
   include ActiveModel::Model
 
-  attr_accessor :message, :attachments, :user, :post
+  attr_accessor :message, :attachments, :user, :post, :course_id
 
   def save
     return false if invalid?
 
     ActiveRecord::Base.transaction do
-
-      @post = Post.create!(message: message, user: user, course: Course.first())
+      course = Course.find(course_id)
+      byebug
+      post = Post.create!(message: message, user: user, course: course)
 
       unless attachments.nil?
         attachments.each do |file|
-          @post.documents.create!(file: file, user: user)
+          post.documents.create!(file: file, user: user, course: course)
         end
       end
     end
-    #documents = post.documents
 
     true
     rescue ActiveRecord::StatementInvalid => e

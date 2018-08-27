@@ -91,6 +91,7 @@ class NewPost extends React.Component {
                                             </label>
                                         </div>
                                     </p>
+                                    <input type="hidden" name="post[course_id]" value={this.props.course_id}/>
                                 </div>
                                 <button className="button is-medium submit-button" type="submit" name="commit">
                                     Salva

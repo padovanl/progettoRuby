@@ -39,7 +39,7 @@ class PostsThread extends React.Component {
 
 
     render() {
-        const {current_user, current_user_avatar} = this.props
+        const {current_user, current_user_avatar, course_id} = this.props
         const {activeTabIndex, data, adding_post} = this.state
         return (
             <div>
@@ -71,7 +71,7 @@ class PostsThread extends React.Component {
                         <div className="modal-background" onClick={this.closeNewPostModal.bind(this)} />
 
                         <NewPost addNewPost={this.addNewPost.bind(this)} current_user={current_user}
-                                 current_user_avatar={current_user_avatar}/>
+                                 current_user_avatar={current_user_avatar} course_id={course_id}/>
 
                         <button className="modal-close is-large" aria-label="close"
                                 onClick={this.closeNewPostModal.bind(this)} />
