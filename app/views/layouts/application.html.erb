@@ -126,7 +126,7 @@
     </div>
   </nav>
 
-    <div id="alertBox" hidden="true">
+    <!--<div id="alertBox" hidden="true">
       <br>
       <br>
       <br>
@@ -141,7 +141,7 @@
           </article>
         </div>
       </div>
-    </div>
+    </div>-->
 
 
 
@@ -159,7 +159,7 @@
 
 
 
-  setTimeout(function(){ $("#alertBox").fadeOut(1000); }, 3000);
+  //setTimeout(function(){ $("#alertBox").fadeOut(1000); }, 3000);
 
     function openMenu() {
 
@@ -184,10 +184,14 @@
           $(".se-pre-con").fadeOut("slow");
 
           if("<%= notice %>" != ''){
-              $("#alertDiv").html("<p><%= notice %></p>")
-              $("#alertBox").removeAttr('hidden');
+              //$("#alertDiv").html("<p><%= notice %></p>")
+              //$("#alertBox").removeAttr('hidden');
+              toastr.success('<%= notice %>')
           }
       }
+
+
+
   </script>
 
 

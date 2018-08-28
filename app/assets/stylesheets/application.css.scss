@@ -4,6 +4,9 @@
 @import "common/mixin";
 @import "*";
 
+@import "toastr";
+
+
 html {
   background: url("bg8.png") no-repeat center center fixed;
   background-size: cover;
