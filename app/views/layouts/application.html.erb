@@ -151,7 +151,7 @@
 
   <!-- mancavano questi, forse e' per questo che non comparivano gli avvisi di devise (comunque bisogna trovare un bel posto dove metterli)-->
   <!--<p class="notice"><%= notice %></p>-->
-  <p class="alert"><%= alert %></p>
+  <!--<p class="alert"><%= alert %></p>-->
 
   <div class="se-pre-con"></div>
 
@@ -187,6 +187,10 @@
               //$("#alertDiv").html("<p><%= notice %></p>")
               //$("#alertBox").removeAttr('hidden');
               toastr.success('<%= notice %>')
+          }
+
+          if("<%= alert %>" != ''){
+              toastr.warning('<%= alert %>')
           }
       }
 
