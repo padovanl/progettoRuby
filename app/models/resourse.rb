@@ -14,7 +14,7 @@ class Resourse
 
       if !tags.nil?
         tags.each do |tag|
-          @document.tags.create!(name: tag)
+          @document.tags.create!(name: tag, user: user)
         end
       end
     end
