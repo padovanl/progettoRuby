@@ -16,7 +16,7 @@ class DocumentsPage extends React.Component {
         this.setState((prevState) => {
             return {
                 data: [doc].concat(prevState.data),
-                adding_post: false
+                adding_doc: false
             };
         });
     }
@@ -39,7 +39,7 @@ class DocumentsPage extends React.Component {
 
     render() {
         const {current_user, current_user_avatar, course_id} = this.props;
-        const { data, adding_doc } = this.state;
+        const { data, adding_doc, activeTabIndex } = this.state;
 
         let documents_list = data.map(function (doc) {
             return (<DocumentFrame key={doc.id} document={doc} current_user={current_user}></DocumentFrame>)
@@ -57,8 +57,10 @@ class DocumentsPage extends React.Component {
                         </div>
                         <div className="level-item"><div id="style-2" className="tabs is-centered">
                             <ul>
-                                <li className="is-active"><a><strong>Tutti i file</strong></a></li>
-                                <li><a><strong>I miei file</strong></a></li>
+                                <li className={activeTabIndex === 0 ? "is-active" : ""}><a
+                                    onClick={() => this.handleTabClick(0)}><strong>Tutti i file</strong></a></li>
+                                <li className={activeTabIndex === 1 ? "is-active" : ""}><a
+                                    onClick={() => this.handleTabClick(1)}><strong>I miei file</strong></a></li>
                             </ul>
 
                         </div></div>
@@ -77,7 +79,7 @@ class DocumentsPage extends React.Component {
                     <div className={"modal " + (adding_doc ? "is-active" : "")}>
                         <div className="modal-background" onClick={this.closeNewDocModal.bind(this)} />
 
-                        <NewDoc addNewPost={this.addNewDoc.bind(this)} current_user={current_user} course_id={course_id}
+                        <NewDoc addNewDoc={this.addNewDoc.bind(this)} current_user={current_user} course_id={course_id}
                                  current_user_avatar={current_user_avatar}/>
 
                         <button className="modal-close is-large" aria-label="close"
@@ -105,11 +107,7 @@ class DocumentsPage extends React.Component {
 
         URL = '/documents?course_id=' + course_id
         if (activeTabIndex === 1)
-        URL += '&upvoter_id=' + current_user.id
-        if (activeTabIndex === 2)
-        URL += '&user_id=' + current_user.id
-        if (activeTabIndex === 3)
-        URL += '&comment_user_id=' + current_user.id
+          URL += '&user_id=' + current_user.id
 
         fetch(URL, {
         credentials: 'same-origin'
