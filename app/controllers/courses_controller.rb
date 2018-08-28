@@ -20,11 +20,13 @@ class CoursesController < ApplicationController
   end
 
 
-
-
   def show
+    @course = Course.find(params[:id])
+    @degree_course = DegreeCourse.find(@course.degree_course_id)
+    @current_teacher_course = @course.teacher_courses.to_a[-1].teacher
 
   end
+
 
 
 

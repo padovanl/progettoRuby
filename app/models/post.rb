@@ -10,7 +10,7 @@ class Post < ApplicationRecord
   has_many :documents, through: :document_posts, :dependent => :destroy
 
   # un post può essere votato da più utenti
-  has_many :upvotes, dependent: :destroy, :dependent => :destroy
+  #has_many :upvotes, dependent: :destroy, :dependent => :destroy
   has_many :upvoters, through: :upvotes, dependent: :destroy, class_name: 'User', source: :upvoter
 
   # validations
