@@ -1,20 +1,20 @@
-class Publication
+class Resourse
   # model custom per creare form e salvare più model nella stessa chiamata
 
   include ActiveModel::Model
 
-  attr_accessor :message, :attachments, :user, :post, :course_id
+  attr_accessor :attachment, :user, :course_id, :tags, :document
 
   def save
     return false if invalid?
 
     ActiveRecord::Base.transaction do
       course = Course.find(course_id)
-      @post = Post.create!(message: message, user: user, course: course)
+      @document = Document.create!(file: attachment, user: user, course: course)
 
-      if !attachments.nil?
-        attachments.each do |file|
-          @post.documents.create!(file: file, user: user, course: course)
+      if !tags.nil?
+        tags.each do |tag|
+          @document.tags.create!(name: tag)
         end
       end
     end

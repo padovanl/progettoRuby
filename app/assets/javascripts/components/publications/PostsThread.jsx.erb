@@ -39,12 +39,12 @@ class PostsThread extends React.Component {
 
 
     render() {
-        const {current_user, current_user_avatar} = this.props
+        const {current_user, current_user_avatar, course_id} = this.props
         const {activeTabIndex, data, adding_post} = this.state
         return (
             <div>
                 <div className="container corso-thread">
-                    <div className="tabs is-centered">
+                    <div id="style-2" className="tabs is-centered">
 
                         <ul>
                             <li className={activeTabIndex === 0 ? "is-active" : ""}><a
@@ -71,17 +71,19 @@ class PostsThread extends React.Component {
                         <div className="modal-background" onClick={this.closeNewPostModal.bind(this)} />
 
                         <NewPost addNewPost={this.addNewPost.bind(this)} current_user={current_user}
-                                 current_user_avatar={current_user_avatar}/>
+                                 current_user_avatar={current_user_avatar} course_id={course_id}/>
 
                         <button className="modal-close is-large" aria-label="close"
                                 onClick={this.closeNewPostModal.bind(this)} />
                     </div>
+
+                    <figure className="add-button" onClick={this.viewNewPostModal.bind(this)}>
+                        <p className="image is-64x64">
+                          <%= image_tag "add_post.png" %>
+                        </p>
+                    </figure>
                 </div>
-                <figure className="media-left add-post" onClick={this.viewNewPostModal.bind(this)}>
-                    <p className="image is-64x64">
-                      <%= image_tag "add_post.png" %>
-                    </p>
-                </figure>
+
 
             </div>
         );

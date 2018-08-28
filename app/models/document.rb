@@ -1,6 +1,10 @@
 class Document < ApplicationRecord
+  extend Rack::Reducer
+
   has_many :document_tags, dependent: :destroy
 
+  belongs_to :user
+  belongs_to :course
   # indico la tabella intermedia e quella finale per le 
   # associazioni molti a molti
   has_many :document_posts, dependent: :destroy
@@ -11,21 +15,14 @@ class Document < ApplicationRecord
 
   has_one_attached :file
 
+  # validations
+  validates_presence_of :user, :course
 
-=begin
-  def self.with_link
-    if allegato.file.variable?
-      # allegato.file.variant(resize: "64x64")
-    elsif allegato.file.previewable?
-      # allegato.file.preview(resize: "64x64")
-    elsif allegato.file.image?
-      # allegato.file
-    elsif allegato.file.filename.to_s.end_with? "zip"
-      # "zip-box.png"
-    else
-      # rails_blob_path(allegato.file, disposition: :attachement)
-    Rails.application.routes.url_helpers.rails_blob_path(doc.file, only_path: true)
-  end
-=end
+  reduces self.all, filters: [
+      ->(course_id:) { where course_id: course_id },
+      ->(user_id:) { where user_id: user_id },
+      ->(upvoter_id:) { joins(:upvotes).where("upvotes.upvoter_id = ?", upvoter_id) },
+      ->(comment_user_id:) { joins(:comments).where("comments.user_id = ?", comment_user_id) }
+  ]
 
 end

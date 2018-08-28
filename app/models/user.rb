@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :tags
 
   # un utente vota un post
-  has_many :upvotes, dependent: :destroy
+  has_many :upvotes
   has_many :posts, through: :upvotes
 
   has_one_attached :avatar

@@ -14,21 +14,30 @@
     margin-top: 9vh;
   }
 
+  ::-webkit-scrollbar {
+    width: 0;
+  }
+
   .tabs {
     margin-bottom: 0;
+    overflow-x: scroll;
     @include md {
       font-size: 110%;
     }
+
+
   }
 
   /**  STYLE 1 */
   #style-1::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
   }
   #style-1::-webkit-scrollbar {
     width: 6px;
   }
   #style-1::-webkit-scrollbar-thumb {
+    border-radius: 10px;
     background-color: #9e9e9e;
   }
 
@@ -101,34 +110,37 @@
     width: 100%;
   }
 
+
+  .add-button {
+    position: absolute;
+    cursor: pointer;
+    bottom: 4vh;
+    right: 4vw;
+    @include sm {
+      img {
+        height: 55px;
+        width: 55px;
+      }
+      /*right: 3vw;
+      bottom: 3vh;*/
+    }
+    /*@include md {
+      right: 4vw;
+      bottom: 4vh;
+    }
+    @include lg {
+      right: 10vw;
+      bottom: 4vh;
+    }
+    @include xl {
+      right: 18vw;
+      bottom: 5vh;
+    }*/
+  }
+
 }
 
-.add-post {
-  position: absolute;
-  cursor: pointer;
-  bottom: 5vh;
-  right: 13vw;
-  @include sm {
-    img {
-      height: 55px;
-      width: 55px;
-    }
-    right: 3vw;
-    bottom: 3vh;
-  }
-  @include md {
-    right: 4vw;
-    bottom: 4vh;
-  }
-  @include lg {
-    right: 10vw;
-    bottom: 4vh;
-  }
-  @include xl {
-    right: 18vw;
-    bottom: 5vh;
-  }
-}
+
 
 
 

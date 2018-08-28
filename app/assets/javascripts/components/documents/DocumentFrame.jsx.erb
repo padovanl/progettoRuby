@@ -1,16 +1,200 @@
+
 class DocumentFrame extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            document: this.props.document,
+            view_doc: true,
+            view_doc_menu: false
+        };
+    }
+
     render() {
-        const { document } = this.props
+        const { document, view_doc_menu } = this.state
+        const { current_user }  = this.props
+        let can_delete_post = (document.user.id === current_user.id) ? true : false;
 
-        return (<div className="tile is-parent"><article className="tile is-child box">
+        if (this.state.view_doc)
+            return (<div className="container__item box">
+                <div className="thumbnail">
+                    <a href={ document.path } target="_blank">
+                      <img src={ document.file_url } className="portrait" alt="Image" />
+                    </a>
+                </div>
 
-                   { document.file_url ? <figure class="image image is-4by3"><a className="link-to-commets" href={ document.path } target="_blank">
-                    <img src={ document.file_url } /> </a>
-                   </figure> : '' }
-                { document.file_url ?<hr />: '' }
-                <p className="resource-name"><strong> { document.filename } </strong></p>
-                <p className="content-date">{(new  Date(Date.parse(document.created_at))).toLocaleDateString('it-IT', options)}</p>
-                <p>#subtitle #cose</p>
-        </article></div>)
+                <div className="doc-info">
+                  <article className="media">
+                      <div className="media-content">
+                          <p className="truncate"> { document.filename } </p>
+                      </div>
+                      <div className="media-right">
+                          <span className="icon is-small">
+                            <i className="fas fa-ellipsis-h" aria-hidden="true" onClick={this.viewMenuModal.bind(this)}></i>
+                        </span>
+                      </div>
+                  </article>
+                    { (document.tags.length > 0) ? <div class="tag-content" id="style-1">
+                        { document.tags.map(function (tag) {
+                            return (<span class="tag is-info is-rounded"> {tag.name} </span>)
+                        }) }
+                    </div> : ""}
+                </div>
+
+                <div className={"modal " + (view_doc_menu ? "is-active" : "")}>
+                    <div className="modal-background" onClick={this.closeMenuModal.bind(this)}></div>
+                    <div className="modal-content">
+                        <div class="menu box">
+                            <ul class="menu-list">
+
+                                <li><a href={ document.path } onClick={this.closeMenuModal.bind(this)} download>
+                                    <div class="columns is-mobile">
+                                        <div class="column is-two-fifths">
+                                            <span className="icon">
+                                                <i className="fas fa-download"></i>
+                                            </span>
+                                        </div>
+                                        <div class="column">
+                                            Scarica file
+                                        </div>
+                                    </div>
+                                </a></li>
+                                <li><a onClick={this.closeMenuModal.bind(this)}>
+                                <div class="columns is-mobile">
+                                    <div class="column is-two-fifths">
+                                            <span className="icon">
+                                                <i className="far fa-flag"></i>
+                                            </span>
+                                    </div>
+                                    <div class="column">
+                                        Segnala
+                                    </div>
+                                </div>
+                            </a></li>
+                                { can_delete_post ? <li><a onClick={this.closeMenuModal.bind(this)}>
+                                    <div class="columns is-mobile">
+                                        <div class="column is-two-fifths">
+                                            <span className="icon">
+                                                <i className="far fa-trash-alt"></i>
+                                            </span>
+                                        </div>
+                                        <div class="column">
+                                            Cancella
+                                        </div>
+                                    </div>
+                                </a></li> : ""}
+                            </ul>
+
+                        </div>
+                    </div>
+                    <button className="modal-close is-large" aria-label="close" onClick={this.closeMenuModal.bind(this)}></button>
+                </div>
+            </div>)
+        else
+            return ''
+    }
+
+    deleteDocument(event, document_id) {
+        event.preventDefault();
+        if(this.state.document.user.id !== this.props.current_user.id)
+            return;
+
+        var myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+
+        fetch(`/documents/${post_id}`, {
+            method: 'DELETE',
+            headers: myHeaders,
+            credentials: 'same-origin'
+        })
+            .then((response) => response)
+            .then((response) => {
+                this.setState({
+                    view_post: false
+                })
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+
+    viewMenuModal() {
+        this.setState({view_doc_menu: true});
+    }
+
+    closeMenuModal() {
+        this.setState({view_doc_menu: false});
+    }
+
+}
+
+/*
+class DocumentFrameOld extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            document: this.props.document,
+            view_doc: true
+        };
+    }
+
+    render() {
+        const { document } = this.state
+        const { current_user }  = this.props
+        let can_delete_post = (document.user.id === current_user.id) ? true : false;
+
+        if (this.state.view_doc)
+          return (<div className="tile is-parent"><article className="tile is-child box">
+              <a href={ document.path } target="_blank">
+                <div className="thumbnail">
+
+                      <img src={ document.file_url } className="portrait" alt="Image" />
+
+                </div>
+              </a>
+
+              <article className="media">
+                  <div className="media-content">
+                      <p className="resource-name"><strong> { document.filename } </strong></p>
+                      <p className="content-date">{(new  Date(Date.parse(document.created_at))).toLocaleDateString('it-IT', options)}</p>
+                      <p>#subtitle #cose</p>
+                  </div>
+                  <div className="media-right">
+                      <DropMenu cancella={ this.deleteDocument.bind(this) } id={document.id} can_delete={can_delete_post} risorsa="file"/>
+                  </div>
+              </article>
+
+
+
+          </article></div>)
+        else
+            return ''
+    }
+
+    deleteDocument(event, document_id) {
+        event.preventDefault();
+        if(this.state.document.user.id !== this.props.current_user.id)
+            return;
+
+        var myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+
+        fetch(`/documents/${post_id}`, {
+            method: 'DELETE',
+            headers: myHeaders,
+            credentials: 'same-origin'
+        })
+            .then((response) => response)
+            .then((response) => {
+                this.setState({
+                    view_post: false
+                })
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }
 }
+
+*/
