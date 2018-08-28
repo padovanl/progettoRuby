@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :publications, only: [:index]
   resources :upvotes, only: [:create, :destroy]
   resources :resources, only: [:index]
+  resources :tags, only: [:index]
   resources :documents
   resources :posts
   resources :comments
