@@ -60,7 +60,9 @@ class IndexCourses2 extends React.Component{
             return(
                 <div key={item.id}>
                     <div className="nested infinite-item">
-                        <div>Corso: {item.course_name}</div>
+                        <div>Materia: {item.course_name}</div>
+                        <div>Livello: {item.degreet}</div>
+                        <div>Corso: {item.degreen}</div>
                         <div>Anno: {item.course_year}</div>
                         <div>Data: {item.year}</div>
                         <div>Professore:

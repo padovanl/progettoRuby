@@ -34,9 +34,9 @@ class DocumentFrame extends React.Component {
                         </span>
                       </div>
                   </article>
-                    { (document.tags.length > 0) ? <div class="tag-content" id="style-1">
+                    { (document.tags.length > 0) ? <div className="tag-content" id="style-1">
                         { document.tags.map(function (tag) {
-                            return (<span class="tag is-info is-rounded"> {tag.name} </span>)
+                            return (<span className="tag is-info is-rounded"> {tag.name} </span>)
                         }) }
                     </div> : ""}
                 </div>
@@ -44,41 +44,41 @@ class DocumentFrame extends React.Component {
                 <div className={"modal " + (view_doc_menu ? "is-active" : "")}>
                     <div className="modal-background" onClick={this.closeMenuModal.bind(this)}></div>
                     <div className="modal-content">
-                        <div class="menu box">
-                            <ul class="menu-list">
+                        <div className="menu box">
+                            <ul className="menu-list">
 
                                 <li><a href={ document.path } onClick={this.closeMenuModal.bind(this)} download>
-                                    <div class="columns is-mobile">
-                                        <div class="column is-two-fifths">
+                                    <div className="columns is-mobile">
+                                        <div className="column is-two-fifths">
                                             <span className="icon">
                                                 <i className="fas fa-download"></i>
                                             </span>
                                         </div>
-                                        <div class="column">
+                                        <div className="column">
                                             Scarica file
                                         </div>
                                     </div>
                                 </a></li>
                                 <li><a onClick={this.closeMenuModal.bind(this)}>
-                                <div class="columns is-mobile">
-                                    <div class="column is-two-fifths">
+                                <div className="columns is-mobile">
+                                    <div className="column is-two-fifths">
                                             <span className="icon">
                                                 <i className="far fa-flag"></i>
                                             </span>
                                     </div>
-                                    <div class="column">
+                                    <div className="column">
                                         Segnala
                                     </div>
                                 </div>
                             </a></li>
-                                { can_delete_post ? <li><a onClick={this.closeMenuModal.bind(this)}>
-                                    <div class="columns is-mobile">
-                                        <div class="column is-two-fifths">
+                                { can_delete_post ? <li><a onClick={ (e) => this.deleteDocument(e, document.id) }>
+                                    <div className="columns is-mobile">
+                                        <div className="column is-two-fifths">
                                             <span className="icon">
                                                 <i className="far fa-trash-alt"></i>
                                             </span>
                                         </div>
-                                        <div class="column">
+                                        <div className="column">
                                             Cancella
                                         </div>
                                     </div>
@@ -91,7 +91,7 @@ class DocumentFrame extends React.Component {
                 </div>
             </div>)
         else
-            return ''
+            return null
     }
 
     deleteDocument(event, document_id) {
@@ -102,7 +102,7 @@ class DocumentFrame extends React.Component {
         var myHeaders = new Headers();
         myHeaders.append('X-CSRF-Token', Rails.csrfToken());
 
-        fetch(`/documents/${post_id}`, {
+        fetch(`/documents/${document_id}`, {
             method: 'DELETE',
             headers: myHeaders,
             credentials: 'same-origin'
@@ -110,7 +110,7 @@ class DocumentFrame extends React.Component {
             .then((response) => response)
             .then((response) => {
                 this.setState({
-                    view_post: false
+                    view_doc: false
                 })
             })
             .catch((error) => {

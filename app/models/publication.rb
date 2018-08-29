@@ -1,6 +1,5 @@
 class Publication
   # model custom per creare form e salvare più model nella stessa chiamata
-
   include ActiveModel::Model
 
   attr_accessor :message, :attachments, :user, :post, :course_id
@@ -14,7 +13,7 @@ class Publication
 
       if !attachments.nil?
         attachments.each do |file|
-          @post.documents.create!(file: file, user: user, course: course)
+          @post.documents.create!(file: file, user: user, course: course, file_name: file.original_filename)
         end
       end
     end

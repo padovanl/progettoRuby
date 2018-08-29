@@ -3,14 +3,14 @@ class Post < ApplicationRecord
 
   belongs_to :user
   belongs_to :course
-  has_many :comments, :dependent => :destroy
+  has_many :comments, dependent: :destroy
   # indico la tabella intermedia e quella finale per le 
   # associazioni molti a molti
   has_many :document_posts, :dependent => :destroy
   has_many :documents, through: :document_posts, :dependent => :destroy
 
   # un post può essere votato da più utenti
-  #has_many :upvotes, dependent: :destroy, :dependent => :destroy
+  has_many :upvotes, dependent: :destroy
   has_many :upvoters, through: :upvotes, dependent: :destroy, class_name: 'User', source: :upvoter
 
   # validations
