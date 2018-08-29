@@ -41,7 +41,7 @@
     <div id="navMenubd-example" class="navbar-menu">
       <div class="navbar-start">
         <% if user_signed_in? %>
-          <div class="navbar-item has-dropdown is-hoverable">
+          <!--<div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link  is-active" href="#">
               Trova corsi
             </a>
@@ -61,8 +61,11 @@
                 4
               </a>
             </div>
-          </div>
+          </div>-->
 
+          <a class="navbar-item " href="#">
+            <span class="bd-emoji"><%= fa_icon "search" %></span>&nbsp;Trova corsi
+          </a>
           <a class="navbar-item " href="#">
             <span class="bd-emoji"><%= fa_icon "graduation-cap" %></span>&nbsp;I miei corsi
           </a>
@@ -123,18 +126,41 @@
     </div>
   </nav>
 
+    <!--<div id="alertBox" hidden="true">
+      <br>
+      <br>
+      <br>
+      <div class="columns">
+        <div class="column">
+          <article class="message is-link">
+
+            <div class="message-body" id="alertDiv">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>,
+              tempus
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>-->
+
+
 
 
 
 <%= yield %>
 
   <!-- mancavano questi, forse e' per questo che non comparivano gli avvisi di devise (comunque bisogna trovare un bel posto dove metterli)-->
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <!--<p class="notice"><%= notice %></p>-->
+  <!--<p class="alert"><%= alert %></p>-->
 
   <div class="se-pre-con"></div>
 
 <script type="text/javascript">
+
+
+
+  //setTimeout(function(){ $("#alertBox").fadeOut(1000); }, 3000);
+
     function openMenu() {
 
         var $navbarBurgers = document.querySelector('.navbar-burger')
@@ -144,6 +170,8 @@
         $navbarBurgers.classList.toggle('is-active');
         $target.classList.toggle('is-active');
     }
+
+
 </script>
 
 
@@ -154,7 +182,20 @@
 
       function loaded() {
           $(".se-pre-con").fadeOut("slow");
+
+          if("<%= notice %>" != ''){
+              //$("#alertDiv").html("<p><%= notice %></p>")
+              //$("#alertBox").removeAttr('hidden');
+              toastr.success('<%= notice %>')
+          }
+
+          if("<%= alert %>" != ''){
+              toastr.warning('<%= alert %>')
+          }
       }
+
+
+
   </script>
 
 

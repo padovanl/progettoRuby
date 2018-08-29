@@ -99,3 +99,7 @@ gem 'faker'
 gem 'rack-reducer', require: 'rack/reducer'
 
 gem "font-awesome-rails"
+
+gem 'toastr-rails'
+
+gem 'jquery-rails'

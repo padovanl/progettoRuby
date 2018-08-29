@@ -155,3 +155,5 @@ course = Course.first
       {content: Faker::Hobbit.quote, user_id: user.id},
       {content: Faker::Hobbit.quote, user_id: user.id}])
 end
+
+=end
