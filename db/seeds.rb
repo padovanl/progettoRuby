@@ -114,6 +114,7 @@ teacher.theses.create!([
 
 teacher.teacher_courses.create!([
     {year: "2017-2018", teacher_id: teacher.id, course_id: 3},
+    {year: "2016-2017", teacher_id: teacher.id, course_id: 1},
     {year: "2015-2016", teacher_id: teacher.id, course_id: 4},
     {year: "2011-2012", teacher_id: teacher.id, course_id: 3}
 ])
