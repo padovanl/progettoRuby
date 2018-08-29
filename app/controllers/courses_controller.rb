@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-
+  before_action :authenticate_user!
  # before_filter :search_course
 
   #def index

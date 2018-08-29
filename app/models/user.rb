@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :user_courses
   has_many :tags
+  has_many :course_questions
 
   # un utente vota un post
   has_many :upvotes
