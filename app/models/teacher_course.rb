@@ -17,7 +17,7 @@ class TeacherCourse < ApplicationRecord
       case category
       when 'Name'
         eager_load({course: :degree_course}, :teacher).order(year: :desc).where("courses.name ILIKE ?", "%#{query}%")
-      when 'Year'
+      when 'Data'
         eager_load({course: :degree_course}, :teacher).order("courses.name desc").where("teacher_courses.year LIKE ?", "%#{query}%")
       when 'Teacher'
         eager_load({course: :degree_course}, :teacher).order(year: :desc).where(
@@ -27,7 +27,7 @@ class TeacherCourse < ApplicationRecord
                 (teachers.surname || ' ' || teachers.name) ILIKE ?",
                  "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%")
         .references(:teacher)
-      when  'Module'
+      when  'Year'
         eager_load({course: :degree_course}, :teacher).order(year: :desc).where("courses.year =?", "#{query}")
       else
         return "ERRORE eager_load model t_c"
@@ -38,6 +38,7 @@ class TeacherCourse < ApplicationRecord
           .where('degree_courses.name LIKE ? AND degree_courses.tipo LIKE ?', "#{degreen}", "#{degreet}").order(year: :desc)
     else
       includes({course: :degree_course}, :teacher).order(year: :desc)
+      #includes({course: :degree_course},{course: :user_courses}, :teacher).order(year: :desc)
     end
   end
 

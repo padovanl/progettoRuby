@@ -102,10 +102,6 @@ class SearchItem2 extends React.Component {
 
         return (
             <section>
-                <div className={'myRow'}>
-                    <Search_degree onSubmit={(degreen, degreet) => this.onSubmit(degreen, degreet)} />
-                </div>
-                <hr/>
                 <div className='myRow'>
                     <form className='search-form'>
                         <h3><b>Advanced Search:</b></h3>
@@ -121,7 +117,13 @@ class SearchItem2 extends React.Component {
                             </div>
                             <div className='myColumn myColumn-sm'> {searchButton} </div>
                         </div>
+                        <hr/>
                     </form>
+
+                    <div className={'myRow'}>
+                        <Search_degree onSubmit={(degreen, degreet) => this.onSubmit(degreen, degreet)} />
+                    </div>
+
                     <IndexCourses2 courses={this.state.courses}
                                    page={this.state.page}
                                    last_page={this.props.last_page}

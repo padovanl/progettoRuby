@@ -29,6 +29,51 @@ class IndexCourses2 extends React.Component{
     }
 
 
+    //PUÒ ISCRIVERSI SOLO SE PASSED=FALSE (DELLA TAB USER_COURSES)
+    async handleSubmit(event) {
+        event.preventDefault(); //blocca comportamento predefinito: reload pagina e cancellazione di tutto
+
+        const myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+
+        //user_id, course_id, follow=true lo faccio direttamente nel controller (chiamando la funzione dal model)
+        let data = new FormData(event.target); //id corso; event.target gives you the native DOMNode
+
+        //const addNewPost = this.props.addNewPost
+
+        const options = {
+            method: 'POST',
+            headers: myHeaders,
+            credentials: 'same-origin',
+            body: data,
+        };
+
+        function handleErrors(response) {
+            if (!response.ok) {
+                throw Error(response.statusText);
+            }
+            return response;
+        }
+
+        const request = new Request('/follow', options);
+
+        await fetch(request)
+            .then(handleErrors)
+            .then(response => {
+                return response.json();
+            })
+            .catch(error => console.log(error));
+
+        //document.getElementById("post_attachments").value = null; -> mdifico in rosso per unfollow
+    }
+
+    buttonFollowClicked(e){
+        //funzione per l'Allert se è sicuro di seguire quel corso
+        //funz che seguo il corso e lo inserisco nel db,
+        //funzione che fa scegliere se reindirizzare nella show di quel corso o di continuare con un modal
+    }
+
+
 
     render(){
         let message;
@@ -69,9 +114,9 @@ class IndexCourses2 extends React.Component{
                             <a href={item.teacher_cv}> {item.teacher_name} {item.teacher_surname}</a>
                         </div>
                     </div>
-                    <div className="segui">
-                        <div>Segui</div>
-                    </div>
+                    <button name={'follow'} value={item.id} className="segui" onClick={(e)=>this.buttonFollowClicked(e).bind(this)}>
+                        <div>Follow</div>
+                    </button>
                 </div>
             )
         });
