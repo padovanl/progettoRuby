@@ -12,10 +12,12 @@ function makeReq(url, errorMessage = '', options = {}) {
 }
 
 
-const updateUrl=(page, category='', query='')=>{
-    let url = "/allcourses.json?page="+page;
+const updateUrl=(page, degreen='', degreet='', category='', query='')=>{
+    let url = "/allcourses.json?page="+page+"?utf8=✓";
+    if (degreen !== '')
+        url = url+ "&degreen="+degreen+"&degreet="+degreet;
     if (query!=='') //se ho fatto la ricerca
-        url = url+ "?utf8=✓"+ "&search="+query+"&category="+category;
+        url = url+ "&search="+query+"&category="+category;
     return url;
 };
 
@@ -25,6 +27,12 @@ const getCourses = (url) => {
     return makeReq(url, errorMessage);
 };
 
+const getDegreesName = (degree) => {
+    let url = "/search_degrees.json??utf8=✓&"+degree;
+    const errorMessage = 'Errore durante il download dei dati';
+    console.log("url usato nella ricerca: "+url);
+    return makeReq(url, errorMessage);
+};
 /*
 const searchAll = (category, query, page='') => {
     let url=baseURL;

@@ -11,11 +11,12 @@ Post.destroy_all
 TeacherCourse.destroy_all
 Course.destroy_all
 DegreeCourse.destroy_all
-Thesis.destroy_all
+ThesisTag.destroy_all
 Teacher.destroy_all
 Tag.destroy_all
 User.destroy_all
 TeacherCourse.destroy_all
+
 
  
   degree_course = DegreeCourse.create!( id: 1, name: "Ingegneria civile e ambientale", tipo: "triennale" )
@@ -79,7 +80,8 @@ degree_course.courses.create!([
     { id:25, name: "Sistemi distribuiti e mobili", year: 1 },
     { id:26, name: "Fondamenti di intelligenza artificiale", year: 1 },
     { id:27, name: "Ricerca operativa", year: 2 },
-    { id:28, name: "Progetto di sistemi Web", year: 2 }
+    { id:28, name: "Progetto di sistemi Web", year: 2 },
+    { id:29, name: "Reti di calcolatori", year: 1 }
 ])
 
 
@@ -96,9 +98,9 @@ user.tags.create!([
 #Teacher.create!(name: "Cesare", surname: "Stefanelli", link_cv: "http://docente.unife.it/cesare.stefanelli")
 teacher = Teacher.create!(name: "Evelina", surname: "Lamma", link_cv: "http://docente.unife.it/evelina.lamma")
 teacher.teacher_courses.create!([
-      {year: "1990-1991", teacher_id: teacher.id, course_id: 1},
-      {year: "1992-1993", teacher_id: teacher.id, course_id: 1},
-      {year: "1994-1995", teacher_id: teacher.id, course_id: 1}
+      {year: "1990-1991", teacher_id: teacher.id, course_id: 26},
+      {year: "1992-1993", teacher_id: teacher.id, course_id: 26},
+      {year: "1994-1995", teacher_id: teacher.id, course_id: 26}
   ])
 
 
@@ -120,19 +122,25 @@ teacher.teacher_courses.create!([
 teacher = Teacher.create!( name: "Mauro", surname: "Tortonesi", link_cv:"https://de.unife.it/en/research/research-1/information-technology/computer-science/distributed-systems-group/people/mauro-tortonesi")
 
 teacher.teacher_courses.create!([
-    {year: "2017-2018", teacher_id: teacher.id, course_id: 1},
-    {year: "2016-2017", teacher_id: teacher.id, course_id: 1},
-    {year: "2015-2016", teacher_id: teacher.id, course_id: 2}
+    {year: "2017-2018", teacher_id: teacher.id, course_id: 29},
+    {year: "2016-2017", teacher_id: teacher.id, course_id: 29},
+    {year: "2015-2016", teacher_id: teacher.id, course_id: 29}
 ])
 teacher = Teacher.create!( name: "Cesare", surname: "Stefanelli", link_cv:"http://docente.unife.it/cesare.stefanelli/curriculum")
 
 teacher.teacher_courses.create!([
-    {year: "2017-2018", teacher_id: teacher.id, course_id: 4},
-    {year: "2013-2014", teacher_id: teacher.id, course_id: 4},
-    {year: "2010-2011", teacher_id: teacher.id, course_id: 2},
-    {year: "2003-2004", teacher_id: teacher.id, course_id: 1},
-    {year: "2002-2003", teacher_id: teacher.id, course_id: 1},
-    {year: "2001-2002", teacher_id: teacher.id, course_id: 1}
+    {year: "2017-2018", teacher_id: teacher.id, course_id: 25},
+    {year: "2013-2014", teacher_id: teacher.id, course_id: 25},
+    {year: "2010-2011", teacher_id: teacher.id, course_id: 25},
+    {year: "2003-2004", teacher_id: teacher.id, course_id: 25},
+    {year: "2002-2003", teacher_id: teacher.id, course_id: 25},
+    {year: "2001-2002", teacher_id: teacher.id, course_id: 25},
+    {year: "2017-2018", teacher_id: teacher.id, course_id: 28},
+    {year: "2013-2014", teacher_id: teacher.id, course_id: 28},
+    {year: "2010-2011", teacher_id: teacher.id, course_id: 28},
+    {year: "2003-2004", teacher_id: teacher.id, course_id: 28},
+    {year: "2002-2003", teacher_id: teacher.id, course_id: 28},
+    {year: "2001-2002", teacher_id: teacher.id, course_id: 28}
 ])
 
 
@@ -147,7 +155,7 @@ course = Course.first
 10.times do
   post = Post.create!(
     message: Faker::HeyArnold.quote,
-    upvoter_id: user.id,
+    user_id: user.id,
     course_id: course.id
   )
   post.comments.create!([
