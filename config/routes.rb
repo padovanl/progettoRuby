@@ -17,7 +17,12 @@ Rails.application.routes.draw do
   resources :comments
   resources :courses, only: [:index, :show]
 
+
   #courses (user)
+  resources :courses do
+    resources :questions, only: [:index, :create, :destroy]
+  end
+
   get '/allcourses', to: 'courses#allcourses'
   get :search_degrees, controller: :courses
   post :follow, controller: :courses

@@ -35,7 +35,6 @@
         <input type="radio" name="tabset" id="tab4" aria-controls="history_teachers">
         <label for="tab4">Storico Insegnanti</label>
 
-
         <div class="tab-panels">
           <section id="marzen" class="tab-panel">
             <br />
@@ -48,6 +47,7 @@
             </div>
           </section>
           <section id="rauchbier" class="tab-panel">
+            <%= react_component('MainQuestion', {course_id: params['id'], current_user: current_user}) %>
           </section>
           <section id="dunkles" class="tab-panel">
           </section>
