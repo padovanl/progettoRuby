@@ -135,19 +135,19 @@ teacher.teacher_courses.create!([
     {year: "2001-2002", teacher_id: teacher.id, course_id: 1}
 ])
 
-
+=begin
 ThesisTag.create!(id: 1, thesis_id: 1, tag_id: 1)
 ThesisTag.create!(id: 2, thesis_id: 1, tag_id: 2)
 ThesisTag.create!(id: 3, thesis_id: 1, tag_id: 3)
 ThesisTag.create!(id: 4, thesis_id: 2, tag_id: 1)
 ThesisTag.create!(id: 5, thesis_id: 3, tag_id: 1)
-
+=end
 user = User.first
 course = Course.first
 10.times do
   post = Post.create!(
     message: Faker::HeyArnold.quote,
-    upvoter_id: user.id,
+    user_id: user.id,
     course_id: course.id
   )
   post.comments.create!([

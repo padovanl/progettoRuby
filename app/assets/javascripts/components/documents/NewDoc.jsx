@@ -14,14 +14,32 @@ class NewDoc extends React.Component {
         this.setState({file_name: file[0].name});
     }
 
+    handleDeleteTag(name) {
+        this.setState((prevState) => {
+            return {
+                doc_tags: prevState.doc_tags.filter((tag) => {return tag.name !== name;}),
+                query_string: ''
+            };
+        });
+    }
+
     handleAddTag() {
         if (this.state.query_string != '')
             this.setState((prevState) => {
                 return {
-                    doc_tags: prevState.doc_tags.concat({name: prevState.query_string}),
+                    doc_tags: prevState.doc_tags.concat({name: prevState.query_string, id: ""}),
                     query_string: ''
                 };
             });
+    }
+
+    handleAddExistingTag(tag){
+        this.setState((prevState) => {
+            return {
+                doc_tags: prevState.doc_tags.concat(tag),
+                query_string: ''
+            };
+        });
     }
 
     handleChangeQuery(event) {
@@ -59,15 +77,16 @@ class NewDoc extends React.Component {
             .then(response => {
                 return response.json();
             }).then(function (json) {
-            console.log(json)
             addNewDoc(json)
         })
             .catch(error => console.log(error));
 
         this.setState({
-            message: '',
-            file_name: '',
-            showError: false
+            showError: false,
+            file_name: "",
+            query_string: "",
+            tags: [],
+            doc_tags: []
         });
         document.getElementById("document_attachment").value = null;
     }
@@ -129,9 +148,9 @@ class NewDoc extends React.Component {
                                                     return (
                                                         <li key={tag.id} className="level is-mobile"><a> {tag.name} </a><span
                                                             className="icon">
-                                                    <i className="fas fa-plus"></i>
+                                                    <i className="fas fa-plus" onClick={() => this.handleAddExistingTag(tag)}></i>
                                                  </span></li>)
-                                                })}
+                                                }, this)}
                                             </ul>
                                         </div> : ""}
                                 </div>
@@ -142,11 +161,12 @@ class NewDoc extends React.Component {
                                         return (<div className="control">
                                             <div className="tags has-addons">
                                                 <a className="tag is-link"> {tag.name} </a>
-                                                <a className="tag is-delete"></a>
-                                                <input type="hidden" name="document[tags][]" value={tag.name}/>
+                                                <a className="tag is-delete" onClick={() => this.handleDeleteTag(tag.name)} ></a>
+                                                <input type="hidden" name="document[tags][][id]" value={tag.id}/>
+                                                <input type="hidden" name="document[tags][][name]" value={tag.name}/>
                                             </div>
                                         </div>)
-                                    })}
+                                    }, this)}
                                 </div>
 
 
