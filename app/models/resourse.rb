@@ -10,11 +10,17 @@ class Resourse
 
     ActiveRecord::Base.transaction do
       course = Course.find(course_id)
-      @document = Document.create!(file: attachment, user: user, course: course)
+
+      @document = Document.create!(file: attachment, user: user, course: course, file_name: attachment.original_filename)
 
       if !tags.nil?
         tags.each do |tag|
-          @document.tags.create!(name: tag)
+          if tag['id'].blank?
+            @document.tags.create!(name: tag['name'], user: user)
+          else
+            tagIn = Tag.find(tag['id'])
+            DocumentTag.create!(document: @document, tag: tagIn)
+          end
         end
       end
     end

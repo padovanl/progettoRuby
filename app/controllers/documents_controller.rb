@@ -1,6 +1,5 @@
 class DocumentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_document, only: [:destroy]
 
   def index
     documents = Document.reduce(params).order(created_at: :desc)
@@ -19,24 +18,20 @@ class DocumentsController < ApplicationController
     render json: resource.document, include: %w(user tags), status: :created
   end
 
-  # DELETE /documents/1
-  # DELETE /documents/1.json
   def destroy
-    @document.destroy
-    respond_to do |format|
-      format.html {redirect_to documents_url, notice: 'Document was successfully destroyed.'}
-      format.json {head :no_content}
+    document = Document.current_user_document(current_user, params[:id]).first
+
+    if !document.destroy
+      render_json_validation_error document
+      return
     end
+
+    head :no_content
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_document
-    @document = Document.find(params[:id])
-  end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def document_params
-    params.require(:document).permit( :course_id, :attachment )
+    params.require(:document).permit( :course_id, :attachment, tags: [:id, :name] )
   end
 end

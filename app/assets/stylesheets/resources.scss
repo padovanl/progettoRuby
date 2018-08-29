@@ -20,8 +20,29 @@
   }
 
   .tag-search{
+    position: relative;
     margin-top: 20px;
+    margin-bottom: 40px;
     .button {
+      cursor: pointer;
+    }
+    .tag-list{
+      position: absolute;
+      top: 34px;
+      z-index: 999;
+      width: 50%;
+      padding: 0;
+      ul{
+        list-style-type: none;
+        margin: 0;
+      }
+      overflow: auto;
+      height: 100px;
+    }
+    i {
+      cursor: pointer;
+    }
+    #new-tag{
       cursor: pointer;
     }
   }

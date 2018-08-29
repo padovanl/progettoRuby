@@ -11,10 +11,11 @@ Rails.application.routes.draw do
   resources :publications, only: [:index]
   resources :upvotes, only: [:create, :destroy]
   resources :resources, only: [:index]
+  resources :tags, only: [:index]
   resources :documents
   resources :posts
   resources :comments
-
+  resources :courses, only: [:show]
 
   get '/allcourses', to: 'courses#allcourses'
   get :search_degrees, controller: :courses

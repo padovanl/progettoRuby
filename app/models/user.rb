@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :omniauthable, omniauth_providers: [:facebook]
+         :confirmable, :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
   has_many :notifications
   has_many :reps
@@ -36,6 +36,9 @@ class User < ApplicationRecord
       user.skip_confirmation!
     end
   end
+
+
+
 
 
   # validations

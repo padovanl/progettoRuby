@@ -4,6 +4,9 @@
 @import "common/mixin";
 @import "*";
 
+@import "toastr";
+
+
 html {
   background: url("bg8.png") no-repeat center center fixed;
   background-size: cover;
@@ -105,6 +108,8 @@ html {
   z-index: 9999;
   background: url('Preloader_2.gif') center no-repeat #fff;
 }
+
+
 
 
 

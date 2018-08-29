@@ -72,6 +72,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Gestione login e signup
 gem 'devise'
 gem 'omniauth-facebook'
+gem "omniauth-google-oauth2"
+
 
 gem 'bulma-rails', '~> 0.7.1'
 gem 'bulma-extensions-rails', '~> 1.0', '>= 1.0.30'
@@ -97,3 +99,7 @@ gem 'faker'
 gem 'rack-reducer', require: 'rack/reducer'
 
 gem "font-awesome-rails"
+
+gem 'toastr-rails'
+
+gem 'jquery-rails'

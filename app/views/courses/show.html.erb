@@ -1,0 +1,144 @@
+
+<div>
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container">
+        <h2 class="title">
+          <%= @course.name %>
+        </h2>
+        <h3 class="subtitle">
+          <%= @degree_course.name %>
+        </h3>
+        <h6>
+          Insegnato attualmente da <a target="_blank" href=<%= @current_teacher_course.link_cv %>><%= @current_teacher_course.name%> <%= @current_teacher_course.surname%></a>
+        </h6>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="hero">
+  <div class="hero-body has-text-centered">
+    <div class="container">
+
+      <div class="tabset">
+        <!-- Tab 1 -->
+        <input type="radio" name="tabset" id="tab1" aria-controls="marzen" checked>
+        <label for="tab1">Statistiche</label>
+        <!-- Tab 2 -->
+        <input type="radio" name="tabset" id="tab2" aria-controls="rauchbier">
+        <label for="tab2">Domande</label>
+        <!-- Tab 3 -->
+        <input type="radio" name="tabset" id="tab3" aria-controls="dunkles">
+        <label for="tab3">Suggerimenti</label>
+        <!-- Tab 4 -->
+        <input type="radio" name="tabset" id="tab4" aria-controls="history_teachers">
+        <label for="tab4">Storico Insegnanti</label>
+
+
+        <div class="tab-panels">
+          <section id="marzen" class="tab-panel">
+            <br />
+            <div class="columns">
+              <div class="column"></div>
+              <div class="column is-8">
+                <%= react_component 'MainStatisticCourse' %>
+              </div>
+              <div class="column"></div>
+            </div>
+          </section>
+          <section id="rauchbier" class="tab-panel">
+          </section>
+          <section id="dunkles" class="tab-panel">
+          </section>
+          <section id="history_teachers" class="tab-panel">
+            <br />
+            <div class="columns">
+              <div class="column"></div>
+              <div class="column is-8">
+                <%= react_component 'MainStatisticCourse' %>
+              </div>
+              <div class="column"></div>
+            </div>
+          </section>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+  /*
+ CSS for the main interaction
+*/
+  .tabset > input[type="radio"] {
+    position: absolute;
+    left: -200vw;
+  }
+
+  .tabset .tab-panel {
+    display: none;
+  }
+
+  .tabset > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
+  .tabset > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(2),
+  .tabset > input:nth-child(5):checked ~ .tab-panels > .tab-panel:nth-child(3),
+  .tabset > input:nth-child(7):checked ~ .tab-panels > .tab-panel:nth-child(4),
+  .tabset > input:nth-child(9):checked ~ .tab-panels > .tab-panel:nth-child(5),
+  .tabset > input:nth-child(11):checked ~ .tab-panels > .tab-panel:nth-child(6) {
+    display: block;
+  }
+
+  /*
+   Styling
+  */
+  body {
+    font: 16px/1.5em "Overpass", "Open Sans", Helvetica, sans-serif;
+    color: #333;
+    font-weight: 300;
+  }
+
+  .tabset > label {
+    position: relative;
+    display: inline-block;
+    padding: 15px 15px 25px;
+    border: 1px solid transparent;
+    border-bottom: 0;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .tabset > label::after {
+    content: "";
+    position: absolute;
+    left: 15px;
+    bottom: 10px;
+    width: 22px;
+    height: 4px;
+    background: #8d8d8d;
+  }
+
+  .tabset > label:hover,
+  .tabset > input:focus + label {
+    color: #06c;
+  }
+
+  .tabset > label:hover::after,
+  .tabset > input:focus + label::after,
+  .tabset > input:checked + label::after {
+    background: #06c;
+  }
+
+  .tabset > input:checked + label {
+    border-color: #ccc;
+    border-bottom: 1px solid #fff;
+    margin-bottom: -1px;
+  }
+
+  .tab-panel {
+    padding: 30px 0;
+    border-top: 1px solid #ccc;
+  }
+</style>
