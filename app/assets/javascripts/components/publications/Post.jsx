@@ -9,7 +9,8 @@ class Post extends React.Component {
             user_upvoted: false,
             upvote_id: '',
             post: this.props.post,
-            view_post: true
+            view_post: true,
+            course_id: this.props.course_id
         };
     }
 
@@ -147,7 +148,7 @@ class Post extends React.Component {
         var myHeaders = new Headers();
         myHeaders.append('X-CSRF-Token', Rails.csrfToken());
 
-        fetch(`/posts/${post_id}`, {
+        fetch(`/posts/${post_id}?course_id=${this.state.course_id}`, {
             method: 'DELETE',
             headers: myHeaders,
             credentials: 'same-origin'
