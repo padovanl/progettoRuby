@@ -9,6 +9,7 @@
 Comment.destroy_all
 Post.destroy_all
 TeacherCourse.destroy_all
+Document.destroy_all
 Course.destroy_all
 DegreeCourse.destroy_all
 ThesisTag.destroy_all
@@ -140,7 +141,7 @@ teacher.teacher_courses.create!([
 
 
 user = User.create!(name: "User2 User2", email: "user2@user2.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
-user.
+
 user.course_questions.create!([
     { id:1 , question: Faker::Lorem.question, frequency: 10, user_id: user.id, course_id: 1},
     { id:2 , question: Faker::Lorem.question, frequency: 10, user_id: user.id, course_id: 1},
