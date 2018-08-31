@@ -27,7 +27,9 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @degree_course = DegreeCourse.find(@course.degree_course_id)
-    @current_teacher_course = @course.teacher_courses.to_a[-1].teacher
+    @current_teacher_course = @course.teacher_courses.order(year: :desc).to_a[-1].teacher
+
+    #sistemare current teacher course nel modello e trovare il modo di beccare il professore più recente
 
   end
 

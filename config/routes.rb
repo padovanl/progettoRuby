@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'user_courses/show'
   get 'welcome/index'
   root 'welcome#index'
 
@@ -80,6 +81,14 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :course do
         resources :teacher_courses, only: [:index, :create, :destroy] #tolto :update
+      end
+    end
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :users do
+        resources :user_courses, only: [:show]
       end
     end
   end
