@@ -21,7 +21,7 @@ class Post < ApplicationRecord
       ->(course_id:) { where course_id: course_id },
       ->(user_id:) { where user_id: user_id },
       ->(upvoter_id:) { joins(:upvotes).where("upvotes.upvoter_id = ?", upvoter_id) },
-      ->(comment_user_id:) { joins(:comments).where("comments.user_id = ?", comment_user_id) }
+      ->(comment_user_id:) { left_outer_joins(:comments).where("comments.user_id = ?", comment_user_id) }
   ]
 
   scope :current_user_post,   ->(user, id){ where(user_id: user.id, id: id) }

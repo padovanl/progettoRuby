@@ -1,8 +1,10 @@
 class DocumentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_course, only: [:index, :destroy]
+  before_action :user_follow_course?, only: [:index, :destroy]
 
   def index
-    documents = Document.reduce(params).order(created_at: :desc)
+    documents = Document.reduce(params).order(created_at: :desc).uniq
     render json: documents, include: %w(user tags)
   end
 
@@ -30,7 +32,6 @@ class DocumentsController < ApplicationController
   end
 
   private
-
   def document_params
     params.require(:document).permit( :course_id, :attachment, tags: [:id, :name] )
   end

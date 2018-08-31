@@ -12,7 +12,7 @@ class DocumentFrame extends React.Component {
 
     render() {
         const { document, view_doc_menu } = this.state
-        const { current_user }  = this.props
+        const { current_user, course_id }  = this.props
         let can_delete_post = (document.user.id === current_user.id) ? true : false;
 
         if (this.state.view_doc)
@@ -71,7 +71,7 @@ class DocumentFrame extends React.Component {
                                     </div>
                                 </div>
                             </a></li>
-                                { can_delete_post ? <li><a onClick={ (e) => this.deleteDocument(e, document.id) }>
+                                { can_delete_post ? <li><a onClick={ (e) => this.deleteDocument(e, document.id, course_id) }>
                                     <div className="columns is-mobile">
                                         <div className="column is-two-fifths">
                                             <span className="icon">
@@ -94,7 +94,7 @@ class DocumentFrame extends React.Component {
             return null
     }
 
-    deleteDocument(event, document_id) {
+    deleteDocument(event, document_id, course_id) {
         event.preventDefault();
         if(this.state.document.user.id !== this.props.current_user.id)
             return;
@@ -102,7 +102,7 @@ class DocumentFrame extends React.Component {
         var myHeaders = new Headers();
         myHeaders.append('X-CSRF-Token', Rails.csrfToken());
 
-        fetch(`/documents/${document_id}`, {
+        fetch(`/documents/${document_id}?course_id=${course_id}`, {
             method: 'DELETE',
             headers: myHeaders,
             credentials: 'same-origin'
