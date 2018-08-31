@@ -1,27 +1,55 @@
-<h2>Change your password</h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
+
+
+<% content_for :title, "Cambia password" %>
+
+<section class="hero is-fullheight">
+  <div class="hero-body">
+    <div class="container main-content">
+      <div class="columns is-desktop is-vcentered">
+        <div class="column"></div>
+        <div class="column">
+          <div class="box">
+            <p class="title is-4"><strong>Dimenticato la password?</strong></p>
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :put}) do |f| %>
+              <%= devise_error_messages! %>
+              <%= f.hidden_field :reset_password_token %>
+
+              <div class="field">
+                <%= f.label :password, "Nuova password" %><br/>
+                <% if @minimum_password_length %>
+                  <em>(<%= @minimum_password_length %> characters minimum)</em><br/>
+                <% end %>
+                <%= f.password_field :password, autofocus: true, autocomplete: "off", class: "input is-medium", style: "border-radius: 15px;", required: true %>
+              </div>
+
+              <div class="field">
+                <%= f.label :password_confirmation, "Conferma nuova password" %><br/>
+                <%= f.password_field :password_confirmation, autocomplete: "off", class: "input is-medium", style: "border-radius: 15px;", required: true %>
+              </div>
+
+              <div class="actions">
+                <%= f.submit "Cambia password", class: "button is-medium is-rounded submit-action is-fullwidth" %>
+              </div>
+            <% end %>
+            <br />
+            <div class="is-divider"></div>
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+        <div class="column"></div>
+      </div>
+    </div>
   </div>
+</section>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<style>
+  @media only screen and (max-width: 600px) {
+    .box {
+      height: 500px;
+    }
+  }
+</style>
 
 
