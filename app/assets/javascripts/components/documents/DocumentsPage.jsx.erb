@@ -6,7 +6,8 @@ class DocumentsPage extends React.Component {
         this.state = {
             data: [],
             adding_doc: false,
-            activeTabIndex: 0
+            activeTabIndex: 0,
+            search_string: ""
         };
     }
 
@@ -21,18 +22,26 @@ class DocumentsPage extends React.Component {
         });
     }
 
+    handleChangeSearch(event) {
+        this.setState({search_string: event.target.value});
+        this.fetchDocuments(this.state.activeTabIndex, event.target.value);
+    }
+
     viewNewDocModal() {
         this.setState({adding_doc: true});
     }
 
     closeNewDocModal() {
-        this.setState({adding_doc: false});
+        this.setState({adding_doc: false, search_string: ""});
     }
 
     // Toggle currently active tab
     handleTabClick(tabIndex) {
         if (tabIndex !== this.state.activeTabIndex) {
-            this.fetchPosts(tabIndex)
+            this.fetchDocuments(tabIndex)
+            this.setState({
+                search_string: ""
+            })
         }
     }
 
@@ -42,17 +51,18 @@ class DocumentsPage extends React.Component {
         const { data, adding_doc, activeTabIndex } = this.state;
 
         let documents_list = data.map(function (doc) {
-            return (<DocumentFrame key={doc.id} document={doc} current_user={current_user}></DocumentFrame>)
+            return (<DocumentFrame key={doc.id} document={doc} current_user={current_user} course_id={course_id}></DocumentFrame>)
         });
 
         return (
             <div>
-                <div className="container corso-thread">
+                <div className="container resources-thread">
                     <div className="level is-mobile">
 
                         <div className="level-left" id="search-input">
                             <div className="control">
-                                <input className="input is-medium is-rounded"  type="email" placeholder="Cerca" />
+                                <input className="input is-medium is-rounded"  onChange={(e) => this.handleChangeSearch(e)}
+                                       type="email" placeholder="Cerca" value={this.state.search_string} />
                             </div>
                         </div>
                         <div className="level-item"><div id="style-2" className="tabs is-centered">
@@ -99,21 +109,27 @@ class DocumentsPage extends React.Component {
 
     componentDidMount() {
         const {activeTabIndex} = this.state
-        this.fetchPosts(activeTabIndex)
+        this.fetchDocuments(activeTabIndex)
     }
 
-    fetchPosts(activeTabIndex) {
+    fetchDocuments(activeTabIndex, search_string='') {
         const {course_id, current_user} = this.props
 
         URL = '/documents?course_id=' + course_id
         if (activeTabIndex === 1)
           URL += '&user_id=' + current_user.id
 
+        if (search_string !== '')
+            URL += '&search_string=' + search_string
+
         fetch(URL, {
         credentials: 'same-origin'
     })
         .then(response => response.json())
-        .then(data => this.setState({data, activeTabIndex}));
+        .then(data => this.setState({
+            data,
+            activeTabIndex
+        }));
     }
 
 

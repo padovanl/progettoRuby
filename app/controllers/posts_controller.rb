@@ -1,8 +1,10 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_course, only: [:index, :destroy]
+  before_action :user_follow_course?, only: [:index, :destroy]
 
   def index
-    posts = Post.reduce(params).order(created_at: :desc)
+    posts = Post.reduce(params).order(created_at: :desc).uniq
     render json: posts, include: %w(upvoters user comments comments.user documents)
   end
 
@@ -31,9 +33,9 @@ class PostsController < ApplicationController
   end
 
   private
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params.require(:post).permit( :course_id, :message, attachments: [] )
-    end
+  def post_params
+    params.require(:post).permit( :course_id, :message, attachments: [] )
+  end
+
 
 end

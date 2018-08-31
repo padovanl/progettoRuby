@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_27_082757) do
+ActiveRecord::Schema.define(version: 2018_08_29_191523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,7 +52,9 @@ ActiveRecord::Schema.define(version: 2018_08_27_082757) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "course_id"
+    t.bigint "user_id"
     t.index ["course_id"], name: "index_course_questions_on_course_id"
+    t.index ["user_id"], name: "index_course_questions_on_user_id"
   end
 
   create_table "course_tips", force: :cascade do |t|
@@ -102,6 +104,7 @@ ActiveRecord::Schema.define(version: 2018_08_27_082757) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "course_id"
+    t.string "file_name"
     t.index ["course_id"], name: "index_documents_on_course_id"
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
@@ -192,6 +195,13 @@ ActiveRecord::Schema.define(version: 2018_08_27_082757) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "course_id"
+    t.boolean "passed"
+    t.integer "estimate_difficulty"
+    t.integer "material_quality"
+    t.integer "explanation"
+    t.integer "average_attempts"
+    t.integer "average_days"
+    t.boolean "follow"
     t.index ["course_id"], name: "index_user_courses_on_course_id"
     t.index ["user_id"], name: "index_user_courses_on_user_id"
   end
@@ -238,6 +248,7 @@ ActiveRecord::Schema.define(version: 2018_08_27_082757) do
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "course_questions", "courses"
+  add_foreign_key "course_questions", "users"
   add_foreign_key "course_tips", "courses"
   add_foreign_key "courses", "degree_courses"
   add_foreign_key "document_posts", "documents"

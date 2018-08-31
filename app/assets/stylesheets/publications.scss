@@ -48,7 +48,16 @@
   .posts-list {
     overflow-y: scroll;
     overflow-x: hidden;
-    height: 89vh;
+    height: 88vh;
+    @include rwd(767) {
+      height: 83vh;
+    }
+    @include custom-range(768, 1088) {
+    }
+    @include custom-range(1089, 1200) {
+    }
+    @include custom-range(1201, 1600) {
+    }
     padding: 1px;
 
     figure img {
@@ -114,7 +123,7 @@
   .add-button {
     position: absolute;
     cursor: pointer;
-    bottom: 4vh;
+    bottom: 3vh;
     right: 4vw;
     @include sm {
       img {

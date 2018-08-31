@@ -12,11 +12,10 @@
     </div>
 
 
-    <% link_to "Advanced Search:", searchCourses_path %>
 
     <div class="myColumn-lg">
       <div class="row">
-        <%= react_component 'SearchItem2', categories: @categories, last_page: @last_page%>
+        <%= react_component 'SearchItem2', tcs: @tcs, categories: @categories, last_page: @last_page%>
       </div>
 
 
