@@ -9,6 +9,7 @@
 Comment.destroy_all
 Post.destroy_all
 TeacherCourse.destroy_all
+Document.destroy_all
 Course.destroy_all
 DegreeCourse.destroy_all
 ThesisTag.destroy_all
@@ -18,7 +19,7 @@ User.destroy_all
 TeacherCourse.destroy_all
 
 
- 
+
   degree_course = DegreeCourse.create!( id: 1, name: "Ingegneria civile e ambientale", tipo: "triennale" )
 
   degree_course.courses.create!([
@@ -87,7 +88,6 @@ degree_course.courses.create!([
 
 
 user = User.create!(name: "Admin Admin", email: "admin@admin.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: true)
-User.create!(name: "User User", email: "user@user.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
 user.tags.create!([
   { id:1 , name: "Ricerca" },
   { id:2 , name: "Sviluppo Web" },
@@ -95,13 +95,31 @@ user.tags.create!([
   { id:4 , name: "Sviluppo mobile" }
 ])
 
+
+user = User.create!(name: "User User", email: "user@user.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
+user.user_courses.create!([
+    {id:1, user_id:2, course_id: 26, follow: true}, #sta seguendo lamma: Fondamenti di intelligenza artificiale
+    {id:2, user_id:2, course_id: 29, follow: true}, #reti di calcolatori
+    {id:3, user_id:2, course_id: 28, follow: true}, #progetto sistemi web
+    {id:4, user_id:2, course_id: 27, follow: false} # smesso di seguire: ricerca operativa
+])
+
 #Teacher.create!(name: "Cesare", surname: "Stefanelli", link_cv: "http://docente.unife.it/cesare.stefanelli")
-teacher = Teacher.create!(name: "Evelina", surname: "Lamma", link_cv: "http://docente.unife.it/evelina.lamma")
+teacher = Teacher.create!(name: "Evelina", surname: "Lamma", link_cv: "http://docente.unife.it/evelina.lamma/curriculum")
 teacher.teacher_courses.create!([
       {year: "1990-1991", teacher_id: teacher.id, course_id: 26},
       {year: "1992-1993", teacher_id: teacher.id, course_id: 26},
       {year: "1994-1995", teacher_id: teacher.id, course_id: 26}
   ])
+
+
+teacher = Teacher.create!(name: "Maddalena", surname: "Nonato", link_cv: "http://docente.unife.it/maddalena.nonato/curriculum")
+teacher.teacher_courses.create!([
+    {year: "2000-2001", teacher_id: teacher.id, course_id: 27},
+    {year: "2001-2002", teacher_id: teacher.id, course_id: 27},
+    {year: "2002-2003", teacher_id: teacher.id, course_id: 27}
+])
+
 
 
 teacher = Teacher.create!(name: "Marco", surname: "Gavanelli", link_cv: "http://docente.unife.it/marco.gavanelli/curriculum")
@@ -114,7 +132,6 @@ teacher.theses.create!([
 
 teacher.teacher_courses.create!([
     {year: "2017-2018", teacher_id: teacher.id, course_id: 3},
-    {year: "2016-2017", teacher_id: teacher.id, course_id: 1},
     {year: "2015-2016", teacher_id: teacher.id, course_id: 4},
     {year: "2011-2012", teacher_id: teacher.id, course_id: 3}
 ])
@@ -149,6 +166,7 @@ user = User.create!(name: "User2 User2", email: "user2@user2.com", password: "12
 user.user_courses.create!([
     { id:1, user_id: user.id, course_id: 1, passed: true}
 ])
+
 user.course_questions.create!([
     { id:1 , question: Faker::StarWars.quote, frequency: 10, user_id: user.id, course_id: 1},
     { id:2 , question: Faker::StarWars.quote, frequency: 10, user_id: user.id, course_id: 1},
@@ -156,18 +174,9 @@ user.course_questions.create!([
     { id:4 , question: Faker::StarWars.quote, frequency: 10, user_id: user.id, course_id: 1},
 ])
 
-
-
-=begin
-ThesisTag.create!(id: 1, thesis_id: 1, tag_id: 1)
-ThesisTag.create!(id: 2, thesis_id: 1, tag_id: 2)
-ThesisTag.create!(id: 3, thesis_id: 1, tag_id: 3)
-ThesisTag.create!(id: 4, thesis_id: 2, tag_id: 1)
-ThesisTag.create!(id: 5, thesis_id: 3, tag_id: 1)
-=end
 user = User.first
 course = Course.first
-10.times do
+5.times do
   post = Post.create!(
     message: Faker::HeyArnold.quote,
     user_id: user.id,
@@ -175,6 +184,44 @@ course = Course.first
   )
   post.comments.create!([
       {content: Faker::Hobbit.quote, user_id: user.id},
-      {content: Faker::Hobbit.quote, user_id: user.id},
+      {content: Faker::Hobbit.quote, user_id: User.second.id},
       {content: Faker::Hobbit.quote, user_id: user.id}])
 end
+user = User.second
+5.times do
+  post = Post.create!(
+      message: Faker::HeyArnold.quote,
+      user_id: user.id,
+      course_id: course.id
+  )
+  post.comments.create!([
+                            {content: Faker::Hobbit.quote, user_id: user.id},
+                            {content: Faker::Hobbit.quote, user_id: User.first.id},
+                            {content: Faker::Hobbit.quote, user_id: user.id}])
+end
+course = Course.second
+5.times do
+  post = Post.create!(
+      message: Faker::HeyArnold.quote,
+      user_id: user.id,
+      course_id: course.id
+  )
+  post.comments.create!([
+                            {content: Faker::Hobbit.quote, user_id: user.id},
+                            {content: Faker::Hobbit.quote, user_id: User.first.id},
+                            {content: Faker::Hobbit.quote, user_id: user.id}])
+end
+user = User.second
+5.times do
+  post = Post.create!(
+      message: Faker::HeyArnold.quote,
+      user_id: user.id,
+      course_id: course.id
+  )
+  post.comments.create!([
+                            {content: Faker::Hobbit.quote, user_id: user.id},
+                            {content: Faker::Hobbit.quote, user_id: User.first.id},
+                            {content: Faker::Hobbit.quote, user_id: user.id}])
+end
+
+UserCourse.create!(user_id: User.first.id, course_id: Course.first.id)

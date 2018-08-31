@@ -1,6 +1,6 @@
 const baseURL = "/allcourses.json";
 
-function makeReq(url, errorMessage = '', options = {}) {
+function makeReq(url, errorMessage = '', options = {credentials: 'same-origin'}) {
     return fetch(url, options)
         .then(response => {
             if (response.ok) {
@@ -28,7 +28,7 @@ const getCourses = (url) => {
 };
 
 const getDegreesName = (degree) => {
-    let url = "/search_degrees.json??utf8=✓&"+degree;
+    let url = "/search_degrees.json?utf8=✓&"+degree;
     const errorMessage = 'Errore durante il download dei dati';
     console.log("url usato nella ricerca: "+url);
     return makeReq(url, errorMessage);

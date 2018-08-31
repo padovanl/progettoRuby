@@ -16,8 +16,10 @@ Rails.application.routes.draw do
   resources :documents
   resources :posts
   resources :comments
-  resources :courses, only: [:show]
+  resources :courses, only: [:index, :show]
 
+
+  #courses (user)
   resources :courses do
     resources :questions, only: [:index, :create, :destroy, :update]
   end
@@ -25,7 +27,7 @@ Rails.application.routes.draw do
 
   get '/allcourses', to: 'courses#allcourses'
   get :search_degrees, controller: :courses
-
+  post :follow, controller: :courses
 
   #admin
   get '/dashboard', to: 'admin#dashboard'

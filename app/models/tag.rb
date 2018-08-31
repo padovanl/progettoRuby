@@ -1,10 +1,10 @@
 class Tag < ApplicationRecord
   extend Rack::Reducer
 
-  has_many :thesis_tags
+  has_many :thesis_tags, :dependent => :destroy
 
-  has_many :document_tags
-  has_many :documents, through: :document_tags
+  has_many :document_tags, :dependent => :destroy
+  has_many :documents, through: :document_tags, :dependent => :destroy
 
   belongs_to :user
 

@@ -63,7 +63,7 @@ class PostsThread extends React.Component {
                     { (data.length > 0) ? <div className="posts-list" id="style-1">
                             { data.map(function (post) {
                                 return <Post key={post.id} post={post} current_user={current_user}
-                                             current_user_avatar={current_user_avatar} />
+                                             current_user_avatar={current_user_avatar} course_id={course_id}/>
                             }) }
                         </div> : <div className="posts-list" /> }
 

@@ -1,5 +1,5 @@
 class Course < ApplicationRecord
-  has_many :reps
+  has_many :reps, :dependent => :destroy
   belongs_to :degree_course
 
   has_many :course_tips, :dependent => :destroy

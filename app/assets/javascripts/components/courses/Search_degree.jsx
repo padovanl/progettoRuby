@@ -4,8 +4,6 @@ class Search_degree extends React.Component {
         super(props);
         this.state = {
             chooseDegree: 'is-invisible',
-            selectType: "- Select -",
-            selectName: "- Select -",
             degreesType: [],
             degrees: []
         };
@@ -14,7 +12,10 @@ class Search_degree extends React.Component {
         this.selectDegreeChanged = this.selectDegreeChanged.bind(this)
     }
 
-    componentWillMount(){
+    componentDidMount(){
+        const token = localStorage.getItem('token');
+        const refreshToken = localStorage.getItem('refreshToken');
+        console.log("token: ", token, "refreshToken; ", refreshToken);
         getDegreesName('')
             .then(data => {
                 console.log("sto per aggiornare: "+data);
@@ -25,12 +26,13 @@ class Search_degree extends React.Component {
 
     shouldComponentUpdate(nextProps, nextState){
         console.log("nextState: ", nextState, this.state.degrees, this.state.chooseDegree);
-        if((this.state.selectType === nextState.selectType || nextState.selectType === '- Select -') &&
-            (this.state.selectName === nextState.selectType || nextState.selectName === '- Select -')
-        && this.state.degreesType === nextState.degreesType){
+        if((nextProps.selectType === '- Select -') &&
+            ( nextProps.selectName === '- Select -')
+            && this.state.degreesType === nextState.degreesType){
             console.log("torna falso");
             return false
         }
+        console.log("torna true");
         return true;
     }
 
@@ -41,22 +43,24 @@ class Search_degree extends React.Component {
     selectTypeChanged(e){
         const value = e.target.value;
         console.log("selectType cliccato, si cercano i degree json: "+ value);
-            getDegreesName('degree='+value)
-                .then(data => {
-                    console.log("sto per aggiornare: "+data);
-                    this.setState({degrees: data,selectType: value, chooseDegree: ''});
-                })
-                .catch(this.handleError);
+        getDegreesName('degree='+value)
+            .then(data => {
+                console.log("sto per aggiornare: "+data);
+                this.setState({degrees: data, chooseDegree: ''});
+                this.props.setSelectType(value);
+            })
+            .catch(this.handleError);
         console.log("degrees dopo setstate: "+ this.state.degrees)
     }
 
 
     selectDegreeChanged(e){
-        const value = e.target.value;
-        this.setState({selectName: value});
+        const value = e.target.value; //new name of select degree
         e.preventDefault();
-        if (value !== this.state.selectName)
-            this.props.onSubmit(value, this.state.selectType);
+        if (value !== this.props.selectName){
+            this.props.resetAdvancedSearch();
+            this.props.onSubmit(value);
+        }
     }
 
     render(){
