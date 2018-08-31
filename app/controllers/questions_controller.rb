@@ -16,6 +16,11 @@ class QuestionsController < ApplicationController
     CourseQuestion.destroy(params[:id])
   end
 
+  def update
+    quest = CourseQuestion.find(params[:id])
+    quest.update_attributes(question_params)
+    json_response(quest.to_json)
+  end
 
   private
   def question_params

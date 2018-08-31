@@ -7,7 +7,7 @@ class AllQuestions extends React.Component {
 
         var questions = this.props.questions.map((courseQuestion) => {
             return(
-                <CourseQuestion courseQuestion={courseQuestion} user_id={this.props.user_id} handleDelete={this.props.handleDelete} />
+                <CourseQuestion courseQuestion={courseQuestion} user_id={this.props.user_id} handleDelete={this.props.handleDelete} handleUpdate={this.props.handleUpdate} />
             )
         })
 
