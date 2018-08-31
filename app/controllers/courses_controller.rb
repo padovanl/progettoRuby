@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
-  before_action :authenticate_user!
+   before_action :authenticate_user!
+  #before_action ->{ authenticate_user!(force: true) }
  # before_filter :search_course
 
   #def index
@@ -13,12 +14,15 @@ class CoursesController < ApplicationController
 
   def search_degrees
     @degree = DegreeCourse.search_degrees(params[:degree])
+    respond_to do |format|
+      format.json { render json: @degree }
+    end
   end
 
   def allcourses
     #ho usato eager_load in quanto fa una left join e quindi lavora su entrambe le tab, con includes mi dava errore in quanto courses non si trova nella tab: teacherCourse
     #@tcs = TeacherCourse.eager_load(:course, :teacher).where('courses.name LIKE ?', "%#{params[:search]}%").order(year: :desc).page(params[:page]).per(2)
-    @tcs = TeacherCourse.search_course_teacher(params[:degreen], params[:degreet], params[:category], params[:search]).page(params[:page]).per(3)
+    @tcs = TeacherCourse.search_courses_not_followed(params[:degreen], params[:degreet], params[:category], params[:search], current_user.id).page(params[:page]).per(3)
     @last_page = @tcs.total_pages
     @categories = %w[Name Data Teacher Year]
   end

@@ -4,7 +4,7 @@ class IndexCourses2 extends React.Component{
         super(props);
         this.state = {
        //     courses: props.courses,
-            error: '',
+          //  error: '',
             search: '',
             //page: props.page,
             //last_page: props.last_page,
@@ -76,12 +76,6 @@ class IndexCourses2 extends React.Component{
 
 
     render(){
-        let message;
-        if (this.state.error){
-            message = <span className='message is-danger'>{this.state.error}</span>;
-        }
-
-
         let filteredCourses;
         if (this.props.courses.length !== 0)
             filteredCourses = this.props.courses.filter((item) => {
@@ -89,7 +83,12 @@ class IndexCourses2 extends React.Component{
                 }
             );
         else
-            return "Corsi non trovati.";
+            return <message className={"message is-danger gap"}  >
+                        <div className="message header">
+                            <p className={"gap"}>{this.props.message }</p>
+                        </div>
+                    </message>;
+
 
 
         let buttonNext;
@@ -124,7 +123,6 @@ class IndexCourses2 extends React.Component{
         return(
             <div className='myColumn-lg'>
                 <hr className='gap'/>
-                <p>{message}</p>
                 <div className="wrapper infinite-container">{items}</div>
                 <div className='row'>
                     {buttonNext}

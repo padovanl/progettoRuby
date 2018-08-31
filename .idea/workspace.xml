@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b1c11d57-437f-4c2b-a436-5c2ec5e91090" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/views/devise/passwords/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/devise/passwords/edit.html.erb" afterDir="false" />
+    <list default="true" id="cee88579-f406-4edd-96c5-ccfb3c6afd37" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/app/views/courses/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/javascripts/components/courses/IndexCourses2.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/javascripts/components/courses/IndexCourses2.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/javascripts/components/courses/SearchItem2.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/javascripts/components/courses/SearchItem2.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/javascripts/components/courses/Search_degree.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/javascripts/components/courses/Search_degree.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/javascripts/components/courses/network.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/javascripts/components/courses/network.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/courses_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/courses_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/teacher_course.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/teacher_course.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/courses/_course.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/courses/search_degrees.json.jbuilder" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20180829191523_add_follow_to_user_courses.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20180829191523_add_follow_to_user_courses.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/.bundle/" />
-    <ignored path="$PROJECT_DIR$/components/" />
-    <ignored path="$PROJECT_DIR$/public/system/" />
-    <ignored path="$PROJECT_DIR$/tmp/" />
-    <ignored path="$PROJECT_DIR$/vendor/bundle/" />
-    <ignored path="$PROJECT_DIR$/vendor/cache/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,41 +44,8 @@
       </file>
     </leaf>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>email</find>
-      <find>deltaschool</find>
-      <find>UNI</find>
-      <find>www.</find>
-      <find>www.conco</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/config/database.yml" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/application.cofee" />
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/application.css.scss" />
-        <option value="$PROJECT_DIR$/Gemfile" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
-        <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/devise/sessions/new.html.erb" />
-        <option value="$PROJECT_DIR$/config/locales/devise.it.yml" />
-        <option value="$PROJECT_DIR$/config/locales/devise.en.yml" />
-        <option value="$PROJECT_DIR$/app/models/tag.rb" />
-        <option value="$PROJECT_DIR$/app/models/course.rb" />
-        <option value="$PROJECT_DIR$/config/environments/development.rb" />
-        <option value="$PROJECT_DIR$/config/environments/production.rb" />
-        <option value="$PROJECT_DIR$/app/views/devise/mailer/confirmation_instructions.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/devise/mailer/email_changed.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/devise/mailer/password_change.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/devise/mailer/reset_password_instructions.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/devise/passwords/edit.html.erb" />
-      </list>
-    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -91,12 +64,6 @@
     <packageJsonPaths>
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="625" />
-    <option name="y" value="35" />
-    <option name="width" value="2319" />
-    <option name="height" value="1900" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -152,10 +119,6 @@
       </pane>
     </panes>
   </component>
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -193,7 +156,7 @@
       <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="LAUNCH_JS" VALUE="false" />
     </configuration>
   </component>
-  <component name="SpringUtil" SPRING_PRE_LOADER_OPTION="true" />
+  <component name="SpringUtil" SPRING_PRE_LOADER_OPTION="false" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -217,12 +180,12 @@
       <workItem from="1535728654160" duration="611000" />
       <workItem from="1535732311873" duration="121000" />
       <workItem from="1535732675415" duration="179000" />
-      <workItem from="1535744543920" duration="2672000" />
+      <workItem from="1535744543920" duration="2826000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10186000" />
+    <option name="totallyTimeSpent" value="4000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="63" y="25" width="1857" height="1055" extended-state="6" />
@@ -235,7 +198,7 @@
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32910052" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32910052" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -248,9 +211,6 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
     </layout>
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
