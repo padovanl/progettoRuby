@@ -87,7 +87,6 @@ degree_course.courses.create!([
 
 
 user = User.create!(name: "Admin Admin", email: "admin@admin.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: true)
-User.create!(name: "User User", email: "user@user.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
 user.tags.create!([
   { id:1 , name: "Ricerca" },
   { id:2 , name: "Sviluppo Web" },
@@ -95,13 +94,31 @@ user.tags.create!([
   { id:4 , name: "Sviluppo mobile" }
 ])
 
+
+user = User.create!(name: "User User", email: "user@user.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
+user.user_courses.create!([
+    {id:1, user_id:2, course_id: 26, follow: true}, #sta seguendo lamma: Fondamenti di intelligenza artificiale
+    {id:2, user_id:2, course_id: 29, follow: true}, #reti di calcolatori
+    {id:3, user_id:2, course_id: 28, follow: true}, #progetto sistemi web
+    {id:4, user_id:2, course_id: 27, follow: false} # smesso di seguire: ricerca operativa
+])
+
 #Teacher.create!(name: "Cesare", surname: "Stefanelli", link_cv: "http://docente.unife.it/cesare.stefanelli")
-teacher = Teacher.create!(name: "Evelina", surname: "Lamma", link_cv: "http://docente.unife.it/evelina.lamma")
+teacher = Teacher.create!(name: "Evelina", surname: "Lamma", link_cv: "http://docente.unife.it/evelina.lamma/curriculum")
 teacher.teacher_courses.create!([
       {year: "1990-1991", teacher_id: teacher.id, course_id: 26},
       {year: "1992-1993", teacher_id: teacher.id, course_id: 26},
       {year: "1994-1995", teacher_id: teacher.id, course_id: 26}
   ])
+
+
+teacher = Teacher.create!(name: "Maddalena", surname: "Nonato", link_cv: "http://docente.unife.it/maddalena.nonato/curriculum")
+teacher.teacher_courses.create!([
+    {year: "2000-2001", teacher_id: teacher.id, course_id: 27},
+    {year: "2001-2002", teacher_id: teacher.id, course_id: 27},
+    {year: "2002-2003", teacher_id: teacher.id, course_id: 27}
+])
+
 
 
 teacher = Teacher.create!(name: "Marco", surname: "Gavanelli", link_cv: "http://docente.unife.it/marco.gavanelli/curriculum")
@@ -146,7 +163,7 @@ teacher.teacher_courses.create!([
 
 
 user = User.create!(name: "User2 User2", email: "user2@user2.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
-user.
+#user.
 user.course_questions.create!([
     { id:1 , question: Faker::Lorem.question, frequency: 10, user_id: user.id, course_id: 1},
     { id:2 , question: Faker::Lorem.question, frequency: 10, user_id: user.id, course_id: 1},
