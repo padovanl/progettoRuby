@@ -10,7 +10,7 @@
           <%= @degree_course.name %>
         </h3>
         <h6>
-          Insegnato attualmente da <a target="_blank" href=<%= @current_teacher_course.link_cv %>><%= @current_teacher_course.name%> <%= @current_teacher_course.surname%></a>
+          <%= react_component('TeacherSubtitle', {teacher: @current_teacher_course}) %>
         </h6>
       </div>
     </div>

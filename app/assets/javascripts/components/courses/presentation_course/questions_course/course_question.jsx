@@ -51,7 +51,7 @@ class CourseQuestion extends React.Component{
             <tr key={this.props.courseQuestion.id}>
                 <td>{question_text}</td>
                 <td>{question_freq}</td>
-                { this.props.courseQuestion.user_id == this.props.user_id ? <td>{update_button_item}<span> </span>{delete_button_item}</td>  : null}
+                { this.props.courseQuestion.user_id == this.props.user_id && this.props.show_details ? <td>{update_button_item}<span> </span>{delete_button_item}</td>  : null}
             </tr>
         )
     }

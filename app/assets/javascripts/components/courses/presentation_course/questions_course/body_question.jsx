@@ -5,7 +5,8 @@ class BodyQuestion extends React.Component {
         super(props);
         this.state = {
             questions: [],
-            followed: ''
+            followed: '',
+            show_details: false
         };
 
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -14,6 +15,12 @@ class BodyQuestion extends React.Component {
         this.deleteCourseQuestion = this.deleteCourseQuestion.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
         this.updateCourseQuestion = this.updateCourseQuestion.bind(this)
+        this.handleShowDetails = this.handleShowDetails.bind(this)
+
+    }
+
+    handleShowDetails(){
+        this.setState({show_details: !this.state.show_details});
     }
 
     getData1() {
@@ -144,10 +151,24 @@ class BodyQuestion extends React.Component {
 
     render(){
         //console.log(this.state.followed.length > 0 ? this.state.followed[0].passed : 'Items not loaded yet');        //this.state.tubedata.length > 0 && this.state.tubedata[0].id
+
+        const gestisci_le_tue_domande_button =  <table className="table is-fullwidth">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <a className="button is-rounded is-warning" onClick={ () => this.handleShowDetails()}>Gestisci le tue domande</a>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>;
+
+
         return(
             <div>
-                <AllQuestions questions={this.state.questions}  course_id={this.props.course_id} user_id={this.props.user_id} handleDelete={this.handleDelete} handleUpdate = {this.handleUpdate} />
-                <table className="table is-hoverable is-fullwidth">
+                { this.state.followed.length > 0 && this.state.followed[0].passed ? gestisci_le_tue_domande_button : null}
+                <AllQuestions questions={this.state.questions}  course_id={this.props.course_id} user_id={this.props.user_id} handleDelete={this.handleDelete} handleUpdate = {this.handleUpdate} show_details = {this.state.show_details} />
+                <br/>
+                <table className="table is-fullwidth">
                     <tbody>
                     { this.state.followed.length > 0 && this.state.followed[0].passed ? <NewQuestionCourse course_id={this.props.course_id} user_id={this.props.user_id} handleFormSubmit={this.handleFormSubmit} /> : null}
                     </tbody>

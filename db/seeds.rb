@@ -8,7 +8,6 @@
 
 Comment.destroy_all
 Post.destroy_all
-TeacherCourse.destroy_all
 Document.destroy_all
 Course.destroy_all
 DegreeCourse.destroy_all
@@ -17,6 +16,8 @@ Teacher.destroy_all
 Tag.destroy_all
 User.destroy_all
 TeacherCourse.destroy_all
+UserCourse.destroy_all
+CourseQuestion.destroy_all
 
 
 
@@ -95,7 +96,7 @@ user.tags.create!([
   { id:4 , name: "Sviluppo mobile" }
 ])
 
-
+=begin
 user = User.create!(name: "User User", email: "user@user.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
 user.user_courses.create!([
     {id:1, user_id:2, course_id: 26, follow: true}, #sta seguendo lamma: Fondamenti di intelligenza artificiale
@@ -103,13 +104,13 @@ user.user_courses.create!([
     {id:3, user_id:2, course_id: 28, follow: true}, #progetto sistemi web
     {id:4, user_id:2, course_id: 27, follow: false} # smesso di seguire: ricerca operativa
 ])
-
+=end
 #Teacher.create!(name: "Cesare", surname: "Stefanelli", link_cv: "http://docente.unife.it/cesare.stefanelli")
 teacher = Teacher.create!(name: "Evelina", surname: "Lamma", link_cv: "http://docente.unife.it/evelina.lamma/curriculum")
 teacher.teacher_courses.create!([
-      {year: "1990-1991", teacher_id: teacher.id, course_id: 26},
-      {year: "1992-1993", teacher_id: teacher.id, course_id: 26},
-      {year: "1994-1995", teacher_id: teacher.id, course_id: 26}
+      {year: "1990-1991", teacher_id: teacher.id, course_id: 1},
+      {year: "1992-1993", teacher_id: teacher.id, course_id: 1},
+      {year: "1994-1995", teacher_id: teacher.id, course_id: 1}
   ])
 
 
@@ -224,4 +225,4 @@ user = User.second
                             {content: Faker::Hobbit.quote, user_id: user.id}])
 end
 
-UserCourse.create!(user_id: User.first.id, course_id: Course.first.id)
+#UserCourse.create!(user_id: User.first.id, course_id: Course.first.id)
