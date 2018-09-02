@@ -2,17 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a0539e5-d2fc-412c-bb8f-ab5812c0b370" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/views/courses/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/assets/javascripts/components/courses/IndexCourses2.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/javascripts/components/courses/IndexCourses2.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/assets/javascripts/components/courses/SearchItem2.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/javascripts/components/courses/SearchItem2.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/javascripts/components/courses/Search_degree.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/javascripts/components/courses/Search_degree.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/javascripts/components/courses/network.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/javascripts/components/courses/network.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/courses.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/stylesheets/courses.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/courses_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/courses_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/teacher_course.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/teacher_course.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/courses/_course.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/courses/search_degrees.json.jbuilder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/course.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/course.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/teacher.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/teacher.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/courses/_course.json.jbuilder" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/courses/_course.json.jbuilder" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/courses/allcourses.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/courses/allcourses.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/courses/allcourses.json.jbuilder" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/courses/allcourses.json.jbuilder" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/courses/js/allcourses.js.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/courses/js/infinite.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/courses/js/jquery.waypoints.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/db/migrate/20180829191523_add_follow_to_user_courses.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20180829191523_add_follow_to_user_courses.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
     </list>
@@ -33,67 +35,68 @@
     <SUITE FILE_PATH="coverage/progettoRuby@Unnamed.rcov" NAME="Unnamed Coverage Results" MODIFIED="1535299975877" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="DeviseActionMailer" />
     <SUITE FILE_PATH="coverage/progettoRuby@test__progettoRuby.rcov" NAME="test: progettoRuby Coverage Results" MODIFIED="1534865712205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="progettoRuby" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+            <file leaf-file-name="NewComment.jsx.erb" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/publications/NewComment.jsx.erb">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="590">
+                    <caret line="41" column="23" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Search_degree.jsx" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/courses/Search_degree.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="34" column="24" lean-forward="true" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="teacher_course.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/teacher_course.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="38" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="seeds.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db/seeds.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="102" column="90" selection-start-line="102" selection-start-column="90" selection-end-line="102" selection-end-column="90" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="network.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/courses/network.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="63" selection-start-line="31" selection-start-column="63" selection-end-line="31" selection-end-column="63" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="courses_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/courses_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="52" selection-start-line="24" selection-start-column="52" selection-end-line="24" selection-end-column="52" />
+            <state relative-caret-position="105">
+              <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IndexCourses2.jsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="allcourses.json.jbuilder" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/courses/allcourses.json.jbuilder">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="55" selection-start-column="49" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_course.json.jbuilder" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/courses/_course.json.jbuilder">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IndexCourses2.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/courses/IndexCourses2.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="496">
-              <caret line="95" column="90" selection-start-line="95" selection-start-column="78" selection-end-line="95" selection-end-column="90" />
+            <state relative-caret-position="238">
+              <caret line="14" column="63" selection-start-line="14" selection-start-column="63" selection-end-line="14" selection-end-column="63" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="search_degrees.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/courses/search_degrees.html.erb">
+      <file leaf-file-name="allcourses.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/courses/allcourses.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="58" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
+            <state relative-caret-position="150">
+              <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -101,8 +104,17 @@
       <file leaf-file-name="SearchItem2.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/courses/SearchItem2.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="856">
-              <caret line="137" column="24" selection-start-line="137" selection-start-column="24" selection-end-line="137" selection-end-column="24" />
+            <state relative-caret-position="245">
+              <caret line="126" column="58" selection-start-line="126" selection-start-column="58" selection-end-line="126" selection-end-column="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="courses.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/courses.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-494">
+              <caret line="136" selection-start-line="136" selection-end-line="136" />
             </state>
           </provider>
         </entry>
@@ -118,20 +130,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>console</find>
-      <find>url</find>
-      <find>image</find>
-      <find>tabs</find>
-      <find>can_delete_post</find>
-      <find>boolDegree</find>
-      <find>degree</find>
-      <find>degree.</find>
-      <find>degree:</find>
-      <find>this.state.degre</find>
-      <find>props</find>
-      <find>Thesis</find>
-      <find>degreeType</find>
-      <find>degree);</find>
       <find>getCourses</find>
       <find>getAllCourses</find>
       <find>civile</find>
@@ -148,6 +146,20 @@
       <find>this.state.selectType</find>
       <find>degreesType</find>
       <find>selectName</find>
+      <find>user_courses</find>
+      <find>message</find>
+      <find>teacher</find>
+      <find>27</find>
+      <find>func</find>
+      <find>root</find>
+      <find>modalState</find>
+      <find>modal</find>
+      <find>adding_post</find>
+      <find>closeNewPostModal</find>
+      <find>show</find>
+      <find>all</find>
+      <find>magistra</find>
+      <find>triennale</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -159,6 +171,8 @@
       <replace>selectType</replace>
       <replace>SelectType</replace>
       <replace>this.props.selectType</replace>
+      <replace>Magistrale</replace>
+      <replace>Triennale</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -168,8 +182,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/theses/search_thesis_by_title.jsx" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/users/main_users.jsx" />
         <option value="$PROJECT_DIR$/app/views/admin/dashboard.html.erb" />
         <option value="$PROJECT_DIR$/app/models/user.rb" />
         <option value="$PROJECT_DIR$/app/controllers/api/v1/users_controller.rb" />
@@ -180,7 +192,6 @@
         <option value="$PROJECT_DIR$/db/migrate/20180821224133_add_column_user_notifications.rb" />
         <option value="$PROJECT_DIR$/app/views/courses/_teacher_of_course.json.jbuilder" />
         <option value="$PROJECT_DIR$/app/views/courses/_teacher.json.jbuilder" />
-        <option value="$PROJECT_DIR$/app/views/courses/allcourses.json.jbuilder" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/components/courses/searchItem.jsx" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/components/courses/main.jsx" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/components/courses/IndexCourses.jsx" />
@@ -188,37 +199,40 @@
         <option value="$PROJECT_DIR$/app/controllers/publications_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/publications/index.html.erb" />
         <option value="$PROJECT_DIR$/app/serializers/user_serializer.rb" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/components/publications/PostsThread.jsx.erb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/publications.scss" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/resources.scss" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/components/documents/DocumentsPage.jsx" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/components/documents/DocumentFrame.jsx.erb" />
         <option value="$PROJECT_DIR$/app/controllers/documents_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/document.rb" />
-        <option value="$PROJECT_DIR$/config/database.yml" />
         <option value="$PROJECT_DIR$/app/views/courses/search_courses.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/components/courses/SearchDegree.jsx" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/components/courses/CourseItem.jsx" />
         <option value="$PROJECT_DIR$/app/views/courses/search_degrees.html.erb" />
         <option value="$PROJECT_DIR$/app/models/degree_course.rb" />
         <option value="$PROJECT_DIR$/app/views/courses/search_degrees.json.jbuilder" />
-        <option value="$PROJECT_DIR$/app/views/courses/allcourses.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/courses/_course.json.jbuilder" />
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/courses.scss" />
         <option value="$PROJECT_DIR$/app/controllers/questions_controller.rb" />
-        <option value="$PROJECT_DIR$/app/models/course.rb" />
-        <option value="$PROJECT_DIR$/app/models/teacher.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/views/courses/index.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/components/courses/network.jsx" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/components/courses/IndexCourses2.jsx" />
-        <option value="$PROJECT_DIR$/db/migrate/20180829191523_add_follow_to_user_courses.rb" />
-        <option value="$PROJECT_DIR$/db/seeds.rb" />
         <option value="$PROJECT_DIR$/app/models/teacher_course.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/courses_controller.rb" />
-        <option value="$PROJECT_DIR$/app/assets/javascripts/components/courses/SearchItem2.jsx" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/components/courses/Search_degree.jsx" />
+        <option value="$PROJECT_DIR$/config/database.yml" />
+        <option value="$PROJECT_DIR$/db/migrate/20180829191523_add_follow_to_user_courses.rb" />
+        <option value="$PROJECT_DIR$/app/views/courses/allcourses.json.jbuilder" />
+        <option value="$PROJECT_DIR$/app/models/teacher.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/courses_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/courses/_course.json.jbuilder" />
+        <option value="$PROJECT_DIR$/app/models/course.rb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/components/courses/Modal.jsx" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/components/publications/PostsThread.jsx.erb" />
+        <option value="$PROJECT_DIR$/app/views/courses/allcourses.html.erb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/components/courses/SearchItem2.jsx" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/courses.scss" />
+        <option value="$PROJECT_DIR$/db/seeds.rb" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/components/courses/IndexCourses2.jsx" />
+        <option value="$PROJECT_DIR$/app/assets/javascripts/components/courses/IndexCourses2.jsx.erb" />
       </list>
     </option>
   </component>
@@ -245,45 +259,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="progettoRuby" type="b2602c69:ProjectViewProjectNode" />
-              <item name="progettoRuby" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="progettoRuby" type="b2602c69:ProjectViewProjectNode" />
-              <item name="progettoRuby" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="progettoRuby" type="b2602c69:ProjectViewProjectNode" />
-              <item name="progettoRuby" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="progettoRuby" type="b2602c69:ProjectViewProjectNode" />
-              <item name="progettoRuby" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="progettoRuby" type="b2602c69:ProjectViewProjectNode" />
-              <item name="progettoRuby" type="462c0819:PsiDirectoryNode" />
-              <item name="db" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="progettoRuby" type="b2602c69:ProjectViewProjectNode" />
-              <item name="progettoRuby" type="462c0819:PsiDirectoryNode" />
-              <item name="db" type="462c0819:PsiDirectoryNode" />
-              <item name="migrate" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="RailsProjectView" />
       <pane id="Scope">
         <subPane subId="Changed Files">
@@ -319,14 +294,111 @@
           <select />
         </subPane>
       </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="progettoRuby" type="b2602c69:ProjectViewProjectNode" />
+              <item name="progettoRuby" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="progettoRuby" type="b2602c69:ProjectViewProjectNode" />
+              <item name="progettoRuby" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="progettoRuby" type="b2602c69:ProjectViewProjectNode" />
+              <item name="progettoRuby" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="progettoRuby" type="b2602c69:ProjectViewProjectNode" />
+              <item name="progettoRuby" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="javascripts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="progettoRuby" type="b2602c69:ProjectViewProjectNode" />
+              <item name="progettoRuby" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="javascripts" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="progettoRuby" type="b2602c69:ProjectViewProjectNode" />
+              <item name="progettoRuby" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="javascripts" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="courses" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="progettoRuby" type="b2602c69:ProjectViewProjectNode" />
+              <item name="progettoRuby" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="javascripts" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="publications" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="progettoRuby" type="b2602c69:ProjectViewProjectNode" />
+              <item name="progettoRuby" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="stylesheets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="progettoRuby" type="b2602c69:ProjectViewProjectNode" />
+              <item name="progettoRuby" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="progettoRuby" type="b2602c69:ProjectViewProjectNode" />
+              <item name="progettoRuby" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="courses" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="progettoRuby" type="b2602c69:ProjectViewProjectNode" />
+              <item name="progettoRuby" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="progettoRuby" type="b2602c69:ProjectViewProjectNode" />
+              <item name="progettoRuby" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="environments" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="progettoRuby" type="b2602c69:ProjectViewProjectNode" />
+              <item name="progettoRuby" type="462c0819:PsiDirectoryNode" />
+              <item name="db" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="new_notification&#9;null&#9;null&#10;current_user&#9;null&#9;null&#10;navbar-item&#9;null&#9;null&#10;addnewpost&#9;null&#9;null&#10;post&#9;FILE&#9;file:///home/eugenio/Scrivania/Progetto programmazione concorrente/progettoRuby/app/assets/javascripts/components/publications/Post.jsx&#10;formdata&#9;null&#9;null&#10;Headers&#9;null&#9;null&#10;newpost&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="modal&#9;null&#9;null&#10;new_notification&#9;null&#9;null&#10;current_user&#9;null&#9;null&#10;navbar-item&#9;null&#9;null&#10;addnewpost&#9;null&#9;null&#10;post&#9;FILE&#9;file:///home/eugenio/Scrivania/Progetto programmazione concorrente/progettoRuby/app/assets/javascripts/components/publications/Post.jsx&#10;formdata&#9;null&#9;null&#10;Headers&#9;null&#9;null&#10;newpost&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/config/database.yml" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/views/courses" />
+      <recent name="$PROJECT_DIR$/app/views/courses/js" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -496,26 +568,32 @@
       <workItem from="1535709990640" duration="516000" />
       <workItem from="1535715244790" duration="3328000" />
       <workItem from="1535726382032" duration="12674000" />
+      <workItem from="1535799596261" duration="9687000" />
+      <workItem from="1535816266570" duration="11446000" />
+      <workItem from="1535832410097" duration="3016000" />
+      <workItem from="1535836784270" duration="1314000" />
+      <workItem from="1535900374429" duration="7014000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="157783000" />
+    <option name="totallyTimeSpent" value="190260000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23438364" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" weight="0.32948583" />
-      <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.34679592" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32956383" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.38115183" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22553897" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32948583" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -525,14 +603,13 @@
       <window_info anchor="bottom" id="Messages" order="8" weight="0.32910052" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32948583" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16970702" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22277501" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -557,79 +634,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/teachers/all_teachers.jsx">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/teachers/main_teacher.jsx">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/teachers/new_teacher.jsx">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/database.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="67" lean-forward="true" selection-start-line="20" selection-start-column="67" selection-end-line="20" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="65" column="43" selection-start-line="65" selection-start-column="43" selection-end-line="65" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/publications_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/user.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/courses/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/notification.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/notifications/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/notifications/main_notifications.jsx">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/notifications/notification.jsx">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/courses/allcourses.json.jbuilder">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/notifications/all_notifications.jsx">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/courses2/all_courses_2.jsx">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/courses2/course_2.jsx">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/courses2/main_course_2.jsx">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/notifications_controller.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/notifications/body_notifications.jsx">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/courses2/new_course_2.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -646,13 +650,7 @@
     <entry file="file://$PROJECT_DIR$/app/controllers/users/omniauth_callbacks_controller.rb">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/comments_controller.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/courses/allcourses.html.erb">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/comments/show.html.erb">
@@ -665,20 +663,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/courses/search_degrees.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="58" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/documents/DocMenu.jsx">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/documents/NewDoc.jsx">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/publications/PostsThread.jsx.erb">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/publications/UpvotesWebSocket.jsx">
@@ -689,9 +677,6 @@
         <state relative-caret-position="-135" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/publications/NewComment.jsx.erb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/publications/ErrorMessage.jsx">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -700,26 +685,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/publications/Document.jsx.erb">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/publications/CommentsList.jsx">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/publications/Comment.jsx.erb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/courses2/body_courses_2.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20180829191523_add_follow_to_user_courses.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="53" selection-start-line="2" selection-start-column="53" selection-end-line="2" selection-end-column="53" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/publications/NewPost.jsx">
       <provider selected="true" editor-type-id="text-editor" />
@@ -731,27 +696,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/seeds.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="102" column="90" selection-start-line="102" selection-start-column="90" selection-end-line="102" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/teacher_course.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="38" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/courses_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="52" selection-start-line="24" selection-start-column="52" selection-end-line="24" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/courses/network.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
@@ -759,24 +703,183 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/courses/IndexCourses2.jsx">
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/courses/Search_degree.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="95" column="90" selection-start-line="95" selection-start-column="78" selection-end-line="95" selection-end-column="90" />
+        <state relative-caret-position="510">
+          <caret line="34" column="24" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/database.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="67" lean-forward="true" selection-start-line="20" selection-start-column="67" selection-end-line="20" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/adminAPI/courses2/body_courses_2.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="53" column="58" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/comment.rb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/publications/Comment.jsx.erb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/publications/CommentsList.jsx">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/comments_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="2" selection-start-line="26" selection-start-column="2" selection-end-line="29" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/environment.rb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/environments/test.rb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/environments/production.rb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20180829191523_add_follow_to_user_courses.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="65" selection-start-line="3" selection-start-column="65" selection-end-line="3" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/user.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="11" column="24" selection-start-line="11" selection-start-column="2" selection-end-line="11" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/courses/js/allcourses.js.erb" />
+    <entry file="file://$PROJECT_DIR$/app/views/courses/js/jquery.waypoints.js" />
+    <entry file="file://$PROJECT_DIR$/app/views/courses/courses.html.erb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/courses/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/courses/search_degrees.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="58" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/courses/show.html.erb">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/teacher_course.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1500">
+          <caret line="100" selection-start-line="100" selection-end-line="113" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/teacher.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="46" selection-start-line="2" selection-start-column="46" selection-end-line="2" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/courses_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/courses/allcourses.json.jbuilder">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="55" selection-start-column="49" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/courses/_course.json.jbuilder">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/course.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/publications.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1575">
+          <caret line="105" column="3" selection-start-line="105" selection-start-column="3" selection-end-line="105" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/publications/PostsThread.jsx.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/courses/Modal.jsx" />
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/publications/NewComment.jsx.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="590">
+          <caret line="41" column="23" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/courses/smile.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/courses/allcourses.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/courses/SearchItem2.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="856">
-          <caret line="137" column="24" selection-start-line="137" selection-start-column="24" selection-end-line="137" selection-end-column="24" />
+        <state relative-caret-position="245">
+          <caret line="126" column="58" selection-start-line="126" selection-start-column="58" selection-end-line="126" selection-end-column="58" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/courses/Search_degree.jsx">
+    <entry file="file://$PROJECT_DIR$/db/seeds.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="24" lean-forward="true" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
+        <state relative-caret-position="295">
+          <caret line="38" column="41" selection-start-line="38" selection-start-column="41" selection-end-line="38" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/courses.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-494">
+          <caret line="136" selection-start-line="136" selection-end-line="136" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/components/courses/IndexCourses2.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="63" selection-start-line="14" selection-start-column="63" selection-end-line="14" selection-end-column="63" />
         </state>
       </provider>
     </entry>
