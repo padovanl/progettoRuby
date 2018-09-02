@@ -8,7 +8,6 @@
 
 Comment.destroy_all
 Post.destroy_all
-TeacherCourse.destroy_all
 Document.destroy_all
 Course.destroy_all
 DegreeCourse.destroy_all
@@ -18,6 +17,8 @@ Tag.destroy_all
 User.destroy_all
 UserCourse.destroy_all
 TeacherCourse.destroy_all
+UserCourse.destroy_all
+CourseQuestion.destroy_all
 
 
 
@@ -191,15 +192,16 @@ teacher.teacher_courses.create!([
 
 
 user = User.create!(name: "User2 User2", email: "user2@user2.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
-
-user.course_questions.create!([
-    { id:1 , question: Faker::Lorem.question, frequency: 10, user_id: user.id, course_id: 1},
-    { id:2 , question: Faker::Lorem.question, frequency: 10, user_id: user.id, course_id: 1},
-    { id:3 , question: Faker::Lorem.question, frequency: 10, user_id: user.id, course_id: 1},
-    { id:4 , question: Faker::Lorem.question, frequency: 10, user_id: user.id, course_id: 1},
+user.user_courses.create!([
+    { id:1, user_id: user.id, course_id: 1, passed: true}
 ])
 
-
+user.course_questions.create!([
+    { id:1 , question: Faker::StarWars.quote, frequency: 10, user_id: user.id, course_id: 1},
+    { id:2 , question: Faker::StarWars.quote, frequency: 10, user_id: user.id, course_id: 1},
+    { id:3 , question: Faker::StarWars.quote, frequency: 10, user_id: user.id, course_id: 1},
+    { id:4 , question: Faker::StarWars.quote, frequency: 10, user_id: user.id, course_id: 1},
+])
 
 user = User.first
 course = Course.first

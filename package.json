@@ -1,5 +1,8 @@
 {
   "name": "DeviseActionMailer",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "immutability-helper": "^2.7.1",
+    "invariant": "^2.2.4"
+  }
 }

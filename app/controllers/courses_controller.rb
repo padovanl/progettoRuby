@@ -46,7 +46,17 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @degree_course = DegreeCourse.find(@course.degree_course_id)
-    @current_teacher_course = @course.teacher_courses.to_a[-1].teacher
+
+    #controllo se il corso che devo mostrare ha almeno un professore assegnato perchè se no da errore.
+    # mentre nella pagina html show ho inserito un componente react dove all'interno vado a fare un controllare
+    # se il professore esiste perchè in tal caso se ancora non è stato assegnato alcun professore
+    # mi spunta la scritta che non è stato assegnato ancora alcun professore
+    if (!@course.teacher_courses.order(year: :desc).empty?)
+      @current_teacher_course = @course.teacher_courses.order(year: :desc).to_a[-1].teacher
+    else
+      @current_teacher_course = nil
+    end
+    #sistemare current teacher course nel modello e trovare il modo di beccare il professore più recente
 
   end
 
