@@ -36,7 +36,17 @@
 <style>
   @media only screen and (max-width: 600px) {
     .box {
-      height: 500px;
+      height: 600px;
     }
   }
 </style>
+
+<script type="text/javascript">
+    $("#closeButtonErrorDevise").on('click', function () {
+        $("#errorsDevise").fadeOut();
+    })
+
+    setTimeout(function () {
+        $("#errorsDevise").fadeOut();
+    }, 5000)
+</script>
