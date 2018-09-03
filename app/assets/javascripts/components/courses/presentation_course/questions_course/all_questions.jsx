@@ -7,7 +7,7 @@ class AllQuestions extends React.Component {
 
         var questions = this.props.questions.map((courseQuestion) => {
             return(
-                <CourseQuestion courseQuestion={courseQuestion} />
+                <CourseQuestion courseQuestion={courseQuestion} user_id={this.props.user_id} handleDelete={this.props.handleDelete} handleUpdate={this.props.handleUpdate} show_details = {this.props.show_details} />
             )
         })
 
@@ -16,9 +16,9 @@ class AllQuestions extends React.Component {
                 <table className="table is-hoverable is-fullwidth is-centered">
                     <thead>
                     <tr>
-                        <th>Domanda</th>
-                        <th>frequenza</th>
-                        <th></th>
+                        <th className="question-text">Domanda</th>
+                        <th>freq.</th>
+                        { this.props.show_details ? <th>Dettagli</th> : null }
                     </tr>
                     </thead>
                     <tbody>

@@ -3,17 +3,16 @@ class IndexCourses2 extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-       //     courses: props.courses,
-          //  error: '',
             search: '',
-            //page: props.page,
-            //last_page: props.last_page,
-            //url: props.url,
-            //query:props.query
-            //clickedButtonSearch: false,
+            modalState: false
             //autoCompleteResults: [],
         };
+
+        this.showModal = this.showModal.bind(this);
         console.log("props: "+props.onChangePage);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.buttonFollowClicked = this.buttonFollowClicked.bind(this);
+        this.linkToCourseView = this.linkToCourseView.bind(this)
     }
 
     componentWillReceiveProps(nextProps){
@@ -28,50 +27,82 @@ class IndexCourses2 extends React.Component{
         this.setState({search: event.target.value.substr(0,20)});
     }
 
+    showModal() {
+        this.setState((prev, props) => {
+            const newState = !prev.modalState;
 
-    //PUÒ ISCRIVERSI SOLO SE PASSED=FALSE (DELLA TAB USER_COURSES)
-    async handleSubmit(event) {
+            return { modalState: newState };
+        });
+    }
+
+    closeModal() {
+        this.setState({modalState: false});
+    }
+
+
+    //@observable all = [];
+
+    /*@action async fatchAll(){
+        const respone = await fetch({allcourses_path});
+        const status = await response.status;
+
+        if (status ===200){
+            this.all = await response.json();
+        }
+    }
+*/
+    handleSubmit(event) {
         event.preventDefault(); //blocca comportamento predefinito: reload pagina e cancellazione di tutto
 
-        const myHeaders = new Headers();
+        console.log("nome corso: ", event.target[2].name, "id corso ", event.target[2].value );
+        this.setState({courseName: event.target[2].name, courseId: event.target[2].value});
+
+        let myHeaders = new Headers();
         myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+     //   myHeaders.append('Content-Type', 'application/json');
 
         //user_id, course_id, follow=true lo faccio direttamente nel controller (chiamando la funzione dal model)
-        let data = new FormData(event.target); //id corso; event.target gives you the native DOMNode
-
-        //const addNewPost = this.props.addNewPost
+        const data = new FormData(event.target); // event.target gives you the native DOMNode
 
         const options = {
             method: 'POST',
             headers: myHeaders,
             credentials: 'same-origin',
-            body: data,
+            body: (data),
         };
-
-        function handleErrors(response) {
-            if (!response.ok) {
-                throw Error(response.statusText);
-            }
-            return response;
-        }
 
         const request = new Request('/follow', options);
 
-        await fetch(request)
-            .then(handleErrors)
+        const response = fetch(request)
             .then(response => {
                 return response.json();
             })
             .catch(error => console.log(error));
 
-        //document.getElementById("post_attachments").value = null; -> mdifico in rosso per unfollow
+        const status = response.status;
+
+        console.log("Response: ", response, "Status: ",status);
+
+        if (status ===201){
+            console.log("Status 201! Ora faccio GETallCourses");
+            this.props.getAllCourses();
+        }
     }
+
 
     buttonFollowClicked(e){
         //funzione per l'Allert se è sicuro di seguire quel corso
-        //funz che seguo il corso e lo inserisco nel db,
+        this.handleSubmit(e);    //funz che seguo il corso e lo inserisco nel db,
+        this.props.reloadCourses();
         //funzione che fa scegliere se reindirizzare nella show di quel corso o di continuare con un modal
+        this.showModal()
     }
+
+
+    linkToCourseView(){
+      return 'courses/'+this.state.courseId
+    }
+
 
 
 
@@ -79,15 +110,15 @@ class IndexCourses2 extends React.Component{
         let filteredCourses;
         if (this.props.courses.length !== 0)
             filteredCourses = this.props.courses.filter((item) => {
-                    return item.course_name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1; //tutti
+                    return item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1; //tutti
                 }
             );
         else
-            return <message className={"message is-danger gap"}  >
-                        <div className="message header">
-                            <p className={"gap"}>{this.props.message }</p>
+            return (<message className={"message is-danger gap"}  >
+                        <div className="message-body">
+                            {this.props.message }
                         </div>
-                    </message>;
+                    </message>);
 
 
 
@@ -101,33 +132,80 @@ class IndexCourses2 extends React.Component{
         }
 
         let items = filteredCourses.map((item) => {
+
+            if (item.teachers.length ===0){
+                return "sedds from course "+item.id+"teachers sno ancora da fare"
+            }
+
+            let teachers = item.teachers.map( teacher => {
+                return (
+                    <ul key={teacher.link_cv}>
+                        <li >
+                            <a href={teacher.link_cv}> {teacher.surname} {teacher.name}</a>
+                        </li>
+                    </ul>
+                )
+            } );
+
             return(
                 <div key={item.id}>
                     <div className="nested infinite-item">
-                        <div>Materia: {item.course_name}</div>
+                        <div>Materia: {item.name}</div>
                         <div>Livello: {item.degreet}</div>
                         <div>Corso: {item.degreen}</div>
-                        <div>Anno: {item.course_year}</div>
-                        <div>Data: {item.year}</div>
-                        <div>Professore:
-                            <a href={item.teacher_cv}> {item.teacher_name} {item.teacher_surname}</a>
+                        <div>Anno: {item.year}</div>
+                        <div>Professori:
+                            {teachers}
                         </div>
                     </div>
-                    <button name={'follow'} value={item.id} className="segui" onClick={(e)=>this.buttonFollowClicked(e).bind(this)}>
-                        <div>Follow</div>
-                    </button>
+                    <form onSubmit={(e)=>this.buttonFollowClicked(e)}>
+                        <input className="input" name="user_course[course_id]" value={item.id} type="hidden" />
+                        <input className="input" name="user_course[follow]" value={true} type="hidden" />
+                        <button name={item.name}  className="segui" value={ item.id}>
+                            <div>Follow</div>
+                        </button>
+                    </form>
                 </div>
             )
         });
 
         return(
-            <div className='myColumn-lg'>
+            <div className='myColumn-lg' id="modal">
                 <hr className='gap'/>
                 <div className="wrapper infinite-container">{items}</div>
                 <div className='row'>
                     {buttonNext}
-                    <input className='input-form gap' type="text" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="Filter courses by name"/>
+                    <input className='input-form gap' type="text"  value={this.state.search}
+                           onChange={this.updateSearch.bind(this)} placeholder="Filter courses by name"/>
                 </div>
+
+                <div className={"modal " + (this.state.modalState ? "is-active" : "")}>
+                    <div className="modal-background" onClick={this.closeModal.bind(this)} />
+                    <div className="modal-content">
+                        <div className={"box"}>
+                            <article className={"media"}>
+                                <div className={"media-left"}>
+                                    <figure className="image is-64x64">
+                                        <i className="far fa-grin-alt fa-4x" />
+                                    </figure>
+                                </div>
+                                <div className={"media-content "}>
+                                    <p>
+                                        <strong>Corso <span className={"has-text-success"}>{this.state.courseName}</span> aggiunto tra i seguiti! </strong>
+                                        <br/>
+                                        <span>Vuoi visualizzarlo?</span>
+                                    </p>
+                                    <a className="segui" href={this.linkToCourseView()} >
+                                        Show Course                                    </a>
+
+                                    <button className="modal-close is-large" aria-label="close"
+                                            onClick={this.closeModal.bind(this)} />
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         )
     }

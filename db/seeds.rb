@@ -8,7 +8,6 @@
 
 Comment.destroy_all
 Post.destroy_all
-TeacherCourse.destroy_all
 Document.destroy_all
 Course.destroy_all
 DegreeCourse.destroy_all
@@ -16,11 +15,14 @@ ThesisTag.destroy_all
 Teacher.destroy_all
 Tag.destroy_all
 User.destroy_all
+UserCourse.destroy_all
 TeacherCourse.destroy_all
+UserCourse.destroy_all
+CourseQuestion.destroy_all
 
 
 
-  degree_course = DegreeCourse.create!( id: 1, name: "Ingegneria civile e ambientale", tipo: "triennale" )
+  degree_course = DegreeCourse.create!( id: 1, name: "Ingegneria civile e ambientale", tipo: "Triennale" )
 
   degree_course.courses.create!([
       { id:1, name: "Analisi Matematica I", year: 1 },
@@ -29,7 +31,7 @@ TeacherCourse.destroy_all
       { id:4, name: "Disegno Civile", year: 1 }
   ])
 
-  degree_course = DegreeCourse.create!( id: 2, name: "Ingegneria elettronica e informatica", tipo: "triennale" )
+  degree_course = DegreeCourse.create!( id: 2, name: "Ingegneria elettronica e informatica", tipo: "Triennale" )
 
   degree_course.courses.create!([
       { id:5, name: "Analisi Matematica I.A", year: 1 },
@@ -38,7 +40,7 @@ TeacherCourse.destroy_all
       { id:8, name: "Fisica I", year: 1 }
     ])
 
-  degree_course = DegreeCourse.create!( id: 3, name: "Ingegneria meccanica", tipo: "triennale" )
+  degree_course = DegreeCourse.create!( id: 3, name: "Ingegneria meccanica", tipo: "Triennale" )
 
   degree_course.courses.create!([
     { id:9, name: "Fondamenti di Chimica e Materiali", year: 1 },
@@ -47,7 +49,7 @@ TeacherCourse.destroy_all
     { id:12, name: "Informatica Industriale", year: 1 }
   ])
 
-  degree_course = DegreeCourse.create!( id: 4, name: "Ingegneria civile", tipo: "magistrale" )
+  degree_course = DegreeCourse.create!( id: 4, name: "Ingegneria civile", tipo: "Magistrale" )
 
   degree_course.courses.create!([
     { id:13, name: "Tecnica delle Costruzioni", year: 1 },
@@ -56,7 +58,7 @@ TeacherCourse.destroy_all
     { id:16, name: "Organizzazione del cantiere", year: 2 }
   ])
 
-  degree_course = DegreeCourse.create!( id: 5, name: "Ingegneria elettronica e delle telecomunicazioni", tipo: "magistrale" )
+  degree_course = DegreeCourse.create!( id: 5, name: "Ingegneria elettronica e delle telecomunicazioni", tipo: "Magistrale" )
 
   degree_course.courses.create!([
     { id:17, name: "Architetture per sistemi embedded", year: 1 },
@@ -66,7 +68,7 @@ TeacherCourse.destroy_all
 ]) 
 
 
-degree_course = DegreeCourse.create!( id: 6, name: "Ingegneria meccanica", tipo: "magistrale" )
+degree_course = DegreeCourse.create!( id: 6, name: "Ingegneria meccanica", tipo: "Magistrale" )
 
 degree_course.courses.create!([
     { id:21, name: "STATISTICA E MODELLI DI DATI SPERIMENTALI", year: 1 },
@@ -75,7 +77,7 @@ degree_course.courses.create!([
     { id:24, name: "MATERIALI POLIMERICI E COMPOSITI", year: 2 }
 ])
 
-degree_course = DegreeCourse.create!( id: 7, name: "Ingegneria informatica e dell'automazione", tipo: "magistrale" )
+degree_course = DegreeCourse.create!( id: 7, name: "Ingegneria informatica e dell'automazione", tipo: "Magistrale" )
 
 degree_course.courses.create!([
     { id:25, name: "Sistemi distribuiti e mobili", year: 1 },
@@ -96,12 +98,12 @@ user.tags.create!([
 ])
 
 
-user = User.create!(name: "User User", email: "user@user.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
+user = User.create!(id:2, name: "User User", email: "user@user.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
 user.user_courses.create!([
-    {id:1, user_id:2, course_id: 26, follow: true}, #sta seguendo lamma: Fondamenti di intelligenza artificiale
-    {id:2, user_id:2, course_id: 29, follow: true}, #reti di calcolatori
-    {id:3, user_id:2, course_id: 28, follow: true}, #progetto sistemi web
-    {id:4, user_id:2, course_id: 27, follow: false} # smesso di seguire: ricerca operativa
+    {id:1, user_id: user.id, course_id: 26, follow: true}, #sta seguendo lamma: Fondamenti di intelligenza artificiale
+    {id:2, user_id: user.id, course_id: 29, follow: true}, #reti di calcolatori
+    {id:3, user_id: user.id, course_id: 28, follow: true}, #progetto sistemi web
+    {id:4, user_id: user.id, course_id: 27, follow: false} # smesso di seguire: ricerca operativa
 ])
 
 #Teacher.create!(name: "Cesare", surname: "Stefanelli", link_cv: "http://docente.unife.it/cesare.stefanelli")
@@ -109,7 +111,9 @@ teacher = Teacher.create!(name: "Evelina", surname: "Lamma", link_cv: "http://do
 teacher.teacher_courses.create!([
       {year: "1990-1991", teacher_id: teacher.id, course_id: 26},
       {year: "1992-1993", teacher_id: teacher.id, course_id: 26},
-      {year: "1994-1995", teacher_id: teacher.id, course_id: 26}
+      {year: "1994-1995", teacher_id: teacher.id, course_id: 26},
+      {year: "2002-2003", teacher_id: teacher.id, course_id: 13},
+      {year: "2001-2002", teacher_id: teacher.id, course_id: 14}
   ])
 
 
@@ -133,7 +137,20 @@ teacher.theses.create!([
 teacher.teacher_courses.create!([
     {year: "2017-2018", teacher_id: teacher.id, course_id: 3},
     {year: "2015-2016", teacher_id: teacher.id, course_id: 4},
-    {year: "2011-2012", teacher_id: teacher.id, course_id: 3}
+    {year: "2011-2012", teacher_id: teacher.id, course_id: 3},
+    {year: "2017-2018", teacher_id: teacher.id, course_id: 2},
+    {year: "2013-2014", teacher_id: teacher.id, course_id: 1},
+    {year: "2010-2011", teacher_id: teacher.id, course_id: 5},
+    {year: "2003-2004", teacher_id: teacher.id, course_id: 6},
+    {year: "2002-2003", teacher_id: teacher.id, course_id: 7},
+    {year: "2001-2002", teacher_id: teacher.id, course_id: 8},
+    {year: "2017-2018", teacher_id: teacher.id, course_id: 9},
+    {year: "2013-2014", teacher_id: teacher.id, course_id: 10},
+    {year: "2010-2011", teacher_id: teacher.id, course_id: 11},
+    {year: "2003-2004", teacher_id: teacher.id, course_id: 12},
+    {year: "2002-2003", teacher_id: teacher.id, course_id: 13},
+    {year: "2001-2002", teacher_id: teacher.id, course_id: 14}
+
 ])
 
 
@@ -142,8 +159,20 @@ teacher = Teacher.create!( name: "Mauro", surname: "Tortonesi", link_cv:"https:/
 teacher.teacher_courses.create!([
     {year: "2017-2018", teacher_id: teacher.id, course_id: 29},
     {year: "2016-2017", teacher_id: teacher.id, course_id: 29},
-    {year: "2015-2016", teacher_id: teacher.id, course_id: 29}
+    {year: "2015-2016", teacher_id: teacher.id, course_id: 29},
+    {year: "2017-2018", teacher_id: teacher.id, course_id: 15},
+    {year: "2015-2016", teacher_id: teacher.id, course_id: 16},
+    {year: "2011-2012", teacher_id: teacher.id, course_id: 17},
+    {year: "2017-2018", teacher_id: teacher.id, course_id: 18},
+    {year: "2013-2014", teacher_id: teacher.id, course_id: 19},
+    {year: "2010-2011", teacher_id: teacher.id, course_id: 20},
+    {year: "2003-2004", teacher_id: teacher.id, course_id: 21},
+    {year: "2002-2003", teacher_id: teacher.id, course_id: 22},
+    {year: "2001-2002", teacher_id: teacher.id, course_id: 23},
+    {year: "2017-2018", teacher_id: teacher.id, course_id: 24}
 ])
+
+
 teacher = Teacher.create!( name: "Cesare", surname: "Stefanelli", link_cv:"http://docente.unife.it/cesare.stefanelli/curriculum")
 
 teacher.teacher_courses.create!([
@@ -163,15 +192,16 @@ teacher.teacher_courses.create!([
 
 
 user = User.create!(name: "User2 User2", email: "user2@user2.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
-
-user.course_questions.create!([
-    { id:1 , question: Faker::Lorem.question, frequency: 10, user_id: user.id, course_id: 1},
-    { id:2 , question: Faker::Lorem.question, frequency: 10, user_id: user.id, course_id: 1},
-    { id:3 , question: Faker::Lorem.question, frequency: 10, user_id: user.id, course_id: 1},
-    { id:4 , question: Faker::Lorem.question, frequency: 10, user_id: user.id, course_id: 1},
+user.user_courses.create!([
+    { id:1, user_id: user.id, course_id: 1, passed: true}
 ])
 
-
+user.course_questions.create!([
+    { id:1 , question: Faker::StarWars.quote, frequency: 10, user_id: user.id, course_id: 1},
+    { id:2 , question: Faker::StarWars.quote, frequency: 10, user_id: user.id, course_id: 1},
+    { id:3 , question: Faker::StarWars.quote, frequency: 10, user_id: user.id, course_id: 1},
+    { id:4 , question: Faker::StarWars.quote, frequency: 10, user_id: user.id, course_id: 1},
+])
 
 user = User.first
 course = Course.first
@@ -223,4 +253,4 @@ user = User.second
                             {content: Faker::Hobbit.quote, user_id: user.id}])
 end
 
-UserCourse.create!(user_id: User.first.id, course_id: Course.first.id)
+#UserCourse.create!(user_id: User.first.id, course_id: Course.first.id)

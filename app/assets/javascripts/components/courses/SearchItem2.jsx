@@ -21,8 +21,8 @@ class SearchItem2 extends React.Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.searchCourses = this.searchCourses.bind(this);
         this.resetAdvancedSearch = this.resetAdvancedSearch.bind(this);
-        this.setSelectType = this.setSelectType.bind(this)
-        //   this.checkCoursesFinded = this.checkCoursesFinded(this)
+        this.setSelectType = this.setSelectType.bind(this);
+        this.reloadCourses = this.reloadCourses.bind(this);
     }
 
     resetAdvancedSearch(){
@@ -44,6 +44,7 @@ class SearchItem2 extends React.Component {
     }
 
     getAllCourses(){
+        console.log("page: ", this.state);
         this.setState({url: updateUrl(this.state.page, this.state.degreen, this.state.degreet, this.state.category, this.state.query)},
             () =>  getCourses(this.state.url)
                 .then(teacher_courses => {
@@ -51,6 +52,18 @@ class SearchItem2 extends React.Component {
                     if (teacher_courses.length === 0)
                         this.setState({disabledNext: true});
                     this.setState({courses: newCourses})
+                })
+                .catch(this.handleError)
+        )
+    }
+
+    reloadCourses(){
+        this.setState({page:1, url: updateUrl(1, this.state.degreen, this.state.degreet, this.state.category, this.state.query)},
+            () =>  getCourses(this.state.url)
+                .then(teacher_courses => {
+                    if (teacher_courses.length === 0)
+                        this.setState({disabledNext: true});
+                    this.setState({courses: teacher_courses})
                 })
                 .catch(this.handleError)
         )
@@ -158,6 +171,7 @@ class SearchItem2 extends React.Component {
                                    onChangePage={this.onChangePage}
                                    disabledNext={this.state.disabledNext}
                                    message={this.state.message}
+                                   reloadCourses={this.reloadCourses}
                     />
                 </div>
             </section>

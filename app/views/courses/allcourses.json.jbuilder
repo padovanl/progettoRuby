@@ -1,1 +1,1 @@
-json.array! @tcs, partial: 'courses/course', as: :tc
+json.array! @cs, partial: 'courses/course', as: :course
