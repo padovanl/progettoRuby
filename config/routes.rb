@@ -24,6 +24,12 @@ Rails.application.routes.draw do
     resources :questions, only: [:index, :create, :destroy, :update]
   end
 
+  resources :courses do
+    resources :questions do
+      resources :frequency_questions, only: [:index, :destroy, :update, :create]
+      end
+  end
+
 
   get '/allcourses', to: 'courses#allcourses'
   get :search_degrees, controller: :courses

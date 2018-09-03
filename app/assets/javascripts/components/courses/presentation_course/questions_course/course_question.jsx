@@ -24,7 +24,8 @@ class CourseQuestion extends React.Component{
     render(){
         //console.log("testo", this.props.courseQuestion.question)
         //let question_text = <i>{this.props.courseQuestion.question}</i>;
-        let question_freq = <i>{this.props.courseQuestion.frequency}</i>;
+        //console.log(this.props.courseQuestion.frequency_questions.length);
+        let question_freq = <i>{this.props.courseQuestion.frequency_questions.length}</i>;
         let pulsante;
 
         if(!this.state.editable){
@@ -32,6 +33,7 @@ class CourseQuestion extends React.Component{
         }else{
             pulsante = <i className="fas fa-check"></i>;
         }
+
 
         const delete_button_item = <a className="button is-rounded is-danger"
                                       onClick={() => this.props.handleDelete(this.props.courseQuestion.id)}
@@ -45,13 +47,27 @@ class CourseQuestion extends React.Component{
                                     {pulsante}
                                    </a>
 
+        const quote_up_button_item = <a className="button is-rounded is-success"
+                                      onClick={() => this.handleEdit()}
+                                      title="Modifica">
+                                    <i className="fas fa-times"></i>
+                                </a>
+
+        const quote_down_button = <a className="button is-rounded is-success"
+                                   onClick={() => this.handleEdit()}
+                                   title="Modifica">
+                                </a>
+
         const question_text = this.state.editable ? <input required={true} type='text' className="input is-medium"  ref={input => this.question_text = input} defaultValue={this.props.courseQuestion.question}/>:<i>{this.props.courseQuestion.question}</i>;
 
         return(
             <tr key={this.props.courseQuestion.id}>
                 <td>{question_text}</td>
-                <td>{question_freq}</td>
-                { this.props.courseQuestion.user_id == this.props.user_id && this.props.show_details ? <td>{update_button_item}<span> </span>{delete_button_item}</td>  : null}
+                <td className="has-text-centered">{question_freq}</td>
+                {this.props.show_details || this.props.show_quotes  ? <td>
+                    { this.props.courseQuestion.user_id == this.props.user_id && this.props.show_details ? <div> {update_button_item} <span> </span>{delete_button_item} </div> : null}
+                    { this.props.courseQuestion.user_id != this.props.user_id && this.props.show_quotes ? <div> {quote_up_button_item} </div>  :  null}
+                </td> : null}
             </tr>
         )
     }

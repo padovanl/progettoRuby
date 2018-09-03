@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_29_191523) do
+ActiveRecord::Schema.define(version: 2018_09_02_003946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(version: 2018_08_29_191523) do
 
   create_table "course_questions", force: :cascade do |t|
     t.string "question"
-    t.integer "frequency"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "course_id"
@@ -107,6 +106,15 @@ ActiveRecord::Schema.define(version: 2018_08_29_191523) do
     t.string "file_name"
     t.index ["course_id"], name: "index_documents_on_course_id"
     t.index ["user_id"], name: "index_documents_on_user_id"
+  end
+
+  create_table "frequency_questions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "course_question_id"
+    t.index ["course_question_id"], name: "index_frequency_questions_on_course_question_id"
+    t.index ["user_id"], name: "index_frequency_questions_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -257,6 +265,8 @@ ActiveRecord::Schema.define(version: 2018_08_29_191523) do
   add_foreign_key "document_tags", "tags"
   add_foreign_key "documents", "courses"
   add_foreign_key "documents", "users"
+  add_foreign_key "frequency_questions", "course_questions"
+  add_foreign_key "frequency_questions", "users"
   add_foreign_key "posts", "courses"
   add_foreign_key "posts", "users"
   add_foreign_key "reps", "courses"

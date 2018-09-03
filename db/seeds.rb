@@ -169,10 +169,29 @@ user.user_courses.create!([
 ])
 
 user.course_questions.create!([
-    { id:1 , question: Faker::StarWars.quote, frequency: 10, user_id: user.id, course_id: 1},
-    { id:2 , question: Faker::StarWars.quote, frequency: 10, user_id: user.id, course_id: 1},
-    { id:3 , question: Faker::StarWars.quote, frequency: 10, user_id: user.id, course_id: 1},
-    { id:4 , question: Faker::StarWars.quote, frequency: 10, user_id: user.id, course_id: 1},
+    { id:1 , question: Faker::StarWars.quote, user_id: user.id, course_id: 1},
+    { id:2 , question: Faker::StarWars.quote, user_id: user.id, course_id: 1},
+])
+
+user.frequency_questions.create!([
+   {user_id: user.id, course_question_id: 1},
+   {user_id: user.id, course_question_id: 2},
+])
+
+user = User.create!(name: "User3 User3", email: "user3@user3.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
+user.user_courses.create!([
+    { id:2, user_id: user.id, course_id: 1, passed: true}
+])
+
+user.course_questions.create!([
+    { id:3 , question: Faker::StarWars.quote, user_id: user.id, course_id: 1},
+    { id:4 , question: Faker::StarWars.quote, user_id: user.id, course_id: 1},
+])
+
+user.frequency_questions.create!([
+   {user_id: user.id, course_question_id: 1},
+   {user_id: user.id, course_question_id: 3},
+   {user_id: user.id, course_question_id: 4},
 ])
 
 user = User.first
