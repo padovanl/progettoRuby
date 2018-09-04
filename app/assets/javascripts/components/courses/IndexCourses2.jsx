@@ -36,7 +36,7 @@ class IndexCourses2 extends React.Component{
     }
 
     closeModal() {
-        this.setState({modalState: false});
+        this.setState({modalState: false}, this.props.reloadCourses());
     }
 
 
@@ -73,27 +73,17 @@ class IndexCourses2 extends React.Component{
 
         const request = new Request('/follow', options);
 
-        const response = fetch(request)
+        fetch(request)
             .then(response => {
                 return response.json();
             })
             .catch(error => console.log(error));
-
-        const status = response.status;
-
-        console.log("Response: ", response, "Status: ",status);
-
-        if (status ===201){
-            console.log("Status 201! Ora faccio GETallCourses");
-            this.props.getAllCourses();
-        }
     }
 
 
     buttonFollowClicked(e){
         //funzione per l'Allert se è sicuro di seguire quel corso
         this.handleSubmit(e);    //funz che seguo il corso e lo inserisco nel db,
-        this.props.reloadCourses();
         //funzione che fa scegliere se reindirizzare nella show di quel corso o di continuare con un modal
         this.showModal()
     }
@@ -139,32 +129,33 @@ class IndexCourses2 extends React.Component{
 
             let teachers = item.teachers.map( teacher => {
                 return (
-                    <ul key={teacher.link_cv}>
-                        <li >
+                        <li key={teacher.link_cv}>
                             <a href={teacher.link_cv}> {teacher.surname} {teacher.name}</a>
                         </li>
-                    </ul>
                 )
             } );
 
             return(
-                <div key={item.id}>
+                <div key={item.id} className={"relative"}>
                     <div className="nested infinite-item">
-                        <div>Materia: {item.name}</div>
+                        <div>Materia: {item.name} e id: {item.id}</div>
                         <div>Livello: {item.degreet}</div>
                         <div>Corso: {item.degreen}</div>
                         <div>Anno: {item.year}</div>
+                        <div>Data più recente: {item.tc_year[0]}</div>
                         <div>Professori:
-                            {teachers}
+                            <courses-ol>{teachers}</courses-ol>
                         </div>
                     </div>
-                    <form onSubmit={(e)=>this.buttonFollowClicked(e)}>
-                        <input className="input" name="user_course[course_id]" value={item.id} type="hidden" />
-                        <input className="input" name="user_course[follow]" value={true} type="hidden" />
-                        <button name={item.name}  className="segui" value={ item.id}>
-                            <div>Follow</div>
-                        </button>
-                    </form>
+                    <div className={"absolute"}>
+                        <form onSubmit={(e)=>this.buttonFollowClicked(e)}>
+                            <input className="input" name="user_course[course_id]" value={item.id} type="hidden" />
+                            <input className="input" name="user_course[follow]" value={true} type="hidden" />
+                            <button name={item.name}  className="segui" value={ item.id}>
+                                <div>Follow</div>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             )
         });

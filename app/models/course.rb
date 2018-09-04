@@ -17,41 +17,52 @@ class Course < ApplicationRecord
     if query and category
       case category
       when 'Name' #del corso
-        includes(:degree_course, :teachers => :teacher_courses).where("name ILIKE ?", "%#{query}%")
+        includes(:degree_course, :teachers => :teacher_courses)
+            .where("courses.name ILIKE ?", "%#{query}%")
+            .myReferences()
             .not_follow(current_user_id)
-            .order(name: :desc)
+
       when 'Data'
-        eager_load(:degree_course, :teachers => :teacher_courses).where("teacher_courses_teachers.year LIKE ?", "%#{query}%")
+        includes(:degree_course, :teacher_courses,:teachers => :teacher_courses)
+            .myReferences()
+            .where("teacher_courses.year LIKE ?", "%#{query}%")
             .not_follow(current_user_id)
-            .order(name: :desc)
+
       when 'Teacher'
-        eager_load(:degree_course, :teachers => :teacher_courses).where(
+        includes(:degree_course, :teachers => :teacher_courses)
+            .order(name: :desc)
+            .references(:teachers)
+            .where(
             "teachers.surname ILIKE ? or
                  teachers.name ILIKE ? or
                 (teachers.name || ' ' || teachers.surname) ILIKE ? or
                 (teachers.surname || ' ' || teachers.name) ILIKE ?",
             "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%")
             .not_follow(current_user_id)
-            .order(name: :desc)
+            .references(:teacher_courses).select(:year).order(:year).reverse_order.limit(1)
+
+
       when  'Year'
-        includes(:degree_course, :teachers => :teacher_courses).where("year =?", "#{query}")
+        includes(:degree_course, :teachers => :teacher_courses)
+            .where("courses.year =?", "#{query}")
+            .myReferences()
             .not_follow(current_user_id)
-            .order(name: :desc)
       else
         return "ERRORE (eugenio) eager_load model t_c"
       end
 
     elsif degreen
-      eager_load( :degree_course, :teachers => :teacher_courses)
+      eager_load( :degree_course,:teachers => :teacher_courses)
           .where('degree_courses.name LIKE ? AND degree_courses.tipo LIKE ?', "#{degreen}", "#{degreet}")
+          .myReferences()
           .not_follow(current_user_id)
-          .order(year: :desc)
     else
-      includes(:degree_course,  :user_courses, :teacher_courses, :teachers => :teacher_courses)
-      .references(:teachers).select(:name, :surname, :link_cv)
-      .references(:courses).select(:id, :name, :year)
+      includes(:degree_course,  :teacher_courses, :teachers)
+      .references(:courses).select(:id, :name, :year).order(:name)
+          .references(:teachers).select(:name, :surname, :link_cv)
+          .references(:teacher_courses).select(:year).order(:year).limit(1)
           .not_follow(current_user_id)
-          .order(name: :desc)
+
     end
 
   end
@@ -71,6 +82,12 @@ class Course < ApplicationRecord
                                      .where(follow: true)
                                      .group(:course_id)
     })
+  }
+
+  scope :myReferences, -> () {
+    references(:courses).select(:id, :name, :year).order(:name)
+    .references(:teachers).select(:name, :surname, :link_cv)
+    .references(:teacher_courses).select(:year).order(:year).limit(1)
   }
 
 

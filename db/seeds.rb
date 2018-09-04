@@ -44,7 +44,7 @@ CourseQuestion.destroy_all
 
   degree_course.courses.create!([
     { id:9, name: "Fondamenti di Chimica e Materiali", year: 1 },
-    { id:10, name: "Geometria e Algebra", year: 1 },
+    { id:10, name: "Geometria e Algebra 2", year: 1 },
     { id:11, name: "Disegno tecnico industriale", year: 1 },
     { id:12, name: "Informatica Industriale", year: 1 }
   ])
@@ -166,6 +166,7 @@ teacher.teacher_courses.create!([
     {year: "2017-2018", teacher_id: teacher.id, course_id: 18},
     {year: "2013-2014", teacher_id: teacher.id, course_id: 19},
     {year: "2010-2011", teacher_id: teacher.id, course_id: 20},
+    {year: "2015-2016", teacher_id: teacher.id, course_id: 20},
     {year: "2003-2004", teacher_id: teacher.id, course_id: 21},
     {year: "2002-2003", teacher_id: teacher.id, course_id: 22},
     {year: "2001-2002", teacher_id: teacher.id, course_id: 23},
@@ -193,7 +194,7 @@ teacher.teacher_courses.create!([
 
 user = User.create!(name: "User2 User2", email: "user2@user2.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
 user.user_courses.create!([
-    { id:1, user_id: user.id, course_id: 1, passed: true}
+    { id:5, user_id: user.id, course_id: 1, passed: true}
 ])
 
 user.course_questions.create!([

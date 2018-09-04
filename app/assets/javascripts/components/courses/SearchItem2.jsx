@@ -49,8 +49,11 @@ class SearchItem2 extends React.Component {
             () =>  getCourses(this.state.url)
                 .then(teacher_courses => {
                     const newCourses = this.state.courses.concat(teacher_courses);
-                    if (teacher_courses.length === 0)
+                    if (teacher_courses.length === 0){
+                        console.log("teacher_courses.length", teacher_courses.length);
+
                         this.setState({disabledNext: true});
+                    }
                     this.setState({courses: newCourses})
                 })
                 .catch(this.handleError)
@@ -58,12 +61,13 @@ class SearchItem2 extends React.Component {
     }
 
     reloadCourses(){
-        this.setState({page:1, url: updateUrl(1, this.state.degreen, this.state.degreet, this.state.category, this.state.query)},
+        this.setState({page:1, disabledNext: false, url: updateUrl(1, this.state.degreen, this.state.degreet, this.state.category, this.state.query)},
             () =>  getCourses(this.state.url)
-                .then(teacher_courses => {
-                    if (teacher_courses.length === 0)
-                        this.setState({disabledNext: true});
-                    this.setState({courses: teacher_courses})
+                .then(courses => {
+                    if (courses.length === 0){
+                        console.log("courses. length", courses.length);
+                        this.setState({disabledNext: true});}
+                    this.setState({courses: courses})
                 })
                 .catch(this.handleError)
         )
