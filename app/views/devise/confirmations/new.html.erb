@@ -23,6 +23,7 @@
             <p class="title is-4"><strong>Reinvia email di verifica account</strong></p>
 
             <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+
               <%= devise_error_messages! %>
 
               <div class="field">
@@ -51,3 +52,13 @@
     }
   }
 </style>
+
+<script type="text/javascript">
+    $("#closeButtonErrorDevise").on('click', function () {
+        $("#errorsDevise").fadeOut();
+    })
+
+    setTimeout(function () {
+        $("#errorsDevise").fadeOut();
+    }, 5000)
+</script>
