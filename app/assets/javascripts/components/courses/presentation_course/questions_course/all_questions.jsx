@@ -12,7 +12,9 @@ class AllQuestions extends React.Component {
                                 handleDelete={this.props.handleDelete}
                                 handleUpdate={this.props.handleUpdate}
                                 show_details = {this.props.show_details}
-                                show_quotes = {this.props.show_quotes}/>
+                                show_quotes = {this.props.show_quotes}
+                                handleQuoteUp={this.props.handleQuoteUp}
+                                handleQuoteDown = {this.props.handleQuoteDown} />
             )
         })
 

@@ -19,6 +19,8 @@ class BodyQuestion extends React.Component {
         this.handleShowDetails = this.handleShowDetails.bind(this)
         this.handleShowQuotes = this.handleShowQuotes.bind(this)
         this.handleQuoteUp = this.handleQuoteUp.bind(this)
+        this.handleQuoteDown = this.handleQuoteDown.bind(this)
+
     }
 
     handleShowDetails(){
@@ -156,7 +158,7 @@ class BodyQuestion extends React.Component {
     }
 
     handleQuoteUp(course_question_id) {
-        let body = JSON.stringify({frequencyQuestion: {course_question_id: course_question_id}});
+        let body = JSON.stringify({frequencyQuestion: {course_question_id: course_question_id, user_id: this.props.user_id}});
         // /courses/:course_id/questions/:question_id/frequency_questions(.:format)
         let linkNew = '/courses/' + this.props.course_id + '/questions/' + course_question_id + '/frequency_questions';
 
@@ -178,6 +180,32 @@ class BodyQuestion extends React.Component {
             })
     }
 
+    handleQuoteDown(course_question_id, frequency_question_id){
+        // /courses/:course_id/questions/:id(.:format)
+        console.log("question id: ", course_question_id)
+        console.log("frequency_question_id: ", frequency_question_id)
+
+        let linkDelete = '/courses/' + this.props.course_id + '/questions/' + course_question_id + '/frequency_questions/' + frequency_question_id;
+        fetch(linkDelete,
+            {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then((response) => {
+            return response.json()
+        })
+            .then((frequencyQuestion) => {
+                console.log(frequencyQuestion)
+                if (frequencyQuestion.error) {
+                    alert("Errore!")
+                } else {
+                    this.updateCourseQuestion(frequencyQuestion);
+                }
+            })
+    }
+
+
     render(){
         //console.log(this.state.followed.length > 0 ? this.state.followed[0].passed : 'Items not loaded yet');        //this.state.tubedata.length > 0 && this.state.tubedata[0].id
 
@@ -195,7 +223,9 @@ class BodyQuestion extends React.Component {
                               handleDelete={this.handleDelete}
                               handleUpdate = {this.handleUpdate}
                               show_details = {this.state.show_details}
-                              show_quotes = {this.state.show_quotes}/>
+                              show_quotes = {this.state.show_quotes}
+                              handleQuoteUp = {this.handleQuoteUp}
+                              handleQuoteDown = {this.handleQuoteDown} />
                 <br/>
                 <table className="table is-fullwidth">
                     <tbody>
