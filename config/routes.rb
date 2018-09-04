@@ -26,8 +26,11 @@ Rails.application.routes.draw do
 
 
   get '/allcourses', to: 'courses#allcourses'
+  get :mycourses, controller: :courses
   get :search_degrees, controller: :courses
   post :follow, controller: :courses
+  put :unfollow, controller: :courses
+
 
   #admin
   get '/dashboard', to: 'admin#dashboard'

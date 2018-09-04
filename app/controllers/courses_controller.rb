@@ -19,29 +19,32 @@ class CoursesController < ApplicationController
     end
   end
 
-   def allcourses
-     @cs = Course.search_courses_not_followed(params[:degreen], params[:degreet], params[:category], params[:search], current_user.id).page(params[:page]).per(3)
-     @last_page = @cs.total_pages
-     @categories = %w[Name Data Teacher Year]
+  def allcourses
+    @cs = Course.search_courses_not_followed(params[:degreen], params[:degreet], params[:category], params[:search], current_user.id).page(params[:page]).per(3)
+    @last_page = @cs.total_pages
+    @categories = %w[Name Data Teacher Year]
+  end
 
-   end
-
- # def allcourses
-  #  #ho usato eager_load in quanto fa una left join e quindi lavora su entrambe le tab, con includes mi dava errore in quanto courses non si trova nella tab: teacherCourse
-   # #@tcs = TeacherCourse.eager_load(:course, :teacher).where('courses.name LIKE ?', "%#{params[:search]}%").order(year: :desc).page(params[:page]).per(2)
-   # @tcs = TeacherCourse.search_courses_not_followed(params[:degreen], params[:degreet], params[:category], params[:search], current_user.id).page(params[:page]).per(3)
-   # @last_page = @tcs.total_pages
-   # @categories = %w[Name Data Teacher Year]
-  #end
+  def mycourses
+    @cs = Course.search_courses_followed(params[:degreen], params[:degreet], params[:category], params[:search], current_user.id).page(params[:page]).per(3)
+    @last_page = @cs.total_pages
+    @categories = %w[Name Data Teacher Year]
+  end
 
   def follow
-    @user_course = current_user.user_courses.new(user_course_param)
-    if !@user_course.save
-      render_json_validation_error @user_course
-      return
-    end
+    logger.debug "PARAMETRI ****************** #{user_course_param}"
+    logger.debug "PARAMETRI ****************** COURSE_ID #{user_course_param[:course_id]}"
+
+    @user_course = UserCourse.first_update_or_create(user_course_param[:course_id], current_user.id)
+    #controllo errore
     render json: @user_course, status: :created
   end
+
+   def unfollow
+     @user_course = UserCourse.update(user_course_param[:course_id],current_user.id)
+     #controllo errore
+     render json: @user_course, status: :created
+   end
 
   def show
     @course = Course.find(params[:id])
