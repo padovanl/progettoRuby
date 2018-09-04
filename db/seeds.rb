@@ -173,6 +173,11 @@ user.course_questions.create!([
     { id:2 , question: Faker::StarWars.quote, user_id: user.id, course_id: 1},
 ])
 
+user.course_tips.create!([
+    { id:1 , tip: Faker::StarWars.quote, user_id: user.id, course_id: 1},
+    { id:2 , tip: Faker::StarWars.quote, user_id: user.id, course_id: 1},
+])
+
 user.frequency_questions.create!([
    {user_id: user.id, course_question_id: 1},
    {user_id: user.id, course_question_id: 2},
@@ -186,6 +191,11 @@ user.user_courses.create!([
 user.course_questions.create!([
     { id:3 , question: Faker::StarWars.quote, user_id: user.id, course_id: 1},
     { id:4 , question: Faker::StarWars.quote, user_id: user.id, course_id: 1},
+])
+
+user.course_tips.create!([
+   { id:3 , tip: Faker::StarWars.quote, user_id: user.id, course_id: 1},
+   { id:4 , tip: Faker::StarWars.quote, user_id: user.id, course_id: 1},
 ])
 
 user.frequency_questions.create!([

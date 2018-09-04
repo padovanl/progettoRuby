@@ -1,7 +1,7 @@
 const MainStatisticCourse = (props) => {
     return(
         <div>
-            <BodyStatisticCourse />
+            <BodyStatisticCourse course_id={this.props.course_id} user_id={this.props.user_id} />
         </div>
     )
 }

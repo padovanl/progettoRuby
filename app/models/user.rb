@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :tags
   has_many :course_questions
   has_many :frequency_questions
+  has_many :course_tips
 
   # un utente vota un post
   has_many :upvotes

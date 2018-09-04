@@ -25,6 +25,10 @@ Rails.application.routes.draw do
   end
 
   resources :courses do
+    resources :course_tips, only: [:index, :create, :destroy, :update]
+  end
+
+  resources :courses do
     resources :questions do
       resources :frequency_questions, only: [:index, :destroy, :update, :create]
       end
