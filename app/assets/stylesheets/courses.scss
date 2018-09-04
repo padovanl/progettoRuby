@@ -222,6 +222,32 @@ body {
 
 
 
+.unfollow  {
+  display: inline-block;
+  align-items:center;
+  padding: 6px 15px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  border-radius: 12px;
+  background-color: red;
+  color: black;
+  border: 2px solid #f1f1f1;
+  box-shadow: 0 5px #999;
+  margin-top: 4px;
+}
+
+.unfollow:hover {background-color: darkred}
+
+.unfollow:active {
+  background-color: darkred;
+  box-shadow: 0 1px #666;
+  transform: translateY(4px);
+}
+
+
 
 .buttonnext {
   display: inline-block;

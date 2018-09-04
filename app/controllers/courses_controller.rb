@@ -20,10 +20,9 @@ class CoursesController < ApplicationController
   end
 
   def allcourses
-  @cs = Course.search_courses_not_followed(params[:degreen], params[:degreet], params[:category], params[:search], current_user.id).page(params[:page]).per(3)
-  @last_page = @cs.total_pages
-  @categories = %w[Name Data Teacher Year]
-
+    @cs = Course.search_courses_not_followed(params[:degreen], params[:degreet], params[:category], params[:search], current_user.id).page(params[:page]).per(3)
+    @last_page = @cs.total_pages
+    @categories = %w[Name Data Teacher Year]
   end
 
   def mycourses
@@ -37,11 +36,15 @@ class CoursesController < ApplicationController
     logger.debug "PARAMETRI ****************** COURSE_ID #{user_course_param[:course_id]}"
 
     @user_course = UserCourse.first_update_or_create(user_course_param[:course_id], current_user.id)
-
-
-
+    #controllo errore
     render json: @user_course, status: :created
   end
+
+   def unfollow
+     @user_course = UserCourse.update(user_course_param[:course_id],current_user.id)
+     #controllo errore
+     render json: @user_course, status: :created
+   end
 
   def show
     @course = Course.find(params[:id])

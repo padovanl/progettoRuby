@@ -15,7 +15,7 @@ class SearchItem2 extends React.Component {
             page: 1,
             disabledNext: false,
             message: '',
-            url: "/allcourses.json"
+            url: this.props.url
         };
         this.onChangePage = this.onChangePage.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -45,7 +45,7 @@ class SearchItem2 extends React.Component {
 
     getAllCourses(){
         console.log("page: ", this.state);
-        this.setState({url: updateUrl(this.state.page, this.state.degreen, this.state.degreet, this.state.category, this.state.query)},
+        this.setState({url: updateUrl(this.props.url, this.state.page, this.state.degreen, this.state.degreet, this.state.category, this.state.query)},
             () =>  getCourses(this.state.url)
                 .then(teacher_courses => {
                     const newCourses = this.state.courses.concat(teacher_courses);
@@ -61,7 +61,7 @@ class SearchItem2 extends React.Component {
     }
 
     reloadCourses(){
-        this.setState({page:1, disabledNext: false, url: updateUrl(1, this.state.degreen, this.state.degreet, this.state.category, this.state.query)},
+        this.setState({page:1, disabledNext: false, url: updateUrl(this.props.url, 1, this.state.degreen, this.state.degreet, this.state.category, this.state.query)},
             () =>  getCourses(this.state.url)
                 .then(courses => {
                     if (courses.length === 0){
@@ -85,7 +85,7 @@ class SearchItem2 extends React.Component {
         e.preventDefault();
         console.log("cat: "+this.state.category+ ", query "+ this.state.query + ", page "+ this.state.page);
         this.setState({page: 1, disabledNext:false, degreen: '', degreet: ''},
-            ()=> getCourses(updateUrl(this.state.page, '', '', this.state.category, this.state.query))
+            ()=> getCourses(updateUrl(this.props.url, this.state.page, '', '', this.state.category, this.state.query))
                 .then(data => {
                     this.checkCoursesFinded(data);
                     console.log("data: "+data);
@@ -104,7 +104,7 @@ class SearchItem2 extends React.Component {
     onSubmit(degree_name){
         console.log("SearchItem2 got: ", degree_name);
         this.setState({degreen: degree_name, degreet: this.state.selectType, disabledNext: false, page:1},
-            ()=> getCourses(updateUrl(this.state.page, this.state.degreen, this.state.degreet))
+            ()=> getCourses(updateUrl(this.props.url, this.state.page, this.state.degreen, this.state.degreet))
                 .then(data => {
                     console.log("data: "+data);
                     this.setState({courses: data});
@@ -139,6 +139,30 @@ class SearchItem2 extends React.Component {
         });
 
 
+        let indexCourses_or_myCourses;
+        if(this.props.url === '/allcourses.json'){
+            indexCourses_or_myCourses = <IndexCourses2 courses={this.state.courses}
+                                                       page={this.state.page}
+                                                       last_page={this.props.last_page}
+                                                       url={this.state.url}
+                                                       onChangePage={this.onChangePage}
+                                                       disabledNext={this.state.disabledNext}
+                                                       message={this.state.message}
+                                                       reloadCourses={this.reloadCourses}
+                                        />
+        }
+        else{
+            indexCourses_or_myCourses = <MyCourses courses={this.state.courses}
+                                                       page={this.state.page}
+                                                       last_page={this.props.last_page}
+                                                       url={this.state.url}
+                                                       onChangePage={this.onChangePage}
+                                                       disabledNext={this.state.disabledNext}
+                                                       message={this.state.message}
+                                                       reloadCourses={this.reloadCourses}
+            />
+        }
+
         return (
             <section>
                 <div className='myRow'>
@@ -168,15 +192,8 @@ class SearchItem2 extends React.Component {
                         />
                     </div>
 
-                    <IndexCourses2 courses={this.state.courses}
-                                   page={this.state.page}
-                                   last_page={this.props.last_page}
-                                   url={this.state.url}
-                                   onChangePage={this.onChangePage}
-                                   disabledNext={this.state.disabledNext}
-                                   message={this.state.message}
-                                   reloadCourses={this.reloadCourses}
-                    />
+                    {indexCourses_or_myCourses}
+
                 </div>
             </section>
         )

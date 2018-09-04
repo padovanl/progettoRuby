@@ -12,4 +12,13 @@ class UserCourse < ApplicationRecord
     end
   end
 
+
+  def self.update(course_id, user_id)
+    user_course = UserCourse.where(:course_id => course_id, :user_id => user_id).first
+    if !user_course.nil?
+      user_course.follow = false
+      user_course.save
+    end
+  end
+
 end

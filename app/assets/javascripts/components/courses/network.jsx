@@ -1,5 +1,3 @@
-const baseURL = "/allcourses.json";
-
 function makeReq(url, errorMessage = '', options = {credentials: 'same-origin'}) {
     return fetch(url, options)
         .then(response => {
@@ -12,13 +10,13 @@ function makeReq(url, errorMessage = '', options = {credentials: 'same-origin'})
 }
 
 
-const updateUrl=(page, degreen='', degreet='', category='', query='')=>{
-    let url = "/allcourses.json?page="+page+"?utf8=✓";
+const updateUrl=(url, page, degreen='', degreet='', category='', query='')=>{
+    let new_url = url+"?page="+page+"?utf8=✓";
     if (degreen !== '')
-        url = url+ "&degreen="+degreen+"&degreet="+degreet;
+        new_url = new_url + "&degreen="+degreen+"&degreet="+degreet;
     if (query!=='') //se ho fatto la ricerca
-        url = url+ "&search="+query+"&category="+category;
-    return url;
+        new_url = new_url + "&search="+query+"&category="+category;
+    return new_url ;
 };
 
 const getCourses = (url) => {
