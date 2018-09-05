@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   get '/allcourses', to: 'courses#allcourses'
   get :mycourses, controller: :courses
   get :search_degrees, controller: :courses
+  get :courses_name, controller: :courses
+  get :teachers_name, controller: :courses
   post :follow, controller: :courses
   put :unfollow, controller: :courses
 

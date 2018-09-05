@@ -4,33 +4,65 @@ class SearchItem2 extends React.Component {
         super(props);
 
         this.state = {
+            //degree
             selectType: "- Select -",
             selectName: "- Select -",
-            selectAdvanced: 'Name',
+            //selectAdvanced: 'Name',
             degreen: '',
             degreet: '',
-            category: 'Name',
+            //advanced search
+            category: 'Course',
             query: '',
             courses: [],
+            //next button
             page: 1,
             disabledNext: false,
+            //error or advertisement
             message: '',
-            url: this.props.url
+            //allcourses or mycourses
+            url: this.props.url,
+            //autocomplete
+            //value: '', -> uso la query
+            suggestions: [],
+            autoSuggestNames: []
         };
+        console.log("**** courses: ", this.state.autoSuggestNames);
         this.onChangePage = this.onChangePage.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.searchCourses = this.searchCourses.bind(this);
         this.resetAdvancedSearch = this.resetAdvancedSearch.bind(this);
         this.setSelectType = this.setSelectType.bind(this);
         this.reloadCourses = this.reloadCourses.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
+        this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
+        this.getAllNames = this.getAllNames.bind(this)
+
+    }
+
+    getAllNames(cat){
+        getNames(cat)
+            .then(res => {
+                this.setState({autoSuggestNames: res})
+            })
+            .catch(err => console.log(err))
+    }
+
+    componentWillMount(){
+        this.getAllNames(this.state.category)
     }
 
     resetAdvancedSearch(){
         this.setState({query: '' })
     }
 
-    //   shouldComponentUpdate(nextProps, nextState){
-    // }
+    shouldComponentUpdate(nextProps, nextState){
+        console.log("NEXT STATE CAT", nextState.category);
+        if (nextState.category !== this.state.category){
+            this.getAllNames(nextState.category)
+        }
+        return true;
+    }
 
 
     checkCoursesFinded(data){
@@ -56,7 +88,7 @@ class SearchItem2 extends React.Component {
                     }
                     this.setState({courses: newCourses})
                 })
-                .catch(this.handleError)
+                .catch(err => console.log(err))
         )
     }
 
@@ -73,10 +105,10 @@ class SearchItem2 extends React.Component {
         )
     }
 
-    updateSearch(event){
+ /*   updateSearch(event){
         this.setState({query: event.target.value.substr(0,20).toLowerCase()});
     }
-
+*/
     selectChanged(e){
         this.setState({category: e.target.value});
     }
@@ -124,6 +156,28 @@ class SearchItem2 extends React.Component {
     }
 
 
+    //***************** AUTO SUGGESTION (AUTO COMPLETE) **********************
+
+    onChange(event, { newValue, method }){
+        this.setState({
+            query: newValue
+        });
+    };
+
+    onSuggestionsFetchRequested({ value }){
+        console.log("AutoSuggestName: ", this.state.autoSuggestNames);
+
+        this.setState({
+            suggestions: getSuggestions(value, this.state.autoSuggestNames, this.state.category)
+        });
+    };
+
+    onSuggestionsClearRequested(){
+        this.setState({
+            suggestions: []
+        });
+    };
+
 
     render(){
         let searchButton;
@@ -138,6 +192,13 @@ class SearchItem2 extends React.Component {
             )
         });
 
+        const  value =this.state.query;
+        const suggestions = this.state.suggestions;
+        const inputProps = {
+            placeholder:"Search courses",
+            value,
+            onChange: this.onChange
+        };
 
         let indexCourses_or_myCourses;
         if(this.props.url === '/allcourses.json'){
@@ -175,8 +236,17 @@ class SearchItem2 extends React.Component {
                                 </select>
                             </div>
                             <div className='myColumn myColumn-md'>
-                                <input required className='input-form gap' type="text" value={this.state.query}
-                                       onChange={this.updateSearch.bind(this)} placeholder="Search courses"/>
+
+
+                                <Autosuggest
+                                    suggestions={suggestions}
+                                    onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                                    onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                                    getSuggestionValue={getSuggestionValue}
+                                    renderSuggestion={renderSuggestion}
+                                    inputProps={inputProps}
+                                    />
+
                             </div>
                             <div className='myColumn myColumn-sm'> {searchButton} </div>
                         </div>

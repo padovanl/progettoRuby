@@ -3,14 +3,19 @@ class CoursesController < ApplicationController
   #before_action ->{ authenticate_user!(force: true) }
  # before_filter :search_course
 
-  #def index
-   # if params[:search]
-    #  @tcs = TeacherCourse.search(params[:search]).all;
-    #else
-    #  @tcs = TeacherCourse.all;
-    #end
-    #render json: @tcs.order(data: :desc).all.as_json(:include => [{:course => {:only => [:name, :year]}}, :teacher => {:only => [:name, :surname, :link_cv]}]);
-  #end
+  def courses_name
+    @courses_name = Course.get_names
+    respond_to do |format|
+      format.json { render json: @courses_name }
+    end
+  end
+
+   def teachers_name
+     @teachers_name = Teacher.get_names_complete
+     respond_to do |format|
+       format.json { render json: @teachers_name }
+     end
+   end
 
   def search_degrees
     @degree = DegreeCourse.search_degrees(params[:degree])
@@ -22,7 +27,7 @@ class CoursesController < ApplicationController
   def allcourses
     @cs = Course.search_courses_not_followed(params[:degreen], params[:degreet], params[:category], params[:search], current_user.id).page(params[:page]).per(3)
     @last_page = @cs.total_pages
-    @categories = %w[Name Data Teacher Year]
+    @categories = %w[Course Data Teacher Year]
   end
 
   def mycourses

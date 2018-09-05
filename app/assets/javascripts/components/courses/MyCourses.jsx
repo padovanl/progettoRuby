@@ -85,12 +85,16 @@ class MyCourses extends React.Component{
                     return item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1; //tutti
                 }
             );
-        else
+        else{
+            if (this.props.message === ''){
+                return ''
+            }
             return (<div className={"message is-danger gap"}  >
                         <div className="message-body">
                             {this.props.message }
                         </div>
                     </div>);
+        }
 
 
 

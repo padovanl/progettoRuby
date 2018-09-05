@@ -10,6 +10,18 @@ function makeReq(url, errorMessage = '', options = {credentials: 'same-origin'})
 }
 
 
+const getNames=(category)=>{
+    let url;
+  if (category  === 'Course')
+      url = '/courses_name.json';
+  else
+      url = '/teachers_name.json';
+
+    const errorMessage = 'Errore durante il download dei dati';
+    console.log("url usato nella ricerca dei NOMI: "+url);
+    return makeReq(url, errorMessage);
+};
+
 const updateUrl=(url, page, degreen='', degreet='', category='', query='')=>{
     let new_url = url+"?page="+page+"?utf8=✓";
     if (degreen !== '')

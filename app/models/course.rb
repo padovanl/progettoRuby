@@ -16,7 +16,7 @@ class Course < ApplicationRecord
 
     if query and category
       case category
-      when 'Name' #del corso
+      when 'Course' #nome del corso
         includes(:degree_course, :teachers => :teacher_courses)
             .where("courses.name ILIKE ?", "%#{query}%")
             .myReferences()
@@ -74,7 +74,7 @@ class Course < ApplicationRecord
 
     if query and category
       case category
-      when 'Name' #del corso
+      when 'Course' #nome del corso
         includes(:degree_course, :teachers => :teacher_courses)
             .where("courses.name ILIKE ?", "%#{query}%")
             .myReferences()
@@ -151,11 +151,7 @@ class Course < ApplicationRecord
   }
 
 
-  def self.search(query)
-    if query
-      where("name like ?", "%#{query}%")
-    else
-      all
-    end
+  def self.get_names
+    select(:name).order(:name)
   end
 end
