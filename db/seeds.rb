@@ -22,6 +22,7 @@ CourseQuestion.destroy_all
 
 
 
+
   degree_course = DegreeCourse.create!( id: 1, name: "Ingegneria civile e ambientale", tipo: "Triennale" )
 
   degree_course.courses.create!([
@@ -89,7 +90,7 @@ degree_course.courses.create!([
 
 
 
-user = User.create!(name: "Admin Admin", email: "admin@admin.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: true)
+user = User.create!(id: 1, name: "Admin Admin", email: "admin@admin.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: true)
 user.tags.create!([
   { id:1 , name: "Ricerca" },
   { id:2 , name: "Sviluppo Web" },
@@ -192,7 +193,7 @@ teacher.teacher_courses.create!([
 ])
 
 
-user = User.create!(name: "User2 User2", email: "user2@user2.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
+user = User.create!(id: 3, name: "User2 User2", email: "user2@user2.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
 user.user_courses.create!([
     { id:5, user_id: user.id, course_id: 1, passed: true}
 ])
