@@ -204,6 +204,11 @@ user.frequency_questions.create!([
    {user_id: user.id, course_question_id: 4},
 ])
 
+user = User.create!(name: "User4 User4", email: "user4@user4.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
+user.user_courses.create!([
+    {id:4, user_id: user.id, course_id: 1, passed: false}
+])
+
 user = User.first
 course = Course.first
 5.times do

@@ -29,7 +29,7 @@ class BodyTip extends React.Component {
     }
 
     getData2() {
-        let linkGet =  '/api/v1/users/' + this.props.user_id + '/user_courses/' + this.props.course_id;
+        let linkGet =  '/api/v1/users/' + this.props.user_id + '/user_courses/' + this.props.course_id + '.json';
         fetch(linkGet)
             .then((response) => {return response.json()})
             .then((data) => {this.setState({ followed: data }) });
