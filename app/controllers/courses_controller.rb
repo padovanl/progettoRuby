@@ -10,13 +10,6 @@ class CoursesController < ApplicationController
     end
   end
 
-   def teachers_name
-     @teachers_name = Teacher.get_names_complete
-     respond_to do |format|
-       format.json { render json: @teachers_name }
-     end
-   end
-
   def search_degrees
     @degree = DegreeCourse.search_degrees(params[:degree])
     respond_to do |format|

@@ -19,7 +19,9 @@ function getSuggestions(value, courses, type) {
 }
 
 function getSuggestionValue(suggestion) {
-    return suggestion.name + suggestion.surname;
+    if (suggestion.surname === undefined)
+        return suggestion.name;
+    return suggestion.surname + " " +  suggestion.name;
 }
 
 function renderSuggestion(suggestion) {
