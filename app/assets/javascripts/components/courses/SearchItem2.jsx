@@ -78,7 +78,7 @@ class SearchItem2 extends React.Component {
     getAllCourses(){
         console.log("page: ", this.state);
         this.setState({url: updateUrl(this.props.url, this.state.page, this.state.degreen, this.state.degreet, this.state.category, this.state.query)},
-            () =>  getCourses(this.state.url)
+            () =>  getItems(this.state.url)
                 .then(teacher_courses => {
                     const newCourses = this.state.courses.concat(teacher_courses);
                     if (teacher_courses.length === 0){
@@ -94,7 +94,7 @@ class SearchItem2 extends React.Component {
 
     reloadCourses(){
         this.setState({page:1, disabledNext: false, url: updateUrl(this.props.url, 1, this.state.degreen, this.state.degreet, this.state.category, this.state.query)},
-            () =>  getCourses(this.state.url)
+            () =>  getItems(this.state.url)
                 .then(courses => {
                     if (courses.length === 0){
                         console.log("courses. length", courses.length);
@@ -117,7 +117,7 @@ class SearchItem2 extends React.Component {
         e.preventDefault();
         console.log("cat: "+this.state.category+ ", query "+ this.state.query + ", page "+ this.state.page);
         this.setState({page: 1, disabledNext:false, degreen: '', degreet: ''},
-            ()=> getCourses(updateUrl(this.props.url, this.state.page, '', '', this.state.category, this.state.query))
+            ()=> getItems(updateUrl(this.props.url, this.state.page, '', '', this.state.category, this.state.query))
                 .then(data => {
                     this.checkCoursesFinded(data);
                     console.log("data: "+data);
@@ -136,7 +136,7 @@ class SearchItem2 extends React.Component {
     onSubmit(degree_name){
         console.log("SearchItem2 got: ", degree_name);
         this.setState({degreen: degree_name, degreet: this.state.selectType, disabledNext: false, page:1},
-            ()=> getCourses(updateUrl(this.props.url, this.state.page, this.state.degreen, this.state.degreet))
+            ()=> getItems(updateUrl(this.props.url, this.state.page, this.state.degreen, this.state.degreet))
                 .then(data => {
                     console.log("data: "+data);
                     this.setState({courses: data});

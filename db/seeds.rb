@@ -14,11 +14,13 @@ DegreeCourse.destroy_all
 ThesisTag.destroy_all
 Teacher.destroy_all
 Tag.destroy_all
+Rep.destroy_all
 User.destroy_all
 UserCourse.destroy_all
 TeacherCourse.destroy_all
 UserCourse.destroy_all
 CourseQuestion.destroy_all
+
 
 
 
@@ -253,6 +255,36 @@ user = User.second
                             {content: Faker::Hobbit.quote, user_id: user.id},
                             {content: Faker::Hobbit.quote, user_id: User.first.id},
                             {content: Faker::Hobbit.quote, user_id: user.id}])
+end
+
+
+user = User.second
+5.times do
+  Rep.create!(
+               description: Faker::HarryPotter.quote,
+               user_id: user.id,
+               course_id: course.id,
+               offer: true,
+               user_competence: Faker::StarWars.quote,
+               price_hours: 15,
+               place: Faker::Nation,
+               home_service: true,
+               week_days: "Lunedì e Martedì"
+  )
+end
+
+
+5.times do
+  Rep.create!(
+      description: Faker::StarWars.quote,
+      user_id: user.id,
+      course_id: course.id,
+      offer: false,
+      place: Faker::Nation,
+      home_service: true,
+      week_days: "Giovedì e Sabato"
+  )
+
 end
 
 #UserCourse.create!(user_id: User.first.id, course_id: Course.first.id)

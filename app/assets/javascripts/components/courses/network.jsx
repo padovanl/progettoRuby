@@ -31,7 +31,7 @@ const updateUrl=(url, page, degreen='', degreet='', category='', query='')=>{
     return new_url ;
 };
 
-const getCourses = (url) => {
+const getItems = (url) => {
     const errorMessage = 'Errore durante il download dei dati';
     console.log("url usato nella ricerca: "+url);
     return makeReq(url, errorMessage);

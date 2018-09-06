@@ -9,19 +9,11 @@ class IndexCourses2 extends React.Component{
         };
 
         this.showModal = this.showModal.bind(this);
-        console.log("props: "+props.onChangePage);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.buttonFollowClicked = this.buttonFollowClicked.bind(this);
         this.linkToCourseView = this.linkToCourseView.bind(this)
     }
 
-    componentWillReceiveProps(nextProps){
-        console.log("IC receive props");
-        console.log("IC props courses: "+nextProps.courses);
-        console.log("IC props page: "+nextProps.page);
-        console.log("IC props last_page: "+nextProps.last_page);
-        console.log("IC props url: "+nextProps.url);
-    }
 
     updateSearch(event){
         this.setState({search: event.target.value.substr(0,20)});
@@ -128,7 +120,7 @@ class IndexCourses2 extends React.Component{
         let items = filteredCourses.map((item) => {
 
             if (item.teachers.length ===0){
-                return "sedds from course "+item.id+"teachers sno ancora da fare"
+                return "seeds from course "+item.id+"teachers sno ancora da fare"
             }
 
             let teachers = item.teachers.map( teacher => {
