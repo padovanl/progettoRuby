@@ -109,7 +109,7 @@
             </a>
 
             <div class="navbar-dropdown ">
-              <% if current_user.provider != 'facebook' then %>
+              <% if current_user.provider != 'facebook' and current_user.provider != 'google_oauth2' then %>
                 <a class="navbar-item " href="<%= edit_user_registration_path %>">
                   Modifica account
                 </a>
@@ -149,10 +149,6 @@
 
 
 <%= yield %>
-
-  <!-- mancavano questi, forse e' per questo che non comparivano gli avvisi di devise (comunque bisogna trovare un bel posto dove metterli)-->
-  <!--<p class="notice"><%= notice %></p>-->
-  <!--<p class="alert"><%= alert %></p>-->
 
   <div class="se-pre-con"></div>
 
