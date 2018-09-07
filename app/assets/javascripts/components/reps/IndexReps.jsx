@@ -7,7 +7,8 @@ class IndexReps extends React.Component {
             url: this.props.url,
             page:1,
             disabledNext: false,
-            search: ''
+            search: '',
+            tabs_activate: 'is-activate'
         };
         this.getAllReps = this.getAllReps.bind(this);
     }
@@ -46,18 +47,23 @@ class IndexReps extends React.Component {
             buttonNext= <div className='buttonnext' onClick={() => this.onChangePage()}>
                 <span> Next </span> </div>
         }
-        else
+        else{
             buttonNext=<div className='buttonnext disabled'>Next</div>;
+        }
+
+
 
 
         return (
             <section>
+
                 <div className="myRow"><ItemReps items={this.state.reps} current_user={this.props.current_user_image}/></div>
                 <div className='myRow'>
                     {buttonNext}
                     <input className='input-form gap' type="text"  value={this.state.search}
                            onChange={this.updateSearch.bind(this)} placeholder="Filter reps by course's name"/>
                 </div>
+                <AddRep current_user={this.props.current_user}/>
             </section>
 
         )

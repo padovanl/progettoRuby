@@ -4,6 +4,7 @@ class RepsController < ApplicationController
     @reps = Rep.reduce(params).order(created_at: :desc).page(params[:page]).per(3)
     @last_page = @reps.total_pages
     @current_user_image = get_avatar_image
+    @current_user = current_user
     respond_to do |format|
       format.html
       format.json {render json: @reps, :include => {:course => {:only => :name}, :user => {:only => [:name, :image, :last_sign_in_at, :current_sign_in_ip]} } }
