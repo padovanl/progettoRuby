@@ -11,6 +11,8 @@ class IndexReps extends React.Component {
             tabs_activate: 'is-activate'
         };
         this.getAllReps = this.getAllReps.bind(this);
+        this.showModal = this.showModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
 
     componentWillMount(){
@@ -23,6 +25,18 @@ class IndexReps extends React.Component {
 
     onChangePage() {
         this.setState({page: this.state.page +=1},this.getAllReps());
+    }
+
+    showModal() {
+        this.setState((prev, props) => {
+            const newState = !prev.modalState;
+
+            return { modalState: newState };
+        });
+    }
+
+    closeModal() {
+        this.setState({modalState: false});
     }
 
     getAllReps(){
@@ -52,19 +66,29 @@ class IndexReps extends React.Component {
         }
 
 
-
-
         return (
-            <section>
+            <div className={"myColumn-lg"}>
 
-                <div className="myRow"><ItemReps items={this.state.reps} current_user={this.props.current_user_image}/></div>
+                <div className="infinite-container">
+                    <ItemReps items={this.state.reps} current_user={this.props.current_user_image}/>
+                </div>
                 <div className='myRow'>
                     {buttonNext}
                     <input className='input-form gap' type="text"  value={this.state.search}
                            onChange={this.updateSearch.bind(this)} placeholder="Filter reps by course's name"/>
                 </div>
-                <AddRep current_user={this.props.current_user}/>
-            </section>
+
+                <a className={"fixed"} onClick={() => this.showModal()}>
+                    <i className={"fas fa-plus fa-2x"} title={"Add post"}/>
+                </a>
+
+                <div className={"modal " + (this.state.modalState ? "is-active" : "")}>
+                    <div className="modal-background" onClick={this.closeModal} />
+
+                    <AddRep current_user={this.props.current_user} closeModal={this.closeModal} />
+                </div>
+
+            </div>
 
         )
     }

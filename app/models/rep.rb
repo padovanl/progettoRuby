@@ -18,6 +18,13 @@ class Rep < ApplicationRecord
 
 
   #validations
-  validates_presence_of :offer, :price_hours
+  validates_presence_of  :course_id, :price_hours
+  validates_inclusion_of :offer, :in => [true, false]
+  validates_numericality_of :price_hours, :only_integer => true, :greater_than_or_equal_to => 0
+  validates_format_of :week_days, :user_competence,   with: /\A[a-zA-Z]+\z/, :on => :create, message: "only allows letters"
+
+  def self.get_course_id(course_name)
+    Course.find_by_name(course_name).id
+  end
 
 end

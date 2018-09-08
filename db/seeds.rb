@@ -267,7 +267,7 @@ user = User.second
                offer: true,
                user_competence: Faker::StarWars.quote,
                price_hours: 15,
-               place: Faker::Nation,
+               place: Faker::Nation.capital_city,
                home_service: true,
                week_days: "Lunedì e Martedì"
   )
@@ -279,9 +279,9 @@ end
       description: Faker::StarWars.quote,
       user_id: user.id,
       course_id: course.id,
-      offer: false,
-      place: Faker::Nation,
-      home_service: true,
+      offer: true,
+      price_hours: 0,
+      place: Faker::Nation.capital_city,
       week_days: "Giovedì e Sabato"
   )
 
