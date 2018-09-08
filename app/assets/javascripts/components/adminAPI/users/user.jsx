@@ -27,7 +27,7 @@ class User extends React.Component{
         let email = <i>{this.props.user.email}</i>;
 
         let circleStyle = {
-            borderRadius: 2,
+            borderRadius: "50%",
         };
         let image = <img src={this.props.user.avatar_url} className="is-rounded" width={30} height={30} style={circleStyle}/>
         let ruolo;
