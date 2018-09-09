@@ -14,7 +14,6 @@ class NewTeacherCourse extends React.Component {
     }
 
 
-
     render() {
         let formFields = {};
         this.getTeachers();

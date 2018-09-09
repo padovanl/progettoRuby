@@ -66,7 +66,7 @@ class BodyTeacherCourses extends React.Component {
 
                     })
             }else{
-                alert("Il formato della data deve essere AAAA-AAAA");
+                toastr.error("L'anno accademico in cui il professore ha tenuto il corso deve essere espresso come AAAA-AAAA.")
             }
         }else{
             alert('I campi non possono essere vuoti!')
