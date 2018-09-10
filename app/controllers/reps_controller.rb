@@ -8,7 +8,7 @@ class RepsController < ApplicationController
     @current_user = current_user
     respond_to do |format|
       format.html
-      format.json {render json: @reps, :include => {:course => {:only => :name}, :user => {:only => [:name, :image, :last_sign_in_at, :current_sign_in_ip]} } }
+      format.json {render json: @reps, :include => {:course => {:only => :name}, :user => {:only => [:id, :name, :image, :last_sign_in_at, :current_sign_in_ip]} } }
     end
   end
 
@@ -25,23 +25,27 @@ class RepsController < ApplicationController
       return
     end
 
-    render json: rep, :include => {:course => {:only => :name}, :user => {:only => [:name, :image, :last_sign_in_at, :current_sign_in_ip]} }, status: :created
-  end
-
-  def show
-
-  end
-
-  def edit
-
+    render json: rep, :include => {:course => {:only => :name}, :user => {:only => [:id, :name, :image, :last_sign_in_at, :current_sign_in_ip]} }, status: :created
   end
 
   def update
-
+    rep = Rep.update(params[:id], rep_params)
+    if !rep
+      render_json_validation_error rep
+      return
+    end
+    render json: rep, :include => {:course => {:only => :name}, :user => {:only => [:id, :name, :image, :last_sign_in_at, :current_sign_in_ip]} }
   end
 
   def destroy
+    @rep = Rep.where(id: params[:id]).first
 
+    if !@rep.destroy
+      render_json_validation_error @rep
+      return
+    end
+
+    head :no_content
   end
 
   private

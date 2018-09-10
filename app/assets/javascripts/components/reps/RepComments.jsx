@@ -40,7 +40,7 @@ class RepComments extends React.Component {
                 <article className="media gap">
                     <figure className="media-left">
                         <p className="image is-64x64">
-                            <img >{this.props.current_user_image}</img>
+                            <img src={this.props.current_user_image}/>
                         </p>
                     </figure>
                     <div className="media-content">

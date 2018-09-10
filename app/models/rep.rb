@@ -20,8 +20,8 @@ class Rep < ApplicationRecord
   #validations
   validates_presence_of  :course_id, :price_hours
   validates_inclusion_of :offer, :in => [true, false]
-  validates_numericality_of :price_hours, :only_integer => true, :greater_than_or_equal_to => 0
-  validates_format_of :week_days, :user_competence,   with: /\A[a-zA-Z]+\z/, :on => :create, message: "only allows letters"
+  validates_numericality_of :price_hours, :greater_than_or_equal_to => 0, :less_than => 10000.00, message: "Only not negative numbers between 0 and 9.999,99."
+  validates_format_of :week_days,   with: /\A[a-zA-Z-àèéìòù]+\z/, :allow_blank => true, :on => :create, message: "only allows letters"
 
   def self.get_course_id(course_name)
     Course.find_by_name(course_name).id

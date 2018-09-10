@@ -3,7 +3,7 @@ class AddRep extends React.Component {
         super(props);
 
         this.state = {
-            courseNames: [],
+            isValidated: false,
             showError: false,
             modalState: false,
             offer: false, //true = offro, false = cerco
@@ -12,41 +12,71 @@ class AddRep extends React.Component {
             competence: '',
             place: '',
             price: '15',
-            home_service: false,
+            home_service: null,
             week_days: '',
             description: '',
-            controlValue: ''
+            selectedRadio: null
         };
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.validate = this.validate.bind(this)
     }
 
-    componentWillMount(){
-        getNames('Course')
-            .then(data => {
-                this.setState({courseNames: data})
-            })
-            .catch((e) => console.log(e))
-    }
+    validate(){
+        console.log("SOno in validate");
 
+        const formLength = this.formEl.length;
+
+
+        if (this.formEl.checkValidity() === false) {
+            for (let i = 0; i < formLength; i++) {
+                const elem = this.formEl[i];
+                const errorLabel = elem.parentNode.querySelector('.invalid-feedback');
+                //      console.log("ErrorLabel", errorLabel, "elem.nodeName", elem.nodeName, "validation message: ", elem.validationMessage);
+                if (errorLabel && elem.nodeName.toLowerCase() !== 'button') {
+                    if (!elem.validity.valid) {
+                        errorLabel.textContent = elem.validationMessage;
+                    } else {
+                        errorLabel.textContent = '';
+                    }
+                }
+            }
+            this.setState({isValidated: false});
+            //       console.log("Ritorna false il validate")
+            return false;
+        }
+        else{
+            for(let i=0; i<formLength; i++) {
+                const elem = this.formEl[i];
+                const errorLabel = elem.parentNode.querySelector('.invalid-feedback');
+                if (errorLabel && elem.nodeName.toLowerCase() !== 'button') {
+                    errorLabel.textContent = '';
+                }
+            }
+            //     console.log("Ritorna true il validate")
+            return true;
+        }
+    }
 
     handleSubmit(event) {
-        console.log("CIAOOOOOOOOOOOOO", event.target);
         event.preventDefault();
         if (this.state.course === '- Select -' ) {
             this.setState({showError: true});
             return
         }
 
+        if (!this.validate()){
+            return
+        }
+
+        const addNewRep = this.props.addNewRep;
 
         let myHeaders = new Headers();
         myHeaders.append('X-CSRF-Token', Rails.csrfToken());
-        //   myHeaders.append('Content-Type', 'application/json');
 
         //user_id, course_id, follow=true lo faccio direttamente nel controller (chiamando la funzione dal model)
         const data = new FormData(event.target); // event.target gives you the native DOMNode
-        console.log("CIAOOOOOOOOOOOOO data", data);
 
         const options = {
             method: 'POST',
@@ -69,37 +99,51 @@ class AddRep extends React.Component {
             .then(response => {
                 return response.json();
             })
+            .then(function (json) {
+                addNewRep(json)
+            })
             .catch(error => console.log(error));
 
-        this.setState({showError: false});
+        this.setState({showError: false, isValidated: true});
         this.closeModal();
-
-        document.getElementById("post_attachments").value = null;
     }
 
-    handleChange(e){
-        if (e.target.id === 'home_service'){
+
+
+    handleChange(e, key=null){
+        if (e.target.id === 'home_service')
             this.setState({[e.target.id]: !e.target.value});
+        else if (e.target.id === 'offer'){
+            this.setState({[e.target.id]: e.target.value, select_offer: true, selectedRadio: key},console.log("sono in offer"));
+
         }
-        else{
-            if (e.target.id === 'offer'){
-                this.setState({[e.target.name]: e.target.value, select_offer: true});
-                console.log("e.target.value=offer: ",e.target.value)
-            }
-            this.setState({[e.target.id]: e.target.value});
-            console.log("Aggiornamento ",e.target.id + " valore: ", e.target.value)
-        }
+        else if (e.target.id === 'course')
+            this.setState({[e.target.id]: e.target.value, showError: false});
+        else
+            this.setState({[e.target.id]: e.target.value});//.replace(/[^a-zA-Z0-9-,.();!? ]/g, '')
     }
 
 
     closeModal(){
         this.props.closeModal();
-        this.setState({offer: false, select_offer: false});
+        console.log("modalstate: ",this.state.modalState);
+        //reset form
+        this.setState({
+            select_offer: false,
+            selectedRadio: null,
+            course: "- Select -",
+            competence: '',
+            place: '',
+            price: '15',
+            home_service: null,
+            week_days: '',
+            description: '',
+        });
     }
 
 
     render() {
-        let courseNames = this.state.courseNames.map((course)=>{
+        let courseNames = this.props.courseNames.map((course)=>{
             return(
                 <option key={course.name}>{course.name}</option>
             )
@@ -111,11 +155,7 @@ class AddRep extends React.Component {
         else
             offer = ""; //true
 
-        const error_message= <article className="message is-danger">
-                                <div className="message-header red">
-                                    <p>Il campo non può essere '- Select -' !</p>
-                                </div>
-                            </article>;
+        const error_message= <font color={"red"}>Il campo "Course" non può essere "- Select -" !</font>;
 
         let myForm;
         if (this.state.select_offer){
@@ -136,38 +176,47 @@ class AddRep extends React.Component {
 
 
                         <div className={"field " + offer}>
-                            <label className={"label" +offer}>Competence</label>
+                            <label className={"label "}>Competence</label>
                             <div className={"control has-icons-left " }>
                                 <div className={"control " }>
                                     <input className="input " type="text" placeholder="Competence "
+                                           pattern="[a-zA-Zàèéìòù,.!?()_ -]*"
+                                           title={"Sono vietati i caratteri speciali."}
                                            value={this.state.competence} name={"rep[user_competence]"} id={'competence'} onChange={(e) => this.handleChange(e)}/>
                                     <span className="icon is-small is-left">
                                         <i className="fas fa-address-card"/>
                                     </span>
+                                    <font className="invalid-feedback" color="red"/>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="field">
+                        <div className=" field">
                             <label className="label">Price*</label>
                             <div className={"control has-icons-left " }>
-                                <input required className="input " type="text" placeholder="Price"
+                                <input required className="input " type="number" placeholder="Price" maxLength={9}//999999.99=9
+                                       min={0} max={9999.99}
+                                    title={"Esempio 1: 25.00 / Esempio 2: 10"}
                                        value={this.state.price} name={"rep[price_hours]"} id={'price'} onChange={(e) => this.handleChange(e)}/>
                                 <span className="icon is-small is-left">
                                       <i className="fas fa-euro"/>
                                 </span>
+                                <font className="invalid-feedback" color={"red"} />
                             </div>
                         </div>
 
                         <div className="field">
                             <label className="label">Place</label>
-                        <div className={"control has-icons-left " }>
-                            <input className="input " type="text" placeholder="Place"
-                                   value={this.state.place} name={"rep[place]"} id={'place'} onChange={(e) => this.handleChange(e)}/>
-                            <span className="icon is-small is-left">
-                                  <i className="fas fa-home"/>
-                            </span>
-                        </div>
+                            <div className={"control has-icons-left " }>
+                                <input className="input " type="text" placeholder="Place"
+                                       pattern="[a-zA-Zàèéìòù,.!?()_ -]*"
+                                       title={"Sono vietati i caratteri speciali."}
+                                       value={this.state.place} name={"rep[place]"} id={'place'} onChange={(e) => this.handleChange(e)}/>
+                                <span className="icon is-small is-left">
+                                      <i className="fas fa-home"/>
+                                </span>
+                                <font className="invalid-feedback" color="red"/>
+                            </div>
                         </div>
 
 
@@ -175,10 +224,12 @@ class AddRep extends React.Component {
                             <label className="label">Home lesson</label>
                             <div className="control">
                                 <label className="radio">
-                                    <input type={"radio"} id={"home_service"} name={"rep[home_service]"} value={true} onClick={(e) => this.handleChange(e)}/> Si
+                                    <input type={"radio"} id={"home_service"} name={"rep[home_service]"}
+                                           defaultChecked={this.state.home_service===true} value={true} onChange={(e) => this.handleChange(e)}/> Si
                                 </label>
                                 <label className="radio">
-                                    <input type={"radio"} id={"home_service"} name={"rep[home_service]"} value={false} onClick={(e) => this.handleChange(e)}/> No
+                                    <input type={"radio"} id={"home_service"} name={"rep[home_service]"}
+                                           defaultChecked={this.state.home_service===false} value={false} onChange={(e) => this.handleChange(e)}/> No
                                 </label>
                             </div>
                         </div>
@@ -188,10 +239,14 @@ class AddRep extends React.Component {
                             <label className="label">Week days</label>
                             <div className={"control has-icons-left " }>
                                 <input className="input " type="text" placeholder="Week days of lessons "
-                                       value={this.state.week_days} name={"rep[week_days]"} id={'week_days'} onChange={(e) => this.handleChange(e)}/>
+                                       title={"Può contenere solo: lettere , . "}
+                                       pattern="[a-zA-Zàèéìòù,. ]*"
+                                       value={this.state.week_days} name={"rep[week_days]"}
+                                       id={'week_days'} onChange={(e) => this.handleChange(e)}/>
                                 <span className="icon is-small is-left">
                                       <i className="fas fa-calendar-alt"/>
                                 </span>
+                                <font className="invalid-feedback" color="red"/>
                             </div>
                         </div>
 
@@ -200,13 +255,23 @@ class AddRep extends React.Component {
                             <label className="label">Description</label>
                             <div className={"control has-icons-left " }>
                                 <input className="input " type="text" placeholder="Description"
+                                       pattern="[a-zA-Zàèéìòù,.!?()_ -]*"
+                                       title={"Sono vietati i caratteri speciali."}
                                        value={this.state.description} name={"rep[description]"} id={'description'} onChange={(e) => this.handleChange(e)}/>
                                 <span className="icon is-small is-left">
                                       <i className="fas fa-pencil-alt"/>
                                 </span>
+                                <font className="invalid-feedback" color="red" />
                             </div>
                         </div>
                     </div>;
+        }
+
+        let classNames = [];
+
+        if (this.state.isValidated) {
+            classNames.push('.was-validated');
+            console.log("pushato .was-validated")
         }
 
         return(
@@ -217,16 +282,18 @@ class AddRep extends React.Component {
                                 onClick={this.closeModal} />
                     </header>
 
-                <form onSubmit={ (e) => this.handleSubmit(e) }>
+                <form ref={form => this.formEl = form} onSubmit={ (e) => this.handleSubmit(e) } className={classNames} noValidate>
                     <section className="modal-card-body">
 
                             <div className="field">
                                 <div className="control">
-                                    <label className="radio">
-                                        <input type={"radio"} id={"offer"} name={"rep[offer]"} value={true} onClick={(e) => this.handleChange(e)}/> Offro
+                                    <label className="radio" >
+                                        <input key={1} type={"radio"} id={"offer"} name={"rep[offer]"} value={true}
+                                               onClick={(e) => this.handleChange(e,1)} checked={this.state.selectedRadio === 1}/> Offro
                                     </label>
-                                    <label>
-                                        <input className="left-gap" type={"radio"} id={"offer"} name={"rep[offer]"} value={false} onClick={(e) => this.handleChange(e)}/> Cerco
+                                    <label className="radio"  >
+                                        <input key={2} className="left-gap" type={"radio"} id={"offer"} name={"rep[offer]"}
+                                               value={false} onClick={(e) => this.handleChange(e,2)} checked={this.state.selectedRadio ===2}/> Cerco
                                     </label>
                                 </div>
                             </div>

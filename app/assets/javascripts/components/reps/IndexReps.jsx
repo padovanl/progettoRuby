@@ -8,16 +8,24 @@ class IndexReps extends React.Component {
             page:1,
             disabledNext: false,
             search: '',
-            tabs_activate: 'is-activate'
+            tabs_activate: 'is-activate',
+            courseNames:[]
         };
         this.getAllReps = this.getAllReps.bind(this);
         this.showModal = this.showModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.addNewRep = this.addNewRep.bind(this);
     }
 
     componentWillMount(){
-        this.getAllReps()
+        this.getAllReps();
+        getNames('Course')
+            .then(data => {
+                this.setState({courseNames: data})
+            })
+            .catch((e) => console.log(e))
     }
+
 
     updateSearch(event){
         this.setState({search: event.target.value.substr(0,20)});
@@ -55,6 +63,21 @@ class IndexReps extends React.Component {
         )
     }
 
+    addNewRep(rep){
+        this.setState((prevState) => {
+            return {reps: [rep].concat(prevState.reps)};
+        });
+    }
+
+    deleteRep(id){
+        let filteredArray = this.state.reps.filter(item => item.id !== id);
+        this.setState({reps: filteredArray});
+    }
+
+    updateRep(rep, id){
+        this.setState({reps: this.state.reps.map(elem => (elem.id === id ? elem = rep : elem))})
+    }
+
     render(){
         let buttonNext;
         if (this.state.page !== this.props.last_page && !this.state.disabledNext){
@@ -70,7 +93,11 @@ class IndexReps extends React.Component {
             <div className={"myColumn-lg"}>
 
                 <div className="infinite-container">
-                    <ItemReps items={this.state.reps} current_user={this.props.current_user_image}/>
+                    <ItemReps items={this.state.reps} current_user_image={this.props.current_user_image}
+                              current_user={this.props.current_user} courseNames={this.state.courseNames}
+                              deleteRep={(id) => this.deleteRep(id)}
+                              updateRep = {(rep, id) => this.updateRep(rep, id)}
+                    />
                 </div>
                 <div className='myRow'>
                     {buttonNext}
@@ -79,13 +106,11 @@ class IndexReps extends React.Component {
                 </div>
 
                 <a className={"fixed"} onClick={() => this.showModal()}>
-                    <i className={"fas fa-plus fa-2x"} title={"Add post"}/>
+                    <i className={"fas fa-plus-circle fa-3x"} title={"Add post"}/>
                 </a>
-
                 <div className={"modal " + (this.state.modalState ? "is-active" : "")}>
                     <div className="modal-background" onClick={this.closeModal} />
-
-                    <AddRep current_user={this.props.current_user} closeModal={this.closeModal} />
+                    <AddRep current_user={this.props.current_user} closeModal={this.closeModal} addNewRep={(rep)=>this.addNewRep(rep)} courseNames={this.state.courseNames}/>
                 </div>
 
             </div>
