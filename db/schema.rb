@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(version: 2018_09_06_150938) do
 
   create_table "course_questions", force: :cascade do |t|
     t.string "question"
-    t.integer "frequency"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "course_id"
@@ -62,7 +61,9 @@ ActiveRecord::Schema.define(version: 2018_09_06_150938) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "course_id"
+    t.bigint "user_id"
     t.index ["course_id"], name: "index_course_tips_on_course_id"
+    t.index ["user_id"], name: "index_course_tips_on_user_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -109,6 +110,15 @@ ActiveRecord::Schema.define(version: 2018_09_06_150938) do
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
+  create_table "frequency_questions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "course_question_id"
+    t.index ["course_question_id"], name: "index_frequency_questions_on_course_question_id"
+    t.index ["user_id"], name: "index_frequency_questions_on_user_id"
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.string "content", default: "", null: false
     t.datetime "created_at", null: false
@@ -131,9 +141,9 @@ ActiveRecord::Schema.define(version: 2018_09_06_150938) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "course_id"
-    t.boolean "offer"
+    t.boolean "offer", null: false
     t.string "user_competence"
-    t.decimal "price_hours", precision: 6, scale: 2
+    t.decimal "price_hours", precision: 6, scale: 2, null: false
     t.string "place"
     t.boolean "home_service"
     t.string "week_days"
@@ -256,6 +266,7 @@ ActiveRecord::Schema.define(version: 2018_09_06_150938) do
   add_foreign_key "course_questions", "courses"
   add_foreign_key "course_questions", "users"
   add_foreign_key "course_tips", "courses"
+  add_foreign_key "course_tips", "users"
   add_foreign_key "courses", "degree_courses"
   add_foreign_key "document_posts", "documents"
   add_foreign_key "document_posts", "posts"
@@ -263,6 +274,8 @@ ActiveRecord::Schema.define(version: 2018_09_06_150938) do
   add_foreign_key "document_tags", "tags"
   add_foreign_key "documents", "courses"
   add_foreign_key "documents", "users"
+  add_foreign_key "frequency_questions", "course_questions"
+  add_foreign_key "frequency_questions", "users"
   add_foreign_key "posts", "courses"
   add_foreign_key "posts", "users"
   add_foreign_key "reps", "courses"

@@ -6,7 +6,8 @@ class BodyQuestion extends React.Component {
         this.state = {
             questions: [],
             followed: '',
-            show_details: false
+            show_details: false,
+            show_quotes: false
         };
 
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -16,11 +17,18 @@ class BodyQuestion extends React.Component {
         this.handleUpdate = this.handleUpdate.bind(this);
         this.updateCourseQuestion = this.updateCourseQuestion.bind(this)
         this.handleShowDetails = this.handleShowDetails.bind(this)
+        this.handleShowQuotes = this.handleShowQuotes.bind(this)
+        this.handleQuoteUp = this.handleQuoteUp.bind(this)
+        this.handleQuoteDown = this.handleQuoteDown.bind(this)
 
     }
 
     handleShowDetails(){
         this.setState({show_details: !this.state.show_details});
+    }
+
+    handleShowQuotes(){
+        this.setState({show_quotes: !this.state.show_quotes});
     }
 
     getData1() {
@@ -31,7 +39,7 @@ class BodyQuestion extends React.Component {
     }
 
     getData2() {
-        let linkGet =  '/api/v1/users/' + this.props.user_id + '/user_courses/' + this.props.course_id;
+        let linkGet =  '/api/v1/users/' + this.props.user_id + '/user_courses/' + this.props.course_id + '.json';
         fetch(linkGet)
             .then((response) => {return response.json()})
             .then((data) => {this.setState({ followed: data }) });
@@ -149,24 +157,75 @@ class BodyQuestion extends React.Component {
         */
     }
 
+    handleQuoteUp(course_question_id) {
+        let body = JSON.stringify({frequencyQuestion: {course_question_id: course_question_id, user_id: this.props.user_id}});
+        // /courses/:course_id/questions/:question_id/frequency_questions(.:format)
+        let linkNew = '/courses/' + this.props.course_id + '/questions/' + course_question_id + '/frequency_questions';
+
+        fetch(linkNew, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: body,
+        }).then((response) => {
+            return response.json()
+        })
+            .then((frequencyQuestion) => {
+                if (frequencyQuestion.error) {
+                    alert("Errore!")
+                } else {
+                    this.updateCourseQuestion(frequencyQuestion);
+                }
+            })
+    }
+
+    handleQuoteDown(course_question_id, frequency_question_id){
+        // /courses/:course_id/questions/:id(.:format)
+        console.log("question id: ", course_question_id)
+        console.log("frequency_question_id: ", frequency_question_id)
+
+        let linkDelete = '/courses/' + this.props.course_id + '/questions/' + course_question_id + '/frequency_questions/' + frequency_question_id;
+        fetch(linkDelete,
+            {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then((response) => {
+            return response.json()
+        })
+            .then((frequencyQuestion) => {
+                console.log(frequencyQuestion)
+                if (frequencyQuestion.error) {
+                    alert("Errore!")
+                } else {
+                    this.updateCourseQuestion(frequencyQuestion);
+                }
+            })
+    }
+
+
     render(){
         //console.log(this.state.followed.length > 0 ? this.state.followed[0].passed : 'Items not loaded yet');        //this.state.tubedata.length > 0 && this.state.tubedata[0].id
 
-        const gestisci_le_tue_domande_button =  <table className="table is-fullwidth">
-                                                    <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <a className="button is-rounded is-warning" onClick={ () => this.handleShowDetails()}>Gestisci le tue domande</a>
-                                                        </td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>;
+        const gestisci_le_tue_domande_button = <td><a className="button is-rounded is-warning" onClick={ () => this.handleShowDetails()}>Gestisci le tue domande</a></td>;
+
+        const gestisci_quote_button = <td><a className="button is-rounded is-warning" onClick={ () => this.handleShowQuotes()}>Quote domande</a></td>;
 
 
         return(
             <div>
-                { this.state.followed.length > 0 && this.state.followed[0].passed ? gestisci_le_tue_domande_button : null}
-                <AllQuestions questions={this.state.questions}  course_id={this.props.course_id} user_id={this.props.user_id} handleDelete={this.handleDelete} handleUpdate = {this.handleUpdate} show_details = {this.state.show_details} />
+                { this.state.followed.length > 0 && this.state.followed[0].passed ? <table className="table"><tbody><tr>{gestisci_le_tue_domande_button}{gestisci_quote_button}</tr></tbody></table> : null}
+                <AllQuestions questions={this.state.questions}
+                              course_id={this.props.course_id}
+                              user_id={this.props.user_id}
+                              handleDelete={this.handleDelete}
+                              handleUpdate = {this.handleUpdate}
+                              show_details = {this.state.show_details}
+                              show_quotes = {this.state.show_quotes}
+                              handleQuoteUp = {this.handleQuoteUp}
+                              handleQuoteDown = {this.handleQuoteDown} />
                 <br/>
                 <table className="table is-fullwidth">
                     <tbody>

@@ -6,6 +6,7 @@ const AllTheses = (props) => {
         )
     })
 
+
     return(
         <div>
             <table className="table is-hoverable is-fullwidth">

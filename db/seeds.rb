@@ -195,16 +195,45 @@ teacher.teacher_courses.create!([
 ])
 
 
-user = User.create!(id: 3, name: "User2 User2", email: "user2@user2.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
+user = User.create!(name: "User2 User2", email: "user2@user2.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
 user.user_courses.create!([
     { id:5, user_id: user.id, course_id: 1, passed: true}
 ])
 
 user.course_questions.create!([
-    { id:1 , question: Faker::StarWars.quote, frequency: 10, user_id: user.id, course_id: 1},
-    { id:2 , question: Faker::StarWars.quote, frequency: 10, user_id: user.id, course_id: 1},
-    { id:3 , question: Faker::StarWars.quote, frequency: 10, user_id: user.id, course_id: 1},
-    { id:4 , question: Faker::StarWars.quote, frequency: 10, user_id: user.id, course_id: 1},
+    { id:1 , question: Faker::StarWars.quote, user_id: user.id, course_id: 1},
+    { id:2 , question: Faker::StarWars.quote, user_id: user.id, course_id: 1},
+])
+
+user.course_tips.create!([
+    { id:1 , tip: Faker::StarWars.quote, user_id: user.id, course_id: 1},
+    { id:2 , tip: Faker::StarWars.quote, user_id: user.id, course_id: 1},
+])
+
+user.frequency_questions.create!([
+   {user_id: user.id, course_question_id: 1},
+   {user_id: user.id, course_question_id: 2},
+])
+
+user = User.create!(name: "User3 User3", email: "user3@user3.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
+user.user_courses.create!([
+    { id:7, user_id: user.id, course_id: 1, passed: true}
+])
+
+user.course_questions.create!([
+    { id:3 , question: Faker::StarWars.quote, user_id: user.id, course_id: 1},
+    { id:4 , question: Faker::StarWars.quote, user_id: user.id, course_id: 1},
+])
+
+user.course_tips.create!([
+   { id:3 , tip: Faker::StarWars.quote, user_id: user.id, course_id: 1},
+   { id:4 , tip: Faker::StarWars.quote, user_id: user.id, course_id: 1},
+])
+
+user.frequency_questions.create!([
+   {user_id: user.id, course_question_id: 1},
+   {user_id: user.id, course_question_id: 3},
+   {user_id: user.id, course_question_id: 4},
 ])
 
 user = User.first
@@ -257,7 +286,7 @@ user = User.second
                             {content: Faker::Hobbit.quote, user_id: user.id}])
 end
 
-
+=begin
 user = User.second
 5.times do
   Rep.create!(
@@ -288,3 +317,4 @@ end
 end
 
 #UserCourse.create!(user_id: User.first.id, course_id: Course.first.id)
+=end

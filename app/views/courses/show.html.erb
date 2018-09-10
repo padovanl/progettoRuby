@@ -12,6 +12,10 @@
         <h6>
           <%= react_component('TeacherSubtitle', {teacher: @current_teacher_course}) %>
         </h6>
+        <br>
+        <h6>
+          <%= react_component('SurveyButton', {course_id: params['id'], user_id: current_user[:id].to_s}) %>
+        </h6>
       </div>
     </div>
   </section>
@@ -50,13 +54,14 @@
             <%= react_component('MainQuestion', {course_id: params['id'], user_id: current_user[:id].to_s}) %>
           </section>
           <section id="dunkles" class="tab-panel">
+            <%= react_component('MainTip', {course_id: params['id'], user_id: current_user[:id].to_s}) %>
           </section>
           <section id="history_teachers" class="tab-panel">
             <br />
             <div class="columns">
               <div class="column"></div>
               <div class="column is-8">
-                <%= react_component 'MainStatisticCourse' %>
+                <%= react_component('MainStatisticCourse', {course_id: params['id'], user_id: current_user[:id].to_s}) %>
               </div>
               <div class="column"></div>
             </div>
@@ -142,5 +147,3 @@
     border-top: 1px solid #ccc;
   }
 </style>
-
-<script src="https://unpkg.com/react-addons-update/react-addons-update.js"></script>

@@ -25,6 +25,21 @@ Rails.application.routes.draw do
     resources :questions, only: [:index, :create, :destroy, :update]
   end
 
+  resources :courses do
+    resources :course_tips, only: [:index, :create, :destroy, :update]
+  end
+
+  resources :courses do
+    resources :questions do
+      resources :frequency_questions, only: [:index, :destroy, :update, :create]
+      end
+  end
+
+  # route utilizzata per visualizzare la pagina delle statistiche del singolo corso
+  resources :courses do
+    resources :user_courses , only: [:index]
+  end
+
 
   get '/allcourses', to: 'courses#allcourses'
   get :mycourses, controller: :courses
@@ -95,10 +110,13 @@ Rails.application.routes.draw do
     end
   end
 
+  #index utilizzata per visualizzare il sondaggio da compilare per l'utente x
+  # la show invece la richiamo in manier asincrona dentro i componenti react per vedere ottenere il singolo record sul
+  # follow o se un utente ha passato il corso.
   namespace :api do
     namespace :v1 do
       resources :users do
-        resources :user_courses, only: [:show]
+        resources :user_courses, only: [:show, :index, :update]
       end
     end
   end
