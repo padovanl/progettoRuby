@@ -1,10 +1,14 @@
+function updateIndexReps(URL, reps){
+    this.setState({url: URL, reps: reps, page:1})
+}
+
 class IndexReps extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             reps: [],
-            url: this.props.url,
+            url: '',
             page:1,
             disabledNext: false,
             search: '',
@@ -15,6 +19,7 @@ class IndexReps extends React.Component {
         this.showModal = this.showModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.addNewRep = this.addNewRep.bind(this);
+        updateIndexReps = updateIndexReps.bind(this);
     }
 
     componentWillMount(){
@@ -48,8 +53,7 @@ class IndexReps extends React.Component {
     }
 
     getAllReps(){
-        this.setState({url: updateUrl(this.props.url, this.state.page)},
-            ()=> getItems(this.state.url)
+        getItems(updateUrlReps(this.props.url, this.state.url, this.state.page))
             .then(data => {
                 if (data.length === 0){
                     this.setState({disabledNext: true})
@@ -58,8 +62,7 @@ class IndexReps extends React.Component {
                     this.setState({reps: this.state.reps.concat(data)})
                 }
             })
-            .catch(e => console.log(e))
-
+            .catch(e => console.log(e)
         )
     }
 

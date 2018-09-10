@@ -77,9 +77,9 @@ class ItemReps extends React.Component {
             else home_service="No";
 
             return(
-                <section key={item.id} className={"relative gap"}>
+                <section key={item.id} className="relative gap ">
 
-                    <div className={"box"}>
+                    <div className="box is-centered">
                         <article className="media gap">
                             <figure className="media-left">
                                 <p className="image is-64x64">
