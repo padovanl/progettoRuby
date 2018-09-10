@@ -40,25 +40,34 @@ class BodyTeacherCourses extends React.Component {
         })
     }
 
+    validationData(testString){
+        var regexpr = new RegExp('[0-9]{4}-[0-9]{4}');
+        return regexpr.test(testString);
+    }
+
     handleFormSubmit(course_id, teacher_id, year){
         let body = JSON.stringify({teacherCourse: {course_id: course_id, teacher_id: teacher_id, year: year}});
         let linkNew = '/api/v1/course/' + this.props.course_id + '/teacher_courses';
         if(teacher_id != '' && year != ''){
-            fetch(linkNew, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: body,
-            }).then((response) => {return response.json()})
-                .then((teacherCourse)=>{
-                    if(teacherCourse.error){
-                        alert("Errore!")
-                    }else{
-                        this.addNewTeacherCourse(teacherCourse);
-                    }
+            if(this.validationData(year)){
+                fetch(linkNew, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: body,
+                }).then((response) => {return response.json()})
+                    .then((teacherCourse)=>{
+                        if(teacherCourse.error){
+                            alert("Errore!")
+                        }else{
+                            this.addNewTeacherCourse(teacherCourse);
+                        }
 
-                })
+                    })
+            }else{
+                toastr.error("L'anno accademico in cui il professore ha tenuto il corso deve essere espresso come AAAA-AAAA.")
+            }
         }else{
             alert('I campi non possono essere vuoti!')
         }

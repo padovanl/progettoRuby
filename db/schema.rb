@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_04_013040) do
+
+ActiveRecord::Schema.define(version: 2018_09_06_150938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,6 +142,12 @@ ActiveRecord::Schema.define(version: 2018_09_04_013040) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "course_id"
+    t.boolean "offer"
+    t.string "user_competence"
+    t.decimal "price_hours", precision: 6, scale: 2
+    t.string "place"
+    t.boolean "home_service"
+    t.string "week_days"
     t.index ["course_id"], name: "index_reps_on_course_id"
     t.index ["user_id"], name: "index_reps_on_user_id"
   end

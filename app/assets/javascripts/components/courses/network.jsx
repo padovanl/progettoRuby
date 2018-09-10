@@ -1,5 +1,3 @@
-const baseURL = "/allcourses.json";
-
 function makeReq(url, errorMessage = '', options = {credentials: 'same-origin'}) {
     return fetch(url, options)
         .then(response => {
@@ -12,16 +10,28 @@ function makeReq(url, errorMessage = '', options = {credentials: 'same-origin'})
 }
 
 
-const updateUrl=(page, degreen='', degreet='', category='', query='')=>{
-    let url = "/allcourses.json?page="+page+"?utf8=✓";
-    if (degreen !== '')
-        url = url+ "&degreen="+degreen+"&degreet="+degreet;
-    if (query!=='') //se ho fatto la ricerca
-        url = url+ "&search="+query+"&category="+category;
-    return url;
+const getNames=(category)=>{
+    let url;
+  if (category  === 'Course')
+      url = '/courses_name.json';
+  else
+      url = '/teachers_name.json';
+
+    const errorMessage = 'Errore durante il download dei dati';
+    console.log("url usato nella ricerca dei NOMI: "+url);
+    return makeReq(url, errorMessage);
 };
 
-const getCourses = (url) => {
+const updateUrl=(url, page, degreen='', degreet='', category='', query='')=>{
+    let new_url = url+"?page="+page+"?utf8=✓";
+    if (degreen !== '')
+        new_url = new_url + "&degreen="+degreen+"&degreet="+degreet;
+    if (query!=='') //se ho fatto la ricerca
+        new_url = new_url + "&search="+query+"&category="+category;
+    return new_url ;
+};
+
+const getItems = (url) => {
     const errorMessage = 'Errore durante il download dei dati';
     console.log("url usato nella ricerca: "+url);
     return makeReq(url, errorMessage);

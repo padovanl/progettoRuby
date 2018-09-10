@@ -1,19 +1,28 @@
-class IndexCourses2 extends React.Component{
+class MyCourses extends React.Component{
 
     constructor(props) {
         super(props);
         this.state = {
             search: '',
-            modalState: false
+            modalState: false,
+            event_target: null,
+            courseName: '',
+            courseId: ''
             //autoCompleteResults: [],
         };
 
         this.showModal = this.showModal.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.buttonFollowClicked = this.buttonFollowClicked.bind(this);
-        this.linkToCourseView = this.linkToCourseView.bind(this)
+        this.handleUnfollow = this.handleUnfollow.bind(this);
+        this.buttonUnfollowClicked = this.buttonUnfollowClicked.bind(this);
     }
 
+    componentWillReceiveProps(nextProps){
+        console.log("IC receive props");
+        console.log("IC props courses: "+nextProps.courses);
+        console.log("IC props page: "+nextProps.page);
+        console.log("IC props last_page: "+nextProps.last_page);
+        console.log("IC props url: "+nextProps.url);
+    }
 
     updateSearch(event){
         this.setState({search: event.target.value.substr(0,20)});
@@ -32,58 +41,39 @@ class IndexCourses2 extends React.Component{
     }
 
 
-    //@observable all = [];
 
-    /*@action async fatchAll(){
-        const respone = await fetch({allcourses_path});
-        const status = await response.status;
-
-        if (status ===200){
-            this.all = await response.json();
-        }
-    }
-*/
-    handleSubmit(event) {
-        event.preventDefault(); //blocca comportamento predefinito: reload pagina e cancellazione di tutto
-
-        console.log("nome corso: ", event.target[2].name, "id corso ", event.target[2].value );
-        this.setState({courseName: event.target[2].name, courseId: event.target[2].value});
-
+    handleUnfollow() {
         let myHeaders = new Headers();
         myHeaders.append('X-CSRF-Token', Rails.csrfToken());
-     //   myHeaders.append('Content-Type', 'application/json');
 
-        //user_id, course_id, follow=true lo faccio direttamente nel controller (chiamando la funzione dal model)
-        const data = new FormData(event.target); // event.target gives you the native DOMNode
+        const data = new FormData(this.state.event_target); // event.target gives you the native DOMNode
 
         const options = {
-            method: 'POST',
+            method: 'PUT',
             headers: myHeaders,
             credentials: 'same-origin',
             body: (data),
         };
 
-        const request = new Request('/follow', options);
+        const request = new Request('/unfollow', options);
 
         fetch(request)
             .then(response => {
                 return response.json();
             })
             .catch(error => console.log(error));
+
+        this.closeModal();
     }
 
 
-    buttonFollowClicked(e){
-        //funzione per l'Allert se è sicuro di seguire quel corso
-        this.handleSubmit(e);    //funz che seguo il corso e lo inserisco nel db,
-        //funzione che fa scegliere se reindirizzare nella show di quel corso o di continuare con un modal
-        this.showModal()
+    buttonUnfollowClicked(event){
+        event.preventDefault(); //blocca comportamento predefinito: reload pagina e cancellazione di tutto
+        this.setState({event_target: event.target, courseName: event.target[1].name, courseId: event.target[1].value},
+            () => this.showModal());
     }
 
 
-    linkToCourseView(){
-      return 'courses/'+this.state.courseId
-    }
 
 
 
@@ -111,7 +101,7 @@ class IndexCourses2 extends React.Component{
         let buttonNext;
         if (this.props.page !== this.props.last_page && !this.props.disabledNext){
             buttonNext= <div className='buttonnext' onClick={() => this.props.onChangePage()}>
-                        <span> Next </span> </div>
+                <span> Next </span> </div>
         }
         else {
             buttonNext=<div className='buttonnext disabled'>Next</div>
@@ -120,14 +110,14 @@ class IndexCourses2 extends React.Component{
         let items = filteredCourses.map((item) => {
 
             if (item.teachers.length ===0){
-                return "seeds from course "+item.id+"teachers sno ancora da fare"
+                return "sedds from course "+item.id+"teachers sno ancora da fare"
             }
 
             let teachers = item.teachers.map( teacher => {
                 return (
-                        <li key={teacher.link_cv}>
-                            <a href={teacher.link_cv}> {teacher.surname} {teacher.name}</a>
-                        </li>
+                    <li key={teacher.link_cv}>
+                        <a href={teacher.link_cv}> {teacher.surname} {teacher.name}</a>
+                    </li>
                 )
             } );
 
@@ -146,11 +136,10 @@ class IndexCourses2 extends React.Component{
                         </div>
                     </div>
                     <div className={"absolute"}>
-                        <form onSubmit={(e)=>this.buttonFollowClicked(e)}>
+                        <form onSubmit={(e)=>this.buttonUnfollowClicked(e)}>
                             <input className="input" name="user_course[course_id]" value={item.id} type="hidden" />
-                            <input className="input" name="user_course[follow]" value={true} type="hidden" />
-                            <button name={item.name}  className="segui" value={ item.id}>
-                                <div>Follow</div>
+                            <button name={item.name}  className="unfollow" value={ item.id}>
+                                <div>Unfollow</div>
                             </button>
                         </form>
                     </div>
@@ -175,17 +164,18 @@ class IndexCourses2 extends React.Component{
                             <article className={"media"}>
                                 <div className={"media-left"}>
                                     <figure className="image is-64x64">
-                                        <i className="far fa-grin-alt fa-4x" />
+                                        <i className="far fa-frown-open fa-4x" />
                                     </figure>
                                 </div>
                                 <div className={"media-content "}>
                                     <p>
-                                        <strong>Corso <span className={"has-text-success"}>{this.state.courseName}</span> aggiunto tra i seguiti! </strong>
+                                        <strong>Sicuro di voler smettere di seguire il corso <span className={"has-text-success"}>{this.state.courseName}</span> !?</strong>
                                         <br/>
-                                        <span>Vuoi visualizzarlo?</span>
+                                        <span>Perché non rimani per aiutare i tuoi colleghi? :)</span>
                                     </p>
-                                    <a className="segui" href={this.linkToCourseView()} >
-                                        Show Course                                    </a>
+                                    <button className="unfollow" onClick={() => this.handleUnfollow()} >
+                                        <span>Unfollow</span>
+                                    </button>
 
                                     <button className="modal-close is-large" aria-label="close"
                                             onClick={this.closeModal.bind(this)} />

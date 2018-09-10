@@ -21,7 +21,7 @@ class Api::V1::UserCoursesController < ApplicationController
   def update
     user_course = UserCourse.find(params[:id])
     user_course.update_attributes(user_courses_params)
-    redirect_to 'http://www.rubyonrails.org'
+    redirect_to show_course_path(user_courses_params[:course_id])
     json_response(user_course.to_json)
   end
 

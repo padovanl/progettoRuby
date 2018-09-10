@@ -1,4 +1,3 @@
-
 <html>
 
 
@@ -9,14 +8,14 @@
 
     <br/>
     <div align="center">
-      <h2>Seleziona il corso di studi per visualizzare tutti i corsi inerenti</h2>
+      <h2>I miei corsi</h2>
     </div>
 
 
 
     <div class="myColumn-lg">
       <div class="row">
-        <%= react_component 'Search_degree', degreeType: @degree %>
+        <%= react_component 'SearchItem2', tcs: @cs, categories: @categories, last_page: @last_page, url: "/mycourses.json"%>
       </div>
 
 

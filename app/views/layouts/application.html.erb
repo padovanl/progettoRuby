@@ -11,6 +11,7 @@
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+  <script src="https://unpkg.com/react-autosuggest/dist/standalone/autosuggest.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
@@ -66,10 +67,10 @@
           <a class="navbar-item " href=<%= allcourses_path %>>
             <span class="bd-emoji"><%= fa_icon "search" %></span>&nbsp;Trova corsi
           </a>
-          <a class="navbar-item " href="#">
+          <a class="navbar-item " href=<%= mycourses_path %>>
             <span class="bd-emoji"><%= fa_icon "graduation-cap" %></span>&nbsp;I miei corsi
           </a>
-          <a class="navbar-item " href="#">
+          <a class="navbar-item " href=<%= reps_path %>>
             <span class="bd-emoji"><%= fa_icon "hands-helping" %></span>&nbsp;Ripetizioni
           </a>
           <a class="navbar-item " href="#">
@@ -108,7 +109,7 @@
             </a>
 
             <div class="navbar-dropdown ">
-              <% if current_user.provider != 'facebook' then %>
+              <% if current_user.provider != 'facebook' and current_user.provider != 'google_oauth2' then %>
                 <a class="navbar-item " href="<%= edit_user_registration_path %>">
                   Modifica account
                 </a>
@@ -148,10 +149,6 @@
 
 
 <%= yield %>
-
-  <!-- mancavano questi, forse e' per questo che non comparivano gli avvisi di devise (comunque bisogna trovare un bel posto dove metterli)-->
-  <!--<p class="notice"><%= notice %></p>-->
-  <!--<p class="alert"><%= alert %></p>-->
 
   <div class="se-pre-con"></div>
 

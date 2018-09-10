@@ -12,10 +12,14 @@ class AllUsers extends React.Component {
             return(
                 <User user={user} handleSetAdmin={this.props.handleSetAdmin}/>
             )
-        })
+        });
+
+        var scroolStyle = {
+            overflowX: "auto",
+        };
 
         return(
-            <div>
+            <div style={scroolStyle}>
                 <table className="table is-hoverable is-fullwidth">
                     <thead>
                     <tr>

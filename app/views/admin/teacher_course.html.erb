@@ -1,6 +1,19 @@
 <% content_for :title, "Gestisci professori collegati al corso" %>
 
-<h1>In questa pagina puoi gestire i professori collegati al corso <%= params['course_id'] %>.</h1>
+
+<section class="hero is-primary is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        <%=  @course.name %>
+      </h1>
+      <h2 class="subtitle">
+        In questa pagina puoi gestire i professori collegati al corso <%=  @course.name %>.
+      </h2>
+    </div>
+  </div>
+</section>
+<br>
 
 <div class="columns">
   <div class="column"></div>

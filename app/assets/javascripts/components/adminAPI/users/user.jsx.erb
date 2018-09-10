@@ -22,20 +22,26 @@ class User extends React.Component{
         })
     }*/
 
+
     render(){
         let name = <i>{this.props.user.name}</i>;
         let email = <i>{this.props.user.email}</i>;
 
+        let centerStyle = {
+          display: "flex",
+          alignItems: "center",
+        };
+
         let circleStyle = {
-            borderRadius: 2,
+            borderRadius: "50%",
         };
         let image = <img src={this.props.user.avatar_url} className="is-rounded" width={30} height={30} style={circleStyle}/>
         let ruolo;
 
         if(this.props.user.admin){
-            ruolo = <i>Admin</i>
+            ruolo = <div style={centerStyle}><%= image_tag "admin.svg", {height: 30, width: 30, class: "is-hidden-mobile"} %>&nbsp;<p><i>Admin</i></p></div>
         }else{
-            ruolo = <i></i>
+            ruolo = <div style={centerStyle}><%= image_tag "student.svg", {height: 35, width: 35, class: "is-hidden-mobile"} %>&nbsp;<p><i>User</i></p></div>
         }
 
         let pulsante = '';

@@ -25,7 +25,9 @@
           <div class="box">
             <p class="title is-4"><strong>Sign up</strong></p>
             <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-              <%= devise_error_messages! %>
+
+
+                <%= devise_error_messages! %>
 
               <div class="field">
                 <p><small><strong>NOME</strong></small></p>
@@ -130,3 +132,13 @@
     }
   }
 </style>
+
+<script type="text/javascript">
+  $("#closeButtonErrorDevise").on('click', function () {
+      $("#errorsDevise").fadeOut();
+  })
+
+  setTimeout(function () {
+      $("#errorsDevise").fadeOut();
+  }, 5000)
+</script>
