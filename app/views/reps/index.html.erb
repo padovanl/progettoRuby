@@ -2,48 +2,37 @@
 
 <body class="drawer drawer--left">
   <header role="banner">
-    <button type="button" class="drawer-toggle drawer-hamburger">
+    <button type="button" class="drawer-toggle drawer-hamburger top-gap">
       <span class="sr-only">toggle navigation</span>
       <span class="drawer-hamburger-icon"></span>
     </button>
-    <nav class="drawer-nav" role="navigation">
-      <ul class="drawer-menu">
-        <li><a class="drawer-brand" href="#">Brand</a></li>
-        <li><a class="drawer-menu-item" href="#">Nav1</a></li>
-        <li><a class="drawer-menu-item" href="#">Nav2</a></li>
+    <nav class="drawer-nav top-gap" role="navigation">
+      <ul class="drawer-menu top-gap">
+        <li class="drawer-brand">Search</li>
+        <%= react_component 'SearchRep', current_user: @current_user%>
       </ul>
     </nav>
   </header>
   <main role="main">
-    side bar
-  </main>
 
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
 
-
-
-
-
-  <br/>
+    <br/>
     <div align="center">
       <h2>Aiuta chi ha bisogno! </h2>
       <h3>Qui in elenco tutte le ripetizioni disponibili ;)</h3>
       <hr/>
     </div>
 
-
-
     <div class="myColumn-lg">
       <div class="row">
-        <%= react_component 'IndexReps',  last_page: @last_page, url: "/reps.json", current_user_image: @current_user_image, current_user: @current_user%>
+        <%= react_component 'IndexReps',  last_page: @last_page, url: "/reps.json?page=", current_user_image: @current_user_image, current_user: @current_user%>
       </div>
-      <button type="button" class="drawer-toggle">Drawer toggle</button>
-
     </div>
 
-
+  </main>
 
   <!-- drawer.css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.2/css/drawer.min.css">

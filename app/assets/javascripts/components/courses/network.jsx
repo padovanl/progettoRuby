@@ -31,6 +31,11 @@ const updateUrl=(url, page, degreen='', degreet='', category='', query='')=>{
     return new_url ;
 };
 
+const updateUrlReps = (props_url, url, page) => {
+    return props_url+page+url;
+};
+
+
 const getItems = (url) => {
     const errorMessage = 'Errore durante il download dei dati';
     console.log("url usato nella ricerca: "+url);
@@ -43,6 +48,8 @@ const getDegreesName = (degree) => {
     console.log("url usato nella ricerca: "+url);
     return makeReq(url, errorMessage);
 };
+
+
 /*
 const searchAll = (category, query, page='') => {
     let url=baseURL;

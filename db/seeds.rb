@@ -279,7 +279,7 @@ end
       description: Faker::StarWars.quote,
       user_id: user.id,
       course_id: course.id,
-      offer: true,
+      offer: false,
       price_hours: 0,
       place: Faker::Nation.capital_city,
       week_days: "Giovedì e Sabato"
