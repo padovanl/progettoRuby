@@ -195,7 +195,7 @@ teacher.teacher_courses.create!([
 ])
 
 
-user = User.create!(id: 3, name: "User2 User2", email: "user2@user2.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
+user = User.create!(name: "User2 User2", email: "user2@user2.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
 user.user_courses.create!([
     { id:5, user_id: user.id, course_id: 1, passed: true}
 ])
@@ -217,7 +217,7 @@ user.frequency_questions.create!([
 
 user = User.create!(name: "User3 User3", email: "user3@user3.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
 user.user_courses.create!([
-    { id:2, user_id: user.id, course_id: 1, passed: true}
+    { id:7, user_id: user.id, course_id: 1, passed: true}
 ])
 
 user.course_questions.create!([
@@ -234,11 +234,6 @@ user.frequency_questions.create!([
    {user_id: user.id, course_question_id: 1},
    {user_id: user.id, course_question_id: 3},
    {user_id: user.id, course_question_id: 4},
-])
-
-user = User.create!(name: "User4 User4", email: "user4@user4.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
-user.user_courses.create!([
-    {id:4, user_id: user.id, course_id: 1, passed: false}
 ])
 
 user = User.first
@@ -291,7 +286,7 @@ user = User.second
                             {content: Faker::Hobbit.quote, user_id: user.id}])
 end
 
-
+=begin
 user = User.second
 5.times do
   Rep.create!(
@@ -322,3 +317,4 @@ end
 end
 
 #UserCourse.create!(user_id: User.first.id, course_id: Course.first.id)
+=end

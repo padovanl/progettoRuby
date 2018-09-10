@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 2018_09_06_150938) do
 
   # These are extensions that must be enabled in order to support this database
@@ -142,9 +141,9 @@ ActiveRecord::Schema.define(version: 2018_09_06_150938) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "course_id"
-    t.boolean "offer"
+    t.boolean "offer", null: false
     t.string "user_competence"
-    t.decimal "price_hours", precision: 6, scale: 2
+    t.decimal "price_hours", precision: 6, scale: 2, null: false
     t.string "place"
     t.boolean "home_service"
     t.string "week_days"
