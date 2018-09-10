@@ -195,7 +195,7 @@ teacher.teacher_courses.create!([
 ])
 
 
-user = User.create!(name: "User2 User2", email: "user2@user2.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
+user = User.create!(id: 3, name: "User2 User2", email: "user2@user2.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
 user.user_courses.create!([
     { id:5, user_id: user.id, course_id: 1, passed: true}
 ])
@@ -215,7 +215,7 @@ user.frequency_questions.create!([
    {user_id: user.id, course_question_id: 2},
 ])
 
-user = User.create!(name: "User3 User3", email: "user3@user3.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
+user = User.create!(id: 4, name: "User3 User3", email: "user3@user3.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
 user.user_courses.create!([
     { id:7, user_id: user.id, course_id: 1, passed: true}
 ])
