@@ -46,13 +46,16 @@ class RepComments extends React.Component {
                     <div className="media-content">
                         <div className="field">
                             <p className="control">
-                                <textarea className="textarea" value={this.state.valueTextarea} placeholder="Add a comment..." onChange={(e)=>this.handleChangeComment(e)}/>
+                                <textarea className="textarea" value={this.state.valueTextarea} placeholder="Write email..." onChange={(e)=>this.handleChangeComment(e)}/>
                             </p>
                         </div>
                         <div className="field">
-                            <p className="control">
-                                <button className="button">Post comment</button>
-                            </p>
+                            <div className="control has-icons-left">
+                                <button className="button"><span className="left-gap"> Send email</span></button>
+                                <span className="icon is-small is-left">
+                                        <a className="fab fa-telegram-plane"/>
+                                    </span>
+                            </div>
                         </div>
                     </div>
                 </article>
