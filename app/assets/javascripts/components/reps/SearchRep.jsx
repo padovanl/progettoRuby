@@ -11,10 +11,10 @@ class SearchRep extends React.Component {
             showError: false,
 
             selected_course: null,
-            selected_my_post: null,
+            selected_my_post: false,
             selected_home_service: false,
             selected_offer: null,
-            selected_place: null,
+            selected_place: '',
             selected_price: null
         };
         this.onChange = this.onChange.bind(this);
@@ -34,7 +34,6 @@ class SearchRep extends React.Component {
             .catch((e) => console.log(e))
     }
 
-
     handleSearch(e){
         e.preventDefault();
         const {selected_course,
@@ -50,9 +49,9 @@ class SearchRep extends React.Component {
             URL += '&offer=' + this.state.selected_offer;
         if (selected_place)
             URL += '&place=' + this.state.selected_place;
-        if (selected_my_post)
-            URL += '&user_id=' + selected_my_post;
-        if (selected_home_service)
+        if (selected_my_post === true)
+            URL += '&user_id=' + this.props.current_user.id;
+        if (selected_home_service===true)
             URL += '&home_service=' + selected_home_service;
         if (selected_price)
             URL += '&price_hours=' + selected_price;
@@ -66,8 +65,17 @@ class SearchRep extends React.Component {
 
 
     handleChange(e){
-        console.log(e.target.name + ": ", e.target.value );
-        this.setState({[e.target.name]: e.target.value});
+        const item = e.target.name;
+        if (item === "selected_my_post"){
+            this.setState(prevState => ({ [item]: !prevState.selected_my_post}));
+            console.log(item+ ": ", this.state.selected_my_post);
+        }
+        else if (item === "selected_home_service"){
+            this.setState(prevState => ({ [item]: !prevState.selected_home_service}));
+            console.log(item+ ": ", this.state.selected_home_service);
+        }
+        else
+            this.setState({[e.target.name]: e.target.value});
     }
 
 
@@ -119,6 +127,7 @@ class SearchRep extends React.Component {
                 </li>
                 <li className="drawer-menu-item">
                     <div className="control ">
+                        <label><strong>Rep</strong></label><br/>
                         <label className="radio" >
                             <input key={1} type={"radio"} id={"offer"}
                                    onChange={(e)=>this.handleChange(e)} name={"selected_offer"} value={true}/> Offro
@@ -127,17 +136,26 @@ class SearchRep extends React.Component {
                             <input key={2} className="left-gap" type={"radio"} id={"offer"}
                                    onChange={(e)=>this.handleChange(e)} name={"selected_offer"} value={false} /> Cerco
                         </label>
+                        <label className="radio"  >
+                            <input key={3} className="left-gap" type={"radio"} id={"offer"}
+                                   onChange={(e)=>this.handleChange(e)} name={"selected_offer"} value={undefined} /> Reset
+                        </label>
                     </div>
                 </li>
                 <li className="drawer-menu-item">
                     <div className="control ">
+                        <label><strong>Price</strong></label><br/>
                         <label className="radio" >
                             <input key={1}  type={"radio"} id={"price_hours"} name={"selected_price"} value={"ASC"}
-                                   onChange={(e)=>this.handleChange(e)} /> Price Asc
+                                   onChange={(e)=>this.handleChange(e)} /> Asc
                         </label>
                         <label className="radio"  >
                             <input key={2} type={"radio"} id={"price_hours"} name={"selected_price"} value={"DESC"}
-                                   onChange={(e)=>this.handleChange(e)} className="left-gap" /> Price Desc
+                                   onChange={(e)=>this.handleChange(e)} className="left-gap" /> Desc
+                        </label>
+                        <label className="radio"  >
+                            <input key={3} className="left-gap" type={"radio"} id={"price_hours"}
+                                   onChange={(e)=>this.handleChange(e)} name={"selected_price"} value={undefined} /> Reset
                         </label>
                     </div>
                 </li>
@@ -151,13 +169,13 @@ class SearchRep extends React.Component {
                 </li>
                 <li className="drawer-menu-item">
                     <label className="label">
-                        <input name={"selected_home_service"} value={true} type="checkbox"
+                        <input name={"selected_home_service"} value={this.state.selected_home_service} type="checkbox"
                                onChange={(e)=>this.handleChange(e)}/> Home service
                     </label>
                 </li>
                 <li className="drawer-menu-item">
                     <label className="label">
-                        <input name={"selected_my_post"}  value={this.props.current_user.id} type="checkbox"
+                        <input name={"selected_my_post"} value={this.state.selected_my_post} type="checkbox"
                                onChange={(e)=>this.handleChange(e)}/> Miei post
                     </label>
                 </li>

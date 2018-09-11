@@ -1,65 +1,47 @@
 <html>
 
-<body class="drawer drawer--left">
-  <header role="banner">
-    <button type="button" class="drawer-toggle drawer-hamburger top-gap">
-      <span class="sr-only">toggle navigation</span>
-      <span class="drawer-hamburger-icon"></span>
-    </button>
-    <nav class="drawer-nav top-gap" role="navigation">
-      <ul class="drawer-menu top-gap">
-        <li class="drawer-brand">Search</li>
-        <%= react_component 'SearchRep', current_user: @current_user%>
-      </ul>
-    </nav>
-  </header>
-  <main role="main">
-
+  <body class="drawer drawer--left">
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
 
-    <br/>
-    <div align="center">
-      <h2>Aiuta chi ha bisogno! </h2>
-      <h3>Qui in elenco tutte le ripetizioni disponibili ;)</h3>
-      <hr/>
-    </div>
+    <header role="banner">
+      <button type="button" class="drawer-toggle drawer-hamburger top-gap">
+        <span class="sr-only">toggle navigation</span>
+        <span class="drawer-hamburger-icon"></span>
+      </button>
+      <nav class="drawer-nav top-gap" role="navigation">
+        <ul class="drawer-menu top-gap">
+          <li class="drawer-brand">Search</li>
+          <%= react_component 'SearchRep', current_user: @current_user%>
+        </ul>
+      </nav>
+    </header>
+    <main role="main">
 
-    <div class="myColumn-lg">
-      <div class="row">
-        <%= react_component 'IndexReps',  last_page: @last_page, url: "/reps.json?page=", current_user_image: @current_user_image, current_user: @current_user%>
+
+      <br/>
+      <div align="center">
+        <h2>Hey, hai bisogno di una mano?! </h2>
+        <h3>Qui in elenco tutte le ripetizioni disponibili ;)</h3>
+        <hr/>
       </div>
-    </div>
 
-  </main>
+      <div class="myColumn-lg">
+        <div class="row">
+          <%= react_component 'IndexReps',  last_page: @last_page, url: "/reps.json?page=", current_user_image: @current_user_image, current_user: @current_user%>
+        </div>
+      </div>
 
-  <!-- drawer.css -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.2/css/drawer.min.css">
-  <!-- jquery & iScroll -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/iScroll/5.2.0/iscroll.min.js"></script>
-  <!-- drawer.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.2/js/drawer.min.js"></script>
-  <script>
-      $('.drawer').drawer({
-          class: {
-              nav: 'drawer-nav',
-              toggle: 'drawer-toggle',
-              overlay: 'drawer-overlay',
-              open: 'drawer-open',
-              close: 'drawer-close',
-              dropdown: 'drawer-dropdown'
-          },
-          iscroll: {
-              // Configuring the iScroll
-              // https://github.com/cubiq/iscroll#configuring-the-iscroll
-              mouseWheel: true,
-              preventDefault: false
-          },
-          showOverlay: true
+    </main>
+
+
+
+    <script>
+      $(document).ready(function() {
+        $('.drawer').drawer();
       });
-  </script>
+    </script>
 
   </body>
 
