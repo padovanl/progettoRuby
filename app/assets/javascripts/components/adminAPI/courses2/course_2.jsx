@@ -32,7 +32,7 @@ class Course2 extends React.Component{
 
         let pulsante = null;
         let link = "/dashboard/degree_course/" + this.props.degree_course_id + "/course/teachers/" + this.props.course.id;
-
+        let linkInfo = "/courses/" + this.props.course.id;
         if(!this.state.editable){
             pulsante = <i className="fas fa-pen"></i>;
         }else{
@@ -46,6 +46,7 @@ class Course2 extends React.Component{
                 <td>
                     <a className="button is-rounded is-success" onClick={() => this.handleEdit()} title="Modifica">{pulsante}</a>&nbsp;
                     <a className="button is-rounded is-warning" href={link} title="Gestisci i professori collegati"><i className="fas fa-chalkboard-teacher"></i></a>&nbsp;
+                    <a className="button is-rounded is-info" href={linkInfo} title="Vai alla pagina del corso">&nbsp;<i className="fas fa-info"></i>&nbsp;</a>&nbsp;
                     <a className="button is-rounded is-danger" onClick={() => this.props.handleDelete(this.props.course.id)} title="Elimina"><i className="fas fa-times"></i></a>
                 </td>
             </tr>
