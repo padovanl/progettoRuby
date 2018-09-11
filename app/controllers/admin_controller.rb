@@ -29,7 +29,7 @@ class AdminController < ApplicationController
 
   skip_before_action :verify_authenticity_token
   def send_emails
-    @users = User.all
+    @users = User.where(news: true).all
     text = params['text']
     titolo = params['titolo']
     @users.each do |u|
