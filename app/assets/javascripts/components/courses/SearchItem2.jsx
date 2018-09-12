@@ -182,7 +182,7 @@ class SearchItem2 extends React.Component {
     render(){
         let searchButton;
         if (this.state.query === '' || (this.props.last_page === true && this.state.changedInputSearch===false))
-            searchButton = <div className={' button-search gap'} onClick={(e)=>this.searchCourses(e)} > <span>All</span> </div>;
+            searchButton = <div className=' button-search gap' onClick={(e)=>this.searchCourses(e)} > <span>All</span> </div>;
         else
             searchButton = <button className=' button-search gap' type={"submit"} > <span>Search</span></button>;
 

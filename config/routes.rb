@@ -53,8 +53,6 @@ Rails.application.routes.draw do
 
   get :teachers_name, controller: :teachers
 
-  #mailer
- # Rails.application.config.action_mailer.default_url_options :host => "localhost:3000"
 
   #admin
   get '/dashboard', to: 'admin#dashboard'
