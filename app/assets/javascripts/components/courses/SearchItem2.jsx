@@ -227,41 +227,45 @@ class SearchItem2 extends React.Component {
         return (
             <section>
                 <div className='myRow'>
-                    <form className='search-form' onSubmit={(e)=>this.searchCourses(e)}>
-                        <h3><b>Advanced Search:</b></h3>
-                        <div className='columns'>
-                            <div className='myColumn myColumn-sm' onClick={this.selectChanged.bind(this)}>
-                                <select required className='mySelect gap' >
-                                    {options}
-                                </select>
-                            </div>
-                            <div className='myColumn myColumn-md'>
+                    <div className="gap" align="center">
+                        <div className="box" align="center">
+                            <form className='search-form' onSubmit={(e)=>this.searchCourses(e)}>
+                                <h3><b>Advanced Search:</b></h3>
+                                <div className='columns'>
+                                    <div className='myColumn myColumn-sm' onClick={this.selectChanged.bind(this)}>
+                                        <select required className='mySelect gap' >
+                                            {options}
+                                        </select>
+                                    </div>
+                                    <div className='myColumn myColumn-md'>
 
 
-                                <Autosuggest
-                                    suggestions={suggestions}
-                                    onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                                    onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-                                    getSuggestionValue={getSuggestionValue}
-                                    renderSuggestion={renderSuggestion}
-                                    inputProps={inputProps}
-                                    />
+                                        <Autosuggest
+                                            suggestions={suggestions}
+                                            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                                            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                                            getSuggestionValue={getSuggestionValue}
+                                            renderSuggestion={renderSuggestion}
+                                            inputProps={inputProps}
+                                            />
 
-                            </div>
-                            <div className='myColumn myColumn-sm'> {searchButton} </div>
+                                    </div>
+                                    <div className='myColumn myColumn-sm'> {searchButton} </div>
+                                </div>
+                                <hr/>
+                            </form>
                         </div>
-                        <hr/>
-                    </form>
-
-                    <div className={'myRow'}>
-                        <Search_degree onSubmit={(degreen, degreet) => this.onSubmit(degreen, degreet)}
-                                       resetAdvancedSearch ={this.resetAdvancedSearch}
-                                       selectType={this.state.selectType}
-                                       selectName={this.state.selectName}
-                                       setSelectType={this.setSelectType}
-                        />
                     </div>
-
+                    <div className="myRow gap" >
+                        <div align="center" className="gap">
+                            <Search_degree onSubmit={(degreen, degreet) => this.onSubmit(degreen, degreet)}
+                                           resetAdvancedSearch ={this.resetAdvancedSearch}
+                                           selectType={this.state.selectType}
+                                           selectName={this.state.selectName}
+                                           setSelectType={this.setSelectType}
+                            />
+                        </div>
+                    </div>
                     {indexCourses_or_myCourses}
 
                 </div>

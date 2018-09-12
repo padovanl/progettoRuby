@@ -28,4 +28,9 @@ class Rep < ApplicationRecord
     Course.find_by_name(course_name).id
   end
 
+  def self.send_email(current_user, content, id)
+    rep = Rep.find(id)
+    CommentMailer.new_comment(rep,current_user, content).deliver_now
+  end
+
 end

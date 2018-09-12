@@ -8,8 +8,10 @@ class RepComments extends React.Component {
 
         this.state = {
             valueTextarea: '',
+            message: ''
         };
-        this.handleReply = this.handleReply.bind(this)
+        this.handleReply = this.handleReply.bind(this);
+        this.handleClick = this.handleClick.bind(this)
     }
 
     handleChangeComment(e){
@@ -21,9 +23,42 @@ class RepComments extends React.Component {
             +this.props.title+""})
     }
 
+    handleClick(e){
+        e.preventDefault();
+
+        let myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+
+        console.log("Contenuto",e.target[0].value);
+        const options = {
+            method: 'POST',
+            headers: myHeaders,
+            credentials: 'same-origin',
+        };
+        fetch('/send_email?course_id='+this.props.item.id+'&content='+e.target[0].value,options)
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error("Errore invio email");
+                }
+            })
+            .then(resp => this.setState({message: resp},console.log("messaggio risp: ", resp)))
+            .catch(e => console.log(e));
+
+
+    }
+
     render(){
+        let invio_email;
+        if (this.state.message !== '')
+            invio_email= <font color="green">{this.state.message}</font>;
+
         return (
             <section>
+
+                {invio_email}
+
                 <nav className="level is-mobile gap">
                     <div className={"level-left"}/>
                     <div className="level-right">
@@ -43,7 +78,7 @@ class RepComments extends React.Component {
                             <img src={this.props.current_user_image}/>
                         </p>
                     </figure>
-                    <div className="media-content">
+                    <form className="media-content" onSubmit={(e) => this.handleClick(e)}>
                         <div className="field">
                             <p className="control">
                                 <textarea className="textarea" value={this.state.valueTextarea} placeholder="Write email..." onChange={(e)=>this.handleChangeComment(e)}/>
@@ -51,13 +86,13 @@ class RepComments extends React.Component {
                         </div>
                         <div className="field">
                             <div className="control has-icons-left">
-                                <button className="button"><span className="left-gap"> Send email</span></button>
+                                <button className="button" type={"submit"}><span className="left-gap"> Send email</span></button>
                                 <span className="icon is-small is-left">
                                         <a className="fab fa-telegram-plane"/>
                                     </span>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </article>
             </section>
         )

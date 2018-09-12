@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    </head>
+    <body>
+      <h1>Hey, <%= @current_user.name %> ti ha contattato per una ripetizione!</h1>
+      <p>
+        Your address: <%= @user_email %>
+        Course name is: <%= @course_name%>
+        The content is: <%= @content %>.
+        <br>
+      </p>
+      <p>
+        To watch your rep, please visit the page at: <%= link_to "reps page", reps_url%>
+      </p>
+      <p>Thanks for joining and have a great day!</p>
+    </body>
+</html>

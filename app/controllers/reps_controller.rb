@@ -8,7 +8,7 @@ class RepsController < ApplicationController
     @current_user = current_user
     respond_to do |format|
       format.html
-      format.json {render json: @reps, :include => {:course => {:only => :name}, :user => {:only => [:id, :name, :image, :last_sign_in_at, :current_sign_in_ip]} } }
+      format.json {render json: @reps, :include => {:course => {:only => :name}, :user => {:only => [:id, :name, :image, :email, :last_sign_in_at, :current_sign_in_ip]} } }
     end
   end
 
@@ -25,7 +25,7 @@ class RepsController < ApplicationController
       return
     end
 
-    render json: rep, :include => {:course => {:only => :name}, :user => {:only => [:id, :name, :image, :last_sign_in_at, :current_sign_in_ip]} }, status: :created
+    render json: rep, :include => {:course => {:only => :name}, :user => {:only => [:id, :name, :image, :email, :last_sign_in_at, :current_sign_in_ip]} }, status: :created
   end
 
   def update
@@ -34,7 +34,7 @@ class RepsController < ApplicationController
       render_json_validation_error rep
       return
     end
-    render json: rep, :include => {:course => {:only => :name}, :user => {:only => [:id, :name, :image, :last_sign_in_at, :current_sign_in_ip]} }
+    render json: rep, :include => {:course => {:only => :name}, :user => {:only => [:id, :name, :image, :email, :last_sign_in_at, :current_sign_in_ip]} }
   end
 
   def destroy
@@ -46,6 +46,19 @@ class RepsController < ApplicationController
     end
 
     head :no_content
+  end
+
+
+  def send_email
+
+    logger.debug "PARAMETRI ****************** #{[params[:content], params[:course_id]]}"
+
+    email = Rep.send_email(current_user, params[:content], params[:course_id])
+    if !email
+      render_json_validation_error email
+      return
+    end
+    render json: email
   end
 
   private

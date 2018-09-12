@@ -4,10 +4,24 @@ class ItemReps extends React.Component {
         super(props);
 
         this.state = {
+            width_windows: 0,
+            title: ''
         };
+        this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
     }
 
+    componentDidMount(){
+        this.updateWindowDimensions();
+        window.addEventListener('resize', this.updateWindowDimensions);
+    }
 
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.updateWindowDimensions);
+    }
+
+    updateWindowDimensions() {
+        this.setState({ width_windows: window.innerWidth }, console.log("windows width: ", window.innerWidth, "this.state.width_wind: ",this.state.width_windows));//, height: window.innerHeight });
+    }
 
     handleDelete(id){
         event.preventDefault();
@@ -57,7 +71,7 @@ class ItemReps extends React.Component {
             if (item.user.id === this.props.current_user.id){
                 deleteButton = <button className="delete is-danger" onClick={()=>this.handleDelete(item.id)}/>;
                 updateButton = <UpdateRep courseNames={this.props.courseNames}
-                                          title={title.length > 50 ? title.substring(0,45)+"..." : title}
+                                          title={this.state.width_windows > 680 ? title.substring(0,45)+".." : title.substring(22,43)+".."}
                                           price={item.price_hours}
                                           place={item.place}
                                           home_service={item.home_service}

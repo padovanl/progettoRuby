@@ -164,12 +164,12 @@ class UpdateRep extends React.Component {
                     <div className="modal-background" onClick={this.closeModal} />
                     <div className="modal-card">
                         <header className="modal-card-head">
-                            <p className="modal-card-title">Update post: {this.state.title}</p>
+                            <p className="modal-card-title">Update post: {this.props.title}</p>
                             <button className="delete" aria-label="close" onClick={this.closeModal} />
                         </header>
 
                         <form ref={form => this.formEl = form} onSubmit={ (e) => this.handleUpdate(e, this.props.id) } className={classNames} noValidate>
-                            <section className="modal-card-body">
+                            <section className="modal-card-body overflow-modal">
 
                                 <div className="field">
                                     <div className="control">

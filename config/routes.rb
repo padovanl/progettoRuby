@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   resources :posts
   resources :comments
   resources :courses, only: [:show]
-  resources :reps
+  resources :reps, only: [:index, :create, :update, :destroy]
 
 
   #courses (user)
@@ -47,6 +47,9 @@ Rails.application.routes.draw do
   get :courses_name, controller: :courses
   post :follow, controller: :courses
   put :unfollow, controller: :courses
+
+  #rep_mail
+  post :send_email, controller: :reps
 
   get :teachers_name, controller: :teachers
 

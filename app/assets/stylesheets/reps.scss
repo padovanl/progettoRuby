@@ -17,3 +17,11 @@ a.fixed {
 .top-gap{
   margin-top: 4em;
 }
+
+@media screen and (max-height: 700px) {
+  .overflow-modal {
+    max-height: 300px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+}

@@ -283,7 +283,7 @@ class AddRep extends React.Component {
                     </header>
 
                 <form ref={form => this.formEl = form} onSubmit={ (e) => this.handleSubmit(e) } className={classNames} noValidate>
-                    <section className="modal-card-body">
+                    <section className="modal-card-body overflow-modal">
 
                             <div className="field">
                                 <div className="control">
@@ -302,7 +302,6 @@ class AddRep extends React.Component {
 
                     <footer className="modal-card-foot">
                         <button className="button is-success" type={"submit"}>Save post</button>
-                        <button className="button" onClick={this.closeModal}>Cancel</button>
                     </footer>
                 </form>
 
