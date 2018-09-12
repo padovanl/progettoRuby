@@ -22,4 +22,21 @@ class AdminController < ApplicationController
     @course = Course.find(id_course)
     render 'admin/teacher_course'
   end
+
+  def mailing_list
+
+  end
+
+  skip_before_action :verify_authenticity_token
+  def send_emails
+    @users = User.where(news: true).all
+    text = params['text']
+    titolo = params['titolo']
+    @users.each do |u|
+      UserNotifierMailer.send_signup_email(u, text, titolo).deliver
+    end
+
+    json_response({error: "Tag gia collegato"})
+    return
+  end
 end

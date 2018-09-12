@@ -129,6 +129,8 @@ Rails.application.routes.draw do
   get "/dashboard/degree_course/:degree_course_id/course/teachers/:course_id", to: "admin#teacher_courses"
   get "/api/v1/theses/search/prof/:teacher_id", to: "api/v1/theses#searchByProf"
   get "/api/v1/theses/search/title/(:string)", to: "api/v1/theses#searchByTitle"
+  get "/dashboard/mail", to: "admin#mailing_list"
+  post "/dashboard/mail", to: "admin#send_emails"
 
   get "/api/v1/users", to: "api/v1/users#index"
   post "/api/v1/users/set_admin/:user_id", to: "api/v1/users#setAdmin"
