@@ -87,6 +87,8 @@ class Search_degree extends React.Component {
 
         return(
             <section>
+                <hr/>
+
                 <div className={'myRow gap'}>
                     <div className={'columns'}>
                         <div className=' myColumn-sm '>

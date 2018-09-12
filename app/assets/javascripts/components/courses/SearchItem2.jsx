@@ -228,17 +228,16 @@ class SearchItem2 extends React.Component {
             <section>
                 <div className='myRow'>
                     <div className="gap" align="center">
-                        <div className="box" align="center">
+                        <div className="box" >
                             <form className='search-form' onSubmit={(e)=>this.searchCourses(e)}>
                                 <h3><b>Advanced Search:</b></h3>
                                 <div className='columns'>
-                                    <div className='myColumn myColumn-sm' onClick={this.selectChanged.bind(this)}>
+                                    <div className=' myColumn-sm' onClick={this.selectChanged.bind(this)}>
                                         <select required className='mySelect gap' >
                                             {options}
                                         </select>
                                     </div>
-                                    <div className='myColumn myColumn-md'>
-
+                                    <div className=' myColumn-md'>
 
                                         <Autosuggest
                                             suggestions={suggestions}
@@ -250,9 +249,8 @@ class SearchItem2 extends React.Component {
                                             />
 
                                     </div>
-                                    <div className='myColumn myColumn-sm'> {searchButton} </div>
+                                    <div className=' myColumn-sm'> {searchButton} </div>
                                 </div>
-                                <hr/>
                             </form>
                         </div>
                     </div>

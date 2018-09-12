@@ -164,7 +164,7 @@ class IndexCourses2 extends React.Component{
                 <div className="wrapper infinite-container">{items}</div>
                 <div className='row'>
                     {buttonNext}
-                    <input className='input-form gap' type="text"  value={this.state.search}
+                    <input className='input-form gap left-gap' type="text"  value={this.state.search}
                            onChange={this.updateSearch.bind(this)} placeholder="Filter courses by name"/>
                 </div>
 

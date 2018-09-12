@@ -3,14 +3,13 @@ class SearchRep extends React.Component {
         super(props);
 
         this.state = {
-            query:'',
             suggestions: [],
             autoSuggestNames: [],
 
             isValidated: false,
             showError: false,
 
-            selected_course: null,
+            selected_course: '',
             selected_my_post: false,
             selected_home_service: false,
             selected_offer: null,
@@ -45,20 +44,23 @@ class SearchRep extends React.Component {
 
 
         URL = '/reps.json?page=1?utf8=✓';
+        let url='';
+        if(selected_course !== '')
+            url += '&course_name=' + this.state.selected_course;
         if (selected_offer)
-            URL += '&offer=' + this.state.selected_offer;
+            url += '&offer=' + this.state.selected_offer;
         if (selected_place)
-            URL += '&place=' + this.state.selected_place;
+            url += '&place=' + this.state.selected_place;
         if (selected_my_post === true)
-            URL += '&user_id=' + this.props.current_user.id;
+            url += '&user_id=' + this.props.current_user.id;
         if (selected_home_service===true)
-            URL += '&home_service=' + selected_home_service;
+            url += '&home_service=' + selected_home_service;
         if (selected_price)
-            URL += '&price_hours=' + selected_price;
+            url += '&price_hours=' + selected_price;
 
-        getItems(URL)
+        getItems(URL+url)
             .then(resp => {
-                updateIndexReps(URL, resp);
+                updateIndexReps(url, resp);
             })
             .catch(e => console.log(e))
     }
@@ -84,7 +86,7 @@ class SearchRep extends React.Component {
 
     onChange(event, { newValue, method }){
         this.setState({
-            query: newValue
+            selected_course: newValue
         });
     };
 
@@ -105,7 +107,7 @@ class SearchRep extends React.Component {
 
     render(){
         //Autosuggestions
-        const value =this.state.query;
+        const value =this.state.selected_course;
         const suggestions = this.state.suggestions;
         const inputProps = {
             placeholder:"Search courses by name",

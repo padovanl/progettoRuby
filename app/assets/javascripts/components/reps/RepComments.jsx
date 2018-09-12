@@ -8,7 +8,8 @@ class RepComments extends React.Component {
 
         this.state = {
             valueTextarea: '',
-            message: ''
+            message: '',
+            error: ''
         };
         this.handleReply = this.handleReply.bind(this);
         this.handleClick = this.handleClick.bind(this)
@@ -43,16 +44,18 @@ class RepComments extends React.Component {
                     throw new Error("Errore invio email");
                 }
             })
-            .then(resp => this.setState({message: resp},console.log("messaggio risp: ", resp)))
-            .catch(e => console.log(e));
+            .then(resp => this.setState({message: resp, error: ''},console.log("messaggio risp: ", resp)))
+            .catch(e => {this.setState({error: e.toString(), message: ''},console.log("messaggio risp: ",e))});
 
+        console.log("mi mex" , this.state.message);
+        console.log("mi err" , this.state.error)
 
     }
 
     render(){
         let invio_email;
-        if (this.state.message !== '')
-            invio_email= <font color="green">{this.state.message}</font>;
+        if (this.state.message !== '' || this.state.error !=='')
+            invio_email= <div><font color="green">{this.state.message}</font><font color="red">{this.state.error}</font></div>;
 
         return (
             <section>
@@ -88,7 +91,7 @@ class RepComments extends React.Component {
                             <div className="control has-icons-left">
                                 <button className="button" type={"submit"}><span className="left-gap"> Send email</span></button>
                                 <span className="icon is-small is-left">
-                                        <a className="fab fa-telegram-plane"/>
+                                        <i className="fab fa-telegram-plane"/>
                                     </span>
                             </div>
                         </div>

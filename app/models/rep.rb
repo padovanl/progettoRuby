@@ -5,16 +5,13 @@ class Rep < ApplicationRecord
   belongs_to :course
 
 
-  def get_reps
-  end
-
-
   reduces self.all, filters: [
       ->(offer:) { where(offer: offer) },#ricerca secondo il tipo (true = offro, false = cerco)
       ->(price_hours:) { order(price_hours: price_hours )}, #secondo il prezzo Ascendente o desc
       ->(place:) { where('lower(place) like ?', "%#{place.downcase}%") },
       ->(home_service:) { where(home_service: home_service) },
-      ->(user_id:) { where(user_id: user_id) }
+      ->(user_id:) { where(user_id: user_id) },
+      ->(course_name:) {where(course_id: get_course_id(course_name))}
   ]
 
 
