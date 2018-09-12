@@ -136,7 +136,7 @@ class IndexCourses2 extends React.Component{
             return(
                 <div key={item.id} className={"relative"}>
                     <div className="nested infinite-item">
-                        <div>Materia: {item.name} e id: {item.id}</div>
+                        <div>Materia: <a href={"/courses/"+item.id}   >{item.name}</a> e id: {item.id}</div>
                         <div>Livello: {item.degreet}</div>
                         <div>Corso: {item.degreen}</div>
                         <div>Anno: {item.year}</div>

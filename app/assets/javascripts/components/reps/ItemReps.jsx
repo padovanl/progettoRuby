@@ -55,6 +55,7 @@ class ItemReps extends React.Component {
             });
     }
 
+
     render(){
         return this.props.items.map((item) => {
             let offer_comp = "";
@@ -69,7 +70,7 @@ class ItemReps extends React.Component {
             let updateButton;
             console.log("itemuserid = currentuserid: ", item.user.id, "=", this.props.current_user.id);
             if (item.user.id === this.props.current_user.id){
-                deleteButton = <button className="delete is-danger" onClick={()=>this.handleDelete(item.id)}/>;
+                deleteButton = <button className="delete is-danger" onClick={()=>this.handleDelete(item.id)} color="red"/>;
                 updateButton = <UpdateRep courseNames={this.props.courseNames}
                                           title={this.state.width_windows > 680 ? title.substring(0,45)+".." : title.substring(22,43)+".."}
                                           price={item.price_hours}
@@ -90,6 +91,8 @@ class ItemReps extends React.Component {
                 home_service="Non indicato";
             else home_service="No";
 
+            console.log("avatar: ", item.user.avatar_url, " User: ", item.user);
+
             return(
                 <section key={item.id} className="relative gap ">
 
@@ -97,7 +100,7 @@ class ItemReps extends React.Component {
                         <article className="media gap">
                             <figure className="media-left">
                                 <p className="image is-64x64">
-                                    <img src={this.props.current_user_image}/>
+                                    <img src={item.user.avatar_url}/>
                                 </p>
                             </figure>
                             <div className="media-content">
@@ -120,7 +123,7 @@ class ItemReps extends React.Component {
                                 </div>
                             </div>
                             <div className={"media-right"}>
-                                {deleteButton} {updateButton}
+                                {deleteButton} {updateButton} <a title="Reporting"><i className="fas fa-bug"/></a>
                             </div>
                         </article>
 

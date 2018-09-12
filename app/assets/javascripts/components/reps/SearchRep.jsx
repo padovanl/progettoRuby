@@ -112,7 +112,10 @@ class SearchRep extends React.Component {
         const inputProps = {
             placeholder:"Search courses by name",
             value,
-            onChange: this.onChange
+            onChange: this.onChange,
+            type: "search",
+            pattern: "[a-zA-Zàèéìòù0-9., ]*",
+            title: "Sono vietati i caratteri speciali."
         };
 
         return(
@@ -164,8 +167,8 @@ class SearchRep extends React.Component {
                 <li className="drawer-menu-item">
                     <label className="label">
                         Cerca secondo il luogo
-                        <input name={"selected_place"} type={"text"}  pattern="[a-zA-Zàèéìòù ]*"
-                               title={"Sono vietati i caratteri speciali."} value={this.state.place}
+                        <input name={"selected_place"} type={"search"}  pattern="[a-zA-Zàèéìòù ]*"
+                               title={"Sono vietati i caratteri speciali e numeri."} value={this.state.place}
                                onChange={(e)=>this.handleChange(e)}/>
                     </label>
                 </li>

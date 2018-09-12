@@ -12,6 +12,11 @@ class Course < ApplicationRecord
 
 
 
+  validates_presence_of :name, message: "The name should be present"
+  validates_numericality_of :year, message: "The year should be an integer"
+  validates_inclusion_of :year, :in => [1,2], message: "The year is in [1,2]"
+  validates_format_of :name, with: /\A[a-zA-Z-àèéìòù .,]+\z/, :on => :create, message: "Only allows letters"
+
 
   def self.search_courses_not_followed(degreen, degreet, category, query, current_user_id)
 

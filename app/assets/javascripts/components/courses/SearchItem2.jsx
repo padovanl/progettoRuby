@@ -197,7 +197,10 @@ class SearchItem2 extends React.Component {
         const inputProps = {
             placeholder:"Search courses",
             value,
-            onChange: this.onChange
+            onChange: this.onChange,
+            type: "search",
+            pattern: "[a-zA-Zàèéìòù0-9., ]*",
+            title: "Sono vietati i caratteri speciali."
         };
 
         let indexCourses_or_myCourses;
@@ -230,7 +233,7 @@ class SearchItem2 extends React.Component {
                     <div className="gap" align="center">
                         <div className="box" >
                             <form className='search-form' onSubmit={(e)=>this.searchCourses(e)}>
-                                <h3><b>Advanced Search:</b></h3>
+                                <h3><b><font color="#8b0000">Advanced Search:</font></b></h3>
                                 <div className='columns'>
                                     <div className=' myColumn-sm' onClick={this.selectChanged.bind(this)}>
                                         <select required className='mySelect gap' >

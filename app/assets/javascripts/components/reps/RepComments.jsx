@@ -91,7 +91,7 @@ class RepComments extends React.Component {
                             <div className="control has-icons-left">
                                 <button className="button" type={"submit"}><span className="left-gap"> Send email</span></button>
                                 <span className="icon is-small is-left">
-                                        <i className="fab fa-telegram-plane"/>
+                                        <a className="fab fa-telegram-plane"/>
                                     </span>
                             </div>
                         </div>

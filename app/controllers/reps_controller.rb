@@ -9,13 +9,12 @@ class RepsController < ApplicationController
     @current_user = current_user
     respond_to do |format|
       format.html
-      format.json {render json: @reps, :include => {:course => {:only => :name}, :user => {:only => [:id, :name, :image, :email, :last_sign_in_at, :current_sign_in_ip]} } }
+      format.json {render json: @reps, :include => {:course => {:only => :name}, :user => {:only => [:id, :email, :avatar_url, :name, :admin]} } }
     end
   end
 
   def create
     #byebug
-
     course_id = Rep.get_course_id(get_course_name[:course_name])
     rep = Rep.new(rep_params )
     rep.user_id = current_user.id
@@ -51,15 +50,18 @@ class RepsController < ApplicationController
 
 
   def send_email
-
     logger.debug "PARAMETRI ****************** #{[params[:content], params[:course_id]]}"
-
     email = Rep.send_email(current_user, params[:content], params[:course_id])
     if !email
       render_json_validation_error email
       return
     end
     render json: email
+  end
+
+  def get_name
+    avatar =User.find(params[:id]).get_avatar_image
+    render json: avatar
   end
 
   private

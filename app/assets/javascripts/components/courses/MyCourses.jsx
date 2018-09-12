@@ -17,12 +17,12 @@ class MyCourses extends React.Component{
     }
 
     componentWillReceiveProps(nextProps){
-        console.log("IC receive props");
+ /*       console.log("IC receive props");
         console.log("IC props courses: "+nextProps.courses);
         console.log("IC props page: "+nextProps.page);
         console.log("IC props last_page: "+nextProps.last_page);
         console.log("IC props url: "+nextProps.url);
-    }
+   */ }
 
     updateSearch(event){
         this.setState({search: event.target.value.substr(0,20)});

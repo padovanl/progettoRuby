@@ -158,7 +158,7 @@ class UpdateRep extends React.Component {
 
         return(
             <section>
-                <a onClick={this.showModal}> <i className="fas fa-pen"/> </a>
+                <a onClick={this.showModal}> <i title="Modifying" className="fas fa-pen"/> </a>
 
                 <div className={"modal " + (this.state.modalState ? "is-active" : "")}>
                     <div className="modal-background" onClick={this.closeModal} />

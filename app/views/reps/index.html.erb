@@ -29,7 +29,7 @@
 
       <div class="myColumn-lg">
         <div class="row">
-          <%= react_component 'IndexReps',  last_page: @last_page, url: "/reps.json?page=", current_user_image: @current_user_image, current_user: @current_user%>
+          <%= react_component 'IndexReps',  last_page: @last_page, url: "/reps.json?page=", current_user_image: @current_user_image, current_user: @current_user, allreps: @reps%>
         </div>
       </div>
 
