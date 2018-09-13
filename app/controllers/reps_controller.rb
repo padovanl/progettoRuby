@@ -1,6 +1,5 @@
 class RepsController < ApplicationController
   before_action :authenticate_user!
- # before_action Rails.application.routes.default_url_options = {:host => request.host_with_port}
 
   def index
     @reps = Rep.reduce(params).order(created_at: :desc).page(params[:page]).per(3)
