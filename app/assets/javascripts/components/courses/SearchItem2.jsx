@@ -58,7 +58,6 @@ class SearchItem2 extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState){
-        console.log("NEXT STATE CAT", nextState.category);
         if (nextState.category !== this.state.category){
             this.getAllNames(nextState.category)
         }
@@ -139,9 +138,7 @@ class SearchItem2 extends React.Component {
         this.setState({degreen: degree_name, degreet: this.state.selectType, disabledNext: false, page:1},
             ()=> getItems(updateUrl(this.props.url, this.state.page, this.state.degreen, this.state.degreet))
                 .then(data => {
-                    console.log("data: "+data);
                     this.setState({courses: data});
-                    console.log("data: "+ data.length);
                     if (data.length ===0){
                         this.setState({disabledNext: true})
                     }

@@ -84,15 +84,12 @@ class MyCourses extends React.Component{
 
     render(){
         let filteredCourses;
-        if (this.props.courses.length !== 0)
+        if (this.props.courses.length !== 0 || this.props.message === '')
             filteredCourses = this.props.courses.filter((item) => {
                     return item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1; //tutti
                 }
             );
         else{
-            if (this.props.message === ''){
-                return ''
-            }
             return (<div className={"message is-danger gap"}  >
                         <div className="message-body">
                             {this.props.message }

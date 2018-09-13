@@ -93,15 +93,12 @@ class IndexCourses2 extends React.Component{
 
     render(){
         let filteredCourses;
-        if (this.props.courses.length !== 0)
+        if (this.props.courses.length !== 0 || this.props.message === '')//message = '' caso in cui ho tolto il corso con follow
             filteredCourses = this.props.courses.filter((item) => {
                     return item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1; //tutti
                 }
             );
         else{
-            if (this.props.message === ''){
-                return ''
-            }
             return (<div className={"message is-danger gap"}  >
                         <div className="message-body">
                             {this.props.message }
@@ -128,7 +125,7 @@ class IndexCourses2 extends React.Component{
 
             let teachers = item.teachers.map( teacher => {
                 return (
-                        <li key={teacher.link_cv}>
+                        <li key={teacher.link_cv}  className="left-gap">
                             <a href={teacher.link_cv}> {teacher.surname} {teacher.name}</a>
                         </li>
                 )
@@ -162,7 +159,7 @@ class IndexCourses2 extends React.Component{
         });
 
         return(
-            <div className='myColumn-lg' id="modal">
+            <div className='myColumn-lg'>
                 <hr className='gap'/>
                 <div className="wrapper infinite-container">{items}</div>
                 <div className='row'>

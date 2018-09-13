@@ -103,10 +103,10 @@ user.tags.create!([
 
 user = User.create!(id:2, name: "User User", email: "user@user.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
 user.user_courses.create!([
-    {id:1, user_id: user.id, course_id: 26, follow: true}, #sta seguendo lamma: Fondamenti di intelligenza artificiale
-    {id:2, user_id: user.id, course_id: 29, follow: true}, #reti di calcolatori
-    {id:3, user_id: user.id, course_id: 28, follow: true}, #progetto sistemi web
-    {id:4, user_id: user.id, course_id: 27, follow: false} # smesso di seguire: ricerca operativa
+    {user_id: user.id, course_id: 26, follow: true}, #sta seguendo lamma: Fondamenti di intelligenza artificiale
+    { user_id: user.id, course_id: 29, follow: true}, #reti di calcolatori
+    { user_id: user.id, course_id: 28, follow: true}, #progetto sistemi web
+    { user_id: user.id, course_id: 27, follow: false} # smesso di seguire: ricerca operativa
 ])
 
 teacher = Teacher.create!(name: "Evelina", surname: "Lamma", link_cv: "http://docente.unife.it/evelina.lamma/curriculum")
@@ -196,7 +196,7 @@ teacher.teacher_courses.create!([
 
 user = User.create!(id: 3, name: "User2 User2", email: "user2@user2.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
 user.user_courses.create!([
-    { id:5, user_id: user.id, course_id: 1, passed: true}
+    { user_id: user.id, course_id: 1, passed: true}
 ])
 
 user.course_questions.create!([
@@ -216,7 +216,7 @@ user.frequency_questions.create!([
 
 user = User.create!(id: 4, name: "User3 User3", email: "user3@user3.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
 user.user_courses.create!([
-    { id:6, user_id: user.id, course_id: 1, passed: true}
+    {  user_id: user.id, course_id: 1, passed: true}
 ])
 
 user.course_questions.create!([
