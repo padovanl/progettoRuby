@@ -28,7 +28,7 @@ class IndexCourses2 extends React.Component{
     }
 
     closeModal() {
-        this.setState({modalState: false}, this.props.reloadCourses());
+        this.setState({modalState: false});
     }
 
 
@@ -47,7 +47,10 @@ class IndexCourses2 extends React.Component{
         event.preventDefault(); //blocca comportamento predefinito: reload pagina e cancellazione di tutto
 
         console.log("nome corso: ", event.target[2].name, "id corso ", event.target[2].value );
-        this.setState({courseName: event.target[2].name, courseId: event.target[2].value});
+        const id = event.target[2].value;
+        this.setState({courseName: event.target[2].name, courseId: id});
+
+        const deleteCourse = this.props.deleteCourse;
 
         let myHeaders = new Headers();
         myHeaders.append('X-CSRF-Token', Rails.csrfToken());
@@ -66,8 +69,8 @@ class IndexCourses2 extends React.Component{
         const request = new Request('/follow', options);
 
         fetch(request)
-            .then(response => {
-                return response.json();
+            .then(function(){
+                deleteCourse(id)
             })
             .catch(error => console.log(error));
     }

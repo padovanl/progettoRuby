@@ -32,11 +32,12 @@ class SearchItem2 extends React.Component {
         this.searchCourses = this.searchCourses.bind(this);
         this.resetAdvancedSearch = this.resetAdvancedSearch.bind(this);
         this.setSelectType = this.setSelectType.bind(this);
-        this.reloadCourses = this.reloadCourses.bind(this);
+      //  this.reloadCourses = this.reloadCourses.bind(this);
         this.onChange = this.onChange.bind(this);
         this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
         this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
-        this.getAllNames = this.getAllNames.bind(this)
+        this.getAllNames = this.getAllNames.bind(this);
+        this.deleteCourse = this.deleteCourse.bind(this)
 
     }
 
@@ -92,23 +93,23 @@ class SearchItem2 extends React.Component {
         )
     }
 
-    reloadCourses(){
-        this.setState({page:1, disabledNext: false, url: updateUrl(this.props.url, 1, this.state.degreen, this.state.degreet, this.state.category, this.state.query)},
-            () =>  getItems(this.state.url)
-                .then(courses => {
-                    if (courses.length === 0){
-                        console.log("courses. length", courses.length);
-                        this.setState({disabledNext: true});}
-                    this.setState({courses: courses})
-                })
-                .catch(this.handleError)
-        )
-    }
+    /*    reloadCourses(){
+            this.setState({page:1, disabledNext: false, url: updateUrl(this.props.url, 1, this.state.degreen, this.state.degreet, this.state.category, this.state.query)},
+                () =>  getItems(this.state.url)
+                    .then(courses => {
+                        if (courses.length === 0){
+                            console.log("courses. length", courses.length);
+                            this.setState({disabledNext: true});}
+                        this.setState({courses: courses})
+                    })
+                    .catch(is.handleError)
+            )
+        }
 
- /*   updateSearch(event){
-        this.setState({query: event.target.value.substr(0,20).toLowerCase()});
-    }
-*/
+     /*   updateSearch(event){
+            this.setState({query: event.target.value.substr(0,20).toLowerCase()});
+        }
+    */
     selectChanged(e){
         this.setState({category: e.target.value});
     }
@@ -179,10 +180,17 @@ class SearchItem2 extends React.Component {
     };
 
 
+    deleteCourse(id){
+        console.log("delete course id: ", id);
+        let filteredArray = this.state.courses.filter(item => item.id != id);
+        this.setState({courses: filteredArray});
+    }
+
+
     render(){
         let searchButton;
         if (this.state.query === '' || (this.props.last_page === true && this.state.changedInputSearch===false))
-            searchButton = <div className={' button-search gap'} onClick={(e)=>this.searchCourses(e)} > <span>All</span> </div>;
+            searchButton = <div className=' button-search gap' onClick={(e)=>this.searchCourses(e)} > <span>All</span> </div>;
         else
             searchButton = <button className=' button-search gap' type={"submit"} > <span>Search</span></button>;
 
@@ -212,7 +220,7 @@ class SearchItem2 extends React.Component {
                                                        onChangePage={this.onChangePage}
                                                        disabledNext={this.state.disabledNext}
                                                        message={this.state.message}
-                                                       reloadCourses={this.reloadCourses}
+                                                       deleteCourse={(id) => this.deleteCourse(id)}
                                         />
         }
         else{
@@ -223,7 +231,7 @@ class SearchItem2 extends React.Component {
                                                        onChangePage={this.onChangePage}
                                                        disabledNext={this.state.disabledNext}
                                                        message={this.state.message}
-                                                       reloadCourses={this.reloadCourses}
+                                                       deleteCourse={(id) => this.deleteCourse(id)}
             />
         }
 

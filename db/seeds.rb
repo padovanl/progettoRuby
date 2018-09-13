@@ -109,7 +109,6 @@ user.user_courses.create!([
     {id:4, user_id: user.id, course_id: 27, follow: false} # smesso di seguire: ricerca operativa
 ])
 
-#Teacher.create!(name: "Cesare", surname: "Stefanelli", link_cv: "http://docente.unife.it/cesare.stefanelli")
 teacher = Teacher.create!(name: "Evelina", surname: "Lamma", link_cv: "http://docente.unife.it/evelina.lamma/curriculum")
 teacher.teacher_courses.create!([
       {year: "1990-1991", teacher_id: teacher.id, course_id: 26},
@@ -217,7 +216,7 @@ user.frequency_questions.create!([
 
 user = User.create!(id: 4, name: "User3 User3", email: "user3@user3.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
 user.user_courses.create!([
-    { id:7, user_id: user.id, course_id: 1, passed: true}
+    { id:6, user_id: user.id, course_id: 1, passed: true}
 ])
 
 user.course_questions.create!([
@@ -286,7 +285,7 @@ user = User.second
                             {content: Faker::Hobbit.quote, user_id: user.id}])
 end
 
-=begin
+
 user = User.second
 5.times do
   Rep.create!(
@@ -317,4 +316,3 @@ end
 end
 
 #UserCourse.create!(user_id: User.first.id, course_id: Course.first.id)
-=end

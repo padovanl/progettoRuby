@@ -1,5 +1,5 @@
 class CommentMailer < ApplicationMailer
-  default from: 'noreply@company.com'
+  default :from => 'BRAIN_STEAM'
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
