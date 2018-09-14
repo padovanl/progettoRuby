@@ -2,9 +2,6 @@ class BodyStatisticCourse extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            statistic: '',
-        };
     }
 
     getStatisticData() {
@@ -17,7 +14,7 @@ class BodyStatisticCourse extends React.Component {
     render(){
         return(
             <div>
-                <AllStatisticCourse course_id={this.props.course_id} user_id={this.props.user_id} />
+                <AllStatisticCourse statistic_values={this.props.statistic_values} />
             </div>
         )
     }

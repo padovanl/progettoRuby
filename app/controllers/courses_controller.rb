@@ -59,6 +59,17 @@ class CoursesController < ApplicationController
     end
     #sistemare current teacher course nel modello e trovare il modo di beccare il professore più recente
 
+
+    array_record_statistiche = UserCourse.where("passed = ? AND course_id = ?", true, params[:id])
+    @mapping_statistiche = Course.get_statistical_informations(array_record_statistiche)
+
+
+
+
+
+
+
+
   end
 
 

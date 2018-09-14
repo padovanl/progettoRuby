@@ -211,7 +211,7 @@ ActiveRecord::Schema.define(version: 2018_09_06_150938) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "course_id"
-    t.boolean "passed"
+    t.boolean "passed", default: false
     t.integer "estimate_difficulty"
     t.integer "material_quality"
     t.integer "explanation"

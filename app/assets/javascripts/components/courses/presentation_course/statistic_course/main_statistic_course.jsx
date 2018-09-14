@@ -7,7 +7,7 @@ class MainStatisticCourse extends React.Component {
     render() {
         return (
             <div>
-                <BodyStatisticCourse course_id={this.props.course_id} user_id={this.props.user_id}/>
+                <BodyStatisticCourse statistic_values={this.props.statistic_values}/>
             </div>
         )
     }
