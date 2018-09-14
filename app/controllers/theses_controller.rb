@@ -5,7 +5,7 @@ class ThesesController < ApplicationController
   end
 
   def index
-    @theses =Thesis.all.page(params[:page]).per(3)
+    @theses =Thesis.reduce(params).order(created_at: :desc).page(params[:page]).per(3)
     @last_page = @theses.total_pages
     @current_user_avatar = get_avatar_image
     respond_to do |format|

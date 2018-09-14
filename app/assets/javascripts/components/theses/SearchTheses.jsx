@@ -13,8 +13,8 @@ class SearchTheses extends React.Component {
             teachers: [],
             //form for search theses
             selected_thesis_title: '',
-            selected_tag: '',
-            selected_teacher: '',
+            Tags: '',
+            Teachers: '',
 
             message: ''
         };
@@ -62,8 +62,8 @@ class SearchTheses extends React.Component {
 
         const {
             selected_thesis_title,
-            selected_tag,
-            selected_teacher,
+            Tags,
+            Teachers,
             } = this.state;
 
 
@@ -71,10 +71,10 @@ class SearchTheses extends React.Component {
         let url='';
         if(selected_thesis_title !== '')
             url += '&thesis_title=' + selected_thesis_title;
-        if (selected_tag!=='')
-            url += '&tag=' + selected_tag;
-        if (selected_teacher!=='')
-            url += '&teacher=' + selected_teacher;
+        if (Tags!=='')
+            url += '&tag=' + Tags;
+        if (Teachers!=='')
+            url += '&teacher=' + Teachers;
 
 
         getItems(URL+url)
@@ -86,6 +86,7 @@ class SearchTheses extends React.Component {
 
 
     handleChange(e) {
+        console.log("name: ", e.target.name);
         this.setState({[e.target.name]: e.target.value});
     }
 
@@ -151,7 +152,7 @@ class SearchTheses extends React.Component {
                 <li className="drawer-menu-item ">
                     <div className="control has-icons-left">
                         <div className={"select "}>
-                            <select name="Tags" >
+                            <select name="Tags" onClick={(e)=>this.handleChange(e)}>
                                 <option value="">{"- Select -"}</option>
                                 {tags}
                             </select>
@@ -165,7 +166,7 @@ class SearchTheses extends React.Component {
                 <li className="drawer-menu-item">
                     <div className="control has-icons-left">
                         <div className={"select "}>
-                            <select name="Teachers" >
+                            <select name="Teachers" onClick={(e)=>this.handleChange(e)}>
                                 <option value="">{"- Select -"}</option>
                                 {teachers}
                             </select>

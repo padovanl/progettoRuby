@@ -7,8 +7,8 @@ class Thesis < ApplicationRecord
 
 
   reduces self.all, filters: [
-      ->(thesis_title:) { where('title ILIKE ?', "%#{thesis_title}% ")},
-      ->(tag:) { where(get_tags(tag))},
+      ->(thesis_title:) { where('lower(title ) like ?', "%#{thesis_title.downcase}%")},
+      ->(tag:) { get_tags(tag)},
       ->(teacher:) { where(teacher_id: teacher) },
   ]
 
@@ -20,7 +20,7 @@ class Thesis < ApplicationRecord
   end
 
   def self.get_tags(id)
-    includes(:thesis_tags).references(:thesis_tags).where(tag_id: id)
+    eager_load(:thesis_tags).where('thesis_tags.tag_id = '+id)
   end
 
 end

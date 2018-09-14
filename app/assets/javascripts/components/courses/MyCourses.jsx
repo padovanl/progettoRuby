@@ -84,7 +84,7 @@ class MyCourses extends React.Component{
 
     render(){
         let filteredCourses;
-        if (this.props.courses.length !== 0 || this.props.message === '')
+        if (this.props.message === '')
             filteredCourses = this.props.courses.filter((item) => {
                     return item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1; //tutti
                 }
