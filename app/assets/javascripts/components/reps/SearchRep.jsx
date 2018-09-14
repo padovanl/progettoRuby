@@ -110,7 +110,7 @@ class SearchRep extends React.Component {
         const value =this.state.selected_course;
         const suggestions = this.state.suggestions;
         const inputProps = {
-            placeholder:"Search courses by name",
+            placeholder:"Search courses",
             value,
             onChange: this.onChange,
             type: "search",
@@ -120,7 +120,7 @@ class SearchRep extends React.Component {
 
         return(
             <form onSubmit={(e) => this.handleSearch(e)}>
-                <li>
+                <li className="drawer-menu-item">
                     <Autosuggest
                         suggestions={suggestions}
                         onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}

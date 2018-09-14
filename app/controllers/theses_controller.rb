@@ -1,5 +1,9 @@
 class ThesesController < ApplicationController
 
+  def theses_title
+    render json: Thesis.get_titles, each_serializer: ThesesNameSerializer
+  end
+
   def index
     @theses =Thesis.all.page(params[:page]).per(3)
     @last_page = @theses.total_pages

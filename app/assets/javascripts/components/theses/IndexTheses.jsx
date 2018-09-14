@@ -1,3 +1,7 @@
+function updateIndexTheses(u, ts){
+    this.setState({url: u, theses: ts, page:1, disabledNext: false})
+}
+
 class IndexTheses extends React.Component {
     constructor(props) {
         super(props);
@@ -11,7 +15,7 @@ class IndexTheses extends React.Component {
             courseNames: []
         };
         this.getAllTheses = this.getAllTheses.bind(this);
-        updateIndexReps = updateIndexReps.bind(this);
+        updateIndexTheses = updateIndexTheses.bind(this);
     }
 
 
