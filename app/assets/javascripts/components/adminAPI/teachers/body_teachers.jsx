@@ -70,19 +70,24 @@ class BodyTeacher extends React.Component {
         let body = JSON.stringify({teacher: {name: name, surname: surname, link_cv: link_cv} })
 
         if(name != '' && surname != '' && link_cv != ''){
-            fetch('/api/v1/teachers', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: body,
-            }).then((response) => {return response.json()})
-                .then((teacher)=>{
-                    this.addNewTeacher(teacher);
-                    document.getElementById('insertNewTeacher1').value = '';
-                    document.getElementById('insertNewTeacher2').value = '';
-                    document.getElementById('insertNewTeacher3').value = '';
-                })
+            if(this.test(link_cv)){
+                fetch('/api/v1/teachers', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: body,
+                }).then((response) => {return response.json()})
+                    .then((teacher)=>{
+                        this.addNewTeacher(teacher);
+                        document.getElementById('insertNewTeacher1').value = '';
+                        document.getElementById('insertNewTeacher2').value = '';
+                        document.getElementById('insertNewTeacher3').value = '';
+                    })
+            }else{
+                toastr.error("Il link deve essere un URL.")
+            }
+
         }else{
             alert('I campi non possono essere vuoti!')
         }
@@ -101,6 +106,14 @@ class BodyTeacher extends React.Component {
             .then((response) => {return response.json()})
             .then((data) => {this.setState({ teachers: data }) });
     }
+
+    test(stringa) {
+        var patt = 'https?:\/\/(w{3})?(.[a-z\-\=\?0-9]+)+'
+        reg = new RegExp(patt);
+        return reg.test(stringa);
+
+    }
+
 
 
     render(){

@@ -13,6 +13,8 @@ const NewTeacher = (props) => {
         display: "none",
     };
 
+
+
     return(
         <div style={hideStyle} id="insertTeacherDiv">
             <fieldset>
