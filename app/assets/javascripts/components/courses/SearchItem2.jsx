@@ -16,7 +16,7 @@ class SearchItem2 extends React.Component {
             courses: [],
             //next button
             page: 1,
-            disabledNext: false,
+            disabledNext: true,
             //error or advertisement
             message: '',
             //allcourses or mycourses

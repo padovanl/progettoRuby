@@ -97,7 +97,12 @@ user.tags.create!([
   { id:1 , name: "Ricerca" },
   { id:2 , name: "Sviluppo Web" },
   { id:3 , name: "Sviluppo Desktop" },
-  { id:4 , name: "Sviluppo mobile" }
+  { id:4 , name: "Sviluppo mobile" },
+  { id:5 , name: "Ricerca Operativa" },
+  { id:6 , name: "Client Server" },
+  { id:7 , name: "CSP" },
+  { id:8 , name: "VRP" },
+  { id:9 , name: "Green" }
 ])
 
 
@@ -125,15 +130,31 @@ teacher.teacher_courses.create!([
     {year: "2001-2002", teacher_id: teacher.id, course_id: 27},
     {year: "2002-2003", teacher_id: teacher.id, course_id: 27}
 ])
+teacher.theses.create!([
+   {id:1, title: "Titolo Green VRP",
+    content: "un commesso viaggiatore deve visitare n clienti percorrendo un tour che inizia e termina al deposito. Poiché utilizza un veicolo elettrico che ha autonomia K km, all’occorrenza tra un cliente e il successivo, può visitare una stazione di ricarica dove esegue la ricarica completa acquistando nuovamente autonomia K. Note le distanze tra il deposito, i clienti e le stazioni di ricarica, si determini il tour di durata minima.
+si estenda il problema precedente considerando una flotta di m veicoli identici, di capacità Q, e la domanda qi >0 di ogni cliente i. Si determinino gli m tour di costo minimo in modo che tutti i clienti siano serviti, un veicolo visiti una stazione di ricarica almeno ogni K km, e la domanda dei clienti serviti dallo stesso veicolo non superi Q.
+si estenda il problema precedente permettendo ai veicoli di fare delle ricariche parziali (proporzionali alla durata della sosta presso una stazione di ricarica), e minimizzando la somma delle durate dei tours."},
+   {id:2, title: "Titolo TSP", content: "A partire dalla base (nodo 0) un tecnico deve rifornire n vending machines poste in n siti diversi, che aprono a un tempo ti, e rientrare alla base. Se arriva in loco prima di ti deve attendere fino a ti, se si arriva al tempo tj>ti si paga una penale di (tj-ti). Noti i tempi di percorrenza da sito a sito e alla base, si determini il tour di costo minimo (durata + penalità) che visita tutti i siti e la base, partendo al tempo t0."},
+   {id:3, title: "Titolo Pedibus", content: "dati di input: gli indirizzi di n bambini (1 indirizzo per bambino) e l’indirizzo della scuola. Determinare il numero minimo di percorsi che partono dalla casa di un bambino e terminano alla scuola passando da altre case, in modo tale che: ogni bambino i sia parte di ex 1 percorso e la durata del suo percorso tra casa e scuola sia non superiore a  volte la sua distanza minima dalla scuola (es. =1.5). Suggerimento: lavorare sul grafo astratto completo, i cui nodi sono gli indirizzi e il costo degli archi è la durata del percorso minimo nodo-nodo sulla rete stradale."},
+   {id:4, title: "Titolo Degree constrained spanning tree", content: "(2 persone) si cerca lo spanning tree di costo minimo di radice r tale che ogni nodo non abbia + di k archi incidenti."}
+])
 
 
 
 teacher = Teacher.create!(name: "Marco", surname: "Gavanelli", link_cv: "http://docente.unife.it/marco.gavanelli/curriculum")
 
 teacher.theses.create!([
-    {title: "Titolo Uno", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
-    {title: "Titolo Due", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},
-    {title: "Titolo Tre", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
+    {id:5, title: "Titolo Infermiera", content: "Una infermiera deve visitare a casa dei pazienti. Ogni paziente va visitato in una determinata fascia oraria. Il file pazienti.pl contiene per ogni paziente un fatto
+paziente(ID,OrarioMinimo,OrarioMassimo)dove ID è un numero intero che identifica univocamente il paziente OrarioMinimo e OrarioMassimo sono il minimo e massimo orario in cui deve avvenire la visita. Il file pazienti.pl contiene inoltre, per ogni coppia di pazienti (diversi) un fatto
+distanza(Paziente1,Paziente2,Tempo) che indica quanto tempo è necessario per andare dal domicilio del Paziente1 a quello del Paziente2.L'infermiera parte dall'ospedale e alla fine della giornata ritorna all'ospedale, indicato nel file pazienti.pl dall'identificatore 0.
+Si scriva un programma CLP(FD) che calcola qual è il tragitto ottimale dell'infermiera, in modo da minimizzare il tempo totale impiegato dall'infermiera.
+Si supponga per semplicità che la visita sia istantanea (abbia durata nulla) e che l'infermiera non possa effettuare pause fra una visita e l'altra, ma riparta immediatamente per la destinazione successiva (il prossimo paziente o l'ospedale, se si sono già visitati tutti i pazienti)."},
+
+    {id:6, title: "Titolo Attività", content: "Un insieme di attività è definito tramite il predicato task/2 nel file task.pl . Il predicato task è definito tramite alcuni fatti Prolog, con questa sintassi:
+task(ID,Durata). doveID è un identificatore univoco dell'attività. Durata è un intero che rappresenta la durata dell'attività. Ciascuna attività deve essere eseguita su una macchina e, una volta iniziata, l'attività non può essere interrotta. Ogni macchina può eseguire una sola attività alla volta.
+Poiché si vuole terminare tutte le attività entro un tempo dato Tmax, si desidera sapere qual è il numero minimo di macchine necessario.
+Si scriva un programma CLP(FD) che, preso in ingresso un parametro Tmax, fornisce il minimo numero di macchine necessario per eseguire tutti i task e l'istante di tempo in cui ciascuna attività inizia."},
 ])
 
 teacher.teacher_courses.create!([
@@ -173,6 +194,38 @@ teacher.teacher_courses.create!([
     {year: "2002-2003", teacher_id: teacher.id, course_id: 22},
     {year: "2001-2002", teacher_id: teacher.id, course_id: 23},
     {year: "2017-2018", teacher_id: teacher.id, course_id: 24}
+])
+
+teacher.theses.create!([
+   {id:7, title: "Titolo EchoReverse", content: "Si progetti un'applicazione distribuita Client/Server utilizzando le socket datagram in Java. Il Client deve offrire la seguente interfaccia:
+java EchoReverseClient nodoServer portaServer dove nodoServer e portaServer sono rispettivamente il nome della macchina e il numero di porta su cui il Server è in ascolto.
+Il Client deve richiedere all’utente le stringhe da inviare al processo Server, che è incaricato di invertirle e rimandarle indietro al Client. Per esempio, se il Client invia, la stringa 'Ciao mondo', il Server deve restituire al Client la stringa 'odnom oaiC'."},
+
+   {id:8, title: "Titolo Remote Square", content: "Si realizzi un'applicazione distribuita che permetta di calcolare il quadrato dei numeri inseriti dall'utente a terminale. L'applicazione deve avere la seguente interfaccia:
+java RemoteSquareClient hostname porta dove hostname è il nome dell'host dove risiede il Server e porta è il numero di porta a cui esso è associato.
+Per prima cosa, il Client deve interfacciarsi con l'utente, da cui riceve, via terminale un numero intero N. Il Client deve quindi trasmettere il numero N al Server, che a sua volta dovrà occuparsi di calcolare il quadrato di N (ovverosia N*N) e di restituirlo al Client, che lo stamperà a video.
+Al termine di ogni richiesta, il Client dovrà attendere che l'utente inserisca un nuovo numero. Il Client dovrà terminare nel caso l'utente inserisca la stringa 'fine'."}
+])
+
+
+ThesisTag.create!([
+    #nonato
+    {tag_id: 1, thesis_id: 1},
+    {tag_id: 5, thesis_id: 1},
+    {tag_id: 9, thesis_id: 1},
+    {tag_id: 8, thesis_id: 1},
+    {tag_id: 1, thesis_id: 2},
+    {tag_id: 5, thesis_id: 2},
+    {tag_id: 5, thesis_id: 3},
+    {tag_id: 5, thesis_id: 4},
+    #gavanelli
+    {tag_id: 7, thesis_id: 5},
+    {tag_id: 7, thesis_id: 6},
+    #tortonesi
+    {tag_id: 6, thesis_id: 7},
+    {tag_id: 3, thesis_id: 7},
+    {tag_id: 6, thesis_id: 8},
+    {tag_id: 3, thesis_id: 8},
 ])
 
 

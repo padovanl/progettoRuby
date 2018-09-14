@@ -1,0 +1,49 @@
+<html>
+
+  <body class="drawer drawer--left">
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+
+    <header role="banner">
+      <button type="button" class="drawer-toggle drawer-hamburger top-gap">
+        <span class="sr-only">toggle navigation</span>
+        <span class="drawer-hamburger-icon"></span>
+      </button>
+      <nav class="drawer-nav top-gap" role="navigation">
+        <ul class="drawer-menu top-gap">
+          <li class="drawer-brand">Search</li>
+          <%= react_component 'SearchTheses', current_user: @current_user%>
+        </ul>
+      </nav>
+    </header>
+    <main role="main">
+      <br/>
+      <div align="center">
+        <h2>Qui tutte le tesi disponibili</h2>
+        <h3><strong>Per trovare più facilmente la testi che fa per te, prova ad effettuare una ricerca per tag :-)</strong></h3>
+        <h4> Puoi anche inviare una email al prof per chiedergli più informazioni!</h4>
+        <hr/>
+      </div>
+
+      <div class="myColumn-lg">
+        <div class="row">
+          <%= react_component 'IndexTheses',  last_page: @last_page, url: "/theses.json?page=", current_user_image: @current_user_image%>
+        </div>
+      </div>
+
+    </main>
+
+
+
+    <script>
+        $(document).ready(function() {
+            $('.drawer').drawer();
+        });
+    </script>
+
+  </body>
+
+
+
+</html>
