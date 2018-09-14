@@ -108,7 +108,7 @@ class BodyTeacher extends React.Component {
     }
 
     test(stringa) {
-        var patt = 'https?:\/\/(w{3})?(.[a-z\-\=\?0-9]+)+'
+        var patt = 'https?:\/\/(w{3})?(.[a-z\-\=\?0-9]+)+';
         reg = new RegExp(patt);
         return reg.test(stringa);
 

@@ -2,7 +2,7 @@ const AllTheses = (props) => {
 
     var theses = props.theses.map((thesis) => {
         return(
-            <Thesis thesis={thesis} handleDelete={props.handleDelete} handleUpdate={props.handleUpdate} />
+            <ThesisDash thesis={thesis} handleDelete={props.handleDelete} handleUpdate={props.handleUpdate} />
         )
     })
 

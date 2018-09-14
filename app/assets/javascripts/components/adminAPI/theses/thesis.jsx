@@ -1,4 +1,4 @@
-class Thesis extends React.Component{
+class ThesisDash extends React.Component{
 
     constructor(props){
         super(props);

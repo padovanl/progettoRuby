@@ -89,7 +89,9 @@
         </section>
         <br>
         <div class="columns">
-          <div class="column"></div>
+          <div class="column">
+            <button class="button is-info" style="border-radius: 50px;" onclick="showTagInsert();">Inserisci nuovo tag</button>
+          </div>
           <div class="column is-8">
             <%= react_component 'MainTag' %>
           </div>
@@ -432,6 +434,11 @@
     function showTeacherInsert() {
         $("#insertTeacherDiv").css("display", "inline");
         scroll_to("insertTeacherDiv");
+    }
+
+    function showTagInsert() {
+        $("#insertTagDiv").css("display", "inline");
+        scroll_to("insertTagDiv");
     }
 
     function scroll_to(id) {
