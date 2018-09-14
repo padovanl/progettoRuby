@@ -116,7 +116,8 @@ teacher.teacher_courses.create!([
       {year: "1992-1993", teacher_id: teacher.id, course_id: 26},
       {year: "1994-1995", teacher_id: teacher.id, course_id: 26},
       {year: "2002-2003", teacher_id: teacher.id, course_id: 13},
-      {year: "2001-2002", teacher_id: teacher.id, course_id: 14}
+      {year: "2001-2002", teacher_id: teacher.id, course_id: 14},
+      {year: "1990-1991", teacher_id: teacher.id, course_id: 1}
   ])
 
 
@@ -124,7 +125,8 @@ teacher = Teacher.create!(name: "Maddalena", surname: "Nonato", link_cv: "http:/
 teacher.teacher_courses.create!([
     {year: "2000-2001", teacher_id: teacher.id, course_id: 27},
     {year: "2001-2002", teacher_id: teacher.id, course_id: 27},
-    {year: "2002-2003", teacher_id: teacher.id, course_id: 27}
+    {year: "2002-2003", teacher_id: teacher.id, course_id: 27},
+    {year: "1992-1993", teacher_id: teacher.id, course_id: 1}
 ])
 
 

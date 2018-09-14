@@ -157,7 +157,9 @@ class Course < ApplicationRecord
   end
 
 
-  def self.get_statistical_informations(record_collection)
+  def self.get_statistical_informations(course_id)
+
+    record_collection = UserCourse.where("passed = ? AND course_id = ?", true, course_id)
 
     lista_giudizi = ['insufficiente', 'sufficiente','discreto','buono','molto buono' ];
     mapping_statistiche = Hash.new
@@ -192,6 +194,14 @@ class Course < ApplicationRecord
 
   end
 
+  def self.get_history_teachers(course)
+    arr = Array.new
+    array_teacher_courses = course.teacher_courses.order(year: :desc).distinct.to_a
+    array_teacher_courses.each do |teacher_course|
+      arr.append(teacher_course.teacher)
+    end
+    return arr
+  end
 
 
 end
