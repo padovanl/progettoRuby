@@ -31,7 +31,9 @@
         </section>
         <br />
         <div class="columns">
-          <div class="column"></div>
+          <div class="column">
+            <button class="button is-info" style="border-radius: 50px;" onclick="showTeacherInsert();">Inserisci nuovo professore</button>
+          </div>
           <div class="column is-8">
             <%= react_component 'MainTeacher' %>
           </div>
@@ -87,7 +89,9 @@
         </section>
         <br>
         <div class="columns">
-          <div class="column"></div>
+          <div class="column">
+            <button class="button is-info" style="border-radius: 50px;" onclick="showTagInsert();">Inserisci nuovo tag</button>
+          </div>
           <div class="column is-8">
             <%= react_component 'MainTag' %>
           </div>
@@ -110,7 +114,9 @@
         </section>
         <br>
         <div class="columns">
-          <div class="column"></div>
+          <div class="column">
+            <button class="button is-info" style="border-radius: 50px;" onclick="showCdlInsert();">Inserisci nuovo CdL</button>
+          </div>
           <div class="column is-8">
             <%= react_component 'MainDegreeCourses' %>
           </div>
@@ -148,20 +154,28 @@
 
 
 
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
 
 
-
-
-
-  <br/>
-  <br/>
-  <br/>
-  <br/>
-  <br/>
-  <br/>
-  <br/>
-  <br/>
-  <br/>
 
 
 </div>
@@ -417,5 +431,27 @@
         evt.currentTarget.className += " active";
     }
     document.getElementById("btnProf").click()
+
+
+    function showTeacherInsert() {
+        $("#insertTeacherDiv").css("display", "inline");
+        scroll_to("insertTeacherDiv");
+    }
+
+    function showTagInsert() {
+        $("#insertTagDiv").css("display", "inline");
+        scroll_to("insertTagDiv");
+    }
+
+    function showCdlInsert() {
+        $("#insertCdlDiv").css("display", "inline");
+        scroll_to("insertCdlDiv");
+    }
+
+    function scroll_to(id) {
+        $('html,body').animate({
+            scrollTop: $('#' + id).offset().top
+        }, 'slow');
+    }
 </script>
 

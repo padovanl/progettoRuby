@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'theses/index'
+  get 'theses/show'
   get 'user_courses/show'
   get 'welcome/index'
   root 'welcome#index'
@@ -17,7 +19,8 @@ Rails.application.routes.draw do
   resources :posts
   resources :comments
   resources :courses, only: [:show]
-  resources :reps
+  resources :reps, only: [:index, :create, :update, :destroy]
+  resources :theses, only: [:index, :show]
 
 
   #courses (user)
@@ -43,12 +46,17 @@ Rails.application.routes.draw do
 
   get '/allcourses', to: 'courses#allcourses'
   get :mycourses, controller: :courses
-  get :search_degrees, controller: :courses
-  get :courses_name, controller: :courses
   post :follow, controller: :courses
   put :unfollow, controller: :courses
 
+  #rep_mail
+  post :send_email, controller: :reps
+
+  #get names
   get :teachers_name, controller: :teachers
+  get :courses_name, controller: :courses
+  get :search_degrees, controller: :courses
+  get :theses_title, controller: :theses
 
 
 
@@ -126,6 +134,8 @@ Rails.application.routes.draw do
   get "/dashboard/degree_course/:degree_course_id/course/teachers/:course_id", to: "admin#teacher_courses"
   get "/api/v1/theses/search/prof/:teacher_id", to: "api/v1/theses#searchByProf"
   get "/api/v1/theses/search/title/(:string)", to: "api/v1/theses#searchByTitle"
+  get "/dashboard/mail", to: "admin#mailing_list"
+  post "/dashboard/mail", to: "admin#send_emails"
 
   get "/api/v1/users", to: "api/v1/users#index"
   post "/api/v1/users/set_admin/:user_id", to: "api/v1/users#setAdmin"

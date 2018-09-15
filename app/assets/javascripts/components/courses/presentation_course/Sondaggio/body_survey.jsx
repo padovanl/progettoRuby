@@ -40,6 +40,7 @@ class BodySurvey extends React.Component {
                             alert("Errore!")
                         } else {
                             this.updateCourseQuestion();
+                            
                         }
 
                     })

@@ -12,7 +12,13 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
   <script src="https://unpkg.com/react-autosuggest/dist/standalone/autosuggest.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <!-- drawer.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.2/css/drawer.min.css">
+  <!-- jquery & iScroll -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/iScroll/5.2.0/iscroll.min.js"></script>
+  <!-- drawer.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.2/js/drawer.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,7 +79,7 @@
           <a class="navbar-item " href=<%= reps_path %>>
             <span class="bd-emoji"><%= fa_icon "hands-helping" %></span>&nbsp;Ripetizioni
           </a>
-          <a class="navbar-item " href="#">
+          <a class="navbar-item " href=<%= theses_path %>>
             <span class="bd-emoji"><%= fa_icon "user-graduate" %></span>&nbsp;Proposte di tesi
           </a>
         <% end %>
@@ -96,6 +102,9 @@
               <div class="navbar-dropdown ">
                 <a class="navbar-item " href="<%= dashboard_path %>">
                   Dashboard
+                </a>
+                <a class="navbar-item " href="<%= dashboard_mail_path %>">
+                  Mailing list
                 </a>
                 <a class="navbar-item " href="#">
                   Segnalazioni

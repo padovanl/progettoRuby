@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_06_150938) do
+ActiveRecord::Schema.define(version: 2018_09_11_135109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,9 +141,9 @@ ActiveRecord::Schema.define(version: 2018_09_06_150938) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "course_id"
-    t.boolean "offer", null: false
+    t.boolean "offer"
     t.string "user_competence"
-    t.decimal "price_hours", precision: 6, scale: 2, null: false
+    t.decimal "price_hours", precision: 6, scale: 2
     t.string "place"
     t.boolean "home_service"
     t.string "week_days"
@@ -257,6 +257,7 @@ ActiveRecord::Schema.define(version: 2018_09_06_150938) do
     t.string "name"
     t.text "image"
     t.boolean "admin", default: false
+    t.boolean "news"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

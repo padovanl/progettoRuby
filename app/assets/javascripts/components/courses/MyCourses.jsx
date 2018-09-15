@@ -8,7 +8,6 @@ class MyCourses extends React.Component{
             event_target: null,
             courseName: '',
             courseId: ''
-            //autoCompleteResults: [],
         };
 
         this.showModal = this.showModal.bind(this);
@@ -17,12 +16,12 @@ class MyCourses extends React.Component{
     }
 
     componentWillReceiveProps(nextProps){
-        console.log("IC receive props");
+ /*       console.log("IC receive props");
         console.log("IC props courses: "+nextProps.courses);
         console.log("IC props page: "+nextProps.page);
         console.log("IC props last_page: "+nextProps.last_page);
         console.log("IC props url: "+nextProps.url);
-    }
+   */ }
 
     updateSearch(event){
         this.setState({search: event.target.value.substr(0,20)});
@@ -37,7 +36,7 @@ class MyCourses extends React.Component{
     }
 
     closeModal() {
-        this.setState({modalState: false}, this.props.reloadCourses());
+        this.setState({modalState: false});
     }
 
 
@@ -45,6 +44,9 @@ class MyCourses extends React.Component{
     handleUnfollow() {
         let myHeaders = new Headers();
         myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+
+        const deleteCourse = this.props.deleteCourse;
+        const id = this.state.courseId;
 
         const data = new FormData(this.state.event_target); // event.target gives you the native DOMNode
 
@@ -58,8 +60,9 @@ class MyCourses extends React.Component{
         const request = new Request('/unfollow', options);
 
         fetch(request)
-            .then(response => {
-                return response.json();
+            .then(function () {
+                console.log("course id 2: ", id);
+                deleteCourse(id);
             })
             .catch(error => console.log(error));
 
@@ -71,6 +74,7 @@ class MyCourses extends React.Component{
         event.preventDefault(); //blocca comportamento predefinito: reload pagina e cancellazione di tutto
         this.setState({event_target: event.target, courseName: event.target[1].name, courseId: event.target[1].value},
             () => this.showModal());
+        console.log("course id 1", this.state.courseId, " event", event.target[1].value)
     }
 
 
@@ -80,15 +84,12 @@ class MyCourses extends React.Component{
 
     render(){
         let filteredCourses;
-        if (this.props.courses.length !== 0)
+        if (this.props.message === '')
             filteredCourses = this.props.courses.filter((item) => {
                     return item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1; //tutti
                 }
             );
         else{
-            if (this.props.message === ''){
-                return ''
-            }
             return (<div className={"message is-danger gap"}  >
                         <div className="message-body">
                             {this.props.message }

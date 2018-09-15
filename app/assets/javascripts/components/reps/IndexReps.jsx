@@ -1,13 +1,16 @@
+function updateIndexReps(URL, reps){
+    this.setState({url: URL, reps: reps, page:1, disabledNext: false})
+}
+
 class IndexReps extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             reps: [],
-            url: this.props.url,
+            url: '',
             page:1,
             disabledNext: false,
-            search: '',
             tabs_activate: 'is-activate',
             courseNames:[]
         };
@@ -15,6 +18,7 @@ class IndexReps extends React.Component {
         this.showModal = this.showModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.addNewRep = this.addNewRep.bind(this);
+        updateIndexReps = updateIndexReps.bind(this);
     }
 
     componentWillMount(){
@@ -26,10 +30,6 @@ class IndexReps extends React.Component {
             .catch((e) => console.log(e))
     }
 
-
-    updateSearch(event){
-        this.setState({search: event.target.value.substr(0,20)});
-    }
 
     onChangePage() {
         this.setState({page: this.state.page +=1},this.getAllReps());
@@ -48,8 +48,7 @@ class IndexReps extends React.Component {
     }
 
     getAllReps(){
-        this.setState({url: updateUrl(this.props.url, this.state.page)},
-            ()=> getItems(this.state.url)
+        getItems(updateUrlReps(this.props.url, this.state.url, this.state.page))
             .then(data => {
                 if (data.length === 0){
                     this.setState({disabledNext: true})
@@ -58,8 +57,7 @@ class IndexReps extends React.Component {
                     this.setState({reps: this.state.reps.concat(data)})
                 }
             })
-            .catch(e => console.log(e))
-
+            .catch(e => console.log(e)
         )
     }
 
@@ -92,7 +90,7 @@ class IndexReps extends React.Component {
         return (
             <div className={"myColumn-lg"}>
 
-                <div className="infinite-container">
+                <div className="infinite-container" align="center">
                     <ItemReps items={this.state.reps} current_user_image={this.props.current_user_image}
                               current_user={this.props.current_user} courseNames={this.state.courseNames}
                               deleteRep={(id) => this.deleteRep(id)}
@@ -101,8 +99,6 @@ class IndexReps extends React.Component {
                 </div>
                 <div className='myRow'>
                     {buttonNext}
-                    <input className='input-form gap' type="text"  value={this.state.search}
-                           onChange={this.updateSearch.bind(this)} placeholder="Filter reps by course's name"/>
                 </div>
 
                 <a className={"fixed"} onClick={() => this.showModal()}>

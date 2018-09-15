@@ -52,6 +52,16 @@
                 <%= f.password_field :password_confirmation, autocomplete: "off", class: "input is-medium", style: "border-radius: 15px;", required: true %>
               </div>
 
+              <div class="field">
+                <p><small><strong>NEWSLETTER</strong></small></p>
+                <label class="checkbox">
+                  <%= f.check_box :news %>
+                  Accetto di ricevere email da BRAIN_STEAM.
+                </label>
+              </div>
+
+              <br>
+
               <div class="actions">
                 <%= f.submit "Sign up", class: "button is-medium is-rounded submit-action is-fullwidth"  %>
               </div>

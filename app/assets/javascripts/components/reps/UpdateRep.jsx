@@ -158,18 +158,18 @@ class UpdateRep extends React.Component {
 
         return(
             <section>
-                <a onClick={this.showModal}> <i className="fas fa-pen"/> </a>
+                <a onClick={this.showModal}> <i title="Modifying" className="fas fa-pen"/> </a>
 
                 <div className={"modal " + (this.state.modalState ? "is-active" : "")}>
                     <div className="modal-background" onClick={this.closeModal} />
                     <div className="modal-card">
                         <header className="modal-card-head">
-                            <p className="modal-card-title">Update post: {this.state.title}</p>
+                            <p className="modal-card-title">Update post: {this.props.title}</p>
                             <button className="delete" aria-label="close" onClick={this.closeModal} />
                         </header>
 
                         <form ref={form => this.formEl = form} onSubmit={ (e) => this.handleUpdate(e, this.props.id) } className={classNames} noValidate>
-                            <section className="modal-card-body">
+                            <section className="modal-card-body overflow-modal">
 
                                 <div className="field">
                                     <div className="control">

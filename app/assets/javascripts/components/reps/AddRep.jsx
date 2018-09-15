@@ -1,3 +1,7 @@
+function confermeSubmit(){
+    alert("Ricorda che creando questo post, potresti riceve email nella posta usata per la registrazione :)")
+}
+
 class AddRep extends React.Component {
     constructor(props) {
         super(props);
@@ -20,7 +24,7 @@ class AddRep extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.closeModal = this.closeModal.bind(this);
-        this.validate = this.validate.bind(this)
+        this.validate = this.validate.bind(this);
     }
 
     validate(){
@@ -59,6 +63,8 @@ class AddRep extends React.Component {
         }
     }
 
+
+
     handleSubmit(event) {
         event.preventDefault();
         if (this.state.course === '- Select -' ) {
@@ -69,6 +75,9 @@ class AddRep extends React.Component {
         if (!this.validate()){
             return
         }
+
+        confermeSubmit();
+
 
         const addNewRep = this.props.addNewRep;
 
@@ -180,7 +189,7 @@ class AddRep extends React.Component {
                             <div className={"control has-icons-left " }>
                                 <div className={"control " }>
                                     <input className="input " type="text" placeholder="Competence "
-                                           pattern="[a-zA-Zàèéìòù,.!?()_ -]*"
+                                           pattern="[a-zA-Zàèéìòù0-9,.!?()_ -]*"
                                            title={"Sono vietati i caratteri speciali."}
                                            value={this.state.competence} name={"rep[user_competence]"} id={'competence'} onChange={(e) => this.handleChange(e)}/>
                                     <span className="icon is-small is-left">
@@ -209,7 +218,7 @@ class AddRep extends React.Component {
                             <label className="label">Place</label>
                             <div className={"control has-icons-left " }>
                                 <input className="input " type="text" placeholder="Place"
-                                       pattern="[a-zA-Zàèéìòù,.!?()_ -]*"
+                                       pattern="[a-zA-Zàèéìòù0-9,.!?()_ -]*"
                                        title={"Sono vietati i caratteri speciali."}
                                        value={this.state.place} name={"rep[place]"} id={'place'} onChange={(e) => this.handleChange(e)}/>
                                 <span className="icon is-small is-left">
@@ -239,7 +248,7 @@ class AddRep extends React.Component {
                             <label className="label">Week days</label>
                             <div className={"control has-icons-left " }>
                                 <input className="input " type="text" placeholder="Week days of lessons "
-                                       title={"Può contenere solo: lettere , . "}
+                                       title={"Può contenere solo: lettere virgole punti e spazi"}
                                        pattern="[a-zA-Zàèéìòù,. ]*"
                                        value={this.state.week_days} name={"rep[week_days]"}
                                        id={'week_days'} onChange={(e) => this.handleChange(e)}/>
@@ -255,7 +264,7 @@ class AddRep extends React.Component {
                             <label className="label">Description</label>
                             <div className={"control has-icons-left " }>
                                 <input className="input " type="text" placeholder="Description"
-                                       pattern="[a-zA-Zàèéìòù,.!?()_ -]*"
+                                       pattern="[a-zA-Zàèéìòù0-9,.!?()_ -]*"
                                        title={"Sono vietati i caratteri speciali."}
                                        value={this.state.description} name={"rep[description]"} id={'description'} onChange={(e) => this.handleChange(e)}/>
                                 <span className="icon is-small is-left">
@@ -283,7 +292,7 @@ class AddRep extends React.Component {
                     </header>
 
                 <form ref={form => this.formEl = form} onSubmit={ (e) => this.handleSubmit(e) } className={classNames} noValidate>
-                    <section className="modal-card-body">
+                    <section className="modal-card-body overflow-modal">
 
                             <div className="field">
                                 <div className="control">
@@ -302,7 +311,6 @@ class AddRep extends React.Component {
 
                     <footer className="modal-card-foot">
                         <button className="button is-success" type={"submit"}>Save post</button>
-                        <button className="button" onClick={this.closeModal}>Cancel</button>
                     </footer>
                 </form>
 

@@ -48,7 +48,7 @@
               </div>
 
               <div class="field">
-                <p><small><strong>PASSWORD</strong></small>&nbsp;<i>(lasciala bianca se non vuoi cambiarla)</i></p>
+                <p><small><strong>NUOVA PASSWORD</strong></small>&nbsp;<i>(lasciala bianca se non vuoi cambiarla)</i></p>
                 <%= f.password_field :password, autocomplete: "off", class: "input is-medium", style: "border-radius: 15px;" %>
                 <% if @minimum_password_length %>
                   <br />
@@ -62,9 +62,20 @@
               </div>
 
               <div class="field">
+                <p>
+                  <small><strong>NEWSLETTER</strong></small>
+                </p>
+                <label class="checkbox">
+                  <%= f.check_box :news %>
+                  Ricevi email da parte di BRAIN_STEAM.
+                </label>
+              </div>
+
+              <div class="field">
                 <p><small><strong>PASSWORD</strong></small>&nbsp;<i>(abbiamo bisogno della tua password per confermare i cambiamenti)</i></p>
                 <%= f.password_field :current_password, autocomplete: "off", class: "input is-medium", style: "border-radius: 15px;", required: true %>
               </div>
+
 
 
 
@@ -92,7 +103,11 @@
             alert("L'avatar deve avere uno dei seguenti formati: jpeg, jpg, png, gif.")
         }else{
             $('#btnSubmit').prop('disabled', false)
+            //cambio immagine
+
         }
 
     });
+
+
 </script>

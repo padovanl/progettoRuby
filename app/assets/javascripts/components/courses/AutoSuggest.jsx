@@ -2,7 +2,7 @@ function escapeRegexCharacters(str) {
     return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-function getSuggestions(value, courses, type) {
+function getSuggestions(value, item, type) {
     const escapedValue = escapeRegexCharacters(value.trim());
 
     if (escapedValue === '') {
@@ -11,10 +11,10 @@ function getSuggestions(value, courses, type) {
 
     const regex = new RegExp('^' + escapedValue, 'i');
 
-    if (type === 'Course')
-        return courses.filter(courses => regex.test(courses.name));
+    if (type === 'Course' || type === 'Theses')
+        return item.filter(item => regex.test(item.name));
     else
-        return courses.filter(courses => regex.test(courses.name) || regex.test(courses.surname))
+        return item.filter(item => regex.test(item.name) || regex.test(item.surname))
 
 }
 

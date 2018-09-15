@@ -4,10 +4,7 @@ class CoursesController < ApplicationController
  # before_filter :search_course
 
   def courses_name
-    @courses_name = Course.get_names
-    respond_to do |format|
-      format.json { render json: @courses_name }
-    end
+    render json: Course.all
   end
 
   def search_degrees
@@ -21,12 +18,13 @@ class CoursesController < ApplicationController
     @cs = Course.search_courses_not_followed(params[:degreen], params[:degreet], params[:category], params[:search], current_user.id).page(params[:page]).per(3)
     @last_page = @cs.total_pages
     @categories = %w[Course Data Teacher Year]
+    @per_page = %w[3, 10, 20, 30]
   end
 
   def mycourses
     @cs = Course.search_courses_followed(params[:degreen], params[:degreet], params[:category], params[:search], current_user.id).page(params[:page]).per(3)
     @last_page = @cs.total_pages
-    @categories = %w[Name Data Teacher Year]
+    @categories = %w[Course Data Teacher Year]
   end
 
   def follow

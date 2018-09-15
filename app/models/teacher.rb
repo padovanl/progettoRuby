@@ -4,6 +4,6 @@ class Teacher < ApplicationRecord
   has_many :theses, :dependent => :destroy
 
   def self.get_names_complete
-    select(:surname,:name).order(:surname)
+    select(:id, :surname,:name).order(:surname)
   end
 end

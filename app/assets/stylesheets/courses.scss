@@ -366,11 +366,11 @@ courses-ol li {
 .react-autosuggest__container {
   position: relative;
   display: inline-block;
-  margin: 1em;
 }
 
 .react-autosuggest__input {
-  width: 240px;
+  margin-top: 1em;
+  width: 200px;
   height: 30px;
   padding: 10px 20px;
   font-family: Helvetica, sans-serif;
@@ -397,12 +397,12 @@ courses-ol li {
   display: block;
   position: absolute;
   top: 51px;
-  width: 280px;
+  width: 200px;
   border: 1px solid #aaa;
   background-color: #fff;
   font-family: Helvetica, sans-serif;
   font-weight: 300;
-  font-size: 16px;
+  font-size: 15px;
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
   max-height: 200px;

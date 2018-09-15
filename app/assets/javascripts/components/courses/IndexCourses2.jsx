@@ -28,7 +28,7 @@ class IndexCourses2 extends React.Component{
     }
 
     closeModal() {
-        this.setState({modalState: false}, this.props.reloadCourses());
+        this.setState({modalState: false});
     }
 
 
@@ -47,7 +47,10 @@ class IndexCourses2 extends React.Component{
         event.preventDefault(); //blocca comportamento predefinito: reload pagina e cancellazione di tutto
 
         console.log("nome corso: ", event.target[2].name, "id corso ", event.target[2].value );
-        this.setState({courseName: event.target[2].name, courseId: event.target[2].value});
+        const id = event.target[2].value;
+        this.setState({courseName: event.target[2].name, courseId: id});
+
+        const deleteCourse = this.props.deleteCourse;
 
         let myHeaders = new Headers();
         myHeaders.append('X-CSRF-Token', Rails.csrfToken());
@@ -66,8 +69,8 @@ class IndexCourses2 extends React.Component{
         const request = new Request('/follow', options);
 
         fetch(request)
-            .then(response => {
-                return response.json();
+            .then(function(){
+                deleteCourse(id)
             })
             .catch(error => console.log(error));
     }
@@ -90,15 +93,12 @@ class IndexCourses2 extends React.Component{
 
     render(){
         let filteredCourses;
-        if (this.props.courses.length !== 0)
+        if (this.props.courses.length !== 0 || this.props.message === '')//message = '' caso in cui ho tolto il corso con follow
             filteredCourses = this.props.courses.filter((item) => {
                     return item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1; //tutti
                 }
             );
         else{
-            if (this.props.message === ''){
-                return ''
-            }
             return (<div className={"message is-danger gap"}  >
                         <div className="message-body">
                             {this.props.message }
@@ -125,7 +125,7 @@ class IndexCourses2 extends React.Component{
 
             let teachers = item.teachers.map( teacher => {
                 return (
-                        <li key={teacher.link_cv}>
+                        <li key={teacher.link_cv}  className="left-gap">
                             <a href={teacher.link_cv}> {teacher.surname} {teacher.name}</a>
                         </li>
                 )
@@ -136,7 +136,7 @@ class IndexCourses2 extends React.Component{
             return(
                 <div key={item.id} className={"relative"}>
                     <div className="nested infinite-item">
-                        <div>Materia: {item.name} e id: {item.id}</div>
+                        <div>Materia: <a href={"/courses/"+item.id}   >{item.name}</a> e id: {item.id}</div>
                         <div>Livello: {item.degreet}</div>
                         <div>Corso: {item.degreen}</div>
                         <div>Anno: {item.year}</div>
@@ -159,12 +159,12 @@ class IndexCourses2 extends React.Component{
         });
 
         return(
-            <div className='myColumn-lg' id="modal">
+            <div className='myColumn-lg'>
                 <hr className='gap'/>
                 <div className="wrapper infinite-container">{items}</div>
                 <div className='row'>
                     {buttonNext}
-                    <input className='input-form gap' type="text"  value={this.state.search}
+                    <input className='input-form gap left-gap' type="text"  value={this.state.search}
                            onChange={this.updateSearch.bind(this)} placeholder="Filter courses by name"/>
                 </div>
 

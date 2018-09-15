@@ -16,7 +16,7 @@ class SearchItem2 extends React.Component {
             courses: [],
             //next button
             page: 1,
-            disabledNext: false,
+            disabledNext: true,
             //error or advertisement
             message: '',
             //allcourses or mycourses
@@ -24,7 +24,8 @@ class SearchItem2 extends React.Component {
             //autocomplete
             //value: '', -> uso la query
             suggestions: [],
-            autoSuggestNames: []
+            autoSuggestNames: [],
+            per_page: 3
         };
         console.log("**** courses: ", this.state.autoSuggestNames);
         this.onChangePage = this.onChangePage.bind(this);
@@ -32,11 +33,12 @@ class SearchItem2 extends React.Component {
         this.searchCourses = this.searchCourses.bind(this);
         this.resetAdvancedSearch = this.resetAdvancedSearch.bind(this);
         this.setSelectType = this.setSelectType.bind(this);
-        this.reloadCourses = this.reloadCourses.bind(this);
+      //  this.reloadCourses = this.reloadCourses.bind(this);
         this.onChange = this.onChange.bind(this);
         this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
         this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
-        this.getAllNames = this.getAllNames.bind(this)
+        this.getAllNames = this.getAllNames.bind(this);
+        this.deleteCourse = this.deleteCourse.bind(this)
 
     }
 
@@ -57,7 +59,6 @@ class SearchItem2 extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState){
-        console.log("NEXT STATE CAT", nextState.category);
         if (nextState.category !== this.state.category){
             this.getAllNames(nextState.category)
         }
@@ -65,10 +66,6 @@ class SearchItem2 extends React.Component {
     }
 
 
-    checkCoursesFinded(data){
-        if (data.length===0)
-            this.setState({message: "Courses not found!"})
-    }
 
     componentWillReceiveProps(nextProps){
         console.log("SI receive props");
@@ -80,48 +77,47 @@ class SearchItem2 extends React.Component {
         this.setState({url: updateUrl(this.props.url, this.state.page, this.state.degreen, this.state.degreet, this.state.category, this.state.query)},
             () =>  getItems(this.state.url)
                 .then(teacher_courses => {
-                    const newCourses = this.state.courses.concat(teacher_courses);
-                    if (teacher_courses.length === 0){
-                        console.log("teacher_courses.length", teacher_courses.length);
-
+                    if (teacher_courses.length === 0 ){
                         this.setState({disabledNext: true});
                     }
-                    this.setState({courses: newCourses})
+                    this.setState({courses: this.state.courses.concat(teacher_courses)})
                 })
                 .catch(err => console.log(err))
         )
     }
 
-    reloadCourses(){
-        this.setState({page:1, disabledNext: false, url: updateUrl(this.props.url, 1, this.state.degreen, this.state.degreet, this.state.category, this.state.query)},
-            () =>  getItems(this.state.url)
-                .then(courses => {
-                    if (courses.length === 0){
-                        console.log("courses. length", courses.length);
-                        this.setState({disabledNext: true});}
-                    this.setState({courses: courses})
-                })
-                .catch(this.handleError)
-        )
-    }
+    /*    reloadCourses(){
+            this.setState({page:1, disabledNext: false, url: updateUrl(this.props.url, 1, this.state.degreen, this.state.degreet, this.state.category, this.state.query)},
+                () =>  getItems(this.state.url)
+                    .then(courses => {
+                        if (courses.length === 0){
+                            console.log("courses. length", courses.length);
+                            this.setState({disabledNext: true});}
+                        this.setState({courses: courses})
+                    })
+                    .catch(is.handleError)
+            )
+        }
 
- /*   updateSearch(event){
-        this.setState({query: event.target.value.substr(0,20).toLowerCase()});
-    }
-*/
+     /*   updateSearch(event){
+            this.setState({query: event.target.value.substr(0,20).toLowerCase()});
+        }
+    */
     selectChanged(e){
         this.setState({category: e.target.value});
     }
 
     searchCourses(e){
         e.preventDefault();
-        console.log("cat: "+this.state.category+ ", query "+ this.state.query + ", page "+ this.state.page);
-        this.setState({page: 1, disabledNext:false, degreen: '', degreet: ''},
+        console.log("cat: "+this.state.category+ ", query "+ this.state.query + ", page "+ this.state.page, "last_page: ",this.props.last_page);
+        this.setState({page: 1,  degreen: '', degreet: ''},
             ()=> getItems(updateUrl(this.props.url, this.state.page, '', '', this.state.category, this.state.query))
                 .then(data => {
-                    this.checkCoursesFinded(data);
-                    console.log("data: "+data);
-                    this.setState({courses: data});
+                    if (data.length === 0){
+                        this.setState({disabledNext: true, message: "Courses not found!"});
+                    }
+                    else
+                        this.setState({courses: data, message:'',disabledNext: false});
                     console.log("data: "+ data.length)
                 })
                 .catch(this.handleError)
@@ -138,9 +134,7 @@ class SearchItem2 extends React.Component {
         this.setState({degreen: degree_name, degreet: this.state.selectType, disabledNext: false, page:1},
             ()=> getItems(updateUrl(this.props.url, this.state.page, this.state.degreen, this.state.degreet))
                 .then(data => {
-                    console.log("data: "+data);
                     this.setState({courses: data});
-                    console.log("data: "+ data.length);
                     if (data.length ===0){
                         this.setState({disabledNext: true})
                     }
@@ -179,10 +173,17 @@ class SearchItem2 extends React.Component {
     };
 
 
+    deleteCourse(id){
+        console.log("delete course id: ", id);
+        let filteredArray = this.state.courses.filter(item => item.id != id);
+        this.setState({courses: filteredArray});
+    }
+
+
     render(){
         let searchButton;
         if (this.state.query === '' || (this.props.last_page === true && this.state.changedInputSearch===false))
-            searchButton = <div className={' button-search gap'} onClick={(e)=>this.searchCourses(e)} > <span>All</span> </div>;
+            searchButton = <div className=' button-search gap' onClick={(e)=>this.searchCourses(e)} > <span>All</span> </div>;
         else
             searchButton = <button className=' button-search gap' type={"submit"} > <span>Search</span></button>;
 
@@ -197,7 +198,10 @@ class SearchItem2 extends React.Component {
         const inputProps = {
             placeholder:"Search courses",
             value,
-            onChange: this.onChange
+            onChange: this.onChange,
+            type: "search",
+            pattern: "[a-zA-Zàèéìòù0-9., ]*",
+            title: "Sono vietati i caratteri speciali.",
         };
 
         let indexCourses_or_myCourses;
@@ -209,7 +213,7 @@ class SearchItem2 extends React.Component {
                                                        onChangePage={this.onChangePage}
                                                        disabledNext={this.state.disabledNext}
                                                        message={this.state.message}
-                                                       reloadCourses={this.reloadCourses}
+                                                       deleteCourse={(id) => this.deleteCourse(id)}
                                         />
         }
         else{
@@ -220,48 +224,50 @@ class SearchItem2 extends React.Component {
                                                        onChangePage={this.onChangePage}
                                                        disabledNext={this.state.disabledNext}
                                                        message={this.state.message}
-                                                       reloadCourses={this.reloadCourses}
+                                                       deleteCourse={(id) => this.deleteCourse(id)}
             />
         }
 
         return (
             <section>
                 <div className='myRow'>
-                    <form className='search-form' onSubmit={(e)=>this.searchCourses(e)}>
-                        <h3><b>Advanced Search:</b></h3>
-                        <div className='columns'>
-                            <div className='myColumn myColumn-sm' onClick={this.selectChanged.bind(this)}>
-                                <select required className='mySelect gap' >
-                                    {options}
-                                </select>
-                            </div>
-                            <div className='myColumn myColumn-md'>
+                    <div className="gap" align="center">
+                        <div className="box" >
+                            <form className='search-form' onSubmit={(e)=>this.searchCourses(e)}>
+                                <h3><b><font color="#8b0000">Advanced Search:</font></b></h3>
+                                <div className='columns'>
+                                    <div className=' myColumn-sm' onClick={this.selectChanged.bind(this)}>
+                                        <select required className='mySelect gap' >
+                                            {options}
+                                        </select>
+                                    </div>
+                                    <div className=' myColumn-md'>
 
+                                        <Autosuggest
+                                            suggestions={suggestions}
+                                            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                                            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                                            getSuggestionValue={getSuggestionValue}
+                                            renderSuggestion={renderSuggestion}
+                                            inputProps={inputProps}
+                                            />
 
-                                <Autosuggest
-                                    suggestions={suggestions}
-                                    onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                                    onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-                                    getSuggestionValue={getSuggestionValue}
-                                    renderSuggestion={renderSuggestion}
-                                    inputProps={inputProps}
-                                    />
-
-                            </div>
-                            <div className='myColumn myColumn-sm'> {searchButton} </div>
+                                    </div>
+                                    <div className=' myColumn-sm'> {searchButton} </div>
+                                </div>
+                            </form>
                         </div>
-                        <hr/>
-                    </form>
-
-                    <div className={'myRow'}>
-                        <Search_degree onSubmit={(degreen, degreet) => this.onSubmit(degreen, degreet)}
-                                       resetAdvancedSearch ={this.resetAdvancedSearch}
-                                       selectType={this.state.selectType}
-                                       selectName={this.state.selectName}
-                                       setSelectType={this.setSelectType}
-                        />
                     </div>
-
+                    <div className="myRow gap" >
+                        <div align="center" className="gap">
+                            <Search_degree onSubmit={(degreen, degreet) => this.onSubmit(degreen, degreet)}
+                                           resetAdvancedSearch ={this.resetAdvancedSearch}
+                                           selectType={this.state.selectType}
+                                           selectName={this.state.selectName}
+                                           setSelectType={this.setSelectType}
+                            />
+                        </div>
+                    </div>
                     {indexCourses_or_myCourses}
 
                 </div>
