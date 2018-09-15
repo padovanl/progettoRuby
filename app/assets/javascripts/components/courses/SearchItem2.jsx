@@ -24,7 +24,8 @@ class SearchItem2 extends React.Component {
             //autocomplete
             //value: '', -> uso la query
             suggestions: [],
-            autoSuggestNames: []
+            autoSuggestNames: [],
+            per_page: 3
         };
         console.log("**** courses: ", this.state.autoSuggestNames);
         this.onChangePage = this.onChangePage.bind(this);
@@ -65,10 +66,6 @@ class SearchItem2 extends React.Component {
     }
 
 
-    checkCoursesFinded(data){
-        if (data.length===0)
-            this.setState({message: "Courses not found!"})
-    }
 
     componentWillReceiveProps(nextProps){
         console.log("SI receive props");
@@ -80,13 +77,10 @@ class SearchItem2 extends React.Component {
         this.setState({url: updateUrl(this.props.url, this.state.page, this.state.degreen, this.state.degreet, this.state.category, this.state.query)},
             () =>  getItems(this.state.url)
                 .then(teacher_courses => {
-                    const newCourses = this.state.courses.concat(teacher_courses);
-                    if (teacher_courses.length === 0){
-                        console.log("teacher_courses.length", teacher_courses.length);
-
+                    if (teacher_courses.length === 0 ){
                         this.setState({disabledNext: true});
                     }
-                    this.setState({courses: newCourses})
+                    this.setState({courses: this.state.courses.concat(teacher_courses)})
                 })
                 .catch(err => console.log(err))
         )
@@ -115,13 +109,15 @@ class SearchItem2 extends React.Component {
 
     searchCourses(e){
         e.preventDefault();
-        console.log("cat: "+this.state.category+ ", query "+ this.state.query + ", page "+ this.state.page);
-        this.setState({page: 1, disabledNext:false, degreen: '', degreet: ''},
+        console.log("cat: "+this.state.category+ ", query "+ this.state.query + ", page "+ this.state.page, "last_page: ",this.props.last_page);
+        this.setState({page: 1,  degreen: '', degreet: ''},
             ()=> getItems(updateUrl(this.props.url, this.state.page, '', '', this.state.category, this.state.query))
                 .then(data => {
-                    this.checkCoursesFinded(data);
-                    console.log("data: "+data);
-                    this.setState({courses: data});
+                    if (data.length === 0){
+                        this.setState({disabledNext: true, message: "Courses not found!"});
+                    }
+                    else
+                        this.setState({courses: data, message:'',disabledNext: false});
                     console.log("data: "+ data.length)
                 })
                 .catch(this.handleError)
@@ -205,7 +201,7 @@ class SearchItem2 extends React.Component {
             onChange: this.onChange,
             type: "search",
             pattern: "[a-zA-Zàèéìòù0-9., ]*",
-            title: "Sono vietati i caratteri speciali."
+            title: "Sono vietati i caratteri speciali.",
         };
 
         let indexCourses_or_myCourses;

@@ -18,6 +18,7 @@ class CoursesController < ApplicationController
     @cs = Course.search_courses_not_followed(params[:degreen], params[:degreet], params[:category], params[:search], current_user.id).page(params[:page]).per(3)
     @last_page = @cs.total_pages
     @categories = %w[Course Data Teacher Year]
+    @per_page = %w[3, 10, 20, 30]
   end
 
   def mycourses
