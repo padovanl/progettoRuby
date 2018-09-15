@@ -20,6 +20,7 @@ UserCourse.destroy_all
 TeacherCourse.destroy_all
 UserCourse.destroy_all
 CourseQuestion.destroy_all
+Notification.destroy_all
 
 
 

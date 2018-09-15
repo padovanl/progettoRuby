@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_11_135109) do
+ActiveRecord::Schema.define(version: 2018_09_15_102338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,9 +120,14 @@ ActiveRecord::Schema.define(version: 2018_09_11_135109) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.string "content", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "recipient_id"
+    t.integer "actor_id"
+    t.datetime "read_at"
+    t.string "action"
+    t.integer "notifiable_id"
+    t.string "notifiable_type"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -141,9 +146,9 @@ ActiveRecord::Schema.define(version: 2018_09_11_135109) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "course_id"
-    t.boolean "offer"
+    t.boolean "offer", null: false
     t.string "user_competence"
-    t.decimal "price_hours", precision: 6, scale: 2
+    t.decimal "price_hours", precision: 6, scale: 2, null: false
     t.string "place"
     t.boolean "home_service"
     t.string "week_days"
@@ -222,16 +227,6 @@ ActiveRecord::Schema.define(version: 2018_09_11_135109) do
     t.index ["user_id"], name: "index_user_courses_on_user_id"
   end
 
-  create_table "user_notifications", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.bigint "notification_id"
-    t.boolean "letta"
-    t.index ["notification_id"], name: "index_user_notifications_on_notification_id"
-    t.index ["user_id"], name: "index_user_notifications_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -289,6 +284,4 @@ ActiveRecord::Schema.define(version: 2018_09_11_135109) do
   add_foreign_key "thesis_tags", "theses"
   add_foreign_key "user_courses", "courses"
   add_foreign_key "user_courses", "users"
-  add_foreign_key "user_notifications", "notifications"
-  add_foreign_key "user_notifications", "users"
 end

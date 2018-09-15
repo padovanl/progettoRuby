@@ -10,6 +10,9 @@ class Course < ApplicationRecord
   has_many :teachers, through: :teacher_courses
   has_many :documents, :dependent => :destroy
 
+  has_many :users, through: :user_courses
+
+
 
 
   validates_presence_of :name, message: "The name should be present"
