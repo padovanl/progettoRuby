@@ -1,7 +1,7 @@
 const NewDegreeCourse = (props) => {
 
     let formFields = {};
-    
+
     let style = {
         marginTop: "1%",
         marginBottom: "1%",
@@ -12,6 +12,11 @@ const NewDegreeCourse = (props) => {
     let hideStyle = {
         display: "none",
     };
+
+    let centerStyle = {
+        display: "flex",
+    };
+
     return(
 
         <div style={hideStyle} id="insertCdlDiv">
@@ -21,11 +26,13 @@ const NewDegreeCourse = (props) => {
                 <input ref={input => formFields.name = input} placeholder='Inserisci il nome del corso di laurea' className="input is-medium" required id="insertNewDegree"/>
                 <br/>
                 <br/>
-                <div className="select">
-                    <select ref={input => formFields.tipo = input} className="input is-medium" >
-                        <option value="Triennale">Laurea Triennale</option>
-                        <option value="Magistrale">Laurea Magistrale</option>
-                    </select>
+                <div>
+                    <div className="select" style={centerStyle}>
+                        <select ref={input => formFields.tipo = input} className="input is-medium" >
+                            <option value="Triennale">Laurea Triennale</option>
+                            <option value="Magistrale">Laurea Magistrale</option>
+                        </select>
+                    </div>
                 </div>
                 <br/>
                 <br/>

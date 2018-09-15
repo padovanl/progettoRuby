@@ -84,11 +84,9 @@ class BodyThesisTags extends React.Component {
         return(
             <div>
                 <AllThesisTags tags={this.state.tags} handleDelete={this.handleDelete}  handleUpdate = {this.handleUpdate} thesis_id={this.props.thesis_id} />
-                <table className="table is-hoverable is-fullwidth">
-                    <tbody>
-                    <NewThesisTag handleFormSubmit={this.handleFormSubmit} thesis_id={this.props.thesis_id} />
-                    </tbody>
-                </table>
+                <br/>
+                <NewThesisTag handleFormSubmit={this.handleFormSubmit} thesis_id={this.props.thesis_id} />
+
             </div>
         )
     }
