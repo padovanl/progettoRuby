@@ -18,45 +18,50 @@
 <div class="columns">
   <div class="column"></div>
   <div class="column is-7">
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">Titolo dell'email</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <div class="control">
-            <input class="input" type="text" placeholder="Inserisci qui il titolo dell'email" id="textBoxTitolo" />
+    <fieldset>
+      <legend>Inserisci e invia l'email</legend>
+      <div style="margin: 1%;">
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Titolo dell'email</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control">
+                <input class="input" type="text" placeholder="Inserisci qui il titolo dell'email" id="textBoxTitolo"/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Testo dell'email</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control">
+                <textarea class="textarea" placeholder="Inserisci qui il testo dell'email" id="textArea"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field is-horizontal">
+          <div class="field-label">
+            <!-- Left empty for spacing -->
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control" style="align-content: center;">
+                <button class="button is-primary is-fullwidth" onclick="Invia()" id="btnSend">
+                  Send message
+                </button>
+                <%= image_tag "loading.gif", {style: "display: none; margin-right: auto; margin-left: auto;", id: "loadingGif"} %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">Testo dell'email</label>
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <div class="control">
-            <textarea class="textarea" placeholder="Inserisci qui il testo dell'email" id="textArea"></textarea>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="field is-horizontal">
-      <div class="field-label">
-        <!-- Left empty for spacing -->
-      </div>
-      <div class="field-body">
-        <div class="field">
-          <div class="control" style="align-content: center;">
-            <button class="button is-primary is-fullwidth" onclick="Invia()" id="btnSend">
-              Send message
-            </button>
-            <%= image_tag "loading.gif", {style: "display: none; margin-right: auto; margin-left: auto;", id: "loadingGif"} %>
-          </div>
-        </div>
-      </div>
-    </div>
+    </fieldset>
   </div>
   <div class="column"></div>
 </div>
