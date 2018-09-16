@@ -147,7 +147,9 @@ Rails.application.routes.draw do
   resources :notifications, only: [:index, :destroy]
   get "/notifications", to: "notifications#index"
   get "/new_notifications", to: "notifications#getCount"
+  get "/notifications_nav_bar", to: "notifications#notificationsNavBar"
   post "/mark_as_read", to: "notifications#markAsRead"
+
 
 
   mount ActionCable.server, at: '/cable'

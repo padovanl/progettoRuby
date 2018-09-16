@@ -1,17 +1,28 @@
-class NotificationsNavBar extends React.Component {
+class NotificationsNavBarMain extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            num: "0"
+            num: "0",
+            notifications: []
         };
-        //this.temp = ''
     }
 
-    componentDidMount(){
+    getDataNotifications() {
+        let linkGet =  '/notifications_nav_bar.json';
+        fetch(linkGet)
+            .then((response) => {return response.json()})
+            .then((data) => {this.setState({ notifications: data }) });
+    }
+
+    getDataCountNotifications(){
         fetch('/new_notifications.json')
             .then((response) => {return response.json()})
             .then((data) => { this.setState({num: data})});
+    }
+    componentDidMount(){
+        this.getDataCountNotifications();
+        this.getDataNotifications();
     }
 
     render(){
@@ -25,20 +36,10 @@ class NotificationsNavBar extends React.Component {
         return(
             <div style={style}>
                 <div className="navbar-item has-dropdown is-hoverable">
-                    <a className="navbar-link  " href="#">
+                    <a className="navbar-link  " href="/notifications">
                         <span className="badge is-badge-primary bd-emoji" data-badge={this.state.num}><i className="fas fa-globe-americas"></i></span>
                     </a>
-                    <div className="navbar-dropdown ">
-                        <a className="navbar-item">
-                            Dashboard
-                        </a>
-                        <a className="navbar-item ">
-                            Mailing list
-                        </a>
-                        <a className="navbar-item " href="#">
-                            Segnalazioni
-                        </a>
-                    </div>
+                    <AllNotificationsNavBar notifications={this.state.notifications}/>
                 </div>
             </div>
         )

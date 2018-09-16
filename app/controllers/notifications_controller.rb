@@ -9,13 +9,27 @@ class NotificationsController < ApplicationController
   end
 
   def index
-    @notifications = Notification.where(recipient: current_user).unread
+    @notifications = Notification.order(created_at: :desc).where(recipient: current_user).unread.page.per(1)
+    @last_page = @notifications.total_pages
+    #@notifications = Notification.where(recipient: current_user).unread
+    respond_to do |format|
+      format.html
+      format.json {render json: @notifications, :include => {:actor => {:only => [:id, :email, :avatar_url, :name, :admin]}, :notifiable =>{} } }
+    end
   end
 
   def mark_as_read
     @notifications = Notification.where(recipient: current_user).unread
     @notifications.update.all(read_at: Time.zone.now)
     render json: {success: true}
+  end
+
+  def notificationsNavBar
+    @notifications_nav = Notification.where(recipient: current_user).unread.limit(3)
+    #json_response(@notifications_nav) -> crea problemi con il jsonbuilder come se lo vedesse in parte
+    respond_to do |format|
+      format.json {render json: @notifications_nav, :include => {:actor => {:only => [:id, :email, :avatar_url, :name, :admin]}, :notifiable =>{} } }
+    end
   end
 
   def destroy
