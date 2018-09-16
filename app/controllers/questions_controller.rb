@@ -14,15 +14,16 @@ class QuestionsController < ApplicationController
     # come risposta via json
 
 
-    @q = CourseQuestion.create(question_params)
+    q = CourseQuestion.create(question_params)
     #q.frequency_questions.build(:user_id => current_user.id, :course_question_id => params[:course_id])
-    frequency_questions = FrequencyQuestion.create({user_id: question_params[:user_id], course_question_id: @q.id})
-    courseQuestions = CourseQuestion.where(:id => @q.id).includes([:user, :course, :frequency_questions])
+    frequency_questions = FrequencyQuestion.create({user_id: question_params[:user_id], course_question_id: q.id})
+    courseQuestions = CourseQuestion.where(:id => q.id).includes([:user, :course, :frequency_questions])
 
     #invio notifica
     @course = Course.find(question_params[:course_id])
-    @course.users.each do |user|
-      Notification.create(recipient: user, actor: current_user, action: "Question", notifiable: @q)
+    #(@course.users.uniq - [current_user]).each do |user|
+    @course.users.uniq.each do |user|
+      Notification.create(recipient: user, actor: current_user, action: "ha inserito una nuova", notifiable: q)
     end
 
     json_response(courseQuestions.to_json(include: [:user, :course, :frequency_questions]))
