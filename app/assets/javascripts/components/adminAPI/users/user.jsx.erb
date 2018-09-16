@@ -38,14 +38,16 @@ class User extends React.Component{
         let image = <img src={this.props.user.avatar_url} className="is-rounded" width={30} height={30} style={circleStyle}/>
         let ruolo;
 
-        if(this.props.user.admin){
+        if(this.props.user.confirmed_at == null){
+            ruolo = <div style={centerStyle}><%= image_tag "emailUnconfirmed.svg", {height: 35, width: 35, class: "is-hidden-mobile"} %>&nbsp;<p><i>Email non confermata</i></p></div>
+        }else if(this.props.user.admin){
             ruolo = <div style={centerStyle}><%= image_tag "admin.svg", {height: 30, width: 30, class: "is-hidden-mobile"} %>&nbsp;<p><i>Admin</i></p></div>
         }else{
             ruolo = <div style={centerStyle}><%= image_tag "student.svg", {height: 35, width: 35, class: "is-hidden-mobile"} %>&nbsp;<p><i>User</i></p></div>
         }
 
         let pulsante = '';
-        if(!this.props.user.admin)
+        if(!this.props.user.admin && this.props.user.confirmed_at != null)
             pulsante = <a className="button is-rounded is-success" title="Promuovi ad amministratore" onClick={() => this.props.handleSetAdmin(this.props.user.id)}><i className="fas fa-level-up-alt"></i></a>;
         else
             pulsante = '';
