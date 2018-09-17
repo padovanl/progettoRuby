@@ -12,6 +12,8 @@ class PostSerializer < ActiveModel::Serializer
     end
   end
 
+
+
   class  DocumentSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
 

@@ -105,11 +105,8 @@ class BodyTag extends React.Component {
         return(
             <div>
                 <AllTags tags={this.state.tags} handleDelete={this.handleDelete}  handleUpdate = {this.handleUpdate} />
-                <table className="table is-hoverable is-fullwidth">
-                    <tbody>
-                    <NewTag handleFormSubmit={this.handleFormSubmit} />
-                    </tbody>
-                </table>
+                <br/>
+                <NewTag handleFormSubmit={this.handleFormSubmit} />
             </div>
         )
     }

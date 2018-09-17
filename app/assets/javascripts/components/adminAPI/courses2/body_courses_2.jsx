@@ -75,21 +75,27 @@ class BodyCourses2 extends React.Component {
         let body = JSON.stringify({course: {degree_course_id: degree_course_id, name: name, year: year}});
         let linkNew = '/api/v1/degree_courses/' + this.props.degree_course_id + '/courses';
         if(name != '' && year != ''){
-            fetch(linkNew, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: body,
-            }).then((response) => {return response.json()})
-                .then((course)=>{
-                    if(course.error){
-                        alert("Errore!")
-                    }else{
-                        this.addNewCourse(course);
-                    }
-
+            if(isNaN(year)){
+                toastr.error("L'anno deve essere un numero.")
+            }else {
+                fetch(linkNew, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: body,
+                }).then((response) => {
+                    return response.json()
                 })
+                    .then((course) => {
+                        if (course.error) {
+                            alert("Errore!")
+                        } else {
+                            this.addNewCourse(course);
+                        }
+
+                    })
+            }
         }else{
             alert('I campi non possono essere vuoti!')
         }
@@ -115,11 +121,9 @@ class BodyCourses2 extends React.Component {
         return(
             <div>
                 <AllCourses2 courses={this.state.courses} handleDelete={this.handleDelete}  handleUpdate = {this.handleUpdate} degree_course_id={this.props.degree_course_id} />
-                <table className="table is-hoverable is-fullwidth">
-                    <tbody>
-                    <NewCourse2 handleFormSubmit={this.handleFormSubmit} degree_course_id={this.props.degree_course_id} />
-                    </tbody>
-                </table>
+                <br/>
+                <NewCourse2 handleFormSubmit={this.handleFormSubmit} degree_course_id={this.props.degree_course_id} />
+
             </div>
         )
     }

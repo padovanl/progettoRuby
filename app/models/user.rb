@@ -5,7 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
-  has_many :notifications
   has_many :reps
   has_many :posts
   has_many :comments
@@ -14,6 +13,8 @@ class User < ApplicationRecord
   has_many :course_questions
   has_many :frequency_questions
   has_many :course_tips
+  has_many :notifications
+
 
   # un utente vota un post
   has_many :upvotes

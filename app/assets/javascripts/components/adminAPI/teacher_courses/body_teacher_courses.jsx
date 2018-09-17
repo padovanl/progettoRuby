@@ -93,11 +93,8 @@ class BodyTeacherCourses extends React.Component {
         return(
             <div>
                 <AllTeacherCourses teachers={this.state.teachers} handleDelete={this.handleDelete}  handleUpdate = {this.handleUpdate} course_id={this.props.course_id} />
-                <table className="table is-hoverable is-fullwidth">
-                    <tbody>
-                    <NewTeacherCourse handleFormSubmit={this.handleFormSubmit} course_id={this.props.course_id} />
-                    </tbody>
-                </table>
+                <br/>
+                <NewTeacherCourse handleFormSubmit={this.handleFormSubmit} course_id={this.props.course_id} />
             </div>
         )
     }

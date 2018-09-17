@@ -17,6 +17,12 @@ class PostsController < ApplicationController
       return
     end
 
+    #invio notifica
+    course = Course.find(post_params[:course_id])
+    (course.users.uniq - [current_user]).each do |user|
+      Notification.create(recipient: user, actor: current_user, action: "ha inserito una nuova", notifiable: publication.post)
+    end
+
     render json: publication.post, include: %w(upvoters user comments comments.user documents), status: :created
   end
 

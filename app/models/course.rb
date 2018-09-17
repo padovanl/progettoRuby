@@ -10,6 +10,9 @@ class Course < ApplicationRecord
   has_many :teachers, through: :teacher_courses
   has_many :documents, :dependent => :destroy
 
+  has_many :users, through: :user_courses
+
+
 
 
   validates_presence_of :name, message: "The name should be present"
@@ -160,4 +163,53 @@ class Course < ApplicationRecord
   def self.get_names
     select(:name).order(:name)
   end
+
+
+  def self.get_statistical_informations(course_id)
+
+    record_collection = UserCourse.where("passed = ? AND course_id = ?", true, course_id)
+
+    lista_giudizi = ['insufficiente', 'sufficiente','discreto','buono','molto buono' ];
+    mapping_statistiche = Hash.new
+
+    passed_number = record_collection.collect.size
+    course_rate = record_collection.collect {|i| i.course_rate}
+    material_quality = record_collection.collect {|i| i.material_quality}
+    explanation = record_collection.collect {|i| i.explanation}
+    average_attempts = record_collection.collect {|i| i.average_attempts}
+    average_days = record_collection.collect {|i| i.average_days}
+
+    #faccio la media dei valori
+    course_rate = (course_rate.inject{ |sum, el| sum + el }.to_f / course_rate.size).round
+    material_quality = (material_quality.inject{ |sum, el| sum + el }.to_f / material_quality.size).round
+    explanation = (explanation.inject{ |sum, el| sum + el }.to_f / explanation.size).round
+    average_attempts = (average_attempts.inject{ |sum, el| sum + el }.to_f / average_attempts.size).round
+    average_days = (average_days.inject{ |sum, el| sum + el }.to_f / average_days.size).round
+
+    #sostituisco il valore con la stringa-giudizio
+    material_quality = lista_giudizi[material_quality-1]
+    explanation = lista_giudizi[explanation-1]
+
+    mapping_statistiche = {'passed_number' => passed_number,
+                           'course_rate' => course_rate,
+                           'material_quality' => material_quality,
+                           'explanation' => explanation,
+                           'average_attempts' => average_attempts,
+                           'average_days' => average_days,
+    }
+
+    return mapping_statistiche
+
+  end
+
+  def self.get_history_teachers(course)
+    arr = Array.new
+    array_teacher_courses = course.teacher_courses.order(year: :desc).distinct.to_a
+    array_teacher_courses.each do |teacher_course|
+      arr.append(teacher_course.teacher)
+    end
+    return arr
+  end
+
+
 end

@@ -16,7 +16,9 @@
 <br>
 
 <div class="columns">
-  <div class="column"></div>
+  <div class="column">
+    <button class="button is-info" style="border-radius: 50px; margin: 10px;" onclick="showInsert();">Inserisci nuovo CdL</button>
+  </div>
   <div class="column">
     <%= react_component('MainThesisTags',{thesis_id: params['thesis_id']}) %>
   </div>
@@ -31,3 +33,16 @@
   <div class="column"></div>
   <div class="column"></div>
 </div>
+
+<script type="text/javascript">
+    function showInsert() {
+        $("#insertDiv").css("display", "inline");
+        scroll_to("insertDiv");
+    }
+
+    function scroll_to(id) {
+        $('html,body').animate({
+            scrollTop: $('#' + id).offset().top
+        }, 'slow');
+    }
+</script>

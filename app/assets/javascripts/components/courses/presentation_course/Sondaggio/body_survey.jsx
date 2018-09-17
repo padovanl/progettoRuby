@@ -2,9 +2,15 @@ class BodySurvey extends React.Component {
 
     constructor(props){
         super(props);
+        this.state = {value_number_attempts: '',
+                      value_number_days: ''
+        };
 
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.updateCourseQuestion = this.updateCourseQuestion.bind(this)
+        this.onChangeAttempts = this.onChangeAttempts.bind(this)
+        this.onChangeDays = this.onChangeDays.bind(this)
+
 
     }
 
@@ -18,7 +24,7 @@ class BodySurvey extends React.Component {
         // /api/v1/users/:user_id/user_courses/:id(.:format)
         let linkUpdate = '/api/v1/users/' + this.props.user_id + '/user_courses/' + this.props.user_courses_id
         if(confirm('Sei sicuro di voler confermare il questionario?')) {
-            if (average_attempts != '' || average_days != '') {
+            if (average_attempts != '' && average_days != '') {
                 fetch(linkUpdate,
                     {
                         method: 'PUT',
@@ -46,10 +52,27 @@ class BodySurvey extends React.Component {
 
     updateCourseQuestion(){
         console.log("Update avvenuto con successo")
+        window.location.href = "/courses/" + this.props.course_id
+        toastr.success("Sondaggio compilato con successo")
     }
 
+    onChangeAttempts(evt) {
+        console.log("dentro")
+        const re = /^[0-9\b]+$/;
+        if (evt.target.value == '' || re.test(evt.target.value)) {
+            this.setState({value_number_attempts: evt.target.value});
+            console.log(evt.target.value)
+        }
+    }
 
-
+    onChangeDays(evt) {
+        console.log("dentro")
+        const re = /^[0-9\b]+$/;
+        if (evt.target.value == '' || re.test(evt.target.value)) {
+            this.setState({value_number_days: evt.target.value});
+            console.log(evt.target.value)
+        }
+    }
 
     render(){
 
@@ -68,7 +91,7 @@ class BodySurvey extends React.Component {
         return(
             <div>
                 <div className="field is-horizontal">
-                    <div className="field-label is-normal">
+                    <div className="field-label">
                         <label className="label">Voto conseguito</label>
                     </div>
                     <div className="field-body">
@@ -88,7 +111,7 @@ class BodySurvey extends React.Component {
 
 
                     <div className="field is-horizontal">
-                        <div className="field-label is-normal">
+                        <div className="field-label">
                             <label className="label">Qualità del materiale fornito</label>
                         </div>
                         <div className="field-body">
@@ -107,7 +130,7 @@ class BodySurvey extends React.Component {
                     </div>
 
                     <div className="field is-horizontal">
-                        <div className="field-label is-normal">
+                        <div className="field-label">
                             <label className="label">Chiarezza nella spiegazione</label>
                         </div>
                         <div className="field-body">
@@ -131,18 +154,18 @@ class BodySurvey extends React.Component {
                         </div>
                         <div className="field-body">
                             <div className="field">
-                                    <input className="input" type="number" ref={input => formFields.average_attempts = input} />
+                                    <input className="input dimension-survey-10" type="text" value={this.state.value_number_attempts} onChange={this.onChangeAttempts}/>
                             </div>
                         </div>
                     </div>
 
                     <div className="field is-horizontal">
-                        <div className="field-label is-normal">
+                        <div className="field-label">
                             <label className="label">Giorni di studio</label>
                         </div>
                         <div className="field-body">
                             <div className="field">
-                                    <input className="input" type="number" ref={input => formFields.average_days = input} />
+                                    <input className="input dimension-survey-10" type="text" value={this.state.value_number_days} onChange={this.onChangeDays}  />
                             </div>
                         </div>
                     </div>
@@ -152,8 +175,10 @@ class BodySurvey extends React.Component {
                         formFields.course_rate.value,
                         formFields.material_quality.value,
                         formFields.explanation.value,
-                        formFields.average_attempts.value,
-                        formFields.average_days.value)}>Conferma questionario</a>
+                        this.state.value_number_attempts,
+                        this.state.value_number_days)}>Conferma questionario</a>
+                    <span> </span>
+                    <a className="button is-rounded is-danger" href={"/courses/" + this.props.course_id}>Indietro</a>
                 </div>
             </div>
         )

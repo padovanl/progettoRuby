@@ -1,4 +1,4 @@
-const AllNotifications = (props) => {
+const AllNotifications2 = (props) => {
 
     var notifications = props.notifications.map((n) => {
         return(

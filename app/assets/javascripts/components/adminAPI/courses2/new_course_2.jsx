@@ -18,19 +18,34 @@ class NewCourse2 extends React.Component {
         this.getDegreeCourses();
         var degreeCourses = this.temp;
 
+        let style = {
+            marginTop: "1%",
+            marginBottom: "1%",
+            marginRight: "1%",
+            marginLeft: "1%",
+        };
+
+        let hideStyle = {
+            display: "none",
+        };
+
+
         return(
-            <tr>
-                <td>
-                    <input ref={input => formFields.degree_course_id = input} type="hidden" value={this.props.degree_course_id}/>
-                    <input ref={input => formFields.name = input} placeholder='Inserisci il nome del corso' className="input is-medium" required />
-                </td>
-                <td>
-                    <input ref={input => formFields.year = input} placeholder="Inserisci anno del corso" className="input is-medium" required />
-                </td>
-                <td>
-                    <a className="button is-rounded is-link is-fullwidth" onClick={ () => this.props.handleFormSubmit(formFields.degree_course_id.value, formFields.name.value, formFields.year.value)}>Inserisci</a>
-                </td>
-            </tr>
+            <div style={hideStyle} id="insertDiv">
+                <fieldset>
+                    <legend>Inserisci nuovo corso</legend>
+                    <div style={style}>
+                        <input ref={input => formFields.degree_course_id = input} type="hidden" value={this.props.degree_course_id}/>
+                        <input ref={input => formFields.name = input} placeholder='Inserisci il nome del corso' className="input is-medium" required />
+                        <br/>
+                        <br/>
+                        <input ref={input => formFields.year = input} placeholder="Inserisci anno del corso" className="input is-medium" required />
+                        <br/>
+                        <br/>
+                        <a className="button is-rounded is-link is-fullwidth" onClick={ () => this.props.handleFormSubmit(formFields.degree_course_id.value, formFields.name.value, formFields.year.value)}>Inserisci</a>
+                    </div>
+                </fieldset>
+            </div>
         )
     }
 

@@ -1,12 +1,9 @@
-<br>
-<br>
-<br>
-<br>
-<div class="columns">
-  <div class="column"></div>
-  <div class="column">
-   <h1>ciao</h1>
+<br/>
+<div align="center">
+  <h2>Le tue notifiche</h2>
+  <h2><%=  @last_page %></h2>
+</div>
 
-  </div>
-  <div class="column"></div>
+<div align="center">
+  <%= react_component('MainNotifications', {last_page: @last_page, url: "/notifications.json?page="}) %>
 </div>

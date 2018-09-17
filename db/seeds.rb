@@ -20,6 +20,7 @@ UserCourse.destroy_all
 TeacherCourse.destroy_all
 UserCourse.destroy_all
 CourseQuestion.destroy_all
+Notification.destroy_all
 
 
 
@@ -92,7 +93,7 @@ degree_course.courses.create!([
 
 
 
-user = User.create!(id: 1, name: "Admin Admin", email: "admin@admin.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: true)
+user = User.create!(name: "Admin Admin", email: "admin@admin.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: true)
 user.tags.create!([
   { id:1 , name: "Ricerca" },
   { id:2 , name: "Sviluppo Web" },
@@ -106,7 +107,7 @@ user.tags.create!([
 ])
 
 
-user = User.create!(id:2, name: "User User", email: "user@user.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
+user = User.create!(name: "User User", email: "user@user.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
 user.user_courses.create!([
     {user_id: user.id, course_id: 26, follow: true}, #sta seguendo lamma: Fondamenti di intelligenza artificiale
     { user_id: user.id, course_id: 29, follow: true}, #reti di calcolatori
@@ -120,7 +121,8 @@ teacher.teacher_courses.create!([
       {year: "1992-1993", teacher_id: teacher.id, course_id: 26},
       {year: "1994-1995", teacher_id: teacher.id, course_id: 26},
       {year: "2002-2003", teacher_id: teacher.id, course_id: 13},
-      {year: "2001-2002", teacher_id: teacher.id, course_id: 14}
+      {year: "2001-2002", teacher_id: teacher.id, course_id: 14},
+      {year: "1990-1991", teacher_id: teacher.id, course_id: 1}
   ])
 
 
@@ -128,7 +130,8 @@ teacher = Teacher.create!(name: "Maddalena", surname: "Nonato", link_cv: "http:/
 teacher.teacher_courses.create!([
     {year: "2000-2001", teacher_id: teacher.id, course_id: 27},
     {year: "2001-2002", teacher_id: teacher.id, course_id: 27},
-    {year: "2002-2003", teacher_id: teacher.id, course_id: 27}
+    {year: "2002-2003", teacher_id: teacher.id, course_id: 27},
+    {year: "1992-1993", teacher_id: teacher.id, course_id: 1}
 ])
 teacher.theses.create!([
    {id:1, title: "Titolo Green VRP",
@@ -249,9 +252,60 @@ teacher.teacher_courses.create!([
 
 user = User.create!(id: 3, name: "User2 User2", email: "user2@user2.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
 user.user_courses.create!([
-    { user_id: user.id, course_id: 1, passed: true}
+    {user_id: user.id, course_id: 1, follow: true, passed: true, course_rate: 25, material_quality: 1, explanation: 1, average_attempts: 4, average_days: 10}
+])
+user = User.create!(name: "User2 User2", email: "user3@user3.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
+user.user_courses.create!([
+    {user_id: user.id, course_id: 1, follow: true, passed: true, course_rate: 27, material_quality: 2, explanation: 2, average_attempts: 2, average_days: 10}
 ])
 
+
+user = User.create!(name: "User2 User2", email: "user4@user4.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
+user.user_courses.create!([
+    {user_id: user.id, course_id: 1, follow: true, passed: true, course_rate: 31, material_quality: 5, explanation: 2, average_attempts: 1, average_days: 40}
+])
+
+
+user = User.create!(name: "User2 User2", email: "user5@user5.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
+user.user_courses.create!([
+    {user_id: user.id, course_id: 1, follow: true, passed: true, course_rate: 22, material_quality: 3, explanation: 2, average_attempts: 1, average_days: 20}
+])
+
+
+user = User.create!(name: "User2 User2", email: "user6@user6.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
+user.user_courses.create!([
+    {user_id: user.id, course_id: 1, follow: true, passed: true, course_rate: 18, material_quality: 5, explanation: 3, average_attempts: 1, average_days: 15}
+])
+
+
+user = User.create!(name: "User2 User2", email: "user7@user7.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
+user.user_courses.create!([
+    {user_id: user.id, course_id: 1, follow: true, passed: true, course_rate: 30, material_quality: 5, explanation: 4, average_attempts: 4, average_days: 10}
+])
+
+
+=begin
+5.times do
+  user = User.create!(
+      name: Faker::HeyArnold.quote,
+      email: Faker::Internet.safe_email,
+      password: "123123",
+      admin: false
+  )
+  user.user_courses.create!([
+    {user_id: user.id,
+     course_id: 1,
+     follow: true,
+     passed: true,
+     course_rate: rand(18..31),
+     material_quality: rand(1..5),
+     explanation: rand(1..5),
+     average_attempts: rand(1..10),
+     average_days: rand(1..20)}
+])
+end
+=end
+=begin
 user.course_questions.create!([
     { id:1 , question: Faker::StarWars.quote, user_id: user.id, course_id: 1},
     { id:2 , question: Faker::StarWars.quote, user_id: user.id, course_id: 1},
@@ -267,26 +321,7 @@ user.frequency_questions.create!([
    {user_id: user.id, course_question_id: 2},
 ])
 
-user = User.create!(id: 4, name: "User3 User3", email: "user3@user3.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
-user.user_courses.create!([
-    {  user_id: user.id, course_id: 1, passed: true}
-])
-
-user.course_questions.create!([
-    { id:3 , question: Faker::StarWars.quote, user_id: user.id, course_id: 1},
-    { id:4 , question: Faker::StarWars.quote, user_id: user.id, course_id: 1},
-])
-
-user.course_tips.create!([
-   { id:3 , tip: Faker::StarWars.quote, user_id: user.id, course_id: 1},
-   { id:4 , tip: Faker::StarWars.quote, user_id: user.id, course_id: 1},
-])
-
-user.frequency_questions.create!([
-   {user_id: user.id, course_question_id: 1},
-   {user_id: user.id, course_question_id: 3},
-   {user_id: user.id, course_question_id: 4},
-])
+=end
 
 user = User.first
 course = Course.first

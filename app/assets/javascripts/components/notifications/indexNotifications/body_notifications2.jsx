@@ -1,4 +1,4 @@
-class BodyNotifications extends React.Component {
+class BodyNotifications2 extends React.Component {
 
     constructor(props) {
         super(props);

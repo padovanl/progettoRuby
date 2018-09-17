@@ -3,4 +3,10 @@
 <%= react_component('TitleSurvey') %>
 <br>
 <br>
-<%= react_component('MainSurvey', {course_id: params['course_id'], user_id: current_user[:id].to_s, user_courses_id: params['id']}) %>
+<div class="hero">
+  <div class="hero-body">
+    <div class="container is-vertical">
+          <%= react_component('MainSurvey', {course_id: params['course_id'], user_id: current_user[:id].to_s, user_courses_id: params['id']}) %>
+    </div>
+  </div>
+</div>

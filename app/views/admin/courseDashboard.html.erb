@@ -15,12 +15,15 @@
 <br>
 
 <div class="columns">
-  <div class="column"></div>
+  <div class="column">
+    <button class="button is-info" style="border-radius: 50px; margin: 10px;" onclick="showInsert();">Inserisci nuovo CdL</button>
+  </div>
   <div class="column is-8">
     <%= react_component('MainCourses2', {degree_course_id: params['degree_course_id']}) %>
   </div>
   <div class="column"></div>
 </div>
+<br>
 <div class="columns">
   <div class="column">
     <div style="margin: 0 auto; width: 50%;">
@@ -31,3 +34,35 @@
   <div class="column"></div>
   <div class="column"></div>
 </div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<script type="text/javascript">
+    function showInsert() {
+        $("#insertDiv").css("display", "inline");
+        scroll_to("insertDiv");
+    }
+
+    function scroll_to(id) {
+        $('html,body').animate({
+            scrollTop: $('#' + id).offset().top
+        }, 'slow');
+    }
+</script>
