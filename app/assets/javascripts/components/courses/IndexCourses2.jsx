@@ -93,7 +93,7 @@ class IndexCourses2 extends React.Component{
 
     render(){
         let filteredCourses;
-        if (this.props.courses.length !== 0 || this.props.message === '')//message = '' caso in cui ho tolto il corso con follow
+        if ( this.props.message === '')//message = '' caso in cui ho tolto il corso con follow
             filteredCourses = this.props.courses.filter((item) => {
                     return item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1; //tutti
                 }
