@@ -114,7 +114,7 @@ class SearchItem2 extends React.Component {
             ()=> getItems(updateUrl(this.props.url, this.state.page, '', '', this.state.category, this.state.query))
                 .then(data => {
                     if (data.length === 0){
-                        this.setState({disabledNext: true, message: "Courses not found!"});
+                        this.setState({disabledNext: true, message: "Courses not found!", courses: data});
                     }
                     else
                         this.setState({courses: data, message:'',disabledNext: false});

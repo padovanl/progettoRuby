@@ -131,7 +131,6 @@ class MyCourses extends React.Component{
                         <div>Livello: {item.degreet}</div>
                         <div>Corso: {item.degreen}</div>
                         <div>Anno: {item.year}</div>
-                        <div>Data più recente: {item.tc_year.reverse()[0].year}</div>
                         <div>Professori:
                             <courses-ol>{teachers}</courses-ol>
                         </div>
