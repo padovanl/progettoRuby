@@ -3,4 +3,10 @@ class NotificationSerializer < ActiveModel::Serializer
   belongs_to :recipient, :foreign_key => :recipient_id, class_name: "User"
   belongs_to :actor, :foreign_key => :actor_id, class_name: "User"
   belongs_to :notifiable, polymorphic: true
+
+  attribute :course
+
+  def course
+    CourseSerializer.new(Course.find(object.notifiable.course_id))
+  end
 end
