@@ -89,7 +89,7 @@ class BodySurvey extends React.Component {
 // course rate sarebbe il voto conseguito
 
         return(
-            <div className="columns is-centered ">
+            <div className="columns is-centered">
                 <div className="column is-6"></div>
                 <div className="column is-four-fifths">
                 <div className="field is-horizontal">

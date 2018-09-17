@@ -1,0 +1,6 @@
+.list-group > .list-group-item:first-child {
+  border-radius: 4px 4px 0 0;
+}
+.list-group > .list-group-item:last-child {
+  border-radius: 0 0 4px 4px;
+}
