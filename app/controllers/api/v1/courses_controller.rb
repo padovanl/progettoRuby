@@ -18,6 +18,12 @@ class Api::V1::CoursesController < ApplicationController
   def update
     course = Course.find(params[:id])
     course.update_attributes(course_params)
+    #invio notifica agli utenti che seguono il corso
+    #users = course.users;
+    #users.each do |u|
+    #  Notification.create(recipient: u, actor: current_user, action: "ha modificato il nome del corso", notifiable: course)
+    #end
+
     render json: course
   end
 
