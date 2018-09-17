@@ -134,26 +134,24 @@ class IndexCourses2 extends React.Component{
 
             //bisognerebbe fare tornare direttamente dal controller l'array ordinato con limit 1 per l'anno di teacher courses (migliori prestazioni)
             return(
-                <div className="box">
-                    <div key={item.id} className={"relative"}>
-                        <div className="nested infinite-item">
-                            <div>Materia: <a href={"/courses/"+item.id}   >{item.name}</a> e id: {item.id}</div>
-                            <div>Livello: {item.degreet}</div>
-                            <div>Corso: {item.degreen}</div>
-                            <div>Anno: {item.year}</div>
-                            <div>Professori:
-                                <courses-ol>{teachers}</courses-ol>
-                            </div>
+                <div key={item.id} className="box relative is-marginless">
+                    <div className="nested infinite-item font-size">
+                        <div><strong>Materia:</strong> <a href={"/courses/"+item.id}>{item.name}</a></div>
+                        <div><strong>Livello:</strong> {item.degreet}</div>
+                        <div><strong>Corso:</strong> {item.degreen}</div>
+                        <div><strong>Anno:</strong> {item.year}</div>
+                        <div><strong>Professori:</strong>
+                            <courses-ol>{teachers}</courses-ol>
                         </div>
-                        <div className={"absolute"}>
-                            <form onSubmit={(e)=>this.buttonFollowClicked(e)}>
-                                <input className="input" name="user_course[course_id]" value={item.id} type="hidden" />
-                                <input className="input" name="user_course[follow]" value={true} type="hidden" />
-                                <button name={item.name}  className="segui" value={ item.id}>
-                                    <div>Follow</div>
-                                </button>
-                            </form>
-                        </div>
+                    </div>
+                    <div className={"absolute"}>
+                        <form onSubmit={(e)=>this.buttonFollowClicked(e)}>
+                            <input className="input" name="user_course[course_id]" value={item.id} type="hidden" />
+                            <input className="input" name="user_course[follow]" value={true} type="hidden" />
+                            <button name={item.name}  className="segui" value={ item.id}>
+                                <div>Follow</div>
+                            </button>
+                        </form>
                     </div>
                 </div>
             )
