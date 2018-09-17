@@ -9,12 +9,12 @@ class NotificationsController < ApplicationController
   end
 
   def index
-    @notifications = Notification.order(created_at: :desc).where(recipient: current_user).unread.page.per(1)
+    @notifications = Notification.order(created_at: :desc).where(recipient: current_user).unread.page(params[:page]).per(1)
     @last_page = @notifications.total_pages
     #@notifications = Notification.where(recipient: current_user).unread
     respond_to do |format|
       format.html
-      format.json {render json: @notifications, :include => {:actor => {:only => [:id, :email, :avatar_url, :name, :admin]}, :notifiable =>{} } }
+      format.json {render json: @notifications, :include => {:recipient => {:only => [:id, :email, :avatar_url_small, :name, :admin]}, :notifiable =>{} } }
     end
   end
 
@@ -28,7 +28,7 @@ class NotificationsController < ApplicationController
     @notifications_nav = Notification.where(recipient: current_user).unread.limit(3)
     #json_response(@notifications_nav) -> crea problemi con il jsonbuilder come se lo vedesse in parte
     respond_to do |format|
-      format.json {render json: @notifications_nav, :include => {:actor => {:only => [:id, :email, :avatar_url, :name, :admin]}, :notifiable =>{} } }
+      format.json {render json: @notifications_nav, :include => {:recipient => {:only => [:id, :email, :avatar_url, :name, :admin]}, :notifiable =>{} } }
     end
   end
 

@@ -10,10 +10,14 @@ class NotificationNavbar extends React.Component {
             paddingRight: 10,
         };
 
-        const actor = this.props.notification.actor.name;
+        let style_body_notification = {
+            fontSize: 13
+        };
+
+        const recipient = this.props.notification.recipient.name;
         const action = this.props.notification.action;
         let type = this.props.notification.notifiable_type
-        const url_actor = this.props.notification.actor.avatar_url
+        const url_actor = this.props.notification.recipient.avatar_url
 
         switch(type) {
             case 'CourseQuestion':
@@ -33,8 +37,8 @@ class NotificationNavbar extends React.Component {
             <div className="media-content">
                 <div className="content">
                     <div>
-                        <div className="has-text-weight-bold">{actor} </div>
-                        {action} <span className="has-text-weight-bold" style={style_padding}>{type}</span>
+                        <div className="has-text-weight-bold">{recipient} </div>
+                        <span style={style_body_notification}>{action} <span className="has-text-weight-bold" style={style_padding}>{type}</span></span>
                     </div>
                 </div>
             </div>

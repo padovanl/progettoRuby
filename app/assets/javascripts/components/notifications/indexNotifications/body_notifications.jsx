@@ -1,51 +1,51 @@
 class BodyNotifications extends React.Component {
 
-    constructor(props) {
+    constructor(props){
         super(props);
+
         this.state = {
-            notifications: []
+            notifications: [],
+            url: '',
+            page:1,
+            disabledNext: false,
         };
 
-        this.handleDelete = this.handleDelete.bind(this);
-        this.deleteNotifications = this.deleteNotifications.bind(this);
+        this.getAllNotifications = this.getAllNotifications.bind(this);
+        this.handleShowMore = this.handleShowMore.bind(this);
     }
 
+    componentWillMount(){
+        this.getAllNotifications();
+    }
 
-
-    handleDelete(id){
-        fetch(`http://localhost:3000/api/v1/notifications/${id}`,
-            {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
+    getAllNotifications(){
+        get_items(update_url_notifications(this.props.url, this.state.url, this.state.page))
+            .then(data => {
+                if (data.length === 0){
+                    this.setState({disabledNext: true})
                 }
-            }).then((response) => {
-            if (response.ok){
-                this.deleteNotifications(id)
-            }else{
-                alert("errore")
-            }
-        })
+                else{
+                    this.setState({notifications: this.state.notifications.concat(data)})
+                }
+            })
+            .catch(e => console.log(e)
+            )
     }
 
-    deleteNotifications(id){
-        t = this.state.notifications.filter((n) => n.id !== id)
-        this.setState({
-            notifications: t
-        })
+    handleShowMore() {
+        console.log("dentro showmore")
+        this.setState({page: this.state.page +=1},this.getAllNotifications());
     }
-
-    componentDidMount(){
-        fetch('/api/v1/notifications.json')
-            .then((response) => {return response.json()})
-            .then((data) => {this.setState({ notifications: data }) });
-    }
-
 
     render(){
+
         return(
             <div>
-                <AllNotifications notifications={this.state.notifications} handleDelete={this.handleDelete} />
+                <AllNotifications notifications={this.state.notifications}
+                                  handleShowMore={this.handleShowMore}
+                                  page={this.state.page}
+                                  last_page={this.props.last_page}
+                                  disabledNext={this.state.disabledNext} />
             </div>
         )
     }
