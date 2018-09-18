@@ -29,8 +29,17 @@ class Notification extends React.Component{
 
     render(){
 
+        let style_not_read = {
+            backgroundColor: 'rgb(237, 242, 250)'
+        };
+
+        let style_read = {
+            backgroundColor: 'white'
+        };
+
         let style_time ={
             fontFamily: 'Arial',
+            color: 'black'
         };
 
         let style_link_row = {
@@ -42,6 +51,8 @@ class Notification extends React.Component{
             paddingRight: 10,
         };
 
+
+
         const recipient = this.props.notification.recipient.name;
         const action = this.props.notification.action;
         const nome_corso = this.props.notification.course.name;
@@ -50,6 +61,13 @@ class Notification extends React.Component{
         let type = this.props.notification.notifiable_type
         const url_actor = this.props.notification.recipient.avatar_url
         const id_notification = this.props.notification.id;
+        let stile_background_notifica;
+
+        if(this.props.notification.read_at == null){
+            stile_background_notifica = style_not_read
+        }else{
+            stile_background_notifica = style_read
+        }
 
         switch(type) {
             case 'CourseQuestion':
@@ -63,7 +81,7 @@ class Notification extends React.Component{
 
         return(
 
-            <tr key={this.props.notification.id}>
+            <tr key={this.props.notification.id} style={stile_background_notifica}>
                     <td>
                         <a href="#" style={style_link_row} onClick={() => this.handleMarkAndRedirect(link, id_notification)}>
                             <article className="media gap">
