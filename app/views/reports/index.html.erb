@@ -1,0 +1,16 @@
+<br/>
+<br/>
+<br/>
+<br/>
+<section class="hero is-small">
+  <div class="hero-body has-text-centered">
+    <div class="container">
+      <h3 class="title is-3">Segnalazioni</h3>
+    </div>
+  </div>
+</section>
+<br/>
+
+<div align="center">
+  <%= react_component('MainReports', {last_page: @last_page, url: "/reports.json?page="}) %>
+</div>

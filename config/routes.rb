@@ -151,6 +151,12 @@ Rails.application.routes.draw do
   put "/mark_as_read/:id", to: "notifications#markAsRead"
   put "/update_is_selected", to: "notifications#updateIsSelected"
 
+  resources :reports, only: [:index, :destroy]
+  get "/reports", to: "reports#index"
+  get "/new_reports", to: "reports#getCount"
+  put "/mark_as_read/:id", to: "reports#markAsRead"
+  put "/update_is_selected", to: "reports#updateIsSelected"
+
 
 
   mount ActionCable.server, at: '/cable'
