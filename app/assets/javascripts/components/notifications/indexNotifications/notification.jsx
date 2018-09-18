@@ -62,6 +62,7 @@ class Notification extends React.Component{
         const url_actor = this.props.notification.recipient.avatar_url
         const id_notification = this.props.notification.id;
         let stile_background_notifica;
+        let scritta_annuncio;
 
         if(this.props.notification.read_at == null){
             stile_background_notifica = style_not_read
@@ -74,7 +75,34 @@ class Notification extends React.Component{
                 type = 'domanda'
                 link = '/courses/' + id_corso
                 icon = <span className="icon has-text-link"><i className="fas fa-question-circle"></i></span>;
+                scritta_annuncio = <div><span className="has-text-weight-bold">{recipient} </span>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>nel corso di {nome_corso}</div>
                 break;
+            case 'CourseTip':
+                type = 'suggerimento'
+                link = '/courses/' + id_corso
+                icon = <span className="icon has-text-link"><i className="fas fa-glasses"></i></span>;
+                scritta_annuncio = <div><span className="has-text-weight-bold">{recipient} </span>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>nel corso di {nome_corso}</div>
+                break;
+            case 'Post':
+                type = 'post'
+                link = '/courses/' + id_corso
+                icon = <span className="icon has-text-link"><i className="fas fa-envelope"></i></span>;
+                scritta_annuncio = <div><span className="has-text-weight-bold">{recipient} </span>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>nel corso di {nome_corso}</div>
+                break;
+            case 'Rep':
+                    if(this.props.notification.notifiable.rep.offer){
+                        type = 'ripetizioni'
+                        link = '/reps'
+                        icon = <span className="icon has-text-link"><i className="fas fa-book"></i></span>;
+                        scritta_annuncio = <div><span className="has-text-weight-bold">{recipient} </span> offre <span className="has-text-weight-bold" style={style_padding}> {type}</span>per il corso di {nome_corso}</div>
+                        break;
+                    }else{
+                        type = 'ripetizioni'
+                        link = '/reps'
+                        icon = <span className="icon has-text-link"><i className="fas fa-book"></i></span>;
+                        scritta_annuncio = <div><span className="has-text-weight-bold">{recipient} </span> cerca <span className="has-text-weight-bold" style={style_padding}> {type}</span>per il corso di {nome_corso}</div>
+                        break;
+                    }
         }
 
         new_notification = this.props.notification.read_at == null ? <span className="icon has-text-danger"><i className="fas fa-dot-circle"></i></span> : <span className="icon"><i className="fas fa-dot-circle"></i></span>;
@@ -92,9 +120,7 @@ class Notification extends React.Component{
                                 </figure>
                                 <div className="media-content">
                                     <div className="content">
-                                        <div>
-                                               <span className="has-text-weight-bold">{recipient} </span>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>nel corso di {nome_corso}
-                                        </div>
+                                        {scritta_annuncio}
                                     </div>
                                 </div>
                             </article>
