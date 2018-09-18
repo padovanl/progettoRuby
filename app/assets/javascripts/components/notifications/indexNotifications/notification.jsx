@@ -4,6 +4,28 @@ class Notification extends React.Component{
         super(props);
     }
 
+    handleMarkAndRedirect(redirect_url, id){
+        console.log(redirect_url)
+        // /api/v1/users/:user_id/user_courses/:id(.:format)
+        let linkUpdate = '/mark_as_read/' + id;
+                fetch(linkUpdate,
+                    {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then((response) => {
+                    return response.json()
+                })
+                    .then((notification) => {
+                        if (notification.error) {
+                            alert("Errore!")
+                        } else {
+                            window.location.href = redirect_url;
+                        }
+                    })
+    }
+
 
     render(){
 
@@ -24,9 +46,10 @@ class Notification extends React.Component{
         const action = this.props.notification.action;
         const nome_corso = this.props.notification.course.name;
         const id_corso = this.props.notification.course.id;
-        let notification_time = timeAgo(this.props.notification.updated_at) ;
+        let notification_time = timeAgo(this.props.notification.created_at) ;
         let type = this.props.notification.notifiable_type
         const url_actor = this.props.notification.recipient.avatar_url
+        const id_notification = this.props.notification.id;
 
         switch(type) {
             case 'CourseQuestion':
@@ -36,13 +59,13 @@ class Notification extends React.Component{
                 break;
         }
 
-        new_notification = this.props.notification.read_at == null ? <span className="icon has-text-danger"><i className="fas fa-dot-circle"></i></span> : null;
+        new_notification = this.props.notification.read_at == null ? <span className="icon has-text-danger"><i className="fas fa-dot-circle"></i></span> : <span className="icon"><i className="fas fa-dot-circle"></i></span>;
 
         return(
 
             <tr key={this.props.notification.id}>
                     <td>
-                        <a href={link} style={style_link_row}>
+                        <a href="#" style={style_link_row} onClick={() => this.handleMarkAndRedirect(link, id_notification)}>
                             <article className="media gap">
                                 <figure className="media-left">
                                     <p className="image is-16x16">

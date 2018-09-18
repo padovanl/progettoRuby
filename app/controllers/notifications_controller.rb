@@ -9,7 +9,7 @@ class NotificationsController < ApplicationController
   end
 
   def index
-    @notifications = Notification.order(created_at: :desc).where(recipient: current_user).unread.page(params[:page]).per(1)
+    @notifications = Notification.order(created_at: :desc).where(recipient: current_user).page(params[:page]).per(1)
     @last_page = @notifications.total_pages
     #@notifications = Notification.where(recipient: current_user).unread
     respond_to do |format|
@@ -19,9 +19,9 @@ class NotificationsController < ApplicationController
     #render json: @notifications, include: %w(recipient notifiable notifiable.post notifiable.post.course), status: :created
   end
 
-  def mark_as_read
-    @notifications = Notification.where(recipient: current_user).unread
-    @notifications.update.all(read_at: Time.zone.now)
+  def markAsRead
+    notification = Notification.find(params[:id])
+    notification.update(read_at: Time.zone.now)
     render json: {success: true}
   end
 
