@@ -26,6 +26,7 @@ class AllQuestions extends React.Component {
                         <th className="question-text-column">Domanda</th>
                         <th className="frequency-column has-text-centered">freq.</th>
                         { this.props.show_details || this.props.show_quotes ? <th className="details-column">Dettagli</th> : null }
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
