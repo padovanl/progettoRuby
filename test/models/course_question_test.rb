@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class CourseQuestionTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "should have a question" do
+    course_question = CourseQuestion.new
+    assert_not course_question.save
+  end
 end

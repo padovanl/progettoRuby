@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class TagTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "should have a name" do
+    tag = Tag.new
+    assert_not tag.save
+  end
 end

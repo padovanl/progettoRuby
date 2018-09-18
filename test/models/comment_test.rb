@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class CommentTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "should have a content" do
+    comment = Comment.new
+    assert_not comment.save
+  end
 end
