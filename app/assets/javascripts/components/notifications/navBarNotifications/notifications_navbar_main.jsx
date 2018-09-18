@@ -25,6 +25,26 @@ class NotificationsNavBarMain extends React.Component {
         this.getDataNotifications();
     }
 
+    handleUpdateIsSelected(){
+        let linkUpdate = '/update_is_selected';
+        fetch(linkUpdate,
+            {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then((response) => {
+            return response.json()
+        })
+            .then((notification) => {
+                if (notification.error) {
+                    alert("Errore!")
+                } else {
+                    this.getDataCountNotifications();
+                }
+            })
+    }
+
     render(){
         let style = {
             marginTop: 10,
@@ -36,9 +56,9 @@ class NotificationsNavBarMain extends React.Component {
         return(
             <div style={style}>
                 <div className="navbar-item has-dropdown is-hoverable">
-                    <a className="navbar-link  " href="/notifications">
+                    <div className="navbar-link" onMouseOver={() => this.handleUpdateIsSelected()}>
                         <span className="badge is-badge-primary bd-emoji" data-badge={this.state.num}><i className="fas fa-globe-americas"></i></span>
-                    </a>
+                    </div>
                     <AllNotificationsNavBar notifications={this.state.notifications}/>
                 </div>
             </div>

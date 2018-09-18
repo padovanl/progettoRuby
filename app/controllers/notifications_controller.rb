@@ -4,7 +4,7 @@ class NotificationsController < ApplicationController
 
   def getCount
     #n = Notification.where(recipient: current_user).where(:read_at => nil).all
-    n = Notification.where(recipient: current_user).unread
+    n = Notification.where(recipient: current_user).where("updated_at = created_at").unread
     json_response(n.length.to_json)
   end
 
@@ -35,6 +35,14 @@ class NotificationsController < ApplicationController
 
   def destroy
     Notification.destroy(params[:id])
+  end
+
+  def updateIsSelected
+    notifications = Notification.where(recipient: current_user).where("updated_at = created_at").unread
+    #if notifications.size > 0 -> a quanto pare non lo fa comunque se non ci sono notifiche
+      notifications.update(isSelected: true)
+    #end
+    render json: {success: true}
   end
 
 end
