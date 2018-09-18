@@ -125,14 +125,13 @@ class MyCourses extends React.Component{
 
             //bisognerebbe fare tornare direttamente dal controller l'array ordinato con limit 1 per l'anno di teacher courses (migliori prestazioni)
             return(
-                <div key={item.id} className={"relative"}>
-                    <div className="nested infinite-item">
-                        <div>Materia: {item.name} e id: {item.id}</div>
-                        <div>Livello: {item.degreet}</div>
-                        <div>Corso: {item.degreen}</div>
-                        <div>Anno: {item.year}</div>
-                        <div>Data più recente: {item.tc_year.reverse()[0].year}</div>
-                        <div>Professori:
+                <div key={item.id} className={'box relative is-marginless'}>
+                    <div className="nested infinite-item font-size">
+                        <div><strong>Materia:</strong>  <a href={"/courses/"+item.id}>{item.name}</a></div>
+                        <div><strong>Livello:</strong> {item.degreet}</div>
+                        <div><strong>Corso:</strong> {item.degreen}</div>
+                        <div><strong>Anno:</strong> {item.year}</div>
+                        <div><strong>Professori:</strong>
                             <courses-ol>{teachers}</courses-ol>
                         </div>
                     </div>

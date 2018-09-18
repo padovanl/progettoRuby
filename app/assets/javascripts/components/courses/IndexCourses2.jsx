@@ -93,7 +93,7 @@ class IndexCourses2 extends React.Component{
 
     render(){
         let filteredCourses;
-        if (this.props.courses.length !== 0 || this.props.message === '')//message = '' caso in cui ho tolto il corso con follow
+        if ( this.props.message === '')//message = '' caso in cui ho tolto il corso con follow
             filteredCourses = this.props.courses.filter((item) => {
                     return item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1; //tutti
                 }
@@ -109,7 +109,7 @@ class IndexCourses2 extends React.Component{
 
 
         let buttonNext;
-        if (this.props.page !== this.props.last_page && !this.props.disabledNext){
+        if (this.props.page !== this.props.last_page && !this.props.disabledNext && this.state.search=== ''){
             buttonNext= <div className='buttonnext' onClick={() => this.props.onChangePage()}>
                         <span> Next </span> </div>
         }
@@ -134,14 +134,13 @@ class IndexCourses2 extends React.Component{
 
             //bisognerebbe fare tornare direttamente dal controller l'array ordinato con limit 1 per l'anno di teacher courses (migliori prestazioni)
             return(
-                <div key={item.id} className={"relative"}>
-                    <div className="nested infinite-item">
-                        <div>Materia: <a href={"/courses/"+item.id}   >{item.name}</a> e id: {item.id}</div>
-                        <div>Livello: {item.degreet}</div>
-                        <div>Corso: {item.degreen}</div>
-                        <div>Anno: {item.year}</div>
-                        <div>Data più recente: {item.tc_year.reverse()[0].year}</div>
-                        <div>Professori:
+                <div key={item.id} className="box relative is-marginless">
+                    <div className="nested infinite-item font-size">
+                        <div><strong>Materia:</strong> <a href={"/courses/"+item.id}>{item.name}</a></div>
+                        <div><strong>Livello:</strong> {item.degreet}</div>
+                        <div><strong>Corso:</strong> {item.degreen}</div>
+                        <div><strong>Anno:</strong> {item.year}</div>
+                        <div><strong>Professori:</strong>
                             <courses-ol>{teachers}</courses-ol>
                         </div>
                     </div>

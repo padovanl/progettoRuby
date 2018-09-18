@@ -114,7 +114,7 @@ class SearchItem2 extends React.Component {
             ()=> getItems(updateUrl(this.props.url, this.state.page, '', '', this.state.category, this.state.query))
                 .then(data => {
                     if (data.length === 0){
-                        this.setState({disabledNext: true, message: "Courses not found!"});
+                        this.setState({disabledNext: true, message: "Corsi non trovati!", courses: data});
                     }
                     else
                         this.setState({courses: data, message:'',disabledNext: false});
@@ -131,12 +131,15 @@ class SearchItem2 extends React.Component {
 
     onSubmit(degree_name){
         console.log("SearchItem2 got: ", degree_name);
-        this.setState({degreen: degree_name, degreet: this.state.selectType, disabledNext: false, page:1},
+        this.setState({degreen: degree_name, degreet: this.state.selectType, page:1},
             ()=> getItems(updateUrl(this.props.url, this.state.page, this.state.degreen, this.state.degreet))
                 .then(data => {
                     this.setState({courses: data});
                     if (data.length ===0){
-                        this.setState({disabledNext: true})
+                        this.setState({disabledNext: true, message: "Corsi non trovati!",})
+                    }
+                    else{
+                        this.setState({disabledNext: false,message: '',})
                     }
                 })
                 .catch(this.handleError)

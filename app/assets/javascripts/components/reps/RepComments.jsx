@@ -44,7 +44,7 @@ class RepComments extends React.Component {
                     throw new Error("Errore invio email");
                 }
             })
-            .then(resp => this.setState({message: resp, error: ''},console.log("messaggio risp: ", resp)))
+            .then(this.setState({message: "Email inviata con successo!", error: ''}))
             .catch(e => {this.setState({error: e.toString(), message: ''},console.log("messaggio risp: ",e))});
 
         console.log("mi mex" , this.state.message);

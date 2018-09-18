@@ -155,7 +155,7 @@ body {
 
 
 /* Responsive columns - one column layout (vertical) on small screens */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 690px) {
   .wrapper {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -169,7 +169,7 @@ body {
 
 
 /* Responsive columns - one column layout (vertical) on small screens */
-@media screen and (max-width: 313px) {
+@media screen and (max-width: 400px) {
   .wrapper {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -201,7 +201,7 @@ body {
   padding: 6px 15px;
   text-align: center;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 20px;
   cursor: pointer;
   outline: none;
   border-radius: 12px;
@@ -319,6 +319,11 @@ body {
   margin-left: 1em;
 }
 
+.bottom-gap{
+  margin-bottom: 1em;
+}
+
+
 .mySelect {
   display: inline-block;
   padding: 10px 30px;
@@ -348,7 +353,7 @@ div.absolute {
   bottom: 1em;
   left: 1em;
   width: 83px;
-  height: 34px;
+  height: 40px;
 }
 
 
@@ -423,4 +428,9 @@ courses-ol li {
 
 .react-autosuggest__suggestion--highlighted {
   background-color: #ddd;
+}
+
+
+.font-size{
+  font-size: 20px;
 }

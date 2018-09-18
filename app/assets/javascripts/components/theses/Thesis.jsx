@@ -77,6 +77,9 @@ class Thesis extends React.Component {
                         </div>
                         <div className="card-footer">
                             <small className="card-footer-item ">
+                                {item.teacher.name + "."+ item.teacher.surname+"@unife.it"}
+                            </small>
+                            <small className="card-footer-item ">
                                 {(new  Date(Date.parse(item.created_at))).toLocaleDateString('it-IT', options)}
                             </small>
                         </div>
