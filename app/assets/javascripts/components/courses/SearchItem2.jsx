@@ -239,8 +239,8 @@ class SearchItem2 extends React.Component {
                             <form className='search-form' onSubmit={(e)=>this.searchCourses(e)}>
                                 <h3><b><font color="#8b0000">Advanced Search:</font></b></h3>
                                 <div className='columns'>
-                                    <div className=' myColumn-sm' onClick={this.selectChanged.bind(this)}>
-                                        <select required className='mySelect gap' >
+                                    <div className=' myColumn-sm'>
+                                        <select required className='mySelect gap' onChange={this.selectChanged.bind(this)}>
                                             {options}
                                         </select>
                                     </div>
