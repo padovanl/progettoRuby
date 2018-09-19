@@ -17,8 +17,9 @@ class ReportsNavbarMain extends React.Component {
     }
 
     handleUpdateIsSelected(){
+        console.log("update report count")
             if (this.state.num > 0){
-                let linkUpdate = '/update_is_selected';
+                let linkUpdate = '/update_is_selected_report';
                 fetch(linkUpdate,
                     {
                         method: 'PUT',

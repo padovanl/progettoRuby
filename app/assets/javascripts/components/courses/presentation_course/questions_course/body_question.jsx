@@ -20,6 +20,8 @@ class BodyQuestion extends React.Component {
         this.handleShowQuotes = this.handleShowQuotes.bind(this)
         this.handleQuoteUp = this.handleQuoteUp.bind(this)
         this.handleQuoteDown = this.handleQuoteDown.bind(this)
+        this.handleReport = this.handleReport.bind(this)
+
 
     }
 
@@ -102,7 +104,6 @@ class BodyQuestion extends React.Component {
                 }
             })
         }
-
     }
 
     deleteCourseQuestion(id){
@@ -206,6 +207,28 @@ class BodyQuestion extends React.Component {
     }
 
 
+    handleReport(id){
+        // /courses/:course_id/questions/:id(.:format)
+        let linkReport = '/report_question/' + id;
+        console.log(linkReport)
+        if(confirm('Sei sicuro di voler segnalare questa domanda?')){
+            fetch(linkReport,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then((response) => {
+                if (response.ok){
+                    toastr.success("Domanda segnalata con successo")
+                }else{
+                    alert("errore")
+                }
+            })
+        }
+    }
+
+
     render(){
         //console.log(this.state.followed.length > 0 ? this.state.followed[0].passed : 'Items not loaded yet');        //this.state.tubedata.length > 0 && this.state.tubedata[0].id
 
@@ -225,7 +248,8 @@ class BodyQuestion extends React.Component {
                               show_details = {this.state.show_details}
                               show_quotes = {this.state.show_quotes}
                               handleQuoteUp = {this.handleQuoteUp}
-                              handleQuoteDown = {this.handleQuoteDown} />
+                              handleQuoteDown = {this.handleQuoteDown}
+                              handleReport = {this.handleReport}/>
                 <br/>
                 <table className="table is-fullwidth">
                     <tbody>

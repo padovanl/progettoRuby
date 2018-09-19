@@ -144,7 +144,6 @@ ActiveRecord::Schema.define(version: 2018_09_18_193748) do
   create_table "reports", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "recipient_id"
     t.integer "actor_id"
     t.datetime "read_at"
     t.string "action"

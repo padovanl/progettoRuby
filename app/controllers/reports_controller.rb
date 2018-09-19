@@ -10,11 +10,11 @@ class ReportsController < ApplicationController
 
   def index
     @reports = Report.order(created_at: :desc).page(params[:page]).per(1)
-    @reports = @reports.total_pages
+    @last_page = @reports.total_pages
     #@notifications = Notification.where(recipient: current_user).unread
     respond_to do |format|
       format.html
-      format.json {render json: @reports, :include => {:recipient => {:only => [:id, :email, :avatar_url, :name, :admin]}, :notifiable => {}} }
+      format.json {render json: @reports, :include => {:actor => {:only => [:id, :email, :avatar_url, :name]}, :notifiable => {}} }
     end
     #render json: @notifications, include: %w(recipient notifiable notifiable.post notifiable.post.course), status: :created
   end
@@ -27,6 +27,10 @@ class ReportsController < ApplicationController
 
   def destroy
     Report.destroy(params[:id])
+  end
+
+  def show
+
   end
 
   def updateIsSelected

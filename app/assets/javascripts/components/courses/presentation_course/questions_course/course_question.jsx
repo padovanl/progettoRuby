@@ -79,7 +79,7 @@ class CourseQuestion extends React.Component{
                     { this.props.courseQuestion.user_id != this.props.user_id && this.props.show_quotes && hasBeenQuotedID.length == 0 ? <div> {quote_up_button_item} </div>  :  null}
                     { this.props.courseQuestion.user_id != this.props.user_id && this.props.show_quotes && hasBeenQuotedID.length != 0 ? <div> {quote_down_button_item} </div>  :  null}
                 </td> : null}
-                <td className="has-text-right"><a title="Reporting"><i className="fas fa-bug"/></a></td>
+                <td className="has-text-right"><a title="Reporting" onClick={() => this.props.handleReport(this.props.courseQuestion.id)}><i className="fas fa-bug"/></a></td>
             </tr>
         )
     }

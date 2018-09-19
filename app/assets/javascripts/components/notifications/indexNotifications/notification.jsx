@@ -4,27 +4,7 @@ class Notification extends React.Component{
         super(props);
     }
 
-    handleMarkAndRedirect(redirect_url, id){
-        console.log(redirect_url)
-        // /api/v1/users/:user_id/user_courses/:id(.:format)
-        let linkUpdate = '/mark_as_read/' + id;
-                fetch(linkUpdate,
-                    {
-                        method: 'PUT',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    }).then((response) => {
-                    return response.json()
-                })
-                    .then((notification) => {
-                        if (notification.error) {
-                            alert("Errore!")
-                        } else {
-                            window.location.href = redirect_url;
-                        }
-                    })
-    }
+
 
 
     render(){
@@ -111,7 +91,7 @@ class Notification extends React.Component{
 
             <tr key={this.props.notification.id} style={stile_background_notifica}>
                     <td>
-                        <a href="#" style={style_link_row} onClick={() => this.handleMarkAndRedirect(link, id_notification)}>
+                        <a href="#" style={style_link_row} onClick={() => this.props.handleMarkAndRedirect(link, id_notification)}>
                             <article className="media gap">
                                 <figure className="media-left">
                                     <p className="image is-16x16">

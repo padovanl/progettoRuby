@@ -21,6 +21,8 @@ TeacherCourse.destroy_all
 UserCourse.destroy_all
 CourseQuestion.destroy_all
 Notification.destroy_all
+Report.destroy_all
+
 
 
 
@@ -104,6 +106,10 @@ user.tags.create!([
   { id:7 , name: "CSP" },
   { id:8 , name: "VRP" },
   { id:9 , name: "Green" }
+])
+
+user.user_courses.create!([
+    {user_id: user.id, course_id: 1, follow: true, passed: true, course_rate: 27, material_quality: 2, explanation: 2, average_attempts: 2, average_days: 10}
 ])
 
 

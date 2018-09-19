@@ -16,7 +16,7 @@ class AllNotifications extends React.Component {
 
         var notifications = this.props.notifications.map((notification) => {
             return(
-                <Notification key={notification.id} notification={notification} />
+                <Notification key={notification.id} notification={notification} handleMarkAndRedirect={this.props.handleMarkAndRedirect} />
             )
         })
 

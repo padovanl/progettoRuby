@@ -31,7 +31,7 @@ class NotificationsNavBarMain extends React.Component {
         if (this.state.isActive == "navbar-item has-dropdown"){
             this.setState({isActive: "navbar-item has-dropdown is-active"})
             if (this.state.num > 0){
-                let linkUpdate = '/update_is_selected';
+                let linkUpdate = '/update_is_selected_notification';
                 fetch(linkUpdate,
                     {
                         method: 'PUT',

@@ -27,6 +27,8 @@ Rails.application.routes.draw do
   resources :courses do
     resources :questions, only: [:index, :create, :destroy, :update]
   end
+  #report di una domanda
+  post "/report_question/:id", to: "questions#reportQuestion"
 
   resources :courses do
     resources :course_tips, only: [:index, :create, :destroy, :update]
@@ -143,19 +145,21 @@ Rails.application.routes.draw do
 
   #route index notifiche
 
-
+#notifications
   resources :notifications, only: [:index, :destroy]
   get "/notifications", to: "notifications#index"
   get "/new_notifications", to: "notifications#getCount"
   get "/notifications_nav_bar", to: "notifications#notificationsNavBar"
-  put "/mark_as_read/:id", to: "notifications#markAsRead"
-  put "/update_is_selected", to: "notifications#updateIsSelected"
+  put "/mark_as_read_notification/:id", to: "notifications#markAsRead"
+  put "/update_is_selected_notification", to: "notifications#updateIsSelected"
 
+  #reports
   resources :reports, only: [:index, :destroy]
   get "/reports", to: "reports#index"
+  get "/reports/:id", to: "reports#show"
   get "/new_reports", to: "reports#getCount"
-  put "/mark_as_read/:id", to: "reports#markAsRead"
-  put "/update_is_selected", to: "reports#updateIsSelected"
+  put "/mark_as_read_report/:id", to: "reports#markAsRead"
+  put "/update_is_selected_report", to: "reports#updateIsSelected"
 
 
 

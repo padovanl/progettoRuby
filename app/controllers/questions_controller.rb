@@ -40,6 +40,16 @@ class QuestionsController < ApplicationController
     json_response(quest.to_json(include: [:frequency_questions]))
   end
 
+  def reportQuestion
+    quest = CourseQuestion.find(params[:id])
+    #User.where(:admin => true).uniq.each do |user|
+    Report.create(actor: current_user, action: "È stata segnalata una", reportable: quest)
+    #end
+    respond_to do |format|
+      format.json { head :ok }
+      end
+  end
+
   private
   def question_params
     params.require(:courseQuestion).permit(:course_id, :user_id, :question)
