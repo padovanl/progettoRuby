@@ -92,13 +92,13 @@ class Search_degree extends React.Component {
                 <div className={'myRow gap'}>
                     <div className={'columns'}>
                         <div className=' myColumn-sm '>
-                            <select required className='mySelect gap' onClick={(e) => this.selectTypeChanged(e)}>
+                            <select required className='mySelect gap' onChange={(e) => this.selectTypeChanged(e)}>
                                 <option key={'- Select -'}>- Select -</option>
                                 {optionsSelectTypes}
                             </select>
                         </div>
                         <div className={'myColumn-sm '+this.state.chooseDegree}>
-                            <select required className='mySelect gap' onClick={(e) => this.selectDegreeChanged(e)}>
+                            <select required className='mySelect gap' onChange={(e) => this.selectDegreeChanged(e)}>
                                 <option key={'- Select -'}>- Select -</option>
                                 {optionsDegree}
                             </select>
