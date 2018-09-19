@@ -148,7 +148,8 @@ Rails.application.routes.draw do
   get "/notifications", to: "notifications#index"
   get "/new_notifications", to: "notifications#getCount"
   get "/notifications_nav_bar", to: "notifications#notificationsNavBar"
-  post "/mark_as_read", to: "notifications#markAsRead"
+  put "/mark_as_read/:id", to: "notifications#markAsRead"
+  put "/update_is_selected", to: "notifications#updateIsSelected"
 
 
 

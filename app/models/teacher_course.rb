@@ -2,6 +2,10 @@ class TeacherCourse < ApplicationRecord
   belongs_to :teacher
   belongs_to :course
 
+  validates_presence_of :year
+  validates :year, format: { with: /[0-9]{4}-[0-9]{4}/, message: "Il formato deve essere AAAA-AAAA" }
+
+
   def self.search(query)
     if query
       where("data like ?", "%#{query}%")

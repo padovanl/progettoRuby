@@ -16,7 +16,7 @@ class Document < ApplicationRecord
   has_one_attached :file
 
   # validations
-  validates_presence_of :user, :course
+  validates_presence_of :user, :course, :file_name
 
   reduces self.all, filters: [
       ->(course_id:) { where course_id: course_id },

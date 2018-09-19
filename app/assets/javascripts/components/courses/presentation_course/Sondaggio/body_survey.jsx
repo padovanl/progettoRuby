@@ -89,7 +89,9 @@ class BodySurvey extends React.Component {
 // course rate sarebbe il voto conseguito
 
         return(
-            <div>
+            <div className="columns is-centered">
+                <div className="column is-6"></div>
+                <div className="column is-four-fifths">
                 <div className="field is-horizontal">
                     <div className="field-label">
                         <label className="label">Voto conseguito</label>
@@ -180,6 +182,8 @@ class BodySurvey extends React.Component {
                     <span> </span>
                     <a className="button is-rounded is-danger" href={"/courses/" + this.props.course_id}>Indietro</a>
                 </div>
+                </div>
+                <div className="column"></div>
             </div>
         )
     }

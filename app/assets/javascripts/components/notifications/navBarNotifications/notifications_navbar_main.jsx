@@ -4,7 +4,8 @@ class NotificationsNavBarMain extends React.Component {
         super(props);
         this.state = {
             num: "0",
-            notifications: []
+            notifications: [],
+            isActive: "navbar-item has-dropdown"
         };
     }
 
@@ -25,6 +26,34 @@ class NotificationsNavBarMain extends React.Component {
         this.getDataNotifications();
     }
 
+    handleUpdateIsSelected(){
+
+        if (this.state.isActive == "navbar-item has-dropdown"){
+            this.setState({isActive: "navbar-item has-dropdown is-active"})
+            if (this.state.num > 0){
+                let linkUpdate = '/update_is_selected';
+                fetch(linkUpdate,
+                    {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then((response) => {
+                    return response.json()
+                })
+                    .then((notification) => {
+                        if (notification.error) {
+                            alert("Errore!")
+                        } else {
+                            this.getDataCountNotifications();
+                        }
+                    })
+            }
+        }else{
+            this.setState({isActive: "navbar-item has-dropdown"})
+        }
+    }
+
     render(){
         let style = {
             marginTop: 10,
@@ -35,10 +64,10 @@ class NotificationsNavBarMain extends React.Component {
         //this.getCountNew();
         return(
             <div style={style}>
-                <div className="navbar-item has-dropdown is-hoverable">
-                    <a className="navbar-link  " href="/notifications">
+                <div className={this.state.isActive}>
+                    <div className="navbar-link" onClick={() => this.handleUpdateIsSelected()}>
                         <span className="badge is-badge-primary bd-emoji" data-badge={this.state.num}><i className="fas fa-globe-americas"></i></span>
-                    </a>
+                    </div>
                     <AllNotificationsNavBar notifications={this.state.notifications}/>
                 </div>
             </div>
