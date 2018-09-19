@@ -31,6 +31,7 @@ class QuestionsController < ApplicationController
 
   def destroy
     CourseQuestion.destroy(params[:id])
+    Notification.where(:notifiable_id => params[:id]).where(:notifiable_type => "CourseQuestion").destroy_all
   end
 
   def update
