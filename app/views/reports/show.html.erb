@@ -1,7 +1,12 @@
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-<%= debug(@report.inspect) %>
+<section class="hero is-small">
+  <div class="hero-body has-text-centered">
+    <div class="container">
+      <h3 class="title is-3">Dettagli segnalazione</h3>
+    </div>
+  </div>
+</section>
+<br/>
+<%= react_component('MainShowReport', {report_id: params[:id]}) %>
+
