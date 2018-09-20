@@ -20,6 +20,7 @@ class AllNotifications extends React.Component {
             )
         })
 
+
         return(
             <div className="columns">
                 <div className="column is-1"></div>

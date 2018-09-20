@@ -4,7 +4,28 @@ class Notification extends React.Component{
         super(props);
     }
 
-
+    handleMarkAndRedirect(redirect_url, id){
+        console.log(redirect_url)
+        // /api/v1/users/:user_id/user_courses/:id(.:format)
+        let linkUpdate = '/mark_as_read/' + id;
+                fetch(linkUpdate,
+                    {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        credentials: 'same-origin'
+                    }).then((response) => {
+                    return response.json()
+                })
+                    .then((notification) => {
+                        if (notification.error) {
+                            alert("Errore!")
+                        } else {
+                            window.location.href = redirect_url;
+                        }
+                    })
+    }
 
 
     render(){

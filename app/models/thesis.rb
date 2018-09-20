@@ -5,6 +5,8 @@ class Thesis < ApplicationRecord
   has_many :thesis_tags, dependent: :destroy
   has_many :tags, through: :thesis_tags
 
+  validates_presence_of :title
+  validates_presence_of :content
 
   reduces self.all, filters: [
       ->(thesis_title:) { where('lower(title ) like ?', "%#{thesis_title.downcase}%")},

@@ -162,6 +162,9 @@ Rails.application.routes.draw do
   put "/update_is_selected_report", to: "reports#updateIsSelected"
 
 
+  # thesis
+  get "/thesis/:id", to: "theses#show"
+
 
   mount ActionCable.server, at: '/cable'
 
