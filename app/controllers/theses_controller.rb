@@ -16,6 +16,12 @@ class ThesesController < ApplicationController
 
 
   def show
+    @thesis =Thesis.reduce(params).find(params['id'])
+    @current_user_avatar = get_avatar_image
+    #respond_to do |format|
+    #  format.html
+    #  format.json {render json: @theses, :include => {:tags => {:only => :name}, :teacher => {:only => [:name, :surname, :link_cv]}} }
+    #end
   end
 end
 

@@ -1,2 +1,15 @@
 <h1>Theses#show</h1>
 <p>Find me in app/views/theses/show.html.erb</p>
+
+<%= params['id'] %>
+
+<%= @thesis.title %>
+<br>
+<%= @thesis.content %>
+<br>
+<%= @thesis.teacher.name %>
+<%= @thesis.teacher.surname %>
+<br>
+<% @thesis.tags.each do |t| %>
+  <%= t.name %><br>
+<% end %>
