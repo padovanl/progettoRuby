@@ -250,17 +250,17 @@ teacher.teacher_courses.create!([
 ])
 
 
-user = User.create!(id: 3, name: "User2 User2", email: "user2@user2.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
+user = User.create!(name: "User2 User2", email: "user2@user2.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
 user.user_courses.create!([
     {user_id: user.id, course_id: 1, follow: true, passed: true, course_rate: 25, material_quality: 1, explanation: 1, average_attempts: 4, average_days: 10}
 ])
-user = User.create!(id: 4, name: "User2 User2", email: "user3@user3.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
+user = User.create!(name: "User2 User2", email: "user3@user3.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
 user.user_courses.create!([
     {user_id: user.id, course_id: 1, follow: true, passed: true, course_rate: 27, material_quality: 2, explanation: 2, average_attempts: 2, average_days: 10}
 ])
 
 
-user = User.create!(id: 5, name: "User2 User2", email: "user4@user4.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
+user = User.create!(name: "User2 User2", email: "user4@user4.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
 user.user_courses.create!([
     {user_id: user.id, course_id: 1, follow: true, passed: true, course_rate: 31, material_quality: 5, explanation: 2, average_attempts: 1, average_days: 40}
 ])
@@ -278,7 +278,7 @@ user.user_courses.create!([
 ])
 
 
-user = User.create!(id: 8, name: "User2 User2", email: "user7@user7.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
+user = User.create!( name: "User2 User2", email: "user7@user7.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
 user.user_courses.create!([
     {user_id: user.id, course_id: 1, follow: true, passed: true, course_rate: 30, material_quality: 5, explanation: 4, average_attempts: 4, average_days: 10}
 ])

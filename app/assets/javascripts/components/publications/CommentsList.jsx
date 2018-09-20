@@ -33,9 +33,12 @@ class CommentsList extends React.Component {
     render() {
         let comment_list;
         const { post_id, current_user_avatar, comments, deleteComment, current_user } = this.props
-        comment_list = comments.map(function (comment) {
-            return <Comment key={comment.id} comment={comment} deleteComment={deleteComment} current_user={current_user}></Comment>
-        })
+        comment_list = comments.sort(function(a, b) {
+                            return new Date(b.created_at) < new Date(a.created_at);
+                        }).map(function (comment) {
+                            return <Comment key={comment.id} comment={comment} deleteComment={deleteComment}
+                                            current_user={current_user} />
+                        });
 
         return (
             <div>

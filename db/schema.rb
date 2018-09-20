@@ -223,7 +223,7 @@ ActiveRecord::Schema.define(version: 2018_09_18_010640) do
     t.integer "explanation"
     t.integer "average_attempts"
     t.integer "average_days"
-    t.boolean "follow", default: true
+    t.boolean "follow"
     t.index ["course_id"], name: "index_user_courses_on_course_id"
     t.index ["user_id"], name: "index_user_courses_on_user_id"
   end
