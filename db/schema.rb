@@ -147,9 +147,9 @@ ActiveRecord::Schema.define(version: 2018_09_18_010640) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "course_id"
-    t.boolean "offer", null: false
+    t.boolean "offer"
     t.string "user_competence"
-    t.decimal "price_hours", precision: 6, scale: 2, null: false
+    t.decimal "price_hours", precision: 6, scale: 2
     t.string "place"
     t.boolean "home_service"
     t.string "week_days"
@@ -217,7 +217,7 @@ ActiveRecord::Schema.define(version: 2018_09_18_010640) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "course_id"
-    t.boolean "passed", default: false
+    t.boolean "passed"
     t.integer "estimate_difficulty"
     t.integer "material_quality"
     t.integer "explanation"
