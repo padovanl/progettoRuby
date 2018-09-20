@@ -19,8 +19,7 @@ class PostsController < ApplicationController
 
     #invio notifica
     course = Course.find(post_params[:course_id])
-    #(course.users.uniq - [current_user]).each do |user|
-    @course.users.uniq.each do |user|
+    course.users.uniq.each do |user|
       Notification.create(recipient: user, actor: current_user, action: "ha inserito un nuovo", notifiable: publication.post)
     end
 
@@ -36,7 +35,7 @@ class PostsController < ApplicationController
       return
     end
 
-    Notification.where(:notifiable_id => params[:id]).where(:notifiable_type => "Post").destroy_all
+    Notification.where(notifiable_id: params[:id]).where(notifiable_type: "Post").destroy_all
     head :no_content
   end
 

@@ -4,7 +4,7 @@
 
 .corso-thread {
   /* General style */
-  max-width: 1200px;
+  max-width: 1100px;
   position: relative;
   margin-top: 7vh;
   overflow: hidden;
@@ -62,6 +62,10 @@
 
     figure img {
       border-radius: 50%;
+    }
+
+    .box{
+      margin-right: 0;
     }
 
     .comment, .upvote, .link-to-commets {
