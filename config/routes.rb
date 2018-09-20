@@ -154,7 +154,7 @@ Rails.application.routes.draw do
   put "/update_is_selected_notification", to: "notifications#updateIsSelected"
 
   #reports
-  resources :reports, only: [:index, :destroy]
+  resources :reports, only: [:show, :index, :destroy]
   get "/reports", to: "reports#index"
   get "/reports/:id", to: "reports#show"
   get "/new_reports", to: "reports#getCount"

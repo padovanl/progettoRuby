@@ -109,7 +109,8 @@ user.tags.create!([
 ])
 
 user.user_courses.create!([
-    {user_id: user.id, course_id: 1, follow: true, passed: true, course_rate: 27, material_quality: 2, explanation: 2, average_attempts: 2, average_days: 10}
+    {user_id: user.id, course_id: 1, follow: true, passed: true, course_rate: 27, material_quality: 2, explanation: 2, average_attempts: 2, average_days: 10},
+    {user_id: user.id, course_id: 2, follow: true, passed: true, course_rate: 27, material_quality: 2, explanation: 2, average_attempts: 2, average_days: 10}
 ])
 
 

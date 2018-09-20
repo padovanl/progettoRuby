@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :frequency_questions
   has_many :course_tips
   has_many :notifications
+  has_many :user_reports
 
 
   # un utente vota un post

@@ -42,8 +42,16 @@ class QuestionsController < ApplicationController
 
   def reportQuestion
     quest = CourseQuestion.find(params[:id])
-    #User.where(:admin => true).uniq.each do |user|
-    Report.create(actor: current_user, action: "È stata segnalata una", reportable: quest)
+    report = Report.where(:reportable_id => params[:id]).where(:reportable_type => "CourseQuestion").first
+
+    if (report != nil)
+      UserReport.create!(user_id: current_user.id, report_id: report.id)
+    else
+      Report.create(action: "È stata segnalata una", reportable: quest)
+      #UserReport.create!(user_id: current_user, report_id: report)
+      UserReport.create!(user_id: current_user, report_id: report)
+    end
+
     #end
     respond_to do |format|
       format.json { head :ok }

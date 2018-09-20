@@ -33,13 +33,11 @@ class Report extends React.Component{
 
 
 
-        const actor = this.props.report.actor.name;
         const action = this.props.report.action;
         const nome_corso = this.props.report.course.name;
         const id_corso = this.props.report.course.id;
         let notification_time = timeAgo(this.props.report.created_at) ;
         let type = this.props.report.reportable_type
-        const url_actor = this.props.report.actor.avatar_url
         const report_id = this.props.report.id;
         let stile_background_notifica;
         let scritta_annuncio;
@@ -92,8 +90,8 @@ class Report extends React.Component{
                         <a href="#" style={style_link_row} onClick={() => this.props.handleMarkAndRedirect(link, id_notification)}>
                             <article className="media gap">
                                 <figure className="media-left">
-                                    <p className="image is-16x16">
-                                        <img className="is-rounded" src={url_actor}/>
+                                    <p className="image is-16x16  is-danger">
+                                        <span className="icon has-text-danger"><i className="fas fa-bullhorn"></i></span>
                                     </p>
                                 </figure>
                                 <div className="media-content">
@@ -142,7 +140,7 @@ class Report extends React.Component{
                         <article className="media gap">
                             <div className="media-content">
                                 <div className="content">
-                                    <a className="tags has-addons" href="#">
+                                    <a className="tags has-addons" href={"/reports/" + report_id}>
                                         <span className="tag is-warning">Dettagli</span>
                                         <span className="tag is-warning"><i className="fas fa-info-circle"></i></span>
                                     </a>

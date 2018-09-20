@@ -14,7 +14,7 @@ class ReportsController < ApplicationController
     #@notifications = Notification.where(recipient: current_user).unread
     respond_to do |format|
       format.html
-      format.json {render json: @reports, :include => {:actor => {:only => [:id, :email, :avatar_url, :name]}, :notifiable => {}} }
+      format.json {render json: @reports, :include => {:notifiable => {}} }
     end
     #render json: @notifications, include: %w(recipient notifiable notifiable.post notifiable.post.course), status: :created
   end
@@ -30,7 +30,13 @@ class ReportsController < ApplicationController
   end
 
   def show
-
+    puts (ActiveModel::Serializer.config.default_includes)
+    report = Report.find(params[:id])
+    respond_to do |format|
+      format.html
+      #format.json {render json: report, :include => {:users => {:only => [:id, :email, :avatar_url, :name, :admin]}, :reportable => {}} }
+      format.json {render json: report, :include => {:user_reports => {}, :reportable => {}}}
+    end
   end
 
   def updateIsSelected

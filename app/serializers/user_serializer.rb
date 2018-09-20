@@ -3,6 +3,8 @@ class UserSerializer < ActiveModel::Serializer
 
   attributes :id, :email, :avatar_url, :name, :admin, :confirmed_at
 
+  has_many :user_reports
+
   def avatar_url
     if object.avatar.attached?
       variant = object.avatar.variant(resize: "100x100") # .processed.service_url # controllo se è presente localmente
