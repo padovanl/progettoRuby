@@ -27,7 +27,7 @@ class ThesisDash extends React.Component{
 
     render(){
 
-        let descrizioneTroncata = '';
+        let descrizioneTroncata;
         let trovataLettera = false;
         let indice = -1;
         for(i = 50; i > 10 && !trovataLettera; i--){
