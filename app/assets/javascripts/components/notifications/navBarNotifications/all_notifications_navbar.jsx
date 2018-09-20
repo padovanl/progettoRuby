@@ -6,12 +6,11 @@ class AllNotificationsNavBar extends React.Component {
 
 
     render(){
-
         var notifications = this.props.notifications.map((notification) => {
-            return(
-                <NotificationNavbar notification={notification} />
-            )
-        })
+                return(
+                    <NotificationNavbar notification={notification} />
+                )
+            })
 
         return(
             <div>

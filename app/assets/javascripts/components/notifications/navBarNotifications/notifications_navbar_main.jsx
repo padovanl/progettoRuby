@@ -11,15 +11,21 @@ class NotificationsNavBarMain extends React.Component {
 
     getDataNotifications() {
         let linkGet =  '/notifications_nav_bar.json';
-        fetch(linkGet)
+        fetch(linkGet, {
+            credentials: 'same-origin'
+        })
             .then((response) => {return response.json()})
             .then((data) => {this.setState({ notifications: data }) });
     }
 
     getDataCountNotifications(){
-        fetch('/new_notifications.json')
+        fetch('/new_notifications.json', {
+            credentials: 'same-origin'
+        })
             .then((response) => {return response.json()})
-            .then((data) => { this.setState({num: data})});
+            .then((data) => {
+                this.setState({num: data})
+            });
     }
     componentDidMount(){
         this.getDataCountNotifications();
@@ -60,8 +66,6 @@ class NotificationsNavBarMain extends React.Component {
             marginRight: 5,
         };
 
-        //this.getCountNew();
-        //this.getCountNew();
         return(
             <div style={style}>
                 <div className={this.state.isActive}>
