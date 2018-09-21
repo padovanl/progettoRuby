@@ -30,12 +30,12 @@ class ReportsController < ApplicationController
   end
 
   def show
-    puts (ActiveModel::Serializer.config.default_includes)
-    report = Report.find(params[:id])
+    #puts (ActiveModel::Serializer.config.default_includes)
+    @report = Report.find(params[:id])
     respond_to do |format|
       format.html
       #format.json {render json: report, :include => {:users => {:only => [:id, :email, :avatar_url, :name, :admin]}, :reportable => {}} }
-      format.json {render json: report, :include => {:user_reports => {}, :reportable => {}}}
+      format.json {render json: @report, :include => {:user_reports => {}, :reportable => {}}}
     end
   end
 

@@ -6,7 +6,7 @@ class MainShowReport extends React.Component {
     render(){
         return(
             <div>
-                <BodyReport  report_id={this.props.report_id} />
+                <BodyShowReport report_id={this.props.report_id} />
             </div>
         )
     }
