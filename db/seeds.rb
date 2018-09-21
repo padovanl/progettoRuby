@@ -285,7 +285,7 @@ user.user_courses.create!([
 ])
 
 
-user = User.create!( name: "User2 User2", email: "user7@user7.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
+user = User.create!(id: 8,  name: "User2 User2", email: "user7@user7.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
 user.user_courses.create!([
     {user_id: user.id, course_id: 1, follow: true, passed: true, course_rate: 30, material_quality: 5, explanation: 4, average_attempts: 4, average_days: 10}
 ])
