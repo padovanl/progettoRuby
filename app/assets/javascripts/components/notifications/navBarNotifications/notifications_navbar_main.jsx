@@ -27,6 +27,13 @@ class NotificationsNavBarMain extends React.Component {
                 this.setState({num: data})
             });
     }
+
+    updateCountNotifications(notification){
+        this.setState({num: notification.length})
+    }
+
+
+
     componentDidMount(){
         this.getDataCountNotifications();
         this.getDataNotifications();
@@ -69,6 +76,9 @@ class NotificationsNavBarMain extends React.Component {
 
         return(
             <div style={style}>
+                <NotificationsWebSocket
+                    data-updateApp={ this.updateCountNotifications.bind(this) }
+                />
                 <div className={this.state.isActive}>
                     <div className="navbar-link" onClick={() => this.handleUpdateIsSelected()}>
                         <span className="badge is-badge-primary bd-emoji" data-badge={this.state.num}><i className="fas fa-globe-americas"></i></span>

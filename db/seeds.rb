@@ -15,13 +15,14 @@ ThesisTag.destroy_all
 Teacher.destroy_all
 Tag.destroy_all
 Rep.destroy_all
-User.destroy_all
 UserCourse.destroy_all
 TeacherCourse.destroy_all
 UserCourse.destroy_all
 CourseQuestion.destroy_all
 Notification.destroy_all
+UserReport.destroy_all
 Report.destroy_all
+User.destroy_all
 
 
 
