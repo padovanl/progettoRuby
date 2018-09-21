@@ -28,6 +28,7 @@ class BodySurvey extends React.Component {
                 fetch(linkUpdate,
                     {
                         method: 'PUT',
+                        credentials: 'same-origin',
                         body: body,
                         headers: {
                             'Content-Type': 'application/json'

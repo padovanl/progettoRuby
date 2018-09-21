@@ -8,7 +8,9 @@ class ReportsNavbarMain extends React.Component {
     }
 
     getDataCountNotifications(){
-        fetch('/new_reports.json')
+        fetch('/new_reports.json', {
+            credentials: 'same-origin'
+        })
             .then((response) => {return response.json()})
             .then((data) => { this.setState({num: data})});
     }
@@ -23,6 +25,7 @@ class ReportsNavbarMain extends React.Component {
                 fetch(linkUpdate,
                     {
                         method: 'PUT',
+                        credentials: 'same-origin',
                         headers: {
                             'Content-Type': 'application/json'
                         }

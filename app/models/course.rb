@@ -16,7 +16,7 @@ class Course < ApplicationRecord
 
   validates_presence_of :name, message: "The name should be present"
   validates_numericality_of :year, message: "The year should be an integer"
-  validates_inclusion_of :year, :in => [1,2], message: "The year is in [1,2]"
+  validates_inclusion_of :year, in: [1, 2], message: "The year is in [1,2]"
   validates_format_of :name, with: /\A[a-zA-Zàèéìòù0-9 .,]+\z/, :on => :create, message: "Allows letters, numbers and ,. (blank space)"
 
 

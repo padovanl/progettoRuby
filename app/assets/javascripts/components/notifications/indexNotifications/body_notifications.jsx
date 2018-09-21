@@ -46,6 +46,7 @@ class BodyNotifications extends React.Component {
         fetch(linkUpdate,
             {
                 method: 'PUT',
+                credentials: 'same-origin',
                 headers: {
                     'Content-Type': 'application/json'
                 }

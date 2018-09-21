@@ -30,7 +30,7 @@ class NotificationNavbar extends React.Component {
     <div className="navbar-item is-centered">
         <article className="media gap">
             <figure className="media-left">
-            <p className="image is-19x19">
+            <p className="image is-24x24">
                 <img src={url_actor}/>
             </p>
             </figure>

@@ -63,6 +63,7 @@ class BodyQuestion extends React.Component {
                     'Content-Type': 'application/json'
                 },
                 body: body,
+                credentials: 'same-origin'
             }).then((response) => {
                 return response.json()
             })
@@ -120,6 +121,7 @@ class BodyQuestion extends React.Component {
                 fetch(linkUpdate,
                     {
                         method: 'PUT',
+                        credentials: 'same-origin',
                         body: body,
                         headers: {
                             'Content-Type': 'application/json'

@@ -9,7 +9,7 @@ class BodyShowReport extends React.Component {
 
     getData1() {
         let linkGet =  '/reports/' + this.props.report_id + '.json';
-        fetch(linkGet)
+        fetch(linkGet, { credentials: 'same-origin' })
             .then((response) => {return response.json()})
             .then((data) => {this.setState({ report: data }) });
     }

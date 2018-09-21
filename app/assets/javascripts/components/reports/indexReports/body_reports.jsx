@@ -46,6 +46,7 @@ class BodyReports extends React.Component {
         fetch(linkUpdate,
             {
                 method: 'PUT',
+                credentials: 'same-origin',
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -68,6 +69,7 @@ class BodyReports extends React.Component {
             fetch(linkDelete,
                 {
                     method: 'DELETE',
+                    credentials: 'same-origin',
                     headers: {
                         'Content-Type': 'application/json'
                     }
