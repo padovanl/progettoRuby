@@ -11,13 +11,6 @@ class Api::V1::UserCoursesController < ApplicationController
     end
   end
 
-  # l'index di questo controller visto che usa l'utente nel path mi faccio ritornare la pagina da compilare per le statistiche
-  # del corso ovvero il sondaggio
-
-  def index
-
-  end
-
   def update
     user_course = UserCourse.find(params[:id])
     user_course.update_attributes(user_courses_params)
