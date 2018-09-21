@@ -28,7 +28,7 @@ class SurveyButton extends React.Component {
         if(this.state.followed.length > 0 && !this.state.followed[0].passed){
             bottone = <a className="button is-rounded is-warning" href={linkSondaggio}>Compila il sondaggio</a>
         }else{
-            bottone = <div className="has-text-success"><span>Questionario Compilato </span><i className="fas fa-check"></i></div>;
+            bottone = <div className="is-size-5 has-text-success"><span>Questionario Compilato </span><i className="fas fa-check"></i></div>;
         }
 
         return(

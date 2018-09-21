@@ -5,10 +5,15 @@ class RowStatisticCourse extends React.Component {
     }
 
     render(){
+
+        let style= {
+            verticalAlign: 'middle'
+        };
+
         return(
             <tr>
-                <td className="statistic-label">{this.props.title_label}</td>
-                <td className="margin-statistic-value">{this.props.statistic_value}</td>
+                <td className="statistic-label has-text-weight-bold ">{this.props.title_label}</td>
+                <td className="margin-statistic-value has-text-black" style={style}>{this.props.statistic_value}</td>
             </tr>
         )
     }

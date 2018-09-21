@@ -69,20 +69,14 @@ class NotificationsNavBarMain extends React.Component {
     }
 
     render(){
-        let style = {
-            marginTop: 10,
-            marginRight: 5,
-        };
 
         return(
-            <div style={style}>
-                <NotificationsWebSocket
-                    data-updateApp={ this.updateCountNotifications.bind(this) }
-                />
+            <div className="navbar-item">
+                <NotificationsWebSocket data-updateApp={ this.updateCountNotifications.bind(this)} />
                 <div className={this.state.isActive}>
-                    <div className="navbar-link" onClick={() => this.handleUpdateIsSelected()}>
+                    <a className="navbar-link" onClick={() => this.handleUpdateIsSelected()}>
                         <span className="badge is-badge-primary bd-emoji" data-badge={this.state.num}><i className="fas fa-globe-americas"></i></span>
-                    </div>
+                    </a>
                     <AllNotificationsNavBar notifications={this.state.notifications}/>
                 </div>
             </div>

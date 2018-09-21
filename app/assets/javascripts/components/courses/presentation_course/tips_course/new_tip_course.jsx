@@ -10,7 +10,12 @@ class NewTipCourse extends React.Component {
         return(
             <tr>
                 <td className="new-question-text">
-                    <input ref={input => formFields.tip_text = input} placeholder='Inserisci un nuovo suggerimento' className="input is-medium" required />
+                    <input ref={input => formFields.tip_text = input}
+                           placeholder='Inserisci un nuovo suggerimento'
+                           className="input is-medium"
+                           value={ this.props.content_tip}
+                           onChange={ (e) => this.props.handleChange(e)}
+                           required />
                 </td>
                 <td>
                 </td>

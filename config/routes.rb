@@ -131,7 +131,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get "/survey/:course_id/users/:id", to: "api/v1/user_courses#show"
+  get "/survey_course/:course_id/users/:id", to: "api/v1/user_courses#show"
 
   get "/dashboard/thesis/tags/:thesis_id", to: "admin#thesis_tags"
   get "/dashboard/cdl/courses/:degree_course_id", to: "admin#courses"

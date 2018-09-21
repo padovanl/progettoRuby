@@ -15,7 +15,6 @@ class Notification extends React.Component{
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        credentials: 'same-origin'
                     }).then((response) => {
                     return response.json()
                 })

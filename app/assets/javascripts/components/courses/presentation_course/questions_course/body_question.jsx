@@ -7,7 +7,8 @@ class BodyQuestion extends React.Component {
             questions: [],
             followed: '',
             show_details: false,
-            show_quotes: false
+            show_quotes: false,
+            content_question: ''
         };
 
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -21,8 +22,14 @@ class BodyQuestion extends React.Component {
         this.handleQuoteUp = this.handleQuoteUp.bind(this)
         this.handleQuoteDown = this.handleQuoteDown.bind(this)
         this.handleReport = this.handleReport.bind(this)
+        this.handleChange = this.handleChange.bind(this)
 
 
+
+    }
+
+    handleChange(event) {
+        this.setState({content_question: event.target.value});
     }
 
     handleShowDetails(){
@@ -72,6 +79,9 @@ class BodyQuestion extends React.Component {
                         alert("Errore!")
                     } else {
                         this.addNewQuestionCourse(courseQuestion);
+                        this.setState({
+                            content_question: ''
+                        })
                     }
 
                 })
@@ -255,7 +265,12 @@ class BodyQuestion extends React.Component {
                 <br/>
                 <table className="table is-fullwidth">
                     <tbody>
-                    { this.state.followed.length > 0 && this.state.followed[0].passed ? <NewQuestionCourse course_id={this.props.course_id} user_id={this.props.user_id} handleFormSubmit={this.handleFormSubmit} /> : null}
+                    { this.state.followed.length > 0 && this.state.followed[0].passed ?
+                        <NewQuestionCourse course_id={this.props.course_id}
+                                           user_id={this.props.user_id}
+                                           handleFormSubmit={this.handleFormSubmit}
+                                           content_question={this.state.content_question}
+                                           handleChange={this.handleChange} /> : null}
                     </tbody>
                 </table>
             </div>
