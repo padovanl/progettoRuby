@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
 
   skip_before_action :verify_authenticity_token
+  before_action :broadcast_to_channel, only: :create
 
   def index
     courseQuestions = CourseQuestion.where(:course_id => params['course_id']).includes([:user, :course, :frequency_questions])
@@ -47,9 +48,9 @@ class QuestionsController < ApplicationController
     if (report != nil)
       UserReport.create!(user_id: current_user.id, report_id: report.id)
     else
-      Report.create(action: "È stata segnalata una", reportable: quest)
+      r = Report.create(action: "È stata segnalata una", reportable: quest)
       #UserReport.create!(user_id: current_user, report_id: report)
-      UserReport.create!(user_id: current_user, report_id: report)
+      UserReport.create!(user_id: current_user.id, report_id: r.id)
     end
 
     #end
@@ -61,6 +62,19 @@ class QuestionsController < ApplicationController
   private
   def question_params
     params.require(:courseQuestion).permit(:course_id, :user_id, :question)
+  end
+
+  def broadcast_to_channel
+    notification = Notification.where(recipient: current_user).where("updated_at = created_at").unread
+
+    puts notification
+
+    #serialized_data = ActiveModelSerializers::Adapter::Json.new(
+    #    NotificationSerializer.new(notification)
+    #).serializable_hash
+
+   ActionCable.server.broadcast 'notification',
+                                notification
   end
 
 end
