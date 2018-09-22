@@ -148,8 +148,6 @@
           $(".se-pre-con").fadeOut("slow");
 
           if("<%= notice %>" != ''){
-              //$("#alertDiv").html("<p><%= notice %></p>")
-              //$("#alertBox").removeAttr('hidden');
               toastr.success('<%= notice %>')
           }
 

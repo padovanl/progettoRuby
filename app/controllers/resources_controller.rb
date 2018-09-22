@@ -1,5 +1,8 @@
 class ResourcesController < ApplicationController
   before_action :authenticate_user!
-  def index
+
+  def show
+    @course = Course.find(params[:id])
+    user_follow_course?
   end
 end

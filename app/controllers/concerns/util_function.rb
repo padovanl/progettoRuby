@@ -4,8 +4,9 @@ module UtilFunction
   end
 
   def user_follow_course?
-    if !UserCourse.where(user_id: current_user.id, course_id: @course.id).exists?
-      head(403)
+    if !UserCourse.where(user_id: current_user.id, course_id: @course.id, follow: true).exists?
+      flash[:alert] = 'Per visualizzare la pagina segui il corso!'
+      redirect_to controller: 'courses', action: 'show', id: @course.id
     end
   end
 

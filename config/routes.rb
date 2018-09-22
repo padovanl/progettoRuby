@@ -11,9 +11,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {omniauth_callbacks: "users/omniauth_callbacks"}
 
   resources :upvotes
-  resources :publications, only: [:index]
+  resources :publications, only: [:show]
   resources :upvotes, only: [:create, :destroy]
-  resources :resources, only: [:index]
+  resources :resources, only: [:show]
   resources :tags, only: [:index]
   resources :documents
   resources :posts
