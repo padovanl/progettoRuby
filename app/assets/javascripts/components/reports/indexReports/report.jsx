@@ -91,7 +91,7 @@ class Report extends React.Component{
                 type = 'commento'
                 link = '/publications'
                 icon = <span className="icon has-text-link"><i className="fas fa-envelope"></i></span>;
-                scritta_annuncio = <div>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>nel corso di {nome_corso}</div>
+                scritta_annuncio = <div>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>del corso di {nome_corso}</div>
                 break;
         }
 

@@ -7,7 +7,6 @@ class ReportSerializer < ActiveModel::Serializer
   attribute :course
 
   def course
-    CourseSerializer.new(Course.find(object.reportable.course_id))
+      CourseSerializer.new(Course.find(object.reportable.course_id))
   end
-
 end

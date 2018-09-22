@@ -1,8 +1,10 @@
 class PostSerializer < ActiveModel::Serializer
-  attributes :id, :message, :created_at
+  attributes :id, :message, :created_at, :course_id
   has_many :comments
   has_many :documents
   belongs_to :user
+  belongs_to :course
+
 
   attribute :upvotes
 

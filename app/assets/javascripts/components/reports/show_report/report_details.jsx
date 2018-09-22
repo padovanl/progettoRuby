@@ -57,7 +57,7 @@ class ReportDetails extends React.Component {
                 link = '/publications'
                 nome_corso = this.props.course_details.name
                 anno_corso = this.props.course_details.year == 1 ? "Primo" : "Secondo"
-                contenuto = this.props.report_details.document.filename
+                contenuto = this.props.report_details.comment.content
                 break;
         }
 

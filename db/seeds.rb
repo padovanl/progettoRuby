@@ -340,9 +340,9 @@ course = Course.first
     course_id: course.id
   )
   post.comments.create!([
-      {content: Faker::Hobbit.quote, user_id: user.id},
-      {content: Faker::Hobbit.quote, user_id: User.second.id},
-      {content: Faker::Hobbit.quote, user_id: user.id}])
+      {content: Faker::Hobbit.quote, user_id: user.id, course_id: course.id},
+      {content: Faker::Hobbit.quote, user_id: User.second.id, course_id: course.id},
+      {content: Faker::Hobbit.quote, user_id: user.id, course_id: course.id}])
 end
 user = User.second
 5.times do
@@ -352,9 +352,9 @@ user = User.second
       course_id: course.id
   )
   post.comments.create!([
-                            {content: Faker::Hobbit.quote, user_id: user.id},
-                            {content: Faker::Hobbit.quote, user_id: User.first.id},
-                            {content: Faker::Hobbit.quote, user_id: user.id}])
+                            {content: Faker::Hobbit.quote, user_id: user.id, course_id: course.id},
+                            {content: Faker::Hobbit.quote, user_id: User.first.id, course_id: course.id},
+                            {content: Faker::Hobbit.quote, user_id: user.id, course_id: course.id}])
 end
 course = Course.second
 5.times do
@@ -364,9 +364,9 @@ course = Course.second
       course_id: course.id
   )
   post.comments.create!([
-                            {content: Faker::Hobbit.quote, user_id: user.id},
-                            {content: Faker::Hobbit.quote, user_id: User.first.id},
-                            {content: Faker::Hobbit.quote, user_id: user.id}])
+                            {content: Faker::Hobbit.quote, user_id: user.id, course_id: course.id},
+                            {content: Faker::Hobbit.quote, user_id: User.first.id, course_id: course.id},
+                            {content: Faker::Hobbit.quote, user_id: user.id, course_id: course.id}])
 end
 user = User.second
 5.times do
@@ -376,9 +376,9 @@ user = User.second
       course_id: course.id
   )
   post.comments.create!([
-                            {content: Faker::Hobbit.quote, user_id: user.id},
-                            {content: Faker::Hobbit.quote, user_id: User.first.id},
-                            {content: Faker::Hobbit.quote, user_id: user.id}])
+                            {content: Faker::Hobbit.quote, user_id: user.id, course_id: course.id},
+                            {content: Faker::Hobbit.quote, user_id: User.first.id, course_id: course.id},
+                            {content: Faker::Hobbit.quote, user_id: user.id, course_id: course.id}])
 end
 
 

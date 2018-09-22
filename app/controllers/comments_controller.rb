@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
       UserReport.create!(user_id: current_user.id, report_id: report.id)
     else
       comment = Comment.find(params[:id])
-      r = Report.create(action: "È stato segnalato un", reportable: comment)
+      r = Report.create(action: "È stato segnalato un post", reportable: comment)
       UserReport.create!(user_id: current_user.id, report_id: r.id)
     end
   end
