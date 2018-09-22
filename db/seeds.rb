@@ -15,12 +15,15 @@ ThesisTag.destroy_all
 Teacher.destroy_all
 Tag.destroy_all
 Rep.destroy_all
-User.destroy_all
 UserCourse.destroy_all
 TeacherCourse.destroy_all
 UserCourse.destroy_all
 CourseQuestion.destroy_all
 Notification.destroy_all
+UserReport.destroy_all
+Report.destroy_all
+User.destroy_all
+
 
 
 
@@ -104,6 +107,11 @@ user.tags.create!([
   { id:7 , name: "CSP" },
   { id:8 , name: "VRP" },
   { id:9 , name: "Green" }
+])
+
+user.user_courses.create!([
+    {user_id: user.id, course_id: 1, follow: true, passed: true, course_rate: 27, material_quality: 2, explanation: 2, average_attempts: 2, average_days: 10},
+    {user_id: user.id, course_id: 2, follow: true, passed: true, course_rate: 27, material_quality: 2, explanation: 2, average_attempts: 2, average_days: 10}
 ])
 
 
@@ -278,7 +286,7 @@ user.user_courses.create!([
 ])
 
 
-user = User.create!(id:8, name: "User2 User2", email: "user7@user7.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
+user = User.create!(id: 8,  name: "User2 User2", email: "user7@user7.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: false)
 user.user_courses.create!([
     {user_id: user.id, course_id: 1, follow: true, passed: true, course_rate: 30, material_quality: 5, explanation: 4, average_attempts: 4, average_days: 10}
 ])
@@ -332,9 +340,9 @@ course = Course.first
     course_id: course.id
   )
   post.comments.create!([
-      {content: Faker::Hobbit.quote, user_id: user.id},
-      {content: Faker::Hobbit.quote, user_id: User.second.id},
-      {content: Faker::Hobbit.quote, user_id: user.id}])
+      {content: Faker::Hobbit.quote, user_id: user.id, course_id: course.id},
+      {content: Faker::Hobbit.quote, user_id: User.second.id, course_id: course.id},
+      {content: Faker::Hobbit.quote, user_id: user.id, course_id: course.id}])
 end
 user = User.second
 5.times do
@@ -344,9 +352,9 @@ user = User.second
       course_id: course.id
   )
   post.comments.create!([
-                            {content: Faker::Hobbit.quote, user_id: user.id},
-                            {content: Faker::Hobbit.quote, user_id: User.first.id},
-                            {content: Faker::Hobbit.quote, user_id: user.id}])
+                            {content: Faker::Hobbit.quote, user_id: user.id, course_id: course.id},
+                            {content: Faker::Hobbit.quote, user_id: User.first.id, course_id: course.id},
+                            {content: Faker::Hobbit.quote, user_id: user.id, course_id: course.id}])
 end
 course = Course.second
 5.times do
@@ -356,9 +364,9 @@ course = Course.second
       course_id: course.id
   )
   post.comments.create!([
-                            {content: Faker::Hobbit.quote, user_id: user.id},
-                            {content: Faker::Hobbit.quote, user_id: User.first.id},
-                            {content: Faker::Hobbit.quote, user_id: user.id}])
+                            {content: Faker::Hobbit.quote, user_id: user.id, course_id: course.id},
+                            {content: Faker::Hobbit.quote, user_id: User.first.id, course_id: course.id},
+                            {content: Faker::Hobbit.quote, user_id: user.id, course_id: course.id}])
 end
 user = User.second
 5.times do
@@ -368,9 +376,9 @@ user = User.second
       course_id: course.id
   )
   post.comments.create!([
-                            {content: Faker::Hobbit.quote, user_id: user.id},
-                            {content: Faker::Hobbit.quote, user_id: User.first.id},
-                            {content: Faker::Hobbit.quote, user_id: user.id}])
+                            {content: Faker::Hobbit.quote, user_id: user.id, course_id: course.id},
+                            {content: Faker::Hobbit.quote, user_id: User.first.id, course_id: course.id},
+                            {content: Faker::Hobbit.quote, user_id: user.id, course_id: course.id}])
 end
 
 

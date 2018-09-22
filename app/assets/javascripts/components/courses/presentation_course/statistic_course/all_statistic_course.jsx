@@ -26,12 +26,6 @@ class AllStatisticCourse extends React.Component {
         return(
             <div>
                 <table className="table is-fullwidth is-striped is-centered">
-                    <thead>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    </thead>
                     <tbody>
                         <RowStatisticCourse  title_label={label_studenti_passati} statistic_value={valore_studenti_passati}/>
                         <RowStatisticCourse  title_label={label_voto_medio} statistic_value={valore_voto_medio}/>

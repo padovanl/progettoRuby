@@ -6,6 +6,8 @@ class BodyTip extends React.Component {
             tips: [],
             followed: '',
             show_details: false,
+            content_tip: ''
+
         };
 
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -15,6 +17,12 @@ class BodyTip extends React.Component {
         this.handleUpdate = this.handleUpdate.bind(this);
         this.updateCourseTip = this.updateCourseTip.bind(this)
         this.handleShowDetails = this.handleShowDetails.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+
+    }
+
+    handleChange(event) {
+        this.setState({content_tip: event.target.value});
     }
 
     handleShowDetails(){
@@ -58,6 +66,9 @@ class BodyTip extends React.Component {
                         alert("Errore!")
                     } else {
                         this.addNewTipCourse(courseTip);
+                        this.setState({
+                            content_tip: ''
+                        })
                     }
 
                 })
@@ -67,7 +78,6 @@ class BodyTip extends React.Component {
     }
 
     addNewTipCourse(tipCourse){
-        console.log(tipCourse)
         this.setState({
             tips: this.state.tips.concat(tipCourse)
         })
@@ -106,6 +116,7 @@ class BodyTip extends React.Component {
                 fetch(linkUpdate,
                     {
                         method: 'PUT',
+                        credentials: 'same-origin',
                         body: body,
                         headers: {
                             'Content-Type': 'application/json'
@@ -138,6 +149,8 @@ class BodyTip extends React.Component {
         })
     }
 
+
+
     render(){
         //console.log(this.state.followed.length > 0 ? this.state.followed[0].passed : 'Items not loaded yet');        //this.state.tubedata.length > 0 && this.state.tubedata[0].id
 
@@ -155,7 +168,12 @@ class BodyTip extends React.Component {
                 <br/>
                 <table className="table is-fullwidth">
                     <tbody>
-                    { this.state.followed.length > 0 && this.state.followed[0].passed ? <NewTipCourse course_id={this.props.course_id} user_id={this.props.user_id} handleFormSubmit={this.handleFormSubmit} /> : null}
+                    { this.state.followed.length > 0 && this.state.followed[0].passed ?
+                        <NewTipCourse course_id={this.props.course_id}
+                                      user_id={this.props.user_id}
+                                      handleFormSubmit={this.handleFormSubmit}
+                                      content_tip={this.state.content_tip}
+                                      handleChange={this.handleChange} /> : null}
                     </tbody>
                 </table>
             </div>

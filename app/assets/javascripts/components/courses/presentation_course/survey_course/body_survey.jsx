@@ -28,6 +28,7 @@ class BodySurvey extends React.Component {
                 fetch(linkUpdate,
                     {
                         method: 'PUT',
+                        credentials: 'same-origin',
                         body: body,
                         headers: {
                             'Content-Type': 'application/json'
@@ -53,7 +54,7 @@ class BodySurvey extends React.Component {
     updateCourseQuestion(){
         console.log("Update avvenuto con successo")
         window.location.href = "/courses/" + this.props.course_id
-        toastr.success("Sondaggio compilato con successo")
+        toastr.success("survey_course compilato con successo")
     }
 
     onChangeAttempts(evt) {
@@ -156,7 +157,10 @@ class BodySurvey extends React.Component {
                         </div>
                         <div className="field-body">
                             <div className="field">
-                                    <input className="input dimension-survey-10" type="text" value={this.state.value_number_attempts} onChange={this.onChangeAttempts}/>
+                                    <input className="input dimension-survey-10"
+                                           type="text"
+                                           value={this.state.value_number_attempts}
+                                           onChange={this.onChangeAttempts}/>
                             </div>
                         </div>
                     </div>

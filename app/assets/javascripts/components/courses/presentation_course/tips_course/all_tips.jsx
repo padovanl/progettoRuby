@@ -22,6 +22,7 @@ class AllTips extends React.Component {
                     <tr>
                         <th className="question-text-column">Suggerimento</th>
                         { this.props.show_details ? <th className="details-column">Dettagli</th> : null }
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>

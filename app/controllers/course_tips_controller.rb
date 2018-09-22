@@ -1,6 +1,7 @@
 class CourseTipsController < ApplicationController
 
   skip_before_action :verify_authenticity_token
+  after_action :broadcast_notification, only: [:create]
 
   def index
     courseTips = CourseTip.where(:course_id => params['course_id']).includes([:user, :course])
@@ -21,12 +22,31 @@ class CourseTipsController < ApplicationController
   def destroy
     CourseTip.destroy(params[:id])
     Notification.where(:notifiable_id => params[:id]).where(:notifiable_type => "CourseTip").destroy_all
+    Report.where(:reportable_id => params[:id]).where(:reportable_type => "CourseTip").destroy_all
+
   end
 
   def update
     quest = CourseTip.find(params[:id])
     quest.update_attributes(tip_params)
     json_response(quest.to_json)
+  end
+
+  def reportTip
+    tip = CourseTip.find(params[:id])
+    report = Report.where(:reportable_id => params[:id]).where(:reportable_type => "CourseTip").first
+
+    if (report != nil)
+      UserReport.create!(user_id: current_user.id, report_id: report.id)
+    else
+      r = Report.create(action: "È stata segnalato un", reportable: tip)
+      UserReport.create!(user_id: current_user.id, report_id: r.id)
+    end
+
+    #end
+    respond_to do |format|
+      format.json { head :ok }
+    end
   end
 
   private

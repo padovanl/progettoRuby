@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_18_010640) do
+ActiveRecord::Schema.define(version: 2018_09_22_144117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 2018_09_18_010640) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "post_id"
+    t.bigint "course_id"
+    t.index ["course_id"], name: "index_comments_on_course_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -141,6 +143,16 @@ ActiveRecord::Schema.define(version: 2018_09_18_010640) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "reports", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "read_at"
+    t.string "action"
+    t.integer "reportable_id"
+    t.string "reportable_type"
+    t.boolean "isSelected"
+  end
+
   create_table "reps", force: :cascade do |t|
     t.string "description"
     t.datetime "created_at", null: false
@@ -217,15 +229,25 @@ ActiveRecord::Schema.define(version: 2018_09_18_010640) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "course_id"
-    t.boolean "passed"
+    t.boolean "passed", default: false
     t.integer "estimate_difficulty"
     t.integer "material_quality"
     t.integer "explanation"
     t.integer "average_attempts"
     t.integer "average_days"
-    t.boolean "follow"
+    t.boolean "follow", default: true
     t.index ["course_id"], name: "index_user_courses_on_course_id"
     t.index ["user_id"], name: "index_user_courses_on_user_id"
+  end
+
+  create_table "user_reports", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "report_id"
+    t.string "reason"
+    t.index ["report_id"], name: "index_user_reports_on_report_id"
+    t.index ["user_id"], name: "index_user_reports_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -258,6 +280,7 @@ ActiveRecord::Schema.define(version: 2018_09_18_010640) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "courses"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "course_questions", "courses"
@@ -285,4 +308,6 @@ ActiveRecord::Schema.define(version: 2018_09_18_010640) do
   add_foreign_key "thesis_tags", "theses"
   add_foreign_key "user_courses", "courses"
   add_foreign_key "user_courses", "users"
+  add_foreign_key "user_reports", "reports"
+  add_foreign_key "user_reports", "users"
 end

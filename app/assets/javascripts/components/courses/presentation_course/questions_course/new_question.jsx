@@ -10,7 +10,12 @@ class NewQuestionCourse extends React.Component {
         return(
             <tr>
                 <td className="new-question-text">
-                    <input ref={input => formFields.question_text = input} placeholder='Inserisci una nuova domanda' className="input is-medium" required />
+                    <input ref={input => formFields.question_text = input}
+                           value={ this.props.content_question }
+                           placeholder='Inserisci una nuova domanda'
+                           className="input is-medium"
+                           onChange={ (e) => this.props.handleChange(e)}
+                           required />
                 </td>
                 <td>
                 </td>

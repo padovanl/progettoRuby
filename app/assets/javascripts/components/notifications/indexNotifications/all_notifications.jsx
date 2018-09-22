@@ -15,10 +15,11 @@ class AllNotifications extends React.Component {
         }
 
         var notifications = this.props.notifications.map((notification) => {
-                return(
-                    <Notification key={notification.id} notification={notification} />
-                )
-            })
+            return(
+                <Notification key={notification.id} notification={notification} handleMarkAndRedirect={this.props.handleMarkAndRedirect} />
+            )
+        })
+
 
         return(
             <div className="columns">

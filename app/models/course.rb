@@ -9,15 +9,15 @@ class Course < ApplicationRecord
   has_many :teacher_courses, :dependent => :destroy
   has_many :teachers, through: :teacher_courses
   has_many :documents, :dependent => :destroy
-
   has_many :users, through: :user_courses
+  has_many :comments, :dependent => :destroy
 
 
 
 
   validates_presence_of :name, message: "The name should be present"
   validates_numericality_of :year, message: "The year should be an integer"
-  validates_inclusion_of :year, :in => [1,2], message: "The year is in [1,2]"
+  validates_inclusion_of :year, in: [1, 2], message: "The year is in [1,2]"
   validates_format_of :name, with: /\A[a-zA-Zàèéìòù0-9 .,]+\z/, :on => :create, message: "Allows letters, numbers and ,. (blank space)"
 
 
@@ -171,35 +171,39 @@ class Course < ApplicationRecord
 
     lista_giudizi = ['insufficiente', 'sufficiente','discreto','buono','molto buono' ];
     mapping_statistiche = Hash.new
+    if record_collection.size > 0
 
-    passed_number = record_collection.collect.size
-    course_rate = record_collection.collect {|i| i.course_rate}
-    material_quality = record_collection.collect {|i| i.material_quality}
-    explanation = record_collection.collect {|i| i.explanation}
-    average_attempts = record_collection.collect {|i| i.average_attempts}
-    average_days = record_collection.collect {|i| i.average_days}
 
-    #faccio la media dei valori
-    course_rate = (course_rate.inject{ |sum, el| sum + el }.to_f / course_rate.size).round
-    material_quality = (material_quality.inject{ |sum, el| sum + el }.to_f / material_quality.size).round
-    explanation = (explanation.inject{ |sum, el| sum + el }.to_f / explanation.size).round
-    average_attempts = (average_attempts.inject{ |sum, el| sum + el }.to_f / average_attempts.size).round
-    average_days = (average_days.inject{ |sum, el| sum + el }.to_f / average_days.size).round
+      passed_number = record_collection.collect.size
+      course_rate = record_collection.collect {|i| i.course_rate}
+      material_quality = record_collection.collect {|i| i.material_quality}
+      explanation = record_collection.collect {|i| i.explanation}
+      average_attempts = record_collection.collect {|i| i.average_attempts}
+      average_days = record_collection.collect {|i| i.average_days}
 
-    #sostituisco il valore con la stringa-giudizio
-    material_quality = lista_giudizi[material_quality-1]
-    explanation = lista_giudizi[explanation-1]
+      #faccio la media dei valori
+      course_rate = (course_rate.inject{ |sum, el| sum + el }.to_f / course_rate.size).round
+      material_quality = (material_quality.inject{ |sum, el| sum + el }.to_f / material_quality.size).round
+      explanation = (explanation.inject{ |sum, el| sum + el }.to_f / explanation.size).round
+      average_attempts = (average_attempts.inject{ |sum, el| sum + el }.to_f / average_attempts.size).round
+      average_days = (average_days.inject{ |sum, el| sum + el }.to_f / average_days.size).round
 
-    mapping_statistiche = {'passed_number' => passed_number,
-                           'course_rate' => course_rate,
-                           'material_quality' => material_quality,
-                           'explanation' => explanation,
-                           'average_attempts' => average_attempts,
-                           'average_days' => average_days,
-    }
+      #sostituisco il valore con la stringa-giudizio
+      material_quality = lista_giudizi[material_quality-1]
+      explanation = lista_giudizi[explanation-1]
 
-    return mapping_statistiche
+      mapping_statistiche = {'passed_number' => passed_number,
+                             'course_rate' => course_rate,
+                             'material_quality' => material_quality,
+                             'explanation' => explanation,
+                             'average_attempts' => average_attempts,
+                             'average_days' => average_days,
+      }
 
+      return mapping_statistiche
+    else
+      return nil
+    end
   end
 
   def self.get_history_teachers(course)

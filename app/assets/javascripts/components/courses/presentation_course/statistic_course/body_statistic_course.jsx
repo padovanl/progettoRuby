@@ -14,7 +14,7 @@ class BodyStatisticCourse extends React.Component {
     render(){
         return(
             <div>
-                <AllStatisticCourse statistic_values={this.props.statistic_values} />
+                {this.props.statistic_values != null ? <AllStatisticCourse statistic_values={this.props.statistic_values} /> : <div>Nessun sondaggio è stato ancora complilato</div>}
             </div>
         )
     }

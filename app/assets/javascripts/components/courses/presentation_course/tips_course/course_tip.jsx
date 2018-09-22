@@ -22,6 +22,7 @@ class CourseTip extends React.Component{
     render(){
 
         let pulsante;
+        let linkReport = '/report_tip/' + this.props.courseTip.id;
 
         if(!this.state.editable){
             pulsante = <i className="fas fa-pen"></i>;
@@ -50,6 +51,7 @@ class CourseTip extends React.Component{
                 {this.props.show_details  ? <td>
                     { this.props.courseTip.user_id == this.props.user_id && this.props.show_details ? <div> {update_button_item} <span> </span>{delete_button_item} </div> : null}
                 </td> : null}
+                <td className="has-text-right"><a title="Reporting" onClick={() => handleReport(this.props.courseTip.id, linkReport)}><i className="fas fa-bug"/></a></td>
             </tr>
         )
     }

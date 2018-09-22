@@ -11,9 +11,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {omniauth_callbacks: "users/omniauth_callbacks"}
 
   resources :upvotes
-  resources :publications, only: [:index]
+  resources :publications, only: [:show]
   resources :upvotes, only: [:create, :destroy]
-  resources :resources, only: [:index]
+  resources :resources, only: [:show]
   resources :tags, only: [:index]
   resources :documents
   resources :posts
@@ -27,10 +27,15 @@ Rails.application.routes.draw do
   resources :courses do
     resources :questions, only: [:index, :create, :destroy, :update]
   end
+  #report di una domanda
+  post "/report_question/:id", to: "questions#reportQuestion"
 
   resources :courses do
     resources :course_tips, only: [:index, :create, :destroy, :update]
   end
+
+  post "/report_tip/:id", to: "course_tips#reportTip"
+
 
   resources :courses do
     resources :questions do
@@ -124,10 +129,12 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :users do
-        resources :user_courses, only: [:show, :index, :update]
+        resources :user_courses, only: [:show, :update]
       end
     end
   end
+
+  get "/survey_course/:course_id/users/:id", to: "api/v1/user_courses#show"
 
   get "/dashboard/thesis/tags/:thesis_id", to: "admin#thesis_tags"
   get "/dashboard/cdl/courses/:degree_course_id", to: "admin#courses"
@@ -140,17 +147,35 @@ Rails.application.routes.draw do
   get "/api/v1/users", to: "api/v1/users#index"
   post "/api/v1/users/set_admin/:user_id", to: "api/v1/users#setAdmin"
 
+  #report post, document, repetition
+  post "/report_post/:id", to: "posts#reportPost"
+  post "/report_document/:id", to: "documents#reportDocument"
+  post "/report_rep/:id", to: "reps#reportRep"
+  post "/report_comment/:id", to: "comments#reportComment"
+
+
 
   #route index notifiche
 
-
+#notifications
   resources :notifications, only: [:index, :destroy]
   get "/notifications", to: "notifications#index"
   get "/new_notifications", to: "notifications#getCount"
   get "/notifications_nav_bar", to: "notifications#notificationsNavBar"
-  put "/mark_as_read/:id", to: "notifications#markAsRead"
-  put "/update_is_selected", to: "notifications#updateIsSelected"
+  put "/mark_as_read_notification/:id", to: "notifications#markAsRead"
+  put "/update_is_selected_notification", to: "notifications#updateIsSelected"
 
+  #reports
+  resources :reports, only: [:show, :index, :destroy]
+  get "/reports", to: "reports#index"
+  get "/reports/:id", to: "reports#show"
+  get "/new_reports", to: "reports#getCount"
+  put "/mark_as_read_report/:id", to: "reports#markAsRead"
+  put "/update_is_selected_report", to: "reports#updateIsSelected"
+
+
+  # thesis
+  get "/thesis/:id", to: "theses#show"
 
 
   mount ActionCable.server, at: '/cable'

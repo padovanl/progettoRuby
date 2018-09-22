@@ -27,6 +27,13 @@ class NotificationsNavBarMain extends React.Component {
                 this.setState({num: data})
             });
     }
+
+    updateCountNotifications(notification){
+        this.setState({num: notification.length})
+    }
+
+
+
     componentDidMount(){
         this.getDataCountNotifications();
         this.getDataNotifications();
@@ -37,10 +44,11 @@ class NotificationsNavBarMain extends React.Component {
         if (this.state.isActive == "navbar-item has-dropdown"){
             this.setState({isActive: "navbar-item has-dropdown is-active"})
             if (this.state.num > 0){
-                let linkUpdate = '/update_is_selected';
+                let linkUpdate = '/update_is_selected_notification';
                 fetch(linkUpdate,
                     {
                         method: 'PUT',
+                        credentials: 'same-origin',
                         headers: {
                             'Content-Type': 'application/json'
                         }
@@ -61,17 +69,14 @@ class NotificationsNavBarMain extends React.Component {
     }
 
     render(){
-        let style = {
-            marginTop: 10,
-            marginRight: 5,
-        };
 
         return(
-            <div style={style}>
+            <div className="navbar-item">
+                <NotificationsWebSocket data-updateApp={ this.updateCountNotifications.bind(this)} />
                 <div className={this.state.isActive}>
-                    <div className="navbar-link" onClick={() => this.handleUpdateIsSelected()}>
+                    <a className="navbar-link" onClick={() => this.handleUpdateIsSelected()}>
                         <span className="badge is-badge-primary bd-emoji" data-badge={this.state.num}><i className="fas fa-globe-americas"></i></span>
-                    </div>
+                    </a>
                     <AllNotificationsNavBar notifications={this.state.notifications}/>
                 </div>
             </div>

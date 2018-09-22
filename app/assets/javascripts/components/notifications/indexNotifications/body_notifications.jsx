@@ -12,6 +12,8 @@ class BodyNotifications extends React.Component {
 
         this.getAllNotifications = this.getAllNotifications.bind(this);
         this.handleShowMore = this.handleShowMore.bind(this);
+        this.handleMarkAndRedirect = this.handleMarkAndRedirect.bind(this);
+
     }
 
     componentWillMount(){
@@ -37,6 +39,29 @@ class BodyNotifications extends React.Component {
         this.setState({page: this.state.page +=1},this.getAllNotifications());
     }
 
+    handleMarkAndRedirect(redirect_url, id){
+        console.log(redirect_url)
+        // /api/v1/users/:user_id/user_courses/:id(.:format)
+        let linkUpdate = '/mark_as_read_notification/' + id;
+        fetch(linkUpdate,
+            {
+                method: 'PUT',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then((response) => {
+            return response.json()
+        })
+            .then((notification) => {
+                if (notification.error) {
+                    alert("Errore!")
+                } else {
+                    window.location.href = redirect_url;
+                }
+            })
+    }
+
     render(){
 
         return(
@@ -45,7 +70,8 @@ class BodyNotifications extends React.Component {
                                   handleShowMore={this.handleShowMore}
                                   page={this.state.page}
                                   last_page={this.props.last_page}
-                                  disabledNext={this.state.disabledNext} />
+                                  disabledNext={this.state.disabledNext}
+                                  handleMarkAndRedirect={this.handleMarkAndRedirect}/>
             </div>
         )
     }

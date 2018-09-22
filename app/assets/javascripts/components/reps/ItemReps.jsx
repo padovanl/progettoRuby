@@ -86,6 +86,7 @@ class ItemReps extends React.Component {
                 />;
             }
 
+            let linkReport = '/report_rep/' + item.id + '?course_id=' + item.course.id;
             let home_service;
             if (item.home_service===null)
                 home_service="Non indicato";
@@ -123,7 +124,7 @@ class ItemReps extends React.Component {
                                 </div>
                             </div>
                             <div className={"media-right"}>
-                                {deleteButton} {updateButton} <a title="Reporting"><i className="fas fa-bug"/></a>
+                                {deleteButton} {updateButton} <a title="Reporting" onClick={() => handleReport(linkReport)}><i className="fas fa-bug"/></a>
                             </div>
                         </article>
 

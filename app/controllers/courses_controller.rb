@@ -28,9 +28,6 @@ class CoursesController < ApplicationController
   end
 
   def follow
-    logger.debug "PARAMETRI ****************** #{user_course_param}"
-    logger.debug "PARAMETRI ****************** COURSE_ID #{user_course_param[:course_id]}"
-
     @user_course = UserCourse.first_update_or_create(user_course_param[:course_id], current_user.id)
     #controllo errore
     render json: @user_course, status: :created

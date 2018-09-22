@@ -1,6 +1,9 @@
 class PublicationsController < ApplicationController
   before_action :authenticate_user!
-  def index
+
+  def show
+    @course = Course.find(params[:id])
+    user_follow_course?
     @current_user_avatar = get_avatar_image
   end
 
