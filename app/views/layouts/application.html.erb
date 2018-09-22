@@ -104,45 +104,26 @@
             </div>
           </div>
         <% else %>
-          <a class="navbar-item" href="/users/sign_up">
-            <small class="is-hidden-mobile">Non hai ancora un account?</small>&nbsp;<u>Registrati!</u>
-          </a>
+          <%- if controller_name != 'sessions' %>
+            <a class="navbar-item" href="/users/sign_in">
+              <u>Login!</u>
+            </a>
+          <% else -%>
+            <a class="navbar-item" href="/users/sign_up">
+              <small class="is-hidden-mobile">Non hai ancora un account?</small>&nbsp;<u>Registrati!</u>
+            </a>
+          <% end %>
         <% end %>
 
       </div>
     </div>
   </nav>
 
-    <!--<div id="alertBox" hidden="true">
-      <br>
-      <br>
-      <br>
-      <div class="columns">
-        <div class="column">
-          <article class="message is-link">
-
-            <div class="message-body" id="alertDiv">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>,
-              tempus
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>-->
-
-
-
-
-
 <%= yield %>
 
   <div class="se-pre-con"></div>
 
 <script type="text/javascript">
-
-
-
-  //setTimeout(function(){ $("#alertBox").fadeOut(1000); }, 3000);
 
     function openMenu() {
 

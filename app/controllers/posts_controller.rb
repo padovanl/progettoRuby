@@ -1,7 +1,13 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
+<<<<<<< HEAD
   before_action :set_course, only: [:index, :destroy, :reportPost]
   before_action :user_follow_course?, only: [:index, :destroy, :reportPost]
+=======
+  before_action :set_course, only: [:index, :destroy]
+  before_action :user_follow_course?, only: [:index, :destroy]
+  after_action :broadcast_notification, only: [:create]
+>>>>>>> 1015d9526820c7d8c4132ea4c47110388e226c78
 
   def index
     posts = Post.reduce(params).order(created_at: :desc).uniq

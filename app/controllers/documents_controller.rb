@@ -2,6 +2,7 @@ class DocumentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_course, only: [:index, :destroy]
   before_action :user_follow_course?, only: [:index, :destroy]
+  after_action :broadcast_notification, only: [:create]
 
   def index
     documents = Document.reduce(params).order(created_at: :desc).uniq
