@@ -58,8 +58,8 @@ class Report extends React.Component{
             case 'CourseTip':
                 type = 'suggerimento'
                 link = '/courses/' + id_corso
-                icon = <span className="icon has-text-link"><i className="fas fa-glasses"></i></span>;
-                scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>nel corso di {nome_corso}</div>
+                icon = <span className="icon has-text-link"><i className="fas fa-question-circle"></i></span>;
+                scritta_annuncio = <div>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>nel corso di {nome_corso}</div>
                 break;
             /*case 'Post':
                 type = 'post'
@@ -87,7 +87,7 @@ class Report extends React.Component{
 
             <tr key={report_id} style={stile_background_notifica}>
                     <td>
-                        <a href="#" style={style_link_row} onClick={() => this.props.handleMarkAndRedirect(link, id_notification)}>
+                        <a style={style_link_row} onClick={() => this.props.handleMarkAndRedirect(link, report_id)}>
                             <article className="media gap">
                                 <figure className="media-left">
                                     <p className="image is-16x16  is-danger">
@@ -114,15 +114,15 @@ class Report extends React.Component{
                         </article>
                     </td>
                     <td>
-                            <article className="media gap">
-                                <div className="media-content">
-                                    <div className="content">
-                                        <div>
-                                            {notification_time}
-                                        </div>
+                        <article className="media gap">
+                            <div className="media-content">
+                                <div className="content">
+                                    <div>
+                                        {notification_time}
                                     </div>
                                 </div>
-                            </article>
+                            </div>
+                        </article>
                     </td>
                     <td>
                         <article className="media gap">

@@ -11,7 +11,8 @@ class AllTips extends React.Component {
                                 user_id={this.props.user_id}
                                 handleDelete={this.props.handleDelete}
                                 handleUpdate={this.props.handleUpdate}
-                                show_details = {this.props.show_details} />
+                                show_details = {this.props.show_details}
+                                handleReport = {this.props.handleReport} />
             )
         })
 
@@ -22,6 +23,7 @@ class AllTips extends React.Component {
                     <tr>
                         <th className="question-text-column">Suggerimento</th>
                         { this.props.show_details ? <th className="details-column">Dettagli</th> : null }
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>

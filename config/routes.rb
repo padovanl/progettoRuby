@@ -34,6 +34,9 @@ Rails.application.routes.draw do
     resources :course_tips, only: [:index, :create, :destroy, :update]
   end
 
+  post "/report_tip/:id", to: "course_tips#reportTip"
+
+
   resources :courses do
     resources :questions do
       resources :frequency_questions, only: [:index, :destroy, :update, :create]

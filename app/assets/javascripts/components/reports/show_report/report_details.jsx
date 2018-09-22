@@ -15,6 +15,13 @@ class ReportDetails extends React.Component {
                 anno_corso = this.props.course_details.year == 1 ? "Primo" : "Secondo"
                 contenuto = this.props.report_details.question
                 break;
+            case 'CourseTip':
+                type = 'Suggerimento'
+                link = '/courses/' + this.props.course_details.id
+                nome_corso = this.props.course_details.name
+                anno_corso = this.props.course_details.year == 1 ? "Primo" : "Secondo"
+                contenuto = this.props.report_details.tip
+                break;
         }
 
         return(

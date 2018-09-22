@@ -33,6 +33,7 @@ class QuestionsController < ApplicationController
   def destroy
     CourseQuestion.destroy(params[:id]) #-> cancella automaticamente anche le frequency automaticamente
     Notification.where(:notifiable_id => params[:id]).where(:notifiable_type => "CourseQuestion").destroy_all
+    Report.where(:reportable_id => params[:id]).where(:reportable_type => "CourseQuestion").destroy_all
   end
 
   def update
@@ -49,7 +50,6 @@ class QuestionsController < ApplicationController
       UserReport.create!(user_id: current_user.id, report_id: report.id)
     else
       r = Report.create(action: "È stata segnalata una", reportable: quest)
-      #UserReport.create!(user_id: current_user, report_id: report)
       UserReport.create!(user_id: current_user.id, report_id: r.id)
     end
 
