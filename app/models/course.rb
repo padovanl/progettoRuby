@@ -165,6 +165,19 @@ class Course < ApplicationRecord
   end
 
 
+
+
+  def self.allcourses_mycourses(type, params, current_user)
+    if type === "allcourses"
+      search_courses_not_followed(params[:degreen], params[:degreet], params[:category], params[:search], current_user.id).page(params[:page])
+    else
+      search_courses_followed(params[:degreen], params[:degreet], params[:category], params[:search], current_user.id).page(params[:page])
+    end
+  end
+
+
+
+
   def self.get_statistical_informations(course_id)
 
     record_collection = UserCourse.where("passed = ? AND course_id = ?", true, course_id)

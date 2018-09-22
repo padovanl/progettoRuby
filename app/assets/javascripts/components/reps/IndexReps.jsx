@@ -48,14 +48,12 @@ class IndexReps extends React.Component {
     }
 
     getAllReps(){
-        getItems(updateUrlReps(this.props.url, this.state.url, this.state.page))
+        getItems(updateUrlReps(this.props.url, this.props.per_page, this.state.url, this.state.page))
             .then(data => {
-                if (data.length === 0){
+                if (data.length < this.props.per_page){
                     this.setState({disabledNext: true})
                 }
-                else{
-                    this.setState({reps: this.state.reps.concat(data)})
-                }
+                this.setState({reps: this.state.reps.concat(data)})
             })
             .catch(e => console.log(e)
         )

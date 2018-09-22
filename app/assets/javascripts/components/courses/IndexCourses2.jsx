@@ -51,7 +51,7 @@ class IndexCourses2 extends React.Component{
         this.setState({courseName: event.target[2].name, courseId: id});
 
         const deleteCourse = this.props.deleteCourse;
-
+        const showModal = this.showModal;
         let myHeaders = new Headers();
         myHeaders.append('X-CSRF-Token', Rails.csrfToken());
      //   myHeaders.append('Content-Type', 'application/json');
@@ -72,6 +72,9 @@ class IndexCourses2 extends React.Component{
             .then(function(){
                 deleteCourse(id)
             })
+            .then(function () {
+                showModal()
+            })
             .catch(error => console.log(error));
     }
 
@@ -80,7 +83,7 @@ class IndexCourses2 extends React.Component{
         //funzione per l'Allert se è sicuro di seguire quel corso
         this.handleSubmit(e);    //funz che seguo il corso e lo inserisco nel db,
         //funzione che fa scegliere se reindirizzare nella show di quel corso o di continuare con un modal
-        this.showModal()
+
     }
 
 

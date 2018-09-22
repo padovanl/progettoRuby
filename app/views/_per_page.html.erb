@@ -1,0 +1,14 @@
+<table class="left-gap">
+  <thead>Scegli quanti corsi visualizzare per pagina (Selezionato: <%= @per_page %>)</thead>
+  <tbody>
+  <tr>
+    <% @chose_per_page.each do |page|%>
+      <td>
+        <a href=<%= path+"?per_page="+page %>>
+          <button class="left-gap hero-buttons "> <%= page %> </button>
+        </a>
+      </td>
+    <% end %>
+  </tr>
+  </tbody>
+</table>

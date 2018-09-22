@@ -26,8 +26,8 @@ const getNames=(category)=>{
     return makeReq(url, errorMessage);
 };
 
-const updateUrl=(url, page, degreen='', degreet='', category='', query='')=>{
-    let new_url = url+"?page="+page+"?utf8=✓";
+const updateUrl=(url, per_page, page, degreen='', degreet='', category='', query='')=>{
+    let new_url = url+"?per_page="+per_page+"&page="+page+"?utf8=✓";
     if (degreen !== '')
         new_url = new_url + "&degreen="+degreen+"&degreet="+degreet;
     if (query!=='') //se ho fatto la ricerca
@@ -35,8 +35,8 @@ const updateUrl=(url, page, degreen='', degreet='', category='', query='')=>{
     return new_url ;
 };
 
-const updateUrlReps = (props_url, url, page) => {
-    return props_url+page+url;
+const updateUrlReps = (props_url, props_per_page, url, page) => {
+    return props_url+page+ "&per_page="+props_per_page+url;
 };
 
 

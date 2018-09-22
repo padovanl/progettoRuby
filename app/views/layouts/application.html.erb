@@ -49,16 +49,16 @@
       <div class="navbar-start">
         <% if user_signed_in? %>
 
-          <a class="navbar-item " href=<%= allcourses_path %>>
+          <a class="navbar-item " href=<%= allcourses_path+"?per_page=10" %>>
             <span class="bd-emoji"><%= fa_icon "search" %></span>&nbsp;Trova corsi
           </a>
-          <a class="navbar-item " href=<%= mycourses_path %>>
+          <a class="navbar-item " href=<%= mycourses_path+"?per_page=10" %>>
             <span class="bd-emoji"><%= fa_icon "graduation-cap" %></span>&nbsp;I miei corsi
           </a>
-          <a class="navbar-item " href=<%= reps_path %>>
+          <a class="navbar-item " href=<%= reps_path+"?per_page=10" %>>
             <span class="bd-emoji"><%= fa_icon "hands-helping" %></span>&nbsp;Ripetizioni
           </a>
-          <a class="navbar-item " href=<%= theses_path %>>
+          <a class="navbar-item " href=<%= theses_path+"?per_page=10" %>>
             <span class="bd-emoji"><%= fa_icon "user-graduate" %></span>&nbsp;Proposte di tesi
           </a>
         <% end %>

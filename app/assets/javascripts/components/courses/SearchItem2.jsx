@@ -25,9 +25,8 @@ class SearchItem2 extends React.Component {
             //value: '', -> uso la query
             suggestions: [],
             autoSuggestNames: [],
-            per_page: 3
         };
-        console.log("**** courses: ", this.state.autoSuggestNames);
+        console.log("**** courses: ", this.state.autoSuggestNames, "; per_page da props: ", this.props.per_page);
         this.onChangePage = this.onChangePage.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.searchCourses = this.searchCourses.bind(this);
@@ -72,15 +71,17 @@ class SearchItem2 extends React.Component {
         console.log("SI props last_page: "+nextProps.last_page);
     }
 
-    getAllCourses(){
+    getNextCourses(){
         console.log("page: ", this.state);
-        this.setState({url: updateUrl(this.props.url, this.state.page, this.state.degreen, this.state.degreet, this.state.category, this.state.query)},
+        this.setState({url: updateUrl(this.props.url, this.props.per_page,this.state.page, this.state.degreen, this.state.degreet, this.state.category, this.state.query)},
             () =>  getItems(this.state.url)
-                .then(teacher_courses => {
-                    if (teacher_courses.length === 0 ){
+                .then(data => {
+                    console.log("URL AGGIORNATO getNextCourses: ", this.state.url);
+                    if (data.length < this.props.per_page){
                         this.setState({disabledNext: true});
+                        console.log("**DisabledNext : true perché data.len < this.state.per_page in getNextCourses**")
                     }
-                    this.setState({courses: this.state.courses.concat(teacher_courses)})
+                    this.setState({courses: this.state.courses.concat(data)})
                 })
                 .catch(err => console.log(err))
         )
@@ -111,21 +112,29 @@ class SearchItem2 extends React.Component {
         e.preventDefault();
         console.log("cat: "+this.state.category+ ", query "+ this.state.query + ", page "+ this.state.page, "last_page: ",this.props.last_page);
         this.setState({page: 1,  degreen: '', degreet: ''},
-            ()=> getItems(updateUrl(this.props.url, this.state.page, '', '', this.state.category, this.state.query))
+            ()=> getItems(updateUrl(this.props.url, this.props.per_page,  this.state.page, '', '', this.state.category, this.state.query))
                 .then(data => {
+                    console.log("URL AGGIORNATO searchCourses: ", this.state.url);
+                    console.log("data.len: ", data.length);
                     if (data.length === 0){
                         this.setState({disabledNext: true, message: "Corsi non trovati!", courses: data});
+                        console.log("**DisabledNext : true perché data.len = 0 in searchCourse**")
+                    }
+                    else if (data.length < this.props.per_page){
+                        console.log("result data.len - this.state.per_page ", data.length-this.props.per_page, "; per page: ",this.props.per_page);
+                        this.setState({courses: data, message:'',disabledNext: true});
+                        console.log("**DisabledNext : true perché data.len < this.state.per_page in searchCourse**")
                     }
                     else
                         this.setState({courses: data, message:'',disabledNext: false});
-                    console.log("data: "+ data.length)
+                    console.log("data: "+ data.length, " disablednext: ",this.state.disabledNext)
                 })
                 .catch(this.handleError)
         )}
 
 
     onChangePage() {
-        this.setState({page: this.state.page +=1},this.getAllCourses());
+        this.setState({page: this.state.page +=1},this.getNextCourses());
     }
 
 
@@ -136,7 +145,8 @@ class SearchItem2 extends React.Component {
                 .then(data => {
                     this.setState({courses: data});
                     if (data.length ===0){
-                        this.setState({disabledNext: true, message: "Corsi non trovati!",})
+                        this.setState({disabledNext: true, message: "Corsi non trovati!",});
+                        console.log("**DisabledNext : true perché data.len =0 in onSubmit**")
                     }
                     else{
                         this.setState({disabledNext: false,message: '',})

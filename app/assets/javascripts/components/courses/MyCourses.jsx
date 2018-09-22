@@ -100,7 +100,7 @@ class MyCourses extends React.Component{
 
 
         let buttonNext;
-        if (this.props.page !== this.props.last_page && !this.props.disabledNext){
+        if (this.props.page !== this.props.last_page && !this.props.disabledNext && this.state.search===''){
             buttonNext= <div className='buttonnext' onClick={() => this.props.onChangePage()}>
                 <span> Next </span> </div>
         }
