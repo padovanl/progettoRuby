@@ -14,4 +14,9 @@ module UtilFunction
       render 'admin/accessDenied', layout: false
     end
   end
+
+  def broadcast_notification
+    notification = Notification.where(recipient: current_user).where("updated_at = created_at").unread
+    ActionCable.server.broadcast 'notification', notification
+  end
 end

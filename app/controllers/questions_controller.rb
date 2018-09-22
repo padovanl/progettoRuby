@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
 
   skip_before_action :verify_authenticity_token
-  before_action :broadcast_to_channel, only: :create
+  after_action :broadcast_notification, only: :create
 
   def index
     courseQuestions = CourseQuestion.where(:course_id => params['course_id']).includes([:user, :course, :frequency_questions])
@@ -44,7 +44,7 @@ class QuestionsController < ApplicationController
 
   def reportQuestion
     quest = CourseQuestion.find(params[:id])
-    report = Report.where(:reportable_id => params[:id]).where(:reportable_type => "CourseQuestion").first
+    report = Report.where(reportable_id: params[:id]).where(reportable_type: "CourseQuestion").first
 
     if (report != nil)
       UserReport.create!(user_id: current_user.id, report_id: report.id)
@@ -62,11 +62,6 @@ class QuestionsController < ApplicationController
   private
   def question_params
     params.require(:courseQuestion).permit(:course_id, :user_id, :question)
-  end
-
-  def broadcast_to_channel
-    notification = Notification.where(recipient: current_user).where("updated_at = created_at").unread
-    ActionCable.server.broadcast 'notification', notification
   end
 
 end

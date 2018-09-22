@@ -1,5 +1,6 @@
 class RepsController < ApplicationController
   before_action :authenticate_user!
+  after_action :broadcast_notification, only: [:create]
 
   def index
     @reps = Rep.reduce(params).order(created_at: :desc).page(params[:page]).per(3)

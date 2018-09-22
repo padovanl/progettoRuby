@@ -1,6 +1,7 @@
 class CourseTipsController < ApplicationController
 
   skip_before_action :verify_authenticity_token
+  after_action :broadcast_notification, only: [:create]
 
   def index
     courseTips = CourseTip.where(:course_id => params['course_id']).includes([:user, :course])
