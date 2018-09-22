@@ -61,26 +61,38 @@ class Report extends React.Component{
                 icon = <span className="icon has-text-link"><i className="fas fa-question-circle"></i></span>;
                 scritta_annuncio = <div>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>nel corso di {nome_corso}</div>
                 break;
-            /*case 'Post':
+            case 'Post':
                 type = 'post'
-                link = '/courses/' + id_corso
+                link = '/publications'
                 icon = <span className="icon has-text-link"><i className="fas fa-envelope"></i></span>;
-                scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>nel corso di {nome_corso}</div>
+                scritta_annuncio = <div>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>del corso di {nome_corso}</div>
+                break;
+            case 'Document':
+                type = 'documento'
+                link = '/resources'
+                icon = <span className="icon has-text-link"><i className="fas fa-envelope"></i></span>;
+                scritta_annuncio = <div>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>condiviso nel corso di {nome_corso}</div>
                 break;
             case 'Rep':
-                    if(this.props.notification.notifiable.rep.offer){
+                    if(this.props.report.reportable.rep.offer){
                         type = 'ripetizioni'
                         link = '/reps'
                         icon = <span className="icon has-text-link"><i className="fas fa-book"></i></span>;
-                        scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span> offre <span className="has-text-weight-bold" style={style_padding}> {type}</span>per il corso di {nome_corso}</div>
+                        scritta_annuncio = <div>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>per il corso di {nome_corso}</div>
                         break;
                     }else{
                         type = 'ripetizioni'
                         link = '/reps'
                         icon = <span className="icon has-text-link"><i className="fas fa-book"></i></span>;
-                        scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span> cerca <span className="has-text-weight-bold" style={style_padding}> {type}</span>per il corso di {nome_corso}</div>
+                        scritta_annuncio = <div>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>per il corso di {nome_corso}</div>
                         break;
-                    }*/
+                    }
+            case 'Comment':
+                type = 'commento'
+                link = '/publications'
+                icon = <span className="icon has-text-link"><i className="fas fa-envelope"></i></span>;
+                scritta_annuncio = <div>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>del corso di {nome_corso}</div>
+                break;
         }
 
         return(

@@ -52,6 +52,7 @@ class RepsController < ApplicationController
     end
     #elimina notifica ripetizione per quel corso
     Notification.where(:notifiable_id => params[:id]).where(:notifiable_type => "Rep").destroy_all
+    Report.where(:reportable_id => params[:id]).where(:reportable_type => "Rep").destroy_all
     ###
     head :no_content
   end
@@ -70,6 +71,18 @@ class RepsController < ApplicationController
   def get_name
     avatar =User.find(params[:id]).get_avatar_image
     render json: avatar
+  end
+
+  def reportRep
+    rep = Rep.find(params[:id])
+    report = Report.where(:reportable_id => params[:id]).where(:reportable_type => "Rep").first
+
+    if (report != nil)
+      UserReport.create!(user_id: current_user.id, report_id: report.id)
+    else
+      r = Report.create(action: "È stata segnalata un", reportable: rep)
+      UserReport.create!(user_id: current_user.id, report_id: r.id)
+    end
   end
 
   private

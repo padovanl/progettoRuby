@@ -9,12 +9,12 @@ class ReportsController < ApplicationController
   end
 
   def index
-    @reports = Report.order(created_at: :desc).page(params[:page]).per(1)
+    @reports = Report.order(created_at: :desc).page(params[:page]).per(2)
     @last_page = @reports.total_pages
     #@notifications = Notification.where(recipient: current_user).unread
     respond_to do |format|
       format.html
-      format.json {render json: @reports, :include => {:notifiable => {}} }
+      format.json {render json: @reports, :include => {:reportable => {}} }
     end
     #render json: @notifications, include: %w(recipient notifiable notifiable.post notifiable.post.course), status: :created
   end

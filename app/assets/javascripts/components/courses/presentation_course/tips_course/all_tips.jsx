@@ -11,8 +11,7 @@ class AllTips extends React.Component {
                                 user_id={this.props.user_id}
                                 handleDelete={this.props.handleDelete}
                                 handleUpdate={this.props.handleUpdate}
-                                show_details = {this.props.show_details}
-                                handleReport = {this.props.handleReport} />
+                                show_details = {this.props.show_details} />
             )
         })
 

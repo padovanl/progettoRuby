@@ -31,6 +31,7 @@ class CourseQuestion extends React.Component{
         let hasBeenQuotedID = this.props.courseQuestion.frequency_questions.filter((f) => f.user_id == this.props.user_id)
         const frequency_question_id = hasBeenQuotedID.length > 0 ? hasBeenQuotedID[0].id : null
         let pulsante;
+        let linkReport = '/report_question/' + this.props.courseQuestion.id + '?course_id=' + this.props.course_id;
 
         if(!this.state.editable){
             pulsante = <i className="fas fa-pen"></i>;
@@ -79,7 +80,7 @@ class CourseQuestion extends React.Component{
                     { this.props.courseQuestion.user_id != this.props.user_id && this.props.show_quotes && hasBeenQuotedID.length == 0 ? <div> {quote_up_button_item} </div>  :  null}
                     { this.props.courseQuestion.user_id != this.props.user_id && this.props.show_quotes && hasBeenQuotedID.length != 0 ? <div> {quote_down_button_item} </div>  :  null}
                 </td> : null}
-                <td className="has-text-right"><a title="Reporting" onClick={() => this.props.handleReport(this.props.courseQuestion.id)}><i className="fas fa-bug"/></a></td>
+                <td className="has-text-right"><a title="Reporting" onClick={() => handleReport(linkReport)}><i className="fas fa-bug"/></a></td>
             </tr>
         )
     }

@@ -1,8 +1,13 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
+<<<<<<< HEAD
+  before_action :set_course, only: [:index, :destroy, :reportPost]
+  before_action :user_follow_course?, only: [:index, :destroy, :reportPost]
+=======
   before_action :set_course, only: [:index, :destroy]
   before_action :user_follow_course?, only: [:index, :destroy]
   after_action :broadcast_notification, only: [:create]
+>>>>>>> 1015d9526820c7d8c4132ea4c47110388e226c78
 
   def index
     posts = Post.reduce(params).order(created_at: :desc).uniq
@@ -37,7 +42,25 @@ class PostsController < ApplicationController
     end
 
     Notification.where(notifiable_id: params[:id]).where(notifiable_type: "Post").destroy_all
+    Report.where(reportable_id: params[:id]).where(reportable_type: "Post").destroy_all
     head :no_content
+  end
+
+  def reportPost
+    post = Post.find(params[:id])
+    report = Report.where(:reportable_id => params[:id]).where(:reportable_type => "Post").first
+
+    if (report != nil)
+      UserReport.create!(user_id: current_user.id, report_id: report.id)
+    else
+      r = Report.create(action: "È stato segnalato un", reportable: post)
+      UserReport.create!(user_id: current_user.id, report_id: r.id)
+    end
+
+    #end
+    respond_to do |format|
+      format.json { head :ok }
+    end
   end
 
   private
