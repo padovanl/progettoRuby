@@ -14,7 +14,7 @@ class ReportsController < ApplicationController
     #@notifications = Notification.where(recipient: current_user).unread
     respond_to do |format|
       format.html
-      format.json {render json: @reports, :include => {:notifiable => {}} }
+      format.json {render json: @reports, :include => {:reportable => {}} }
     end
     #render json: @notifications, include: %w(recipient notifiable notifiable.post notifiable.post.course), status: :created
   end

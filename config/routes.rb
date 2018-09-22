@@ -147,6 +147,13 @@ Rails.application.routes.draw do
   get "/api/v1/users", to: "api/v1/users#index"
   post "/api/v1/users/set_admin/:user_id", to: "api/v1/users#setAdmin"
 
+  #report post, document, repetition
+  post "/report_post/:id", to: "posts#reportPost"
+  post "/report_document/:id", to: "documents#reportDocument"
+  post "/report_rep/:id", to: "reps#reportRep"
+  post "/report_comment/:id", to: "comments#reportComment"
+
+
 
   #route index notifiche
 

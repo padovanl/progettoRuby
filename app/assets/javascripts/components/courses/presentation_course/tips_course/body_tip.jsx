@@ -17,7 +17,6 @@ class BodyTip extends React.Component {
         this.handleUpdate = this.handleUpdate.bind(this);
         this.updateCourseTip = this.updateCourseTip.bind(this)
         this.handleShowDetails = this.handleShowDetails.bind(this)
-        this.handleReport = this.handleReport.bind(this)
         this.handleChange = this.handleChange.bind(this)
 
     }
@@ -150,26 +149,7 @@ class BodyTip extends React.Component {
         })
     }
 
-    handleReport(id){
-        // /courses/:course_id/questions/:id(.:format)
-        let linkReport = '/report_tip/' + id;
-        console.log(linkReport)
-        if(confirm('Sei sicuro di voler segnalare questo suggerimento?')){
-            fetch(linkReport,
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }).then((response) => {
-                if (response.ok){
-                    toastr.success("Suggerimento segnalata con successo")
-                }else{
-                    alert("errore")
-                }
-            })
-        }
-    }
+
 
     render(){
         //console.log(this.state.followed.length > 0 ? this.state.followed[0].passed : 'Items not loaded yet');        //this.state.tubedata.length > 0 && this.state.tubedata[0].id
@@ -184,8 +164,7 @@ class BodyTip extends React.Component {
                               user_id={this.props.user_id}
                               handleDelete={this.handleDelete}
                               handleUpdate = {this.handleUpdate}
-                              show_details = {this.state.show_details}
-                              handleReport = {this.handleReport} />
+                              show_details = {this.state.show_details} />
                 <br/>
                 <table className="table is-fullwidth">
                     <tbody>

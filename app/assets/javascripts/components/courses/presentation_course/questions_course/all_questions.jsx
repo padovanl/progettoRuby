@@ -15,7 +15,7 @@ class AllQuestions extends React.Component {
                                 show_quotes = {this.props.show_quotes}
                                 handleQuoteUp={this.props.handleQuoteUp}
                                 handleQuoteDown = {this.props.handleQuoteDown}
-                                handleReport = {this.props.handleReport}/>
+                                course_id={this.props.course_id} />
             )
         })
 

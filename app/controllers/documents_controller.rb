@@ -33,7 +33,21 @@ class DocumentsController < ApplicationController
       return
     end
     Notification.where(notifiable_id: params[:id]).where(notifiable_type: "Document").destroy_all
+    Report.where(reportable_id: params[:id]).where(reportable_type: "Document").destroy_all
+
     head :no_content
+  end
+
+  def reportDocument
+    document = Document.find(params[:id])
+    report = Report.where(:reportable_id => params[:id]).where(:reportable_type => "Document").first
+
+    if (report != nil)
+      UserReport.create!(user_id: current_user.id, report_id: report.id)
+    else
+      r = Report.create(action: "È stato segnalato un", reportable: document)
+      UserReport.create!(user_id: current_user.id, report_id: r.id)
+    end
   end
 
   private

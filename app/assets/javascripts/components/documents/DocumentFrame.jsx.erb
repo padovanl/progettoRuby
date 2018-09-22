@@ -13,7 +13,9 @@ class DocumentFrame extends React.Component {
     render() {
         const { document, view_doc_menu } = this.state
         const { current_user, course_id }  = this.props
+        const linkReport = '/report_document/' + document.id + '?course_id=' + course_id;
         let can_delete_post = (document.user.id === current_user.id) ? true : false;
+
 
         if (this.state.view_doc)
             return (<div className="container__item box">
@@ -67,7 +69,9 @@ class DocumentFrame extends React.Component {
                                             </span>
                                     </div>
                                     <div className="column">
-                                        Segnala
+                                        <a onClick={() => handleReport(linkReport)}>
+                                            Segnala
+                                        </a>
                                     </div>
                                 </div>
                             </a></li>

@@ -22,6 +22,43 @@ class ReportDetails extends React.Component {
                 anno_corso = this.props.course_details.year == 1 ? "Primo" : "Secondo"
                 contenuto = this.props.report_details.tip
                 break;
+            case 'Post':
+                type = 'Post'
+                link = '/publications'
+                nome_corso = this.props.course_details.name
+                anno_corso = this.props.course_details.year == 1 ? "Primo" : "Secondo"
+                contenuto = this.props.report_details.post.message
+                break;
+            case 'Document':
+                type = 'Documento'
+                link = '/resources'
+                nome_corso = this.props.course_details.name
+                anno_corso = this.props.course_details.year == 1 ? "Primo" : "Secondo"
+                contenuto = this.props.report_details.document.filename
+                break;
+            case 'Rep':
+                if(this.props.report_details.rep.offer){
+                    type = 'Offerta Ripetizione'
+                    link = '/resources'
+                    nome_corso = this.props.course_details.name
+                    anno_corso = this.props.course_details.year == 1 ? "Primo" : "Secondo"
+                    contenuto = this.props.report_details.rep.description
+                    break;
+                }else{
+                    type = 'Cerca Ripetizione'
+                    link = '/resources'
+                    nome_corso = this.props.course_details.name
+                    anno_corso = this.props.course_details.year == 1 ? "Primo" : "Secondo"
+                    contenuto = this.props.report_details.rep.description
+                    break;
+                }
+            case 'Comment':
+                type = 'Commento'
+                link = '/publications'
+                nome_corso = this.props.course_details.name
+                anno_corso = this.props.course_details.year == 1 ? "Primo" : "Secondo"
+                contenuto = this.props.report_details.document.filename
+                break;
         }
 
         return(

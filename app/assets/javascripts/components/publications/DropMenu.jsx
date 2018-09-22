@@ -13,9 +13,12 @@ class DropMenu extends React.Component {
     }
 
     render() {
-        const { cancella, id, risorsa, can_delete } = this.props
+        const { cancella, id, risorsa, can_delete, course_id } = this.props
         const deleteButton = (<a href="#" className="dropdown-item" onClick={ (e) => cancella(e, id) }>
                                 Cancella { risorsa } </a>)
+
+        let linkReport = risorsa == 'post' ? '/report_post/' + id + '?course_id=' + course_id : '/report_comment/' + id + '?course_id=' + course_id;
+
         return (
             <div className={ "dropdown is-right " + (this.state.isActive ? "is-active" : "")} >
                 <div className="dropdown-trigger">
@@ -27,7 +30,7 @@ class DropMenu extends React.Component {
                 </div>
                 <div className="dropdown-menu" id="dropdown-menu6" role="menu">
                     <div className="dropdown-content">
-                        <a href="#" className="dropdown-item">
+                        <a className="dropdown-item" onClick={() => handleReport(linkReport)}>
                             Segnala
                         </a>
                         {can_delete ? <hr className="dropdown-divider" /> : ""}

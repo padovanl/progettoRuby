@@ -67,3 +67,28 @@ function timeAgo(dateParam) {
 
     return getFormattedDate(date); // 10. January 2017. at 10:20
 }
+
+// -- generic report funtion --
+
+function handleReport(linkReport){
+    // /courses/:course_id/questions/:id(.:format)
+    //let linkReport = '/report_tip/' + id;
+    var myHeaders = new Headers();
+    myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+    myHeaders.append('Content-Type', 'application/json');
+    console.log(linkReport)
+        if(confirm('Sei sicuro di voler segnalare questo post?')){
+        fetch(linkReport,
+            {
+                method: 'POST',
+                credentials: 'same-origin',
+                headers: myHeaders
+            }).then((response) => {
+            if (response.ok){
+                toastr.success("Post segnalata con successo")
+            }else{
+                alert("errore")
+            }
+        })
+    }
+}
