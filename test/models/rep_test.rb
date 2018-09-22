@@ -1,6 +1,12 @@
 require 'test_helper'
 
 class RepTest < ActiveSupport::TestCase
+
+  #popola il db di test in automatico
+  def setup
+    Rails.application.load_seed
+  end
+
   test "should have a description" do
    rep = Rep.new
    rep.description = ""
