@@ -16,7 +16,6 @@ class FrequencyQuestionsController < ApplicationController
   def destroy
     FrequencyQuestion.destroy(params[:id])
     courseQuestions = CourseQuestion.find(params[:question_id])
-    puts courseQuestions
     json_response(courseQuestions.to_json(include: [:frequency_questions]))
   end
 

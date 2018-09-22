@@ -12,7 +12,7 @@ class QuestionsController < ApplicationController
     #NOTA: non sapendo bene come creare in automatico l'associazione per la questione delle frequenze delle domande
     # nella tabella frequency_questions per ora l'ho adattato così e funziona
     # così non mi da neanche alcun problema riguardante i parametri che gli passo poi
-    # come risposta via json
+    # come risposta via json -> forse di deve usare autosave nelle associazioni
 
 
     q = CourseQuestion.create(question_params)
@@ -31,7 +31,7 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    CourseQuestion.destroy(params[:id])
+    CourseQuestion.destroy(params[:id]) #-> cancella automaticamente anche le frequency automaticamente
     Notification.where(:notifiable_id => params[:id]).where(:notifiable_type => "CourseQuestion").destroy_all
   end
 
@@ -66,15 +66,7 @@ class QuestionsController < ApplicationController
 
   def broadcast_to_channel
     notification = Notification.where(recipient: current_user).where("updated_at = created_at").unread
-
-    puts notification
-
-    #serialized_data = ActiveModelSerializers::Adapter::Json.new(
-    #    NotificationSerializer.new(notification)
-    #).serializable_hash
-
-   ActionCable.server.broadcast 'notification',
-                                notification
+    ActionCable.server.broadcast 'notification', notification
   end
 
 end

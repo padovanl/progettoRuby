@@ -17,6 +17,11 @@ class DocumentsController < ApplicationController
       return
     end
 
+    course = Course.find(document_params[:course_id])
+    course.users.uniq.each do |user|
+      Notification.create!(recipient: user, actor: current_user, action: "ha condiviso un nuovo", notifiable: resource.document)
+    end
+
     render json: resource.document, include: %w(user tags), status: :created
   end
 
@@ -27,7 +32,7 @@ class DocumentsController < ApplicationController
       render_json_validation_error document
       return
     end
-
+    Notification.where(notifiable_id: params[:id]).where(notifiable_type: "Document").destroy_all
     head :no_content
   end
 
