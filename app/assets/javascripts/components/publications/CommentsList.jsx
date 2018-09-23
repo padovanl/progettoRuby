@@ -1,38 +1,8 @@
 
-/*class CommentsList3 extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            comments: this.props.comments,
-        };
-    }
-
-
-    render() {
-        let comment_list;
-        const { post_id, current_user_avatar } = this.props
-        const comments = this.state.comments
-        if(comments !== undefined)
-            comment_list = comments.map(function (comment) {
-                return <Comment key={comment.id} comment={comment}></Comment>
-            })
-
-        return (
-            <div>
-                { comment_list }
-                <NewComment post_id={ post_id } current_user_avatar={ current_user_avatar } />
-            </div>
-        )
-
-
-    }
-}*/
-
-
 class CommentsList extends React.Component {
     render() {
         let comment_list;
-        const { post_id, current_user_avatar, comments, deleteComment, current_user } = this.props
+        const { course_id, post_id, current_user_avatar, comments, deleteComment, current_user } = this.props
         comment_list = comments.sort(function(a, b) {
                             return new Date(b.created_at) < new Date(a.created_at);
                         }).map(function (comment) {
@@ -43,7 +13,7 @@ class CommentsList extends React.Component {
         return (
             <div>
                 { comment_list }
-                <NewComment post_id={ post_id } current_user_avatar={ current_user_avatar }/>
+                <NewComment course_id={course_id} post_id={ post_id } current_user_avatar={ current_user_avatar }/>
             </div>
         )
 

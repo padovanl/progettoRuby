@@ -20,4 +20,5 @@ module UtilFunction
     notification = Notification.where(recipient: current_user).where("updated_at = created_at").unread
     ActionCable.server.broadcast 'notification', notification
   end
+
 end
