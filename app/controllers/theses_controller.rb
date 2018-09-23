@@ -5,16 +5,16 @@ class ThesesController < ApplicationController
   end
 
   def index
-    if validate_per_page
-      @theses =Thesis.reduce(params).order(created_at: :desc).page(params[:page]).per(params[:per_page])
-      @per_page = params[:per_page]
-    else
-      @theses =Thesis.reduce(params).order(created_at: :desc).page(params[:page]).per(3)
-      @per_page = 3
-    end
+    #if validate_per_page
+    @theses =Thesis.reduce(params).order(created_at: :desc).page(params[:page]).per(10)
+    @per_page = 10#params[:per_page]
+   # else
+   #   @theses =Thesis.reduce(params).order(created_at: :desc).page(params[:page]).per(10)
+   #   @per_page = 10
+   # end
     @last_page = @theses.total_pages
     @current_user_avatar = get_avatar_image
-    @chose_per_page = %w[3 10 20 30]
+   # @chose_per_page = %w[3 10 20 30]
     respond_to do |format|
       format.html
       format.json {render json: @theses, :include => {:tags => {:only => :name}, :teacher => {:only => [:name, :surname, :link_cv]}} }

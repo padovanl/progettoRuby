@@ -3,17 +3,17 @@ class RepsController < ApplicationController
   after_action :broadcast_notification, only: [:create]
 
   def index
-    if validate_per_page
-      @reps = Rep.reduce(params).order(created_at: :desc).page(params[:page]).per(params[:per_page])
-      @per_page = params[:per_page]
-    else
-      @reps = Rep.reduce(params).order(created_at: :desc).page(params[:page]).per(3)
-      @per_page = 3
-    end
+  #  if validate_per_page
+  #    @reps = Rep.reduce(params).order(created_at: :desc).page(params[:page]).per(params[:per_page])
+  #    @per_page = params[:per_page]
+  #  else
+    @reps = Rep.reduce(params).order(created_at: :desc).page(params[:page]).per(10)
+    @per_page = 10
+  #  end
     @last_page = @reps.total_pages
     @current_user_image = get_avatar_image
     @current_user = current_user
-    @chose_per_page = %w[3 10 20 30]
+ #   @chose_per_page = %w[3 10 20 30]
     respond_to do |format|
       format.html
       format.json {render json: @reps, :include => {:course => {:only => :name}, :user => {:only => [:id, :email, :avatar_url, :name, :admin]} } }

@@ -2,20 +2,25 @@
 <section class="bottom-gap gap">
 
   <div align="center" class="row">
-    <strong>Scegli quanti corsi visualizzare per pagina (Selezionato: <%= @per_page %>)</strong>
+    <strong>Scegli quanti corsi visualizzare per pagina</strong>
   </div>
 
   <div class="row" align="center">
       <div align="center"
-        style="display: grid;   grid-template-columns: repeat(4, 1fr); width: 250px;"
+        style="display: grid;   grid-template-columns: repeat(4, 1fr); width: 250px; grid-gap: 1em"
       >
         <% @chose_per_page.each do |page|%>
-          <div class="column" style="width: 2em;">
-            <a class="button is-link is-rounded" style="margin-top: 1em;"
-               href=<%= path+"?per_page="+page %>>
-               <%= page %>
-            </a>
-          </div>
+            <% if @per_page == page %>
+                <a class="button is-link is-rounded is-selected" style="margin-top: 1em; background-color: cornflowerblue"
+                   href=<%= path+"?per_page="+page %>>
+                  <%= page %>
+                </a>
+            <% else %>
+                <a class="button is-link is-rounded" style="margin-top: 1em;"
+                   href=<%= path+"?per_page="+page %>>
+                  <%= page %>
+                </a>
+            <% end %>
         <% end %>
       </div>
 
