@@ -55,6 +55,7 @@ class NewComment extends React.Component {
                 </figure>
                 <form onSubmit={ (e) => this.handleSubmit(e) } className="comment-form">
                     <input className="input" name="comment[post_id]" value={ this.props.post_id } type="hidden"  />
+                    <input className="input" name="comment[course_id]" value={ this.props.course_id } type="hidden"  />
                     <div className="media-content" >
                         <div className="field">
                             <p className="control">
