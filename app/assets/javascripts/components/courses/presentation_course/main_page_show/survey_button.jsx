@@ -33,20 +33,20 @@ class SurveyButton extends React.Component {
     }
 
     render(){
-        const { course_id } = this.props;
 
-        let follow_id =  this.state.followed.length > 0 && this.state.followed[0].follow ? this.state.followed[0].id : null
+        let style = {
+            marginRight: 2
+        };
 
-        let linkSondaggio = "/api/v1/users/" + this.props.user_id + "/user_courses/" + follow_id + "?course_id="+ this.props.course_id
+        const { course_id, user_id } = this.props;
+        const follow_id =  this.state.followed.length > 0 && this.state.followed[0].follow ? this.state.followed[0].id : null
+        const linkSondaggio = "/course/" + course_id + "/survey/" + follow_id
 
-        let bottone = '';
-        if(this.state.followed.length > 0 && !this.state.followed[0].passed){
-            bottone = <a className="button is-rounded is-warning" href={linkSondaggio}>Compila il sondaggio</a>
-        }else{
-            bottone = <div className="is-size-5 has-text-success"><span>Corso superato </span><i className="fas fa-check"></i></div>
-        }
+        let bottone = this.state.followed.length > 0 && !this.state.followed[0].passed ? <a className="button is-rounded is-warning" href={linkSondaggio}>Compila il sondaggio</a> :
+            <div className="is-size-5 has-text-success"><span>Corso superato </span><i className="fas fa-check"></i></div>
 
-        const link_risorse = <div className="link-resources"><a className="button is-rounded is-warning" href={ '/publications/' + course_id }>Bacheca</a>
+
+        const link_risorse = <div className="link-resources"><a className="button is-rounded is-warning" href={ '/publications/' + course_id }>Bacheca</a> <span> </span>
                 <a className="button is-rounded is-warning" href={ '/resources/' + course_id }>Materiale didattico</a></div>;
 
         return(
@@ -55,6 +55,7 @@ class SurveyButton extends React.Component {
 
                     <form onSubmit={ (e) => this.followCourse(e) }>
                         <input className="input" name="user_course[course_id]" type="hidden" value={course_id} />
+                        <span></span>
                         <input className="input" name="user_course[follow]" type="hidden" value="true" />
                         <button className="button is-rounded is-success" type="submit">Segui corso</button>
                     </form>
