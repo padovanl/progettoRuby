@@ -8,7 +8,9 @@ class BodyQuestion extends React.Component {
             followed: '',
             show_details: false,
             show_quotes: false,
-            content_question: ''
+            content_question: '',
+            modalIsActive: false,
+            linkReport: ''
         };
 
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -22,6 +24,8 @@ class BodyQuestion extends React.Component {
         this.handleQuoteUp = this.handleQuoteUp.bind(this)
         this.handleQuoteDown = this.handleQuoteDown.bind(this)
         this.handleChange = this.handleChange.bind(this)
+        this.activeModal = this.activeModal.bind(this)
+
 
 
 
@@ -217,6 +221,16 @@ class BodyQuestion extends React.Component {
             })
     }
 
+    activeModal(link){
+        console.log("afadasdasdads")
+        this.setState({modalIsActive: true})
+        this.setState({linkReport: link})
+    }
+
+    disableModal() {
+        this.setState({modalIsActive: false});
+    }
+
     render(){
         //console.log(this.state.followed.length > 0 ? this.state.followed[0].passed : 'Items not loaded yet');        //this.state.tubedata.length > 0 && this.state.tubedata[0].id
 
@@ -237,7 +251,8 @@ class BodyQuestion extends React.Component {
                               show_details = {this.state.show_details}
                               show_quotes = {this.state.show_quotes}
                               handleQuoteUp = {this.handleQuoteUp}
-                              handleQuoteDown = {this.handleQuoteDown} />
+                              handleQuoteDown = {this.handleQuoteDown}
+                              activeModal={this.activeModal} />
                 <br/>
                 <table className="table is-fullwidth">
                     <tbody>
@@ -249,6 +264,15 @@ class BodyQuestion extends React.Component {
                                            handleChange={this.handleChange} /> : null}
                     </tbody>
                 </table>
+                <div className={"modal " + (this.state.modalIsActive ? "is-active" : "")}>
+                    <div className="modal-background" onClick={this.disableModal.bind(this)} />
+
+                    <ReportModal  linkReport={this.state.linkReport}
+                                  disableModal={this.disableModal.bind(this)} title={"Segnalazione domanda"}/>
+
+                    <button className="modal-close is-large" aria-label="close"
+                            onClick={this.disableModal.bind(this)} />
+                </div>
             </div>
         )
     }

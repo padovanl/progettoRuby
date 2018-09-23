@@ -22,22 +22,14 @@ class CourseQuestion extends React.Component{
     }
 
     render(){
-        //console.log("testo", this.props.courseQuestion.question)
-        //let question_text = <i>{this.props.courseQuestion.question}</i>;
-        //console.log(this.props.courseQuestion.frequency_questions.length);
+
         let question_freq = <i>{this.props.courseQuestion.frequency_questions.length}</i>;
         let question_id = this.props.courseQuestion.frequency_questions[0].course_question_id;
         let quote_id = this.props.courseQuestion.frequency
         let hasBeenQuotedID = this.props.courseQuestion.frequency_questions.filter((f) => f.user_id == this.props.user_id)
         const frequency_question_id = hasBeenQuotedID.length > 0 ? hasBeenQuotedID[0].id : null
-        let pulsante;
+        let pulsante = !this.state.editable ? <i className="fas fa-pen"></i> : <i className="fas fa-check"></i>;
         let linkReport = '/report_question/' + this.props.courseQuestion.id + '?course_id=' + this.props.course_id;
-
-        if(!this.state.editable){
-            pulsante = <i className="fas fa-pen"></i>;
-        }else{
-            pulsante = <i className="fas fa-check"></i>;
-        }
 
 
         const delete_button_item = <a className="button is-rounded is-danger"
@@ -66,11 +58,6 @@ class CourseQuestion extends React.Component{
 
         const question_text = this.state.editable ? <input required={true} type='text' className="input is-medium"  ref={input => this.question_text = input} defaultValue={this.props.courseQuestion.question}/>:<i>{this.props.courseQuestion.question}</i>;
 
-
-        //console.log("frequency question id: ",frequency_question_id)
-        //console.log("question id: ",question_id)
-
-
         return(
             <tr key={this.props.courseQuestion.id}>
                 <td>{question_text}</td>
@@ -80,7 +67,7 @@ class CourseQuestion extends React.Component{
                     { this.props.courseQuestion.user_id != this.props.user_id && this.props.show_quotes && hasBeenQuotedID.length == 0 ? <div> {quote_up_button_item} </div>  :  null}
                     { this.props.courseQuestion.user_id != this.props.user_id && this.props.show_quotes && hasBeenQuotedID.length != 0 ? <div> {quote_down_button_item} </div>  :  null}
                 </td> : null}
-                <td className="has-text-right"><a title="Reporting" onClick={() => handleReport(linkReport)}><i className="fas fa-bug"/></a></td>
+                <td className="has-text-right"><a title="Reporting" onClick={() => this.props.activeModal(linkReport)}><i className="fas fa-bug"/></a></td>
             </tr>
         )
     }

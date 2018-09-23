@@ -43,14 +43,15 @@ class QuestionsController < ApplicationController
   end
 
   def reportQuestion
+    reason = params[:reportReason][:reason]
     quest = CourseQuestion.find(params[:id])
     report = Report.where(reportable_id: params[:id]).where(reportable_type: "CourseQuestion").first
 
     if (report != nil)
-      UserReport.create!(user_id: current_user.id, report_id: report.id)
+      UserReport.create!(user_id: current_user.id, report_id: report.id, reason: reason)
     else
       r = Report.create(action: "È stata segnalata una", reportable: quest)
-      UserReport.create!(user_id: current_user.id, report_id: r.id)
+      UserReport.create!(user_id: current_user.id, report_id: r.id, reason: reason)
     end
 
     #end

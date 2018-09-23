@@ -70,19 +70,21 @@ function timeAgo(dateParam) {
 
 // -- generic report funtion --
 
-function handleReport(linkReport){
+function handleReport(linkReport, reason){
     // /courses/:course_id/questions/:id(.:format)
     //let linkReport = '/report_tip/' + id;
+    console.log(reason)
     var myHeaders = new Headers();
+    let body = JSON.stringify({reportReason: {reason: reason}});
     myHeaders.append('X-CSRF-Token', Rails.csrfToken());
     myHeaders.append('Content-Type', 'application/json');
     console.log(linkReport)
-        if(confirm('Sei sicuro di voler segnalare questo post?')){
         fetch(linkReport,
             {
                 method: 'POST',
                 credentials: 'same-origin',
-                headers: myHeaders
+                headers: myHeaders,
+                body: body
             }).then((response) => {
             if (response.ok){
                 toastr.success("Post segnalata con successo")
@@ -90,5 +92,4 @@ function handleReport(linkReport){
                 alert("errore")
             }
         })
-    }
 }
