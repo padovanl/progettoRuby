@@ -220,14 +220,15 @@ class BodyQuestion extends React.Component {
     render(){
         //console.log(this.state.followed.length > 0 ? this.state.followed[0].passed : 'Items not loaded yet');        //this.state.tubedata.length > 0 && this.state.tubedata[0].id
 
-        const gestisci_le_tue_domande_button = <td><a className="button is-rounded is-warning" onClick={ () => this.handleShowDetails()}>Gestisci le tue domande</a></td>;
+        const gestisci_le_tue_domande_button = <a className="button is-rounded is-warning" onClick={ () => this.handleShowDetails()}>Gestisci le tue domande</a>;
 
-        const gestisci_quote_button = <td><a className="button is-rounded is-warning" onClick={ () => this.handleShowQuotes()}>Quote domande</a></td>;
+        const gestisci_quote_button = <a className="button is-rounded is-warning" onClick={ () => this.handleShowQuotes()}>Quote domande</a>;
 
 
         return(
             <div>
-                { this.state.followed.length > 0 && this.state.followed[0].passed ? <table className="table"><tbody><tr>{gestisci_le_tue_domande_button}{gestisci_quote_button}</tr></tbody></table> : null}
+                { this.state.followed.length > 0 && this.state.followed[0].passed ?
+                    <div className="has-text-left link-resources">{gestisci_le_tue_domande_button} <span> </span>{gestisci_quote_button}</div> : null}
                 <AllQuestions questions={this.state.questions}
                               course_id={this.props.course_id}
                               user_id={this.props.user_id}
