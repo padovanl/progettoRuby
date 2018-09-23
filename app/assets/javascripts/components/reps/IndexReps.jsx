@@ -12,13 +12,17 @@ class IndexReps extends React.Component {
             page:1,
             disabledNext: false,
             tabs_activate: 'is-activate',
-            courseNames:[]
+            courseNames:[],
+            modalIsActive: false,
+            linkReport: ''
         };
         this.getAllReps = this.getAllReps.bind(this);
         this.showModal = this.showModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.addNewRep = this.addNewRep.bind(this);
         updateIndexReps = updateIndexReps.bind(this);
+        this.activeModal = this.activeModal.bind(this)
+
     }
 
     componentWillMount(){
@@ -74,6 +78,16 @@ class IndexReps extends React.Component {
         this.setState({reps: this.state.reps.map(elem => (elem.id === id ? elem = rep : elem))})
     }
 
+    activeModal(link){
+        console.log("afadasdasdads")
+        this.setState({modalIsActive: true})
+        this.setState({linkReport: link})
+    }
+
+    disableModal() {
+        this.setState({modalIsActive: false});
+    }
+
     render(){
         let buttonNext;
         if (this.state.page !== this.props.last_page && !this.state.disabledNext){
@@ -93,6 +107,7 @@ class IndexReps extends React.Component {
                               current_user={this.props.current_user} courseNames={this.state.courseNames}
                               deleteRep={(id) => this.deleteRep(id)}
                               updateRep = {(rep, id) => this.updateRep(rep, id)}
+                              activeModal={this.activeModal}
                     />
                 </div>
                 <div className='myRow'>
@@ -105,6 +120,16 @@ class IndexReps extends React.Component {
                 <div className={"modal " + (this.state.modalState ? "is-active" : "")}>
                     <div className="modal-background" onClick={this.closeModal} />
                     <AddRep current_user={this.props.current_user} closeModal={this.closeModal} addNewRep={(rep)=>this.addNewRep(rep)} courseNames={this.state.courseNames}/>
+                </div>
+
+                <div className={"modal " + (this.state.modalIsActive ? "is-active" : "")}>
+                    <div className="modal-background" onClick={this.disableModal.bind(this)} />
+
+                    <ReportModal  linkReport={this.state.linkReport}
+                                  disableModal={this.disableModal.bind(this)} title={"Segnalazione suggerimento"}/>
+
+                    <button className="modal-close is-large" aria-label="close"
+                            onClick={this.disableModal.bind(this)} />
                 </div>
 
             </div>

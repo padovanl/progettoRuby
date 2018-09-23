@@ -124,7 +124,7 @@ class ItemReps extends React.Component {
                                 </div>
                             </div>
                             <div className={"media-right"}>
-                                {deleteButton} {updateButton} <a title="Reporting" onClick={() => handleReport(linkReport)}><i className="fas fa-bug"/></a>
+                                {deleteButton} {updateButton} <a title="Reporting" onClick={() => this.props.activeModal(linkReport)}><i className="fas fa-bug"/></a>
                             </div>
                         </article>
 
