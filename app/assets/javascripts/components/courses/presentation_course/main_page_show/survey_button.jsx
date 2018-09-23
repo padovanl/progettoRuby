@@ -1,5 +1,4 @@
 class SurveyButton extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -13,6 +12,7 @@ class SurveyButton extends React.Component {
             .then((response) => {return response.json()})
             .then((data) => {this.setState({ followed: data }) });
     }
+
     followCourse(event) {
         event.preventDefault();
         const data = new FormData(event.target);
@@ -40,9 +40,9 @@ class SurveyButton extends React.Component {
         let linkSondaggio = "/api/v1/users/" + this.props.user_id + "/user_courses/" + follow_id + "?course_id="+ this.props.course_id
 
         let bottone = '';
-        if(this.state.followed.length > 0 && !this.state.followed[0].passed){
+        if (this.state.followed.length > 0 && !this.state.followed[0].passed) {
             bottone = <a className="button is-rounded is-warning" href={linkSondaggio}>Compila il sondaggio</a>
-        }else{
+        } else {
             bottone = <div className="is-size-5 has-text-success"><span>Corso superato </span><i className="fas fa-check"></i></div>
         }
 
