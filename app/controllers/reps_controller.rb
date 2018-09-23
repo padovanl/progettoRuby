@@ -20,6 +20,10 @@ class RepsController < ApplicationController
     end
   end
 
+  def show
+    @rep = Rep.find(params[:id])
+  end
+
   def create
     #byebug
     course_id = Rep.get_course_id(get_course_name[:course_name])

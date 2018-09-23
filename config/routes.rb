@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :posts
   resources :comments
   resources :courses, only: [:show]
-  resources :reps, only: [:index, :create, :update, :destroy]
+  resources :reps, only: [:index, :show, :create, :update, :destroy]
   resources :theses, only: [:index, :show]
 
 

@@ -7,13 +7,13 @@
       <h1>Hey, <%= @current_user.name %> ti ha contattato per una ripetizione!</h1>
       <br/>
       <ul>
-        <li>His email: <%= @user_email %></li>
-        <li>Course name is: <%= @course_name%></li>
+        <li>His email: <%= @rep.user.email %></li>
+        <li>Course name is: <%= @rep.course.name%></li>
         <li>The content is: <%= @content %>.</li>
       </ul>
       <br/>
       <p>
-        To watch your rep, please visit the page at: <%= link_to "reps page", reps_url%>
+        To watch your rep, please visit the page at: <%= link_to "click here", rep_url(@rep)%>
       </p>
       <p>Thanks for joining and have a great day!</p>
     </body>
