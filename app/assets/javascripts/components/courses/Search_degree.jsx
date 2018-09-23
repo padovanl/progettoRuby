@@ -84,6 +84,12 @@ class Search_degree extends React.Component {
             });
         }
 
+        console.log(this.props.selectType, "props clicked all");
+        let selectType;
+        if (this.props.selectType === ''){
+            selectType = 'is-invisible'
+        }
+        else selectType='';
 
         return(
             <section>
@@ -92,13 +98,17 @@ class Search_degree extends React.Component {
                 <div className={'myRow gap'}>
                     <div className={'columns'}>
                         <div className=' myColumn-sm '>
-                            <select required className='mySelect gap' onChange={(e) => this.selectTypeChanged(e)}>
-                                <option key={'- Select -'}>- Select -</option>
+                            <select required className='mySelect gap' onChange={(e) => this.selectTypeChanged(e)}
+                                    value={this.props.selectType ? this.props.selectType : ''}
+                            >
+                                <option key={'- Select -'} >- Select -</option>
                                 {optionsSelectTypes}
                             </select>
                         </div>
                         <div className={'myColumn-sm '+this.state.chooseDegree}>
-                            <select required className='mySelect gap' onChange={(e) => this.selectDegreeChanged(e)}>
+                            <select required className={"mySelect gap "+selectType} onChange={(e) => this.selectDegreeChanged(e)}
+                                    value={this.props.selectName ? this.props.selectName : '' }
+                            >
                                 <option key={'- Select -'}>- Select -</option>
                                 {optionsDegree}
                             </select>

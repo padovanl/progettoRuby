@@ -30,4 +30,6 @@ class Rep < ApplicationRecord
     CommentMailer.new_comment(rep,current_user, content).deliver_now
   end
 
+  scope :current_user_rep,   ->(user, id){ where(user_id: user.id, id: id) }
+
 end

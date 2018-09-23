@@ -46,7 +46,7 @@ class RepsController < ApplicationController
   end
 
   def update
-    rep = Rep.update(params[:id], rep_params)
+    rep = Rep.current_user_rep(current_user, params[:id]).first.update(rep_params)
     if !rep
       render_json_validation_error rep
       return
@@ -55,7 +55,7 @@ class RepsController < ApplicationController
   end
 
   def destroy
-    @rep = Rep.where(id: params[:id]).first
+    @rep = Rep.current_user_rep(current_user, params[:id]).first
 
     if !@rep.destroy
       render_json_validation_error @rep

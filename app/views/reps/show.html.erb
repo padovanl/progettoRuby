@@ -88,6 +88,13 @@
       <% end %>
     </div>
   </fieldset>
+  <br>
+  <fieldset class="left-gap" style="margin-right: 1em">
+    <legend style="margin-left: 10px;">Ultima modifica</legend>
+    <div style="margin: 10px;">
+      <%= @rep.updated_at.strftime("%d %b %y") %>
+    </div>
+  </fieldset>
 
 </div>
 

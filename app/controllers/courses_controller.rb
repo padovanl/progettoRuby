@@ -20,8 +20,8 @@ class CoursesController < ApplicationController
       @cs = Course.allcourses_mycourses("allcourses", params, current_user).per(params[:per_page])
       @per_page = params[:per_page]
     else
-      @cs = Course.allcourses_mycourses("allcourses", params, current_user).per(3)
-      @per_page = 3
+      @cs = Course.allcourses_mycourses("allcourses", params, current_user).per(10)
+      @per_page = 10
     end
     @last_page = @cs.total_pages
     @categories = %w[Course Teacher Year] #%w[Course Data Teacher Year]
@@ -33,8 +33,8 @@ class CoursesController < ApplicationController
       @cs = Course.allcourses_mycourses("mycourses", params, current_user).per(params[:per_page])
       @per_page = params[:per_page]
     else
-      @cs = Course.allcourses_mycourses("mycourses", params, current_user).per(3)
-      @per_page = 3
+      @cs = Course.allcourses_mycourses("mycourses", params, current_user).per(10)
+      @per_page = 10
     end
     @last_page = @cs.total_pages
     @categories = %w[Course Teacher Year] #%w[Course Data Teacher Year]

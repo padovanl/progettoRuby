@@ -37,7 +37,7 @@ class SearchItem2 extends React.Component {
         this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
         this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
         this.getAllNames = this.getAllNames.bind(this);
-        this.deleteCourse = this.deleteCourse.bind(this)
+        this.deleteCourse = this.deleteCourse.bind(this);
 
     }
 
@@ -111,7 +111,7 @@ class SearchItem2 extends React.Component {
     searchCourses(e){
         e.preventDefault();
         console.log("cat: "+this.state.category+ ", query "+ this.state.query + ", page "+ this.state.page, "last_page: ",this.props.last_page);
-        this.setState({page: 1,  degreen: '', degreet: ''},
+        this.setState({page: 1,  degreen: '', degreet: '', selectType: '', selectName: ''},
             ()=> getItems(updateUrl(this.props.url, this.props.per_page,  this.state.page, '', '', this.state.category, this.state.query))
                 .then(data => {
                     console.log("URL AGGIORNATO searchCourses: ", this.state.url);
@@ -140,7 +140,7 @@ class SearchItem2 extends React.Component {
 
     onSubmit(degree_name){
         console.log("SearchItem2 got: ", degree_name);
-        this.setState({degreen: degree_name, degreet: this.state.selectType, page:1},
+        this.setState({degreen: degree_name, degreet: this.state.selectType, page:1, selectName: degree_name},
             ()=> getItems(updateUrl(this.props.url, this.props.per_page, this.state.page, this.state.degreen, this.state.degreet))
                 .then(data => {
                     this.setState({courses: data});
@@ -281,6 +281,7 @@ class SearchItem2 extends React.Component {
                                            selectType={this.state.selectType}
                                            selectName={this.state.selectName}
                                            setSelectType={this.setSelectType}
+
                             />
                         </div>
                     </div>
