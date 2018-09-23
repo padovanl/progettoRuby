@@ -64,7 +64,7 @@ class ItemReps extends React.Component {
                 offer_comp = <tr><td>{"Competenze: "}</td><td>{item.user_competence}</td></tr>;
                 offer_search = "Offro ";
             }
-            const title = offer_search.toString()+" ripetizioni per '"+item.course.name.toString()+"' con item id "+item.id.toString()+".\n";
+            const title = offer_search.toString()+" ripetizioni per '"+item.course.name.toString()+"'.\n";
 
             let deleteButton;
             let updateButton;
