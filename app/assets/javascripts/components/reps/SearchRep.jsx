@@ -17,8 +17,8 @@ class SearchRep extends React.Component {
             selected_price: null
         };
         this.onChange = this.onChange.bind(this);
-        this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
-        this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
+  //      this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
+   //     this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
         this.handleChange = this.handleChange.bind(this);
 
@@ -84,13 +84,13 @@ class SearchRep extends React.Component {
 
     //***************** AUTO SUGGESTION (AUTO COMPLETE) **********************
 
-    onChange(event, { newValue, method }){
+    onChange(event){//, { newValue, method }){
         this.setState({
-            selected_course: newValue
+            selected_course: event.target.value//newValue
         });
     };
 
-    onSuggestionsFetchRequested({ value }){
+/*    onSuggestionsFetchRequested({ value }){
         console.log("AutoSuggestName: ", this.state.autoSuggestNames);
 
         this.setState({
@@ -103,11 +103,11 @@ class SearchRep extends React.Component {
             suggestions: []
         });
     };
-
+*/
 
     render(){
         //Autosuggestions
-        const value =this.state.selected_course;
+  /*      const value =this.state.selected_course;
         const suggestions = this.state.suggestions;
         const inputProps = {
             placeholder:"Search courses",
@@ -117,18 +117,27 @@ class SearchRep extends React.Component {
             pattern: "[a-zA-Zàèéìòù0-9., ]*",
             title: "Sono vietati i caratteri speciali."
         };
+*/
+        let opts = this.state.autoSuggestNames.map(course => {
+            return <option key={course.id}  value={course.name}>{course.name}</option>
+        });
 
         return(
             <form onSubmit={(e) => this.handleSearch(e)}>
                 <li className="drawer-menu-item">
-                    <Autosuggest
-                        suggestions={suggestions}
-                        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-                        getSuggestionValue={getSuggestionValue}
-                        renderSuggestion={renderSuggestion}
-                        inputProps={inputProps}
-                    />
+
+                    <div className="field">
+                        <div className="control">
+                            <div className="select is-primary">
+                                <select className=" mySelect select-width" onChange={(e)=>this.onChange(e)}>
+                                    <option value={''}>- Select -</option>
+                                    {opts}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </li>
                 <li className="drawer-menu-item">
                     <div className="control ">

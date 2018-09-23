@@ -1,5 +1,8 @@
 function updateIndexReps(URL, reps){
-    this.setState({url: URL, reps: reps, page:1, disabledNext: false})
+    if (reps.length < this.props.per_page)
+        this.setState({url: URL, reps: reps, page:1, disabledNext: true});
+    else
+        this.setState({url: URL, reps: reps, page:1, disabledNext: false})
 }
 
 class IndexReps extends React.Component {
@@ -72,8 +75,7 @@ class IndexReps extends React.Component {
 
     updateRep(rep, id){
         console.log("id: ", id);
-        this.setState({reps: this.state.reps.map(elem => (elem.id === id ? elem=rep : elem))},
-            ()=> this.state.reps.map (rep => (console.log("rep: ", rep))))
+        this.setState({reps: this.state.reps.map(elem => (elem.id === id ? elem=rep : elem))})
     }
 
     render(){
