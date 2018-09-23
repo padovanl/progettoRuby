@@ -100,8 +100,8 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
-    :user_name => Rails.application.credentials.dig(:sendgrid3, :user_name),
-    :password => Rails.application.credentials.dig(:sendgrid3, :password),
+    :user_name => Rails.application.credentials.dig(:sendgrid, :user_name),
+    :password => Rails.application.credentials.dig(:sendgrid, :password),
     :domain => 'heroku.com',
     :address => 'smtp.sendgrid.net',
     :port => 587,
