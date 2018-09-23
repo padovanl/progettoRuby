@@ -3,6 +3,12 @@ class ReportModal extends React.Component {
     constructor(props){
         super(props);
     }
+
+    report(linkReport, reason){
+        handleReport(linkReport, reason)
+        this.props.disableModal()
+    }
+
     render(){
 
         var reasons = ['Contenuto offensivo', 'Contenuto non consono','Altro'];
@@ -40,7 +46,7 @@ class ReportModal extends React.Component {
                             </div>
                         </section>
                         <footer className="modal-card-foot buttons is-centered">
-                            <button className="button is-success is-rounded" onClick={() => handleReport(this.props.linkReport, formFields.reason.value)}>Segnala</button>
+                            <button className="button is-success is-rounded" onClick={() => this.report(this.props.linkReport, formFields.reason.value)}>Segnala</button>
                             <button className="button is-danger is-rounded" onClick={() => this.props.disableModal()}>Indietro</button>
                         </footer>
                     </div>
