@@ -7,7 +7,7 @@ class MainHistoryTeachers extends React.Component {
     render(){
         return(
             <div>
-                <BodyHistoryTeachers teachers={this.props.teachers} />
+                <BodyHistoryTeachers course_id={this.props.course_id} />
             </div>
         )
     }

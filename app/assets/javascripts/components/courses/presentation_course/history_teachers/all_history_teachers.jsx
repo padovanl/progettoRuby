@@ -15,6 +15,12 @@ class AllHistoryTeachers extends React.Component {
         return(
             <div>
                 <table className="table is-hoverable is-fullwidth is-centered">
+                    <thead>
+                    <tr>
+                        <th>Professore</th>
+                        <th>Anno</th>
+                    </tr>
+                    </thead>
                     <tbody>
                     {teachers}
                     </tbody>

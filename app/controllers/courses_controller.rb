@@ -65,6 +65,11 @@ class CoursesController < ApplicationController
     @mapping_statistiche = Course.get_statistical_informations(params[:id])
   end
 
+   def getTeachersHistory
+     teacherCourses = TeacherCourse.where(:course_id => params['course_id']).order(year: :desc)
+     json_response(teacherCourses.to_json(include: [:teacher]))
+   end
+
 
   private
     def user_course_param
