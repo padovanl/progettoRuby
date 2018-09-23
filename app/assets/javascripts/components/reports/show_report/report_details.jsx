@@ -63,10 +63,10 @@ class ReportDetails extends React.Component {
 
         return(
             <div className="columns">
-                <div className="column is-1"></div>
+                <div className="column is-3"></div>
                         <div className="column">
                     <h3 className="title is-5">Descrizione</h3>
-                    <table className="table is-centered">
+                    <table className="table is-centered is-fullwidth">
                         <thead>
                         <tr><th></th><th></th></tr>
                         </thead>
@@ -90,7 +90,7 @@ class ReportDetails extends React.Component {
                         </tbody>
                     </table>
                 </div>
-                <div className="column is-1"></div>
+                <div className="column is-3"></div>
             </div>
         )
     }
