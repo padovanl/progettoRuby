@@ -1,14 +1,24 @@
-<table class="left-gap">
-  <thead>Scegli quanti corsi visualizzare per pagina (Selezionato: <%= @per_page %>)</thead>
-  <tbody>
-  <tr>
-    <% @chose_per_page.each do |page|%>
-      <td>
-        <a href=<%= path+"?per_page="+page %>>
-          <button class="left-gap hero-buttons "> <%= page %> </button>
-        </a>
-      </td>
-    <% end %>
-  </tr>
-  </tbody>
-</table>
+
+<section class="bottom-gap gap">
+
+  <div align="center" class="row">
+    <strong>Scegli quanti corsi visualizzare per pagina (Selezionato: <%= @per_page %>)</strong>
+  </div>
+
+  <div class="row" align="center">
+      <div align="center"
+        style="display: grid;   grid-template-columns: repeat(4, 1fr); width: 250px;"
+      >
+        <% @chose_per_page.each do |page|%>
+          <div class="column" style="width: 2em;">
+            <a class="button is-link is-rounded" style="margin-top: 1em;"
+               href=<%= path+"?per_page="+page %>>
+               <%= page %>
+            </a>
+          </div>
+        <% end %>
+      </div>
+
+  </div>
+
+</section>

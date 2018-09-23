@@ -141,12 +141,15 @@ class SearchItem2 extends React.Component {
     onSubmit(degree_name){
         console.log("SearchItem2 got: ", degree_name);
         this.setState({degreen: degree_name, degreet: this.state.selectType, page:1},
-            ()=> getItems(updateUrl(this.props.url, this.state.page, this.state.degreen, this.state.degreet))
+            ()=> getItems(updateUrl(this.props.url, this.props.per_page, this.state.page, this.state.degreen, this.state.degreet))
                 .then(data => {
                     this.setState({courses: data});
                     if (data.length ===0){
                         this.setState({disabledNext: true, message: "Corsi non trovati!",});
                         console.log("**DisabledNext : true perché data.len =0 in onSubmit**")
+                    }
+                    else if (data.length < this.props.per_page){
+                        this.setState({disabledNext: true,message: '',})
                     }
                     else{
                         this.setState({disabledNext: false,message: '',})

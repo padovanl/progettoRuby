@@ -66,8 +66,7 @@ class SearchTheses extends React.Component {
             Teachers,
             } = this.state;
 
-
-        URL = '/theses.json?page=1?utf8=✓';
+        URL = '/theses.json?page=1?utf8=✓&per_page='+this.props.per_page;
         let url='';
         if(selected_thesis_title !== '')
             url += '&thesis_title=' + selected_thesis_title;
@@ -137,47 +136,50 @@ class SearchTheses extends React.Component {
 
 
         return(
-            <form onSubmit={(e) => this.handleSearch(e)}>
-                <li className="drawer-menu-item">
-                    <Autosuggest
-                        suggestions={suggestions}
-                        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-                        getSuggestionValue={getSuggestionValue}
-                        renderSuggestion={renderSuggestion}
-                        inputProps={inputProps}
-                    />
-                </li>
-                <br/>
-                <li className="drawer-menu-item ">
-                    <div className="control has-icons-left">
-                        <div className={"select "}>
-                            <select name="Tags" onClick={(e)=>this.handleChange(e)}>
-                                <option value="">{"- Select -"}</option>
-                                {tags}
-                            </select>
-                        </div>
-                        <div className="icon is-small is-left">
-                            <i className="fas fa-globe"/>
-                        </div>
-                    </div>
-                </li>
-                <br/>
-                <li className="drawer-menu-item">
-                    <div className="control has-icons-left">
-                        <div className={"select "}>
-                            <select name="Teachers" onClick={(e)=>this.handleChange(e)}>
-                                <option value="">{"- Select -"}</option>
-                                {teachers}
-                            </select>
-                        </div>
-                        <div className="icon is-small is-left">
-                            <i className="fas fa-globe"/>
-                        </div>
-                    </div>
-                </li>
-                <button className="hero-buttons button-search" type="submit"> Search </button>
-            </form>
+
+                        <form onSubmit={(e) => this.handleSearch(e)}>
+                            <li className="drawer-menu-item">
+                                <Autosuggest
+                                    suggestions={suggestions}
+                                    onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                                    onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                                    getSuggestionValue={getSuggestionValue}
+                                    renderSuggestion={renderSuggestion}
+                                    inputProps={inputProps}
+                                />
+                            </li>
+                            <br/>
+                            <li className="drawer-menu-item ">
+                                <div className="control has-icons-left">
+                                    <div className={"select "}>
+                                        <select name="Tags" onClick={(e)=>this.handleChange(e)}>
+                                            <option value="">{"- Select -"}</option>
+                                            {tags}
+                                        </select>
+                                    </div>
+                                    <div className="icon is-small is-left">
+                                        <i className="fas fa-globe"/>
+                                    </div>
+                                </div>
+                            </li>
+                            <br/>
+                            <li className="drawer-menu-item">
+                                <div className="control has-icons-left">
+                                    <div className={"select "}>
+                                        <select name="Teachers" onClick={(e)=>this.handleChange(e)}>
+                                            <option value="">{"- Select -"}</option>
+                                            {teachers}
+                                        </select>
+                                    </div>
+                                    <div className="icon is-small is-left">
+                                        <i className="fas fa-globe"/>
+                                    </div>
+                                </div>
+                            </li>
+                            <button className="hero-buttons button-search" type="submit"> Search </button>
+                        </form>
+
+
         )
     }
 }
