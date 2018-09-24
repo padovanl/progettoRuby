@@ -24,7 +24,7 @@ class Post extends React.Component {
     }
 
     render() {
-        const { current_user, current_user_avatar } = this.props;
+        const { current_user, current_user_avatar, course_id } = this.props;
         const { post } = this.state;
         let attachments = '';
         if(post.documents.length > 0)
@@ -75,7 +75,7 @@ class Post extends React.Component {
                             </div>
 
 
-                            <CommentsList post_id={post.id} comments={post.comments} current_user={current_user}
+                            <CommentsList course_id={course_id} post_id={post.id} comments={post.comments} current_user={current_user}
                                           current_user_avatar={current_user_avatar} deleteComment={ this.deleteComment.bind(this) }/>
 
                         </div>

@@ -6,8 +6,9 @@ class DocumentsPage extends React.Component {
         this.state = {
             data: [],
             adding_doc: false,
-            activeTabIndex: 0,
-            search_string: ""
+            activeTabIndex: this.props.document_id == null ? 0 : null,
+            search_string: "",
+            document_id: this.props.document_id
         };
     }
 
@@ -47,7 +48,7 @@ class DocumentsPage extends React.Component {
 
 
     render() {
-        const {current_user, current_user_avatar, course_id} = this.props;
+        const {current_user, current_user_avatar, course_id, course_name} = this.props;
         const { data, adding_doc, activeTabIndex } = this.state;
 
         let documents_list = data.map(function (doc) {
@@ -57,6 +58,10 @@ class DocumentsPage extends React.Component {
         return (
             <div>
                 <div className="container resources-thread">
+                    <h3 class="title" id="course-name-second">
+                        <a href={ '/courses/' + course_id }>{ course_name }</a>
+                    </h3>
+
                     <div className="level is-mobile">
 
                         <div className="level-left" id="search-input">
@@ -122,13 +127,17 @@ class DocumentsPage extends React.Component {
         if (search_string !== '')
             URL += '&search_string=' + search_string
 
+        if (this.state.document_id !== null)
+            URL += '&document_id=' + this.state.document_id
+
         fetch(URL, {
-        credentials: 'same-origin'
-    })
+          credentials: 'same-origin'
+        })
         .then(response => response.json())
         .then(data => this.setState({
             data,
-            activeTabIndex
+            activeTabIndex,
+            document_id: null
         }));
     }
 

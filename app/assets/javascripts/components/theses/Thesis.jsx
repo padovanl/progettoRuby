@@ -88,7 +88,7 @@ class Thesis extends React.Component {
                                 {(new  Date(Date.parse(item.created_at))).toLocaleDateString('it-IT', options)}
                             </small>
                             <small className="card-footer-item ">
-                                <a className="button is-link is-small" style={style} href={linkDetails}>Vai alla pagina della tesi&nbsp;&nbsp;&nbsp;<i className="fas fa-search"></i></a>
+                                <a className="button is-link is-small" style={style} href={linkDetails}>Vai alla pagina della tesi&nbsp;&nbsp;&nbsp;<i className="fas fa-search"/></a>
                             </small>
                         </div>
 

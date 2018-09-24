@@ -202,7 +202,7 @@ class UpdateRep extends React.Component {
                                     <div className={"control has-icons-left " }>
                                         <div className={"control " }>
                                             <input className="input " type="text" placeholder="Competence "
-                                                   pattern="[a-zA-Zàèéìòù,.!?()_ -]*"
+                                                   pattern="[a-zA-Zàèéìòù,.!'?()_ -]*"
                                                    title={"Sono vietati i caratteri speciali."}
                                                    value={this.state.competence} name={"rep[user_competence]"} id={'competence'} onChange={(e) => this.handleChange(e)}/>
                                             <span className="icon is-small is-left">
@@ -231,7 +231,7 @@ class UpdateRep extends React.Component {
                                     <label className="label">Place</label>
                                     <div className={"control has-icons-left " }>
                                         <input className="input " type="text" placeholder="Place"
-                                               pattern="[a-zA-Zàèéìòù,.!?()_ -]*"
+                                               pattern="[a-zA-Zàèéìòù,.!'?()_ -]*"
                                                title={"Sono vietati i caratteri speciali."}
                                                value={this.state.place} name={"rep[place]"} id={'place'} onChange={(e) => this.handleChange(e)}/>
                                         <span className="icon is-small is-left">
@@ -276,7 +276,7 @@ class UpdateRep extends React.Component {
                                     <label className="label">Description</label>
                                     <div className={"control has-icons-left " }>
                                         <input className="input " type="text" placeholder="Description"
-                                               pattern="[a-zA-Zàèéìòù,.!?()_ -]*"
+                                               pattern="[a-zA-Zàèéìòù,.!'?()_ -]*"
                                                title={"Sono vietati i caratteri speciali."}
                                                value={this.state.description} name={"rep[description]"} id={'description'} onChange={(e) => this.handleChange(e)}/>
                                         <span className="icon is-small is-left">

@@ -86,7 +86,7 @@ class Notification extends React.Component{
                 break;
             case 'Post':
                 type = 'post'
-                link = '/publications'
+                link = '/publications/' + id_corso + '?post_id=' + this.props.notification.notifiable.post.id
                 icon = <span className="icon has-text-link"><i className="fas fa-envelope"></i></span>;
                 scritta_annuncio = <div><span className="has-text-weight-bold">{recipient} </span>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>nel corso di {nome_corso}</div>
                 break;
@@ -106,7 +106,7 @@ class Notification extends React.Component{
                     }
             case 'Document':
                 type = 'documento'
-                link = '/resources'
+                link = '/resources/' + id_corso + '?document_id=' + this.props.notification.notifiable.document.id
                 icon = <span className="icon has-text-link"><i className="fas fa-envelope"></i></span>;
                 scritta_annuncio = <div><span className="has-text-weight-bold">{recipient} </span>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>per il corso di {nome_corso}</div>
                 break;

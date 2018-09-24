@@ -64,26 +64,33 @@ class ItemReps extends React.Component {
                 offer_comp = <tr><td>{"Competenze: "}</td><td>{item.user_competence}</td></tr>;
                 offer_search = "Offro ";
             }
-            const title = offer_search.toString()+" ripetizioni per '"+item.course.name.toString()+"' con item id "+item.id.toString()+".\n";
+            const title = offer_search.toString()+" ripetizioni per '"+item.course.name.toString()+"'.\n";
 
             let deleteButton;
             let updateButton;
             console.log("itemuserid = currentuserid: ", item.user.id, "=", this.props.current_user.id);
             if (item.user.id === this.props.current_user.id){
-                deleteButton = <button className="delete is-danger" onClick={()=>this.handleDelete(item.id)} color="red"/>;
-                updateButton = <UpdateRep courseNames={this.props.courseNames}
-                                          title={this.state.width_windows > 680 ? title.substring(0,45)+".." : title.substring(22,43)+".."}
-                                          price={item.price_hours}
-                                          place={item.place}
-                                          home_service={item.home_service}
-                                          week_day={item.week_days}
-                                          description={item.description}
-                                          offer={offer_search === "Offro "}
-                                          course={item.course.name}
-                                          competence={item.user_competence}
-                                          id={item.id}
-                                          updateRep = {(rep, id) => this.props.updateRep(rep, id)}
-                />;
+                deleteButton = <div>
+                                    <button className="delete is-danger" onClick={()=>this.handleDelete(item.id)} color="red"/>
+                                    <hr className="dropdown-divider"/>
+                                </div>;
+                updateButton =
+                    <div>
+                        <UpdateRep courseNames={this.props.courseNames}
+                                              title={this.state.width_windows > 680 ? title.substring(0,45)+".." : title.substring(22,43)+".."}
+                                              price={item.price_hours}
+                                              place={item.place}
+                                              home_service={item.home_service}
+                                              week_day={item.week_days}
+                                              description={item.description}
+                                              offer={offer_search === "Offro "}
+                                              course={item.course.name}
+                                              competence={item.user_competence}
+                                              id={item.id}
+                                              updateRep = {(rep, id) => this.props.updateRep(rep, id)}
+                        />
+                        <hr className="dropdown-divider"/>
+                    </div>
             }
 
             let linkReport = '/report_rep/' + item.id + '?course_id=' + item.course.id;
@@ -124,7 +131,21 @@ class ItemReps extends React.Component {
                                 </div>
                             </div>
                             <div className={"media-right"}>
-                                {deleteButton} {updateButton} <a title="Reporting" onClick={() => this.props.activeModal(linkReport)}><i className="fas fa-bug"/></a>
+                                <div className="dropdown is-right is-hoverable">
+                                    <div className="dropdown-trigger">
+                                        <div  aria-haspopup="true" aria-controls="dropdown-menu2">
+                                            <i className="fas fa-ellipsis-h fa-2x"/>
+                                        </div>
+                                    </div>
+                                    <div className="dropdown-menu" id="dropdown-menu2" role="menu">
+                                        <div className="dropdown-content" align="center">
+                                            {deleteButton}
+                                            {updateButton}
+                                            <a title={"Show"} href={"/reps/"+item.id}><i className="fas fa-eye"/></a>
+                                            <hr className="dropdown-divider"/>
+                                            <a title="Reporting" onClick={() => this.props.activeModal(linkReport)}><i className="fas fa-bug"/></a>                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </article>
 

@@ -41,5 +41,4 @@ module UtilFunction
       end
     end
   end
-
 end

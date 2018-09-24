@@ -1,6 +1,8 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   after_action :broadcast_to_channel, only: [:create, :destroy]
+  before_action :set_course, only: [:create]
+  before_action :user_follow_course?, only: [:create]
 
   def create
     @comment = current_user.comments.new(comment_params)
@@ -39,7 +41,7 @@ class CommentsController < ApplicationController
 
   private
     def comment_params
-      params.require(:comment).permit( :content, :post_id )
+      params.require(:comment).permit( :content, :post_id, :course_id )
     end
 
     def broadcast_to_channel

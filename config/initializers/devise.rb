@@ -19,7 +19,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'noreply@steambrain.com'
+  config.mailer_sender = 'noreply@brain-steam.herokuapp.com'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -283,6 +283,6 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'
   #config.omniauth :facebook, "2599363410089669", "465ea715df0ec3684286aa884a52d751", callback_url: "https://obscure-temple-51390.herokuapp.com/users/auth/facebook/callback"
 
-  config.omniauth :facebook, "1673278336053711", "74ae3b36ace60ca06e1bb2e3a8c580c9", callback_url: "https://concorrente2018.herokuapp.com/users/auth/facebook/callback"
+  config.omniauth :facebook, "1673278336053711", "74ae3b36ace60ca06e1bb2e3a8c580c9", callback_url: "https://brain-steam.herokuapp.com/users/auth/facebook/callback"
   config.omniauth :google_oauth2, "199562080439-1k0t4vfmp9jm26ccn636eo5vl1q18bc1.apps.googleusercontent.com", "9Z9UJxTbQuIy6CYzeljw0cG8", {}
 end

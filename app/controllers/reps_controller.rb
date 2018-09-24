@@ -20,6 +20,10 @@ class RepsController < ApplicationController
     end
   end
 
+  def show
+    @rep = Rep.find(params[:id])
+  end
+
   def create
     #byebug
     course_id = Rep.get_course_id(get_course_name[:course_name])
@@ -42,7 +46,10 @@ class RepsController < ApplicationController
   end
 
   def update
-    rep = Rep.update(params[:id], rep_params)
+    rep = Rep.current_user_rep(current_user, params[:id]).first
+    rep.update(rep_params)
+    rep.course_id = Rep.get_course_id(get_course_name[:course_name])
+    rep.save
     if !rep
       render_json_validation_error rep
       return
@@ -51,9 +58,9 @@ class RepsController < ApplicationController
   end
 
   def destroy
-    @rep = Rep.where(id: params[:id]).first
+    @rep = Rep.current_user_rep(current_user, params[:id]).first
 
-    if !@rep.destroy
+    if !@rep.destroyupdated_rep
       render_json_validation_error @rep
       return
     end

@@ -63,13 +63,13 @@ class Report extends React.Component{
                 break;
             case 'Post':
                 type = 'post'
-                link = '/publications'
+                link = '/publications/' + id_corso + '?post_id=' + this.props.notification.notifiable.post.id
                 icon = <span className="icon has-text-link"><i className="fas fa-envelope"></i></span>;
                 scritta_annuncio = <div>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>del corso di {nome_corso}</div>
                 break;
             case 'Document':
                 type = 'documento'
-                link = '/resources'
+                link = '/resources/' + id_corso + '?document_id=' + this.props.notification.notifiable.document.id
                 icon = <span className="icon has-text-link"><i className="fas fa-envelope"></i></span>;
                 scritta_annuncio = <div>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>condiviso nel corso di {nome_corso}</div>
                 break;
@@ -89,7 +89,7 @@ class Report extends React.Component{
                     }
             case 'Comment':
                 type = 'commento'
-                link = '/publications'
+                link = '/publications/' + id_corso + '?comment_id=' + this.props.notification.notifiable.comment.id
                 icon = <span className="icon has-text-link"><i className="fas fa-envelope"></i></span>;
                 scritta_annuncio = <div>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>del corso di {nome_corso}</div>
                 break;

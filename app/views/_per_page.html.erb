@@ -10,7 +10,7 @@
         style="display: grid;   grid-template-columns: repeat(4, 1fr); width: 250px; grid-gap: 1em"
       >
         <% @chose_per_page.each do |page|%>
-            <% if @per_page == page %>
+            <% if per_page == page %>
                 <a class="button is-link is-rounded is-selected" style="margin-top: 1em; background-color: cornflowerblue"
                    href=<%= path+"?per_page="+page %>>
                   <%= page %>

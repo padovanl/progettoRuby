@@ -9,8 +9,7 @@ class CommentMailer < ApplicationMailer
   def new_comment(rep, c_u, content)
     @current_user = c_u
     @content = content
-    @user_email = rep.user.email
-    @course_name = rep.course.name
+    @rep = rep
     mail to: @user_email, subject: "Ripetizione per '#{@course_name}'"
   end
 end

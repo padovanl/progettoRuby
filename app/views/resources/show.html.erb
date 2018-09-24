@@ -1,7 +1,7 @@
 
 <% content_for :title, "Resources" %>
 
-<%= react_component("DocumentsPage", { course_id: @course.id, current_user: current_user,
+<%= react_component("DocumentsPage", { course_id: @course.id, current_user: current_user, course_name: @course.name, document_id: @document.nil? ? nil : @document.id,
                                     current_user_avatar: current_user.avatar.attached? ? rails_representation_url(current_user.avatar.variant(resize: "100x100"), only_path: true)
                                                              : image_url("dragon.png")
 }) %>
