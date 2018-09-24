@@ -62,15 +62,16 @@ class BodyQuestion extends React.Component {
     }
 
     handleFormSubmit(course_id, user_id, question_text) {
+        var myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+        myHeaders.append('Content-Type', 'application/json');
         let body = JSON.stringify({courseQuestion: {course_id: course_id, user_id: user_id, question: question_text}});
         // /courses/:course_id/questions
         let linkNew = '/courses/' + this.props.course_id + '/questions';
         if (question_text != '') {
             fetch(linkNew, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: myHeaders,
                 body: body,
                 credentials: 'same-origin'
             }).then((response) => {
@@ -100,15 +101,15 @@ class BodyQuestion extends React.Component {
     }
 
     handleDelete(id){
-        // /courses/:course_id/questions/:id(.:format)
-        let linkDelete = '/courses/' + this.props.course_id + '/questions/' + id
+        var myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+        myHeaders.append('Content-Type', 'application/json');        let linkDelete = '/courses/' + this.props.course_id + '/questions/' + id
         if(confirm('Sei sicuro di voler eliminare questa domanda?')){
             fetch(linkDelete,
                 {
                     method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
+                    headers: myHeaders,
+                    credentials: "same-origin"
                 }).then((response) => {
                 if (response.ok){
                     this.deleteCourseQuestion(id)
@@ -125,8 +126,9 @@ class BodyQuestion extends React.Component {
     }
 
     handleUpdate(question_text, id){
-        //console.log(edit_question.id);
-        let body = JSON.stringify({courseQuestion: {question: question_text}});
+        var myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+        myHeaders.append('Content-Type', 'application/json');        let body = JSON.stringify({courseQuestion: {question: question_text}});
         let linkUpdate = '/courses/' + this.props.course_id + '/questions/' + id
         if(confirm('Sei sicuro di voler modificare questa domanda?')) {
             if (question_text != '') {
@@ -135,9 +137,7 @@ class BodyQuestion extends React.Component {
                         method: 'PUT',
                         credentials: 'same-origin',
                         body: body,
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
+                        headers: myHeaders
                     }).then((response) => {
                     return response.json()
                 })
@@ -174,15 +174,16 @@ class BodyQuestion extends React.Component {
 
     handleQuoteUp(course_question_id) {
         let body = JSON.stringify({frequencyQuestion: {course_question_id: course_question_id, user_id: this.props.user_id}});
-        // /courses/:course_id/questions/:question_id/frequency_questions(.:format)
+        var myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+        myHeaders.append('Content-Type', 'application/json');
         let linkNew = '/courses/' + this.props.course_id + '/questions/' + course_question_id + '/frequency_questions';
 
         fetch(linkNew, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: myHeaders,
             body: body,
+            credentials: "same-origin"
         }).then((response) => {
             return response.json()
         })
@@ -196,17 +197,16 @@ class BodyQuestion extends React.Component {
     }
 
     handleQuoteDown(course_question_id, frequency_question_id){
-        // /courses/:course_id/questions/:id(.:format)
-        console.log("question id: ", course_question_id)
-        console.log("frequency_question_id: ", frequency_question_id)
-
+        var myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+        myHeaders.append('Content-Type', 'application/json');
         let linkDelete = '/courses/' + this.props.course_id + '/questions/' + course_question_id + '/frequency_questions/' + frequency_question_id;
+
         fetch(linkDelete,
             {
                 method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
+                headers: myHeaders,
+                credentials: "same-origin"
             }).then((response) => {
             return response.json()
         })
@@ -231,12 +231,9 @@ class BodyQuestion extends React.Component {
     }
 
     render(){
-        //console.log(this.state.followed.length > 0 ? this.state.followed[0].passed : 'Items not loaded yet');        //this.state.tubedata.length > 0 && this.state.tubedata[0].id
 
         const gestisci_le_tue_domande_button = <a className="button is-rounded is-warning" onClick={ () => this.handleShowDetails()}>Gestisci le tue domande</a>;
-
         const gestisci_quote_button = <a className="button is-rounded is-warning" onClick={ () => this.handleShowQuotes()}>Quote domande</a>;
-
 
         return(
             <div>
