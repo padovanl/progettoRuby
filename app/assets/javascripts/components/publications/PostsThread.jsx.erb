@@ -7,7 +7,9 @@ class PostsThread extends React.Component {
         this.state = {
             data: [],
             adding_post: false,
-            activeTabIndex: 0
+            activeTabIndex: (this.props.post_id == null && this.props.comment_id == null) ? 0 : null,
+            post_id: this.props.post_id,
+            comment_id: this.props.comment_id
         };
     }
 
@@ -39,11 +41,15 @@ class PostsThread extends React.Component {
 
 
     render() {
-        const {current_user, current_user_avatar, course_id} = this.props
+        const {current_user, current_user_avatar, course_id, course_name} = this.props
         const {activeTabIndex, data, adding_post} = this.state
         return (
             <div>
                 <div className="container corso-thread">
+                    <h3 class="title" id="course-name-second">
+                      <a href={ '/courses/' + course_id }>{ course_name }</a>
+                    </h3>
+
                     <div id="style-2" className="tabs is-centered">
 
                         <ul>
@@ -106,10 +112,15 @@ class PostsThread extends React.Component {
         if (activeTabIndex === 3)
             URL += '&comment_user_id=' + current_user.id
 
+        if (this.state.post_id !== null)
+            URL += '&post_id=' + this.state.post_id
+        if (this.state.comment_id !== null)
+            URL += '&comment_id=' + this.state.comment_id
+
         fetch(URL, {
             credentials: 'same-origin'
         })
             .then(response => response.json())
-            .then(data => this.setState({data, activeTabIndex}));
+            .then(data => this.setState({data, activeTabIndex, post_id: null, comment_id: null}));
     }
 }

@@ -87,9 +87,9 @@
   .resources-list {
     overflow-y: scroll;
     overflow-x: hidden;
-    height: 87vh;
+    height: 82vh;
     @include rwd(767) {
-      height: 80vh;
+      height: 77vh;
     }
     @include custom-range(768, 1088) {
     }
@@ -143,16 +143,16 @@
       width: 12vw;
       height: 12vw;
       @include rwd(575) {
-        width: 90vw;
-        height: 90vw;
+        width: 80vw;
+        height: 80vw;
       }
       @include custom-range(576, 767) {
         width: 47vw;
         height: 47vw;
       }
       @include custom-range(768, 1088) {
-        width: 30vw;
-        height: 30vw;
+        width: 28vw;
+        height: 28vw;
       }
       @include custom-range(1089, 1200) {
         width: 25vw;

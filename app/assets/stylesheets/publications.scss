@@ -48,9 +48,9 @@
   .posts-list {
     overflow-y: scroll;
     overflow-x: hidden;
-    height: 88vh;
+    height: 83vh;
     @include rwd(767) {
-      height: 83vh;
+      height: 78vh;
     }
     @include custom-range(768, 1088) {
     }

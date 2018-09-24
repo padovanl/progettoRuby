@@ -98,15 +98,15 @@ degree_course.courses.create!([
 
 user = User.create!(name: "Admin Admin", email: "admin@admin.com", password: "123123", confirmed_at: "2018-01-09 20:11:18.430391", admin: true)
 user.tags.create!([
-  { id:1 , name: "Ricerca" },
-  { id:2 , name: "Sviluppo Web" },
-  { id:3 , name: "Sviluppo Desktop" },
-  { id:4 , name: "Sviluppo mobile" },
-  { id:5 , name: "Ricerca Operativa" },
-  { id:6 , name: "Client Server" },
-  { id:7 , name: "CSP" },
-  { id:8 , name: "VRP" },
-  { id:9 , name: "Green" }
+  { name: "Ricerca" },
+  { name: "Sviluppo Web" },
+  { name: "Sviluppo Desktop" },
+  { name: "Sviluppo mobile" },
+  { name: "Ricerca Operativa" },
+  { name: "Client Server" },
+  { name: "CSP" },
+  { name: "VRP" },
+  { name: "Green" }
 ])
 
 user.user_courses.create!([
@@ -221,22 +221,7 @@ Al termine di ogni richiesta, il Client dovrà attendere che l'utente inserisca 
 
 ThesisTag.create!([
     #nonato
-    {tag_id: 1, thesis_id: 1},
-    {tag_id: 5, thesis_id: 1},
-    {tag_id: 9, thesis_id: 1},
-    {tag_id: 8, thesis_id: 1},
-    {tag_id: 1, thesis_id: 2},
-    {tag_id: 5, thesis_id: 2},
-    {tag_id: 5, thesis_id: 3},
-    {tag_id: 5, thesis_id: 4},
-    #gavanelli
-    {tag_id: 7, thesis_id: 5},
-    {tag_id: 7, thesis_id: 6},
-    #tortonesi
-    {tag_id: 6, thesis_id: 7},
-    {tag_id: 3, thesis_id: 7},
-    {tag_id: 6, thesis_id: 8},
-    {tag_id: 3, thesis_id: 8},
+    {tag_id: Tag.first.id, thesis_id: Thesis.first.id}
 ])
 
 
