@@ -46,7 +46,6 @@ class IndexCourses2 extends React.Component{
     handleSubmit(event) {
         event.preventDefault(); //blocca comportamento predefinito: reload pagina e cancellazione di tutto
 
-        console.log("nome corso: ", event.target[2].name, "id corso ", event.target[2].value );
         const id = event.target[2].value;
         this.setState({courseName: event.target[2].name, courseId: id});
 

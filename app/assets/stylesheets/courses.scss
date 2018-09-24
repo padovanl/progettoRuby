@@ -155,7 +155,7 @@ body {
 
 
 /* Responsive columns - one column layout (vertical) on small screens */
-@media screen and (max-width: 690px) {
+@media screen and (max-width: 1170px) {
   .wrapper {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -169,7 +169,7 @@ body {
 
 
 /* Responsive columns - one column layout (vertical) on small screens */
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 770px) {
   .wrapper {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -185,13 +185,16 @@ body {
 }
 
 .wrapper > div {
-  background: #eee;
+  #background: #eee;
+  border: solid;
+  border-color: gray;
+  border-radius: 12px;
   padding: 1em;
 }
 
 
 .wrapper >div:nth-child(odd){
-  background: lightgoldenrodyellow;
+  #background: lightgoldenrodyellow;
 }
 
 
@@ -446,4 +449,11 @@ courses-ol li {
 
 #course-name {
   font-family: Domine;
+}
+
+
+.grid-buttons{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1em;
 }

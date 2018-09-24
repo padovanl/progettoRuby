@@ -24,7 +24,6 @@ class UpdateRep extends React.Component {
 
 
     validate(){
-        console.log("SOno in validate");
 
         const formLength = this.formEl.length;
 
@@ -147,7 +146,6 @@ class UpdateRep extends React.Component {
 
         if (this.state.isValidated) {
             classNames.push('.was-validated');
-            console.log("pushato .was-validated")
         }
 
         let offer;

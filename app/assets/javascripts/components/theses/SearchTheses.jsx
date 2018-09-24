@@ -85,7 +85,6 @@ class SearchTheses extends React.Component {
 
 
     handleChange(e) {
-        console.log("name: ", e.target.name);
         this.setState({[e.target.name]: e.target.value});
     }
 
@@ -99,7 +98,6 @@ class SearchTheses extends React.Component {
     };
 
     onSuggestionsFetchRequested({ value }){
-        console.log("AutoSuggestName: ", this.state.autoSuggestNames, " value", value);
 
         this.setState({
             suggestions: getSuggestions(value, this.state.autoSuggestNames, 'Theses')

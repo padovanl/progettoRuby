@@ -78,7 +78,6 @@ class IndexReps extends React.Component {
     }
 
     updateRep(rep, id){
-        console.log("id: ", id);
         this.setState({reps: this.state.reps.map(elem => (elem.id === id ? elem=rep : elem))})
     }
 
