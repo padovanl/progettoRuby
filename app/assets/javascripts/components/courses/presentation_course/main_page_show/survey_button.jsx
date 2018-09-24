@@ -25,11 +25,14 @@ class SurveyButton extends React.Component {
             headers: myHeaders,
             credentials: 'same-origin',
             body: data } )
-            .then((response) => {return response.json()});
+            .then((response) => {return response.json()})
+            .then((data) => {
+                let followed = {...this.state.followed}    //creating copy of object
+                followed.id = data.id;
+                followed.follow = true;
+                this.setState({followed})
+            });
         //this.setState({...this.state.followed, follow: true})
-        let followed = {...this.state.followed}    //creating copy of object
-        followed.follow = true;                        //updating value
-        this.setState({followed});
     }
 
     unfollowCourse(event) {
@@ -63,6 +66,7 @@ class SurveyButton extends React.Component {
 
         const { course_id, user_id } = this.props;
         const follow_id = this.state.followed && this.state.followed.follow ? this.state.followed.id : null
+        console.log(follow_id)
         const linkSondaggio = "/course/" + course_id + "/survey/" + follow_id
 
         let bottone = this.state.followed != null && !this.state.followed.passed ? <a className="button is-rounded is-warning" href={linkSondaggio}>Compila il sondaggio</a> :
