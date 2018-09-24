@@ -107,8 +107,11 @@ class DocumentsPage extends React.Component {
                     <div className={"modal " + (adding_doc ? "is-active" : "")}>
                         <div className="modal-background" onClick={this.closeNewDocModal.bind(this)} />
 
-                        <NewDoc addNewDoc={this.addNewDoc.bind(this)} current_user={current_user} course_id={course_id}
-                                 current_user_avatar={current_user_avatar}/>
+                        <NewDoc closeModal={this.closeNewDocModal.bind(this)}
+                                addNewDoc={this.addNewDoc.bind(this)}
+                                current_user={current_user}
+                                course_id={course_id}
+                                current_user_avatar={current_user_avatar}/>
 
                         <button className="modal-close is-large" aria-label="close"
                                 onClick={this.closeNewDocModal.bind(this)} />

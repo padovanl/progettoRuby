@@ -40,8 +40,8 @@ class PostsThread extends React.Component {
     }
 
     activeModal(link){
-        this.setState({modalIsActive: true})
-        this.setState({linkReport: link})
+        console.log("afadasdasdads")
+        this.setState({modalIsActive: true, linkReport: link})
     }
 
     disableModal() {
@@ -52,8 +52,9 @@ class PostsThread extends React.Component {
 
     render() {
         const {current_user, current_user_avatar, course_id, course_name} = this.props
-        const {activeTabIndex, data, adding_post} = this.state
-        console.log("dddd",this.activeModal())
+        const { activeTabIndex, data, adding_post } = this.state
+        const activeModal = this.activeModal
+
         return (
             <div>
                 <div className="container corso-thread">
@@ -79,8 +80,13 @@ class PostsThread extends React.Component {
 
                     { (data.length > 0) && this.activeModal ? <div className="posts-list" id="style-1">
                             { data.map(function (post) {
-                                return <Post key={post.id} post={post} current_user={current_user}
-                                             current_user_avatar={current_user_avatar} course_id={course_id} activeModal={this.activeModal.bind(this)} />
+
+                                return <Post key={post.id}
+                                             post={post}
+                                             current_user={current_user}
+                                             current_user_avatar={current_user_avatar}
+                                             course_id={course_id}
+                                             activeModal={ activeModal }/>
                             }) }
                         </div> : <div className="posts-list" /> }
 
@@ -140,8 +146,7 @@ class PostsThread extends React.Component {
 
         fetch(URL, {
             credentials: 'same-origin'
-        })
-            .then(response => response.json())
-            .then(data => this.setState({data, activeTabIndex, post_id: null, comment_id: null}));
+        }).then(response => response.json())
+        .then(data => this.setState({data, activeTabIndex, post_id: null, comment_id: null}));
     }
 }
