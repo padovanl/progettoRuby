@@ -1,5 +1,4 @@
 class CourseTipsController < ApplicationController
-
   skip_before_action :verify_authenticity_token
   after_action :broadcast_notification, only: [:create]
 

@@ -1,10 +1,10 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   after_action :broadcast_to_channel, only: [:create, :destroy]
-  before_action :set_course, only: [:create]
-  before_action :user_follow_course?, only: [:create]
 
   def create
+    @course = Course.find(comment_params[:course_id])
+    user_follow_course?
     @comment = current_user.comments.new(comment_params)
 
     if !@comment.save
