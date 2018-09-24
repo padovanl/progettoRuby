@@ -13,6 +13,7 @@ class SurveyButton extends React.Component {
             .then((response) => {return response.json()})
             .then((data) => {this.setState({ followed: data }) });
     }
+
     followCourse(event) {
         event.preventDefault();
         const data = new FormData(event.target);
@@ -24,8 +25,30 @@ class SurveyButton extends React.Component {
             headers: myHeaders,
             credentials: 'same-origin',
             body: data } )
-            .then((response) => {return response.json()})
-            .then((data) => {this.setState({ followed: [ data ] }) });
+            .then((response) => {return response.json()});
+        //this.setState({...this.state.followed, follow: true})
+        let followed = {...this.state.followed}    //creating copy of object
+        followed.follow = true;                        //updating value
+        this.setState({followed});
+    }
+
+    unfollowCourse(event) {
+        event.preventDefault();
+        const data = new FormData(event.target);
+
+        var myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+
+        fetch('/unfollow', { method: 'PUT',
+            headers: myHeaders,
+            credentials: 'same-origin',
+            body: data } )
+            .then((response) => {return response.json()});
+
+        //this.setState({...this.state.followed.follow, follow: false})
+        let followed = {...this.state.followed}    //creating copy of object
+        followed.follow = false;                        //updating value
+        this.setState({followed});
     }
 
     componentDidMount(){
@@ -39,19 +62,26 @@ class SurveyButton extends React.Component {
         };
 
         const { course_id, user_id } = this.props;
-        const follow_id =  this.state.followed.length > 0 && this.state.followed[0].follow ? this.state.followed[0].id : null
+        const follow_id = this.state.followed.follow ? this.state.followed.id : null
         const linkSondaggio = "/course/" + course_id + "/survey/" + follow_id
 
-        let bottone = this.state.followed.length > 0 && !this.state.followed[0].passed ? <a className="button is-rounded is-warning" href={linkSondaggio}>Compila il sondaggio</a> :
+        let bottone = !this.state.followed.passed ? <a className="button is-rounded is-warning" href={linkSondaggio}>Compila il sondaggio</a> :
             <div className="is-size-5 has-text-success"><span>Corso superato </span><i className="fas fa-check"></i></div>
 
 
         const link_risorse = <div className="link-resources"><a className="button is-rounded is-warning" href={ '/publications/' + course_id }>Bacheca</a> <span> </span>
                 <a className="button is-rounded is-warning" href={ '/resources/' + course_id }>Materiale didattico</a></div>;
 
+         const unfollowButton = <form onSubmit={ (e) => this.unfollowCourse(e) }>
+             <input className="input" name="user_course[course_id]" type="hidden" value={course_id} />
+             <span></span>
+             <input className="input" name="user_course[follow]" type="hidden" value="false" />
+             <button className="button is-rounded is-danger" type="submit">Smetti di seguire</button>
+         </form>
+
         return(
             <div>
-                { this.state.followed.length > 0 && this.state.followed[0].follow ? <div>{ link_risorse }{ bottone }</div> :
+                { this.state.followed.follow ? <div>{unfollowButton} <br/> { link_risorse }{ bottone }</div> :
 
                     <form onSubmit={ (e) => this.followCourse(e) }>
                         <input className="input" name="user_course[course_id]" type="hidden" value={course_id} />

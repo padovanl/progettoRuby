@@ -172,7 +172,7 @@ class BodyTip extends React.Component {
 
         return(
             <div>
-                { this.state.followed.length > 0 && this.state.followed[0].passed ? <table className="table"><tbody><tr>{gestisci_i_tuoi_tips_button}</tr></tbody></table> : null}
+                { this.state.followed.passed ? <table className="table"><tbody><tr>{gestisci_i_tuoi_tips_button}</tr></tbody></table> : null}
                 <AllTips tips={this.state.tips}
                               course_id={this.props.course_id}
                               user_id={this.props.user_id}
@@ -183,7 +183,7 @@ class BodyTip extends React.Component {
                 <br/>
                 <table className="table is-fullwidth">
                     <tbody>
-                    { this.state.followed.length > 0 && this.state.followed[0].passed ?
+                    { this.state.followed.passed ?
                         <NewTipCourse course_id={this.props.course_id}
                                       user_id={this.props.user_id}
                                       handleFormSubmit={this.handleFormSubmit}

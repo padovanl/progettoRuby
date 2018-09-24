@@ -2,7 +2,7 @@ class Api::V1::UserCoursesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def show
-    course_followed = UserCourse.where("course_id = ? AND user_id = ?", params['id'], params['user_id'])
+    course_followed = UserCourse.where("course_id = ? AND user_id = ?", params['id'], params['user_id']).first
     respond_to do |format|
       format.html
       format.json do
