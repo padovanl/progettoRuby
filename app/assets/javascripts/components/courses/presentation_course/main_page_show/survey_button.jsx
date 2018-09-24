@@ -8,7 +8,7 @@ class SurveyButton extends React.Component {
 
     getDataFollowed() {
         let linkGet =  '/api/v1/users/' + this.props.user_id + '/user_courses/' + this.props.course_id + '.json';
-        fetch(linkGet)
+        fetch(linkGet, { credentials: 'same-origin' })
             .then((response) => {return response.json()})
             .then((data) => {this.setState({ followed: data }) });
     }
