@@ -1,5 +1,4 @@
 class CourseTipsController < ApplicationController
-
   before_action :authenticate_user!
   after_action :broadcast_notification, only: [:create]
 
