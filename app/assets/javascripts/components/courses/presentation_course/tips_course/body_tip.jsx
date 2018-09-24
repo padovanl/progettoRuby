@@ -53,15 +53,17 @@ class BodyTip extends React.Component {
     }
 
     handleFormSubmit(course_id, user_id, tip_text) {
+        var myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+        myHeaders.append('Content-Type', 'application/json');
         let body = JSON.stringify({courseTip: {course_id: course_id, user_id: user_id, tip: tip_text}});
         let linkNew = '/courses/' + this.props.course_id + '/course_tips';
         if (tip_text != '') {
             fetch(linkNew, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: myHeaders,
                 body: body,
+                credentials: "same-origin"
             }).then((response) => {
                 return response.json()
             })
@@ -88,14 +90,16 @@ class BodyTip extends React.Component {
     }
 
     handleDelete(id){
+        var myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+        myHeaders.append('Content-Type', 'application/json');
         let linkDelete = '/courses/' + this.props.course_id + '/course_tips/' + id
         if(confirm('Sei sicuro di voler eliminare questa domanda?')){
             fetch(linkDelete,
                 {
                     method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
+                    headers: myHeaders,
+                    credentials: "same-origin"
                 }).then((response) => {
                 if (response.ok){
                     this.deleteCourseTip(id)
@@ -113,6 +117,9 @@ class BodyTip extends React.Component {
     }
 
     handleUpdate(tip_text, id){
+        var myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+        myHeaders.append('Content-Type', 'application/json');
         let body = JSON.stringify({courseTip: {tip: tip_text}});
         let linkUpdate = '/courses/' + this.props.course_id + '/course_tips/' + id
         if(confirm('Sei sicuro di voler modificare questa domanda?')) {
@@ -122,9 +129,7 @@ class BodyTip extends React.Component {
                         method: 'PUT',
                         credentials: 'same-origin',
                         body: body,
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
+                        headers: myHeaders
                     }).then((response) => {
                     return response.json()
                 })
