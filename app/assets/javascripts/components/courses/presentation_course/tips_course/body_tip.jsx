@@ -35,14 +35,14 @@ class BodyTip extends React.Component {
 
     getData1() {
         let linkGet =  '/courses/' + this.props.course_id + '/course_tips';
-        fetch(linkGet)
+        fetch(linkGet, {credentials: "same-origin"})
             .then((response) => {return response.json()})
             .then((data) => {this.setState({ tips: data }) });
     }
 
     getData2() {
         let linkGet =  '/api/v1/users/' + this.props.user_id + '/user_courses/' + this.props.course_id + '.json';
-        fetch(linkGet)
+        fetch(linkGet, {credentials: "same-origin"})
             .then((response) => {return response.json()})
             .then((data) => {this.setState({ followed: data }) });
     }

@@ -8,7 +8,7 @@ class SurveyButton extends React.Component {
 
     getDataFollowed() {
         let linkGet =  '/api/v1/users/' + this.props.user_id + '/user_courses/' + this.props.course_id + '.json';
-        fetch(linkGet)
+        fetch(linkGet, {credentials: "same-origin"})
             .then((response) => {return response.json()})
             .then((data) => {this.setState({ followed: data }) });
     }
@@ -16,10 +16,8 @@ class SurveyButton extends React.Component {
     followCourse(event) {
         event.preventDefault();
         const data = new FormData(event.target);
-
         var myHeaders = new Headers();
         myHeaders.append('X-CSRF-Token', Rails.csrfToken());
-
         fetch('/follow', { method: 'POST',
             headers: myHeaders,
             credentials: 'same-origin',
@@ -37,10 +35,8 @@ class SurveyButton extends React.Component {
     unfollowCourse(event) {
         event.preventDefault();
         const data = new FormData(event.target);
-
         var myHeaders = new Headers();
         myHeaders.append('X-CSRF-Token', Rails.csrfToken());
-
         fetch('/unfollow', { method: 'PUT',
             headers: myHeaders,
             credentials: 'same-origin',

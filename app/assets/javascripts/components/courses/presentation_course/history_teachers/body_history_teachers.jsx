@@ -9,7 +9,7 @@ class BodyHistoryTeachers extends React.Component {
 
     getData1() {
         let linkGet =  '/get_teachers_history/' + this.props.course_id;
-        fetch(linkGet)
+        fetch(linkGet, {credentials: "same-origin"})
             .then((response) => {return response.json()})
             .then((data) => {this.setState({ teachers: data }) });
     }

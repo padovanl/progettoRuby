@@ -15,7 +15,6 @@ class BodyShowReport extends React.Component {
     }
 
     componentDidMount(){
-        console.log("dentro component didmount")
         this.getData1();
     }
 
