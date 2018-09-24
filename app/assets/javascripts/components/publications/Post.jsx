@@ -80,7 +80,7 @@ class Post extends React.Component {
 
                         </div>
                         <div className="media-right">
-                            <DropMenu cancella={ this.deletePost.bind(this) } id={post.id} can_delete={can_delete_post} risorsa="post" course_id={this.state.course_id} activeModal={this.props.activeModal} />
+                            <DropMenu cancella={ this.deletePost.bind(this) } id={post.id} can_delete={can_delete_post} risorsa="post" course_id={this.state.course_id}  />
                         </div>
                     </article>
 

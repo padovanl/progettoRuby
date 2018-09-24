@@ -30,10 +30,59 @@ class DocumentFrame extends React.Component {
                       <div className="media-content">
                           <p className="truncate"> { document.filename } </p>
                       </div>
-                      <div className="media-right">
-                          <span className="icon is-small">
-                            <i className="fas fa-ellipsis-h" aria-hidden="true" onClick={this.viewMenuModal.bind(this)}></i>
-                        </span>
+                      <div className="dropdown is-right is-hoverable is-up">
+                          <div className="dropdown-trigger">
+                              <div  aria-haspopup="true">
+                                  <i className="fas fa-ellipsis-h"/>
+                              </div>
+                          </div>
+                          <div className="dropdown-menu" role="menu">
+                              <div className="dropdown-content" align="center">
+                                          <div className="dropdown-item">
+                                              <a href={ document.path } download>
+                                                  <div className="columns is-mobile">
+                                                    <div className="column is-two-fifths">
+                                                    <span className="icon">
+                                                    <i className="fas fa-download"></i>
+                                                    </span>
+                                                      </div>
+                                                  <div className="column">
+                                                      Scarica file
+                                                  </div>
+                                                  </div>
+                                              </a>
+                                          </div>
+                                  <hr className="dropdown-divider"/>
+                                  <div className="dropdown-item">
+                                      <a onClick={() => handleReport(linkReport)}>
+                                          <div className="columns is-mobile">
+                                              <div className="column is-two-fifths">
+                                                    <span className="icon">
+                                                    <i className="fas fa-bug"></i>
+                                                    </span>
+                                              </div>
+                                              <div className="column">
+                                                  Segnala
+                                              </div>
+                                          </div>
+                                      </a>
+                                  </div>
+                                  { can_delete_post ? <div> <hr className="dropdown-divider"/> <div className="dropdown-item">
+                                      <a onClick={ (e) => this.deleteDocument(e, document.id, course_id)}>
+                                          <div className="columns is-mobile">
+                                              <div className="column is-two-fifths">
+                                                    <span className="icon">
+                                                    <i className="far fa-trash-alt"></i>
+                                                    </span>
+                                              </div>
+                                              <div className="column">
+                                                  Elimina
+                                              </div>
+                                          </div>
+                                      </a>
+                                  </div></div> : null }
+                              </div>
+                          </div>
                       </div>
                   </article>
                     { (document.tags.length > 0) ? <div className="tag-content" id="style-1">
@@ -41,57 +90,6 @@ class DocumentFrame extends React.Component {
                             return (<span className="tag is-info is-rounded"> {tag.name} </span>)
                         }) }
                     </div> : ""}
-                </div>
-
-                <div className={"modal " + (view_doc_menu ? "is-active" : "")}>
-                    <div className="modal-background" onClick={this.closeMenuModal.bind(this)}></div>
-                    <div className="modal-content">
-                        <div className="menu box">
-                            <ul className="menu-list">
-
-                                <li><a href={ document.path } onClick={this.closeMenuModal.bind(this)} download>
-                                    <div className="columns is-mobile">
-                                        <div className="column is-two-fifths">
-                                            <span className="icon">
-                                                <i className="fas fa-download"></i>
-                                            </span>
-                                        </div>
-                                        <div className="column">
-                                            Scarica file
-                                        </div>
-                                    </div>
-                                </a></li>
-                                <li><a onClick={this.closeMenuModal.bind(this)}>
-                                <div className="columns is-mobile">
-                                    <div className="column is-two-fifths">
-                                            <span className="icon">
-                                                <i className="far fa-flag"></i>
-                                            </span>
-                                    </div>
-                                    <div className="column">
-                                        <a onClick={() => handleReport(linkReport)}>
-                                            Segnala
-                                        </a>
-                                    </div>
-                                </div>
-                            </a></li>
-                                { can_delete_post ? <li><a onClick={ (e) => this.deleteDocument(e, document.id, course_id) }>
-                                    <div className="columns is-mobile">
-                                        <div className="column is-two-fifths">
-                                            <span className="icon">
-                                                <i className="far fa-trash-alt"></i>
-                                            </span>
-                                        </div>
-                                        <div className="column">
-                                            Cancella
-                                        </div>
-                                    </div>
-                                </a></li> : ""}
-                            </ul>
-
-                        </div>
-                    </div>
-                    <button className="modal-close is-large" aria-label="close" onClick={this.closeMenuModal.bind(this)}></button>
                 </div>
             </div>)
         else

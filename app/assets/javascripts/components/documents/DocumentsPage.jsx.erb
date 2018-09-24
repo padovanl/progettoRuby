@@ -8,8 +8,11 @@ class DocumentsPage extends React.Component {
             adding_doc: false,
             activeTabIndex: this.props.document_id == null ? 0 : null,
             search_string: "",
-            document_id: this.props.document_id
+            document_id: this.props.document_id,
+            modalIsActive: false,
+            linkReport: ''
         };
+        this.activeModal = this.activeModal.bind(this)
     }
 
     addNewDoc(doc) {
@@ -46,13 +49,23 @@ class DocumentsPage extends React.Component {
         }
     }
 
+    activeModal(link){
+        console.log("afadasdasdads")
+        this.setState({modalIsActive: true})
+        this.setState({linkReport: link})
+    }
+
+    disableModal() {
+        this.setState({modalIsActive: false});
+    }
+
 
     render() {
         const {current_user, current_user_avatar, course_id, course_name} = this.props;
         const { data, adding_doc, activeTabIndex } = this.state;
 
         let documents_list = data.map(function (doc) {
-            return (<DocumentFrame key={doc.id} document={doc} current_user={current_user} course_id={course_id}></DocumentFrame>)
+            return (<DocumentFrame key={doc.id} document={doc} current_user={current_user} course_id={course_id} activeModal = {this.activeModal}></DocumentFrame>)
         });
 
         return (

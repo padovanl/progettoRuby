@@ -40,6 +40,7 @@ class BodyReports extends React.Component {
     }
 
     handleMarkAndRedirect(redirect_url, id){
+        console.log(redirect_url)
         let linkUpdate = '/mark_as_read_report/' + id;
         var myHeaders = new Headers();
         myHeaders.append('X-CSRF-Token', Rails.csrfToken());
