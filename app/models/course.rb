@@ -221,12 +221,14 @@ class Course < ApplicationRecord
 
   def self.get_history_teachers(course)
     arr = Array.new
+
     array_teacher_courses = course.teacher_courses.order(year: :desc).distinct.to_a
     array_teacher_courses.each do |teacher_course|
       arr.append(teacher_course.teacher)
     end
     return arr
   end
+
 
 
 end

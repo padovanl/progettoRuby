@@ -42,14 +42,15 @@ class PostsController < ApplicationController
   end
 
   def reportPost
+    reason = params[:reportReason][:reason]
     post = Post.find(params[:id])
     report = Report.where(:reportable_id => params[:id]).where(:reportable_type => "Post").first
 
     if (report != nil)
-      UserReport.create!(user_id: current_user.id, report_id: report.id)
+      UserReport.create!(user_id: current_user.id, report_id: report.id, reason: reason)
     else
       r = Report.create(action: "È stato segnalato un", reportable: post)
-      UserReport.create!(user_id: current_user.id, report_id: r.id)
+      UserReport.create!(user_id: current_user.id, report_id: r.id, reason: reason)
     end
 
     #end

@@ -1,7 +1,8 @@
 class FrequencyQuestionsController < ApplicationController
 
-  skip_before_action :verify_authenticity_token
+  before_action :authenticate_user!
 
+  #l'index mi sa che neanche lo uso
   def index
     courseQuestions = CourseQuestion.where(:course_id => params['course_id']).includes([:user, :course])
     json_response(courseQuestions.to_json(include: [:user, :course]))

@@ -134,7 +134,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get "/survey_course/:course_id/users/:id", to: "api/v1/user_courses#show"
+  get "/course/:course_id/survey/:id", to: "api/v1/user_courses#show"
 
   get "/dashboard/thesis/tags/:thesis_id", to: "admin#thesis_tags"
   get "/dashboard/cdl/courses/:degree_course_id", to: "admin#courses"
@@ -146,6 +146,8 @@ Rails.application.routes.draw do
 
   get "/api/v1/users", to: "api/v1/users#index"
   post "/api/v1/users/set_admin/:user_id", to: "api/v1/users#setAdmin"
+
+  get "/get_teachers_history/:course_id", to: "courses#getTeachersHistory"
 
   #report post, document, repetition
   post "/report_post/:id", to: "posts#reportPost"

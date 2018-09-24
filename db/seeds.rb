@@ -366,7 +366,7 @@ user = User.second
                             {content: Faker::Hobbit.quote, user_id: user.id, course_id: course.id}])
 end
 
-
+=begin
 user = User.second
 5.times do
   Rep.create!(
@@ -397,3 +397,4 @@ end
 end
 
 #UserCourse.create!(user_id: User.first.id, course_id: Course.first.id)
+=end

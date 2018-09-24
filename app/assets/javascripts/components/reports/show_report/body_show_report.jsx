@@ -32,9 +32,11 @@ class BodyShowReport extends React.Component {
 
         return(
             <div>
-            {report_details}
-            <br/><br/><br/>
-            {reporters}
+                <div>
+                {report_details}
+                <br/><br/><br/>
+                {reporters}
+                </div>
             </div>
         )
     }

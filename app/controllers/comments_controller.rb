@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
   def create
     @course = Course.find(comment_params[:course_id])
-    user_follow_course?
+    #user_follow_course?
     @comment = current_user.comments.new(comment_params)
 
     if !@comment.save

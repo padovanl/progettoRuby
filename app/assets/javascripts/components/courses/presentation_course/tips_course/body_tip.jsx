@@ -6,7 +6,9 @@ class BodyTip extends React.Component {
             tips: [],
             followed: '',
             show_details: false,
-            content_tip: ''
+            content_tip: '',
+            modalIsActive: false,
+            linkReport: ''
 
         };
 
@@ -18,6 +20,8 @@ class BodyTip extends React.Component {
         this.updateCourseTip = this.updateCourseTip.bind(this)
         this.handleShowDetails = this.handleShowDetails.bind(this)
         this.handleChange = this.handleChange.bind(this)
+        this.activeModal = this.activeModal.bind(this)
+
 
     }
 
@@ -49,15 +53,17 @@ class BodyTip extends React.Component {
     }
 
     handleFormSubmit(course_id, user_id, tip_text) {
+        var myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+        myHeaders.append('Content-Type', 'application/json');
         let body = JSON.stringify({courseTip: {course_id: course_id, user_id: user_id, tip: tip_text}});
         let linkNew = '/courses/' + this.props.course_id + '/course_tips';
         if (tip_text != '') {
             fetch(linkNew, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: myHeaders,
                 body: body,
+                credentials: "same-origin"
             }).then((response) => {
                 return response.json()
             })
@@ -84,14 +90,16 @@ class BodyTip extends React.Component {
     }
 
     handleDelete(id){
+        var myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+        myHeaders.append('Content-Type', 'application/json');
         let linkDelete = '/courses/' + this.props.course_id + '/course_tips/' + id
         if(confirm('Sei sicuro di voler eliminare questa domanda?')){
             fetch(linkDelete,
                 {
                     method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
+                    headers: myHeaders,
+                    credentials: "same-origin"
                 }).then((response) => {
                 if (response.ok){
                     this.deleteCourseTip(id)
@@ -109,6 +117,9 @@ class BodyTip extends React.Component {
     }
 
     handleUpdate(tip_text, id){
+        var myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+        myHeaders.append('Content-Type', 'application/json');
         let body = JSON.stringify({courseTip: {tip: tip_text}});
         let linkUpdate = '/courses/' + this.props.course_id + '/course_tips/' + id
         if(confirm('Sei sicuro di voler modificare questa domanda?')) {
@@ -118,9 +129,7 @@ class BodyTip extends React.Component {
                         method: 'PUT',
                         credentials: 'same-origin',
                         body: body,
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
+                        headers: myHeaders
                     }).then((response) => {
                     return response.json()
                 })
@@ -149,6 +158,16 @@ class BodyTip extends React.Component {
         })
     }
 
+    activeModal(link){
+        console.log("afadasdasdads")
+        this.setState({modalIsActive: true})
+        this.setState({linkReport: link})
+    }
+
+    disableModal() {
+        this.setState({modalIsActive: false});
+    }
+
 
 
     render(){
@@ -158,17 +177,18 @@ class BodyTip extends React.Component {
 
         return(
             <div>
-                { this.state.followed.length > 0 && this.state.followed[0].passed ? <table className="table"><tbody><tr>{gestisci_i_tuoi_tips_button}</tr></tbody></table> : null}
+                { this.state.followed && this.state.followed.passed ? <table className="table"><tbody><tr>{gestisci_i_tuoi_tips_button}</tr></tbody></table> : null}
                 <AllTips tips={this.state.tips}
                               course_id={this.props.course_id}
                               user_id={this.props.user_id}
                               handleDelete={this.handleDelete}
                               handleUpdate = {this.handleUpdate}
-                              show_details = {this.state.show_details} />
+                              show_details = {this.state.show_details}
+                              activeModal={this.activeModal} />
                 <br/>
                 <table className="table is-fullwidth">
                     <tbody>
-                    { this.state.followed.length > 0 && this.state.followed[0].passed ?
+                    { this.state.followed && this.state.followed.passed ?
                         <NewTipCourse course_id={this.props.course_id}
                                       user_id={this.props.user_id}
                                       handleFormSubmit={this.handleFormSubmit}
@@ -176,6 +196,15 @@ class BodyTip extends React.Component {
                                       handleChange={this.handleChange} /> : null}
                     </tbody>
                 </table>
+                <div className={"modal " + (this.state.modalIsActive ? "is-active" : "")}>
+                    <div className="modal-background" onClick={this.disableModal.bind(this)} />
+
+                    <ReportModal  linkReport={this.state.linkReport}
+                                  disableModal={this.disableModal.bind(this)} title={"Segnalazione suggerimento"}/>
+
+                    <button className="modal-close is-large" aria-label="close"
+                            onClick={this.disableModal.bind(this)} />
+                </div>
             </div>
         )
     }

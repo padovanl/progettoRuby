@@ -1,5 +1,5 @@
 class CourseTipsController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  before_action :authenticate_user!
   after_action :broadcast_notification, only: [:create]
 
   def index
@@ -32,14 +32,15 @@ class CourseTipsController < ApplicationController
   end
 
   def reportTip
+    reason = params[:reportReason][:reason]
     tip = CourseTip.find(params[:id])
     report = Report.where(:reportable_id => params[:id]).where(:reportable_type => "CourseTip").first
 
     if (report != nil)
-      UserReport.create!(user_id: current_user.id, report_id: report.id)
+      UserReport.create!(user_id: current_user.id, report_id: report.id, reason: reason)
     else
       r = Report.create(action: "È stata segnalato un", reportable: tip)
-      UserReport.create!(user_id: current_user.id, report_id: r.id)
+      UserReport.create!(user_id: current_user.id, report_id: r.id, reason: reason)
     end
 
     #end
