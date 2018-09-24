@@ -6,9 +6,13 @@ class DocumentsPage extends React.Component {
         this.state = {
             data: [],
             adding_doc: false,
-            activeTabIndex: 0,
-            search_string: ""
+            activeTabIndex: this.props.document_id == null ? 0 : null,
+            search_string: "",
+            document_id: this.props.document_id,
+            modalIsActive: false,
+            linkReport: ''
         };
+        this.activeModal = this.activeModal.bind(this)
     }
 
     addNewDoc(doc) {
@@ -45,18 +49,33 @@ class DocumentsPage extends React.Component {
         }
     }
 
+    activeModal(link){
+        console.log("afadasdasdads")
+        this.setState({modalIsActive: true})
+        this.setState({linkReport: link})
+    }
+
+    disableModal() {
+        this.setState({modalIsActive: false});
+    }
+
 
     render() {
-        const {current_user, current_user_avatar, course_id} = this.props;
+        const {current_user, current_user_avatar, course_id, course_name} = this.props;
         const { data, adding_doc, activeTabIndex } = this.state;
+        const activeModal = this.activeModal
 
         let documents_list = data.map(function (doc) {
-            return (<DocumentFrame key={doc.id} document={doc} current_user={current_user} course_id={course_id}></DocumentFrame>)
+            return (<DocumentFrame key={doc.id} document={doc} current_user={current_user} course_id={course_id} activeModal = {activeModal}></DocumentFrame>)
         });
 
         return (
             <div>
                 <div className="container resources-thread">
+                    <h3 class="title" id="course-name-second">
+                        <a href={ '/courses/' + course_id }>{ course_name }</a>
+                    </h3>
+
                     <div className="level is-mobile">
 
                         <div className="level-left" id="search-input">
@@ -84,13 +103,24 @@ class DocumentsPage extends React.Component {
                         </div>
                     </div>
 
+                    <div className={"modal " + (this.state.modalIsActive ? "is-active" : "")}>
+                        <div className="modal-background" onClick={this.disableModal.bind(this)} />
 
+                        <ReportModal  linkReport={this.state.linkReport}
+                                      disableModal={this.disableModal.bind(this)} title={"Segnalazione Documento"}/>
+
+                        <button className="modal-close is-large" aria-label="close"
+                                onClick={this.disableModal.bind(this)} />
+                    </div>
 
                     <div className={"modal " + (adding_doc ? "is-active" : "")}>
                         <div className="modal-background" onClick={this.closeNewDocModal.bind(this)} />
 
-                        <NewDoc addNewDoc={this.addNewDoc.bind(this)} current_user={current_user} course_id={course_id}
-                                 current_user_avatar={current_user_avatar}/>
+                        <NewDoc closeModal={this.closeNewDocModal.bind(this)}
+                                addNewDoc={this.addNewDoc.bind(this)}
+                                current_user={current_user}
+                                course_id={course_id}
+                                current_user_avatar={current_user_avatar}/>
 
                         <button className="modal-close is-large" aria-label="close"
                                 onClick={this.closeNewDocModal.bind(this)} />
@@ -122,13 +152,17 @@ class DocumentsPage extends React.Component {
         if (search_string !== '')
             URL += '&search_string=' + search_string
 
+        if (this.state.document_id !== null)
+            URL += '&document_id=' + this.state.document_id
+
         fetch(URL, {
-        credentials: 'same-origin'
-    })
+          credentials: 'same-origin'
+        })
         .then(response => response.json())
         .then(data => this.setState({
             data,
-            activeTabIndex
+            activeTabIndex,
+            document_id: null
         }));
     }
 

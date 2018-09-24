@@ -1,5 +1,3 @@
-
-
 class PostsThread extends React.Component {
     constructor(props) {
         super(props);
@@ -7,8 +5,13 @@ class PostsThread extends React.Component {
         this.state = {
             data: [],
             adding_post: false,
-            activeTabIndex: 0
+            activeTabIndex: (this.props.post_id == null && this.props.comment_id == null) ? 0 : null,
+            post_id: this.props.post_id,
+            comment_id: this.props.comment_id,
+            modalIsActive: false,
+            linkReport: ''
         };
+        this.activeModal = this.activeModal.bind(this)
     }
 
     addNewPost(post) {
@@ -37,13 +40,29 @@ class PostsThread extends React.Component {
         }
     }
 
+    activeModal(link){
+        console.log("afadasdasdads")
+        this.setState({modalIsActive: true, linkReport: link})
+    }
+
+    disableModal() {
+        this.setState({modalIsActive: false});
+    }
+
+
 
     render() {
-        const {current_user, current_user_avatar, course_id} = this.props
-        const {activeTabIndex, data, adding_post} = this.state
+        const {current_user, current_user_avatar, course_id, course_name} = this.props
+        const { activeTabIndex, data, adding_post } = this.state
+        const activeModal = this.activeModal
+
         return (
             <div>
                 <div className="container corso-thread">
+                    <h3 class="title" id="course-name-second">
+                      <a href={ '/courses/' + course_id }>{ course_name }</a>
+                    </h3>
+
                     <div id="style-2" className="tabs is-centered">
 
                         <ul>
@@ -60,10 +79,15 @@ class PostsThread extends React.Component {
                     </div>
 
 
-                    { (data.length > 0) ? <div className="posts-list" id="style-1">
+                    { (data.length > 0) && this.activeModal ? <div className="posts-list" id="style-1">
                             { data.map(function (post) {
-                                return <Post key={post.id} post={post} current_user={current_user}
-                                             current_user_avatar={current_user_avatar} course_id={course_id}/>
+
+                                return <Post key={post.id}
+                                             post={post}
+                                             current_user={current_user}
+                                             current_user_avatar={current_user_avatar}
+                                             course_id={course_id}
+                                             activeModal={ activeModal }/>
                             }) }
                         </div> : <div className="posts-list" /> }
 
@@ -75,6 +99,16 @@ class PostsThread extends React.Component {
 
                         <button className="modal-close is-large" aria-label="close"
                                 onClick={this.closeNewPostModal.bind(this)} />
+                    </div>
+
+                    <div className={"modal " + (this.state.modalIsActive ? "is-active" : "")}>
+                        <div className="modal-background" onClick={this.disableModal.bind(this)} />
+
+                        <ReportModal  linkReport={this.state.linkReport}
+                                      disableModal={this.disableModal.bind(this)} title={"Segnalazione suggerimento"}/>
+
+                        <button className="modal-close is-large" aria-label="close"
+                                onClick={this.disableModal.bind(this)} />
                     </div>
 
                     <figure className="add-button" onClick={this.viewNewPostModal.bind(this)}>
@@ -106,10 +140,14 @@ class PostsThread extends React.Component {
         if (activeTabIndex === 3)
             URL += '&comment_user_id=' + current_user.id
 
+        if (this.state.post_id !== null)
+            URL += '&post_id=' + this.state.post_id
+        if (this.state.comment_id !== null)
+            URL += '&comment_id=' + this.state.comment_id
+
         fetch(URL, {
             credentials: 'same-origin'
-        })
-            .then(response => response.json())
-            .then(data => this.setState({data, activeTabIndex}));
+        }).then(response => response.json())
+        .then(data => this.setState({data, activeTabIndex, post_id: null, comment_id: null}));
     }
 }

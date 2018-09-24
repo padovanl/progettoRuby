@@ -8,6 +8,13 @@
   overflow: hidden;
   line-height: normal;
 
+  svg{
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+    display:inline-block;
+  }
+
   @include sm {
     margin-top: 9vh;
   }
@@ -55,10 +62,20 @@
     margin-top: 15px;
   }
 
+  .submit-button{
+    margin-top: 30px;
+    margin-left: 8px;
+  }
+  .modal-buttons{
+    text-align: center;
+  }
+  .load-spinner{
+    text-align: center;
+  }
+
   .tag-search {
     position: relative;
     margin-top: 20px;
-    margin-bottom: 40px;
     .button {
       cursor: pointer;
     }
@@ -87,9 +104,9 @@
   .resources-list {
     overflow-y: scroll;
     overflow-x: hidden;
-    height: 87vh;
+    height: 82vh;
     @include rwd(767) {
-      height: 80vh;
+      height: 77vh;
     }
     @include custom-range(768, 1088) {
     }
@@ -143,16 +160,16 @@
       width: 12vw;
       height: 12vw;
       @include rwd(575) {
-        width: 90vw;
-        height: 90vw;
+        width: 80vw;
+        height: 80vw;
       }
       @include custom-range(576, 767) {
         width: 47vw;
         height: 47vw;
       }
       @include custom-range(768, 1088) {
-        width: 30vw;
-        height: 30vw;
+        width: 28vw;
+        height: 28vw;
       }
       @include custom-range(1089, 1200) {
         width: 25vw;

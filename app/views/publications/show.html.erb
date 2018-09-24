@@ -1,7 +1,7 @@
 
 <% content_for :title, "Posts" %>
 
-<%= react_component("PostsThread", { course_id: @course.id, current_user: current_user,
-          current_user_avatar: @current_user_avatar
+<%= react_component("PostsThread", { course_id: @course.id, course_name: @course.name, current_user: current_user,
+          current_user_avatar: @current_user_avatar, post_id: @post.nil? ? nil : @post.id, comment_id: @comment.nil? ? nil : @comment.id
 }) %>
 

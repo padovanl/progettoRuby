@@ -62,7 +62,7 @@
             <div class="columns">
               <div class="column"></div>
               <div class="column is-8">
-                <%= react_component('MainHistoryTeachers', {teachers: @history_teacher_course}) %>
+                <%= react_component('MainHistoryTeachers', {course_id: params['id']}) %>
               </div>
               <div class="column"></div>
             </div>

@@ -53,7 +53,7 @@ class Notification extends React.Component{
         };
 
 
-
+        let links = {}
         const recipient = this.props.notification.recipient.name;
         const action = this.props.notification.action;
         const nome_corso = this.props.notification.course.name;
@@ -86,7 +86,7 @@ class Notification extends React.Component{
                 break;
             case 'Post':
                 type = 'post'
-                link = '/publications'
+                link = '/publications/' + id_corso + '?post_id=' + this.props.notification.notifiable.post.id
                 icon = <span className="icon has-text-link"><i className="fas fa-envelope"></i></span>;
                 scritta_annuncio = <div><span className="has-text-weight-bold">{recipient} </span>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>nel corso di {nome_corso}</div>
                 break;
@@ -106,19 +106,20 @@ class Notification extends React.Component{
                     }
             case 'Document':
                 type = 'documento'
-                link = '/resources'
+                link = '/resources/' + id_corso + '?document_id=' + this.props.notification.notifiable.document.id
                 icon = <span className="icon has-text-link"><i className="fas fa-envelope"></i></span>;
                 scritta_annuncio = <div><span className="has-text-weight-bold">{recipient} </span>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>per il corso di {nome_corso}</div>
                 break;
         }
 
+        links[''+report_id.toString()+''] = link
         new_notification = this.props.notification.read_at == null ? <span className="icon has-text-danger"><i className="fas fa-dot-circle"></i></span> : <span className="icon"><i className="fas fa-dot-circle"></i></span>;
 
         return(
 
             <tr key={this.props.notification.id} style={stile_background_notifica}>
                     <td>
-                        <a style={style_link_row} onClick={() => this.props.handleMarkAndRedirect(link, id_notification)}>
+                        <a style={style_link_row} onClick={() => this.props.handleMarkAndRedirect(links[report_id], id_notification)}>
                             <article className="media gap">
                                 <figure className="media-left">
                                     <p className="image is-16x16">

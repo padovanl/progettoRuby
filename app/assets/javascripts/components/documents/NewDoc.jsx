@@ -6,7 +6,8 @@ class NewDoc extends React.Component {
             file_name: "",
             query_string: "",
             tags: [],
-            doc_tags: []
+            doc_tags: [],
+            uploading: false
         };
     }
 
@@ -56,31 +57,40 @@ class NewDoc extends React.Component {
         }
 
         const data = new FormData(event.target);
+        const that = this
         const addNewDoc = this.props.addNewDoc
 
         var myHeaders = new Headers();
         myHeaders.append('X-CSRF-Token', Rails.csrfToken());
-
-        function handleErrors(response) {
-            if (!response.ok) {
-                throw Error(response.statusText);
-            }
-            return response;
-        }
 
         fetch('/documents', {
             method: 'POST',
             headers: myHeaders,
             credentials: 'same-origin',
             body: data,
-        }).then(handleErrors)
-            .then(response => {
-                return response.json();
-            }).then(function (json) {
+        })
+        .then(response => response.json())
+        .then(function (json) {
+            that.setState({
+                showError: false,
+                file_name: "",
+                query_string: "",
+                tags: [],
+                doc_tags: [],
+                uploading: false
+            });
             addNewDoc(json)
         })
-            .catch(error => console.log(error));
+        .catch(error => console.log(error));
 
+        this.setState({
+            uploading: true
+        });
+        document.getElementById("document_attachment").value = null;
+    }
+
+    handleCloseModal(event) {
+        event.preventDefault();
         this.setState({
             showError: false,
             file_name: "",
@@ -88,11 +98,11 @@ class NewDoc extends React.Component {
             tags: [],
             doc_tags: []
         });
-        document.getElementById("document_attachment").value = null;
+        this.props.closeModal();
     }
 
     render() {
-        const {tags, query_string, doc_tags} = this.state
+        const {tags, query_string, doc_tags, uploading } = this.state
 
         return (
             <form onSubmit={(e) => this.handleSubmit(e)} className="modal-card">
@@ -104,7 +114,7 @@ class NewDoc extends React.Component {
                             </p>
                         </figure>
                         <div className="media-content">
-                            <div className="content">
+                            { uploading == false ? <div className="content">
                                 <p className="content-author"><strong>{this.props.current_user.name}</strong></p>
                                 <div className="file has-name">
                                     <label className="file-label">
@@ -170,10 +180,31 @@ class NewDoc extends React.Component {
                                 </div>
 
 
+                            </div> : null }
+                            { uploading == true ? <div className="load-spinner">
+                                <svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                  viewBox="0 0 100 100" enableBackground="new 0 0 0 0" xmlSpace="preserve">
+                                    <path fill="#424242" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50">
+                                      <animateTransform
+                                         attributeName="transform"
+                                         attributeType="XML"
+                                         type="rotate"
+                                         dur="1s"
+                                         from="0 50 50"
+                                         to="360 50 50"
+                                         repeatCount="indefinite" />
+                                  </path>
+                                </svg>
+                            </div> : null}
+
+                            <div className="modal-buttons">
+                                <button className="button submit-button is-info is-rounded" type="submit" name="commit">
+                                    Salva
+                                </button>
+                                <button className="button submit-button is-rounded" onClick={(e) => this.handleCloseModal(e)}>
+                                    Annulla
+                                </button>
                             </div>
-                            <button className="button submit-button" type="submit" name="commit">
-                                Salva
-                            </button>
                         </div>
                     </article>
 
@@ -190,7 +221,7 @@ class NewDoc extends React.Component {
         fetch(URL, {
             credentials: 'same-origin'
         })
-            .then(response => response.json())
-            .then(data => this.setState({tags: data}));
+        .then(response => response.json())
+        .then(data => this.setState({tags: data}));
     }
 }

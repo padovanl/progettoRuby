@@ -21,14 +21,15 @@ class ReportsNavbarMain extends React.Component {
     handleUpdateIsSelected(){
         console.log("update report count")
             if (this.state.num > 0){
+                var myHeaders = new Headers();
+                myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+                myHeaders.append('Content-Type', 'application/json');
                 let linkUpdate = '/update_is_selected_report';
                 fetch(linkUpdate,
                     {
                         method: 'PUT',
                         credentials: 'same-origin',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
+                        headers: myHeaders
                     }).then((response) => {
                     return response.json()
                 })

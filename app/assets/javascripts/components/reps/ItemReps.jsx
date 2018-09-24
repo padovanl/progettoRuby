@@ -129,8 +129,6 @@ class ItemReps extends React.Component {
                                 </div>
                             </div>
                             <div className={"media-right"}>
-
-
                                 <div className="dropdown is-right is-hoverable">
                                     <div className="dropdown-trigger">
                                         <div  aria-haspopup="true" aria-controls="dropdown-menu2">
@@ -143,14 +141,9 @@ class ItemReps extends React.Component {
                                             {updateButton}
                                             <a title={"Show"} href={"/reps/"+item.id}><i className="fas fa-eye"/></a>
                                             <hr className="dropdown-divider"/>
-                                            <a title="Reporting" onClick={() => handleReport(linkReport)}><i className="fas fa-bug"/></a>
-                                        </div>
+                                            <a title="Reporting" onClick={() => this.props.activeModal(linkReport)}><i className="fas fa-bug"/></a>                                        </div>
                                     </div>
                                 </div>
-
-
-
-
                             </div>
                         </article>
 

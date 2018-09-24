@@ -96,17 +96,17 @@ Rails.application.configure do
 
   
   # Setup the mailer config
-  config.action_mailer.default_url_options = { host: 'https://brain-steam.herokuapp.com/' }
+  config.action_mailer.default_url_options = { host: 'https://brain-steam.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
-    :user_name => Rails.application.credentials.dig(:sendgrid, :user_name),
-    :password => Rails.application.credentials.dig(:sendgrid, :password),
-    :domain => 'heroku.com',
-    :address => 'smtp.sendgrid.net',
-    :port => 587,
-    :authentication => :plain,
-    :enable_starttls_auto => true
+      user_name: Rails.application.credentials.dig(:sendgrid, :user_name),
+      password: Rails.application.credentials.dig(:sendgrid, :password),
+      domain: 'heroku.com',
+      address: 'smtp.sendgrid.net',
+      port: 587,
+      authentication: :plain,
+      enable_starttls_auto: true
   }
 
 
