@@ -30,7 +30,7 @@ class DropMenu extends React.Component {
                 </div>
                 <div className="dropdown-menu" id="dropdown-menu6" role="menu">
                     <div className="dropdown-content">
-                        <a className="dropdown-item" >
+                        <a className="dropdown-item" onClick={() => this.props.activeModal(linkReport)}>
                             Segnala
                         </a>
                         {can_delete ? <hr className="dropdown-divider" /> : ""}

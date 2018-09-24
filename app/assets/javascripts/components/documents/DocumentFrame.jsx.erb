@@ -54,7 +54,7 @@ class DocumentFrame extends React.Component {
                                           </div>
                                   <hr className="dropdown-divider"/>
                                   <div className="dropdown-item">
-                                      <a onClick={() => handleReport(linkReport)}>
+                                      <a onClick={() => this.props.activeModal(linkReport)}>
                                           <div className="columns is-mobile">
                                               <div className="column is-two-fifths">
                                                     <span className="icon">

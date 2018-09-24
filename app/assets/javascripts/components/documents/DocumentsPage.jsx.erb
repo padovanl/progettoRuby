@@ -63,9 +63,10 @@ class DocumentsPage extends React.Component {
     render() {
         const {current_user, current_user_avatar, course_id, course_name} = this.props;
         const { data, adding_doc, activeTabIndex } = this.state;
+        const activeModal = this.activeModal
 
         let documents_list = data.map(function (doc) {
-            return (<DocumentFrame key={doc.id} document={doc} current_user={current_user} course_id={course_id} activeModal = {this.activeModal}></DocumentFrame>)
+            return (<DocumentFrame key={doc.id} document={doc} current_user={current_user} course_id={course_id} activeModal = {activeModal}></DocumentFrame>)
         });
 
         return (
@@ -102,7 +103,15 @@ class DocumentsPage extends React.Component {
                         </div>
                     </div>
 
+                    <div className={"modal " + (this.state.modalIsActive ? "is-active" : "")}>
+                        <div className="modal-background" onClick={this.disableModal.bind(this)} />
 
+                        <ReportModal  linkReport={this.state.linkReport}
+                                      disableModal={this.disableModal.bind(this)} title={"Segnalazione Documento"}/>
+
+                        <button className="modal-close is-large" aria-label="close"
+                                onClick={this.disableModal.bind(this)} />
+                    </div>
 
                     <div className={"modal " + (adding_doc ? "is-active" : "")}>
                         <div className="modal-background" onClick={this.closeNewDocModal.bind(this)} />
