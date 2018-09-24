@@ -15,13 +15,7 @@ class MyCourses extends React.Component{
         this.buttonUnfollowClicked = this.buttonUnfollowClicked.bind(this);
     }
 
-    componentWillReceiveProps(nextProps){
- /*       console.log("IC receive props");
-        console.log("IC props courses: "+nextProps.courses);
-        console.log("IC props page: "+nextProps.page);
-        console.log("IC props last_page: "+nextProps.last_page);
-        console.log("IC props url: "+nextProps.url);
-   */ }
+
 
     updateSearch(event){
         this.setState({search: event.target.value.substr(0,20)});
@@ -61,7 +55,6 @@ class MyCourses extends React.Component{
 
         fetch(request)
             .then(function () {
-                console.log("course id 2: ", id);
                 deleteCourse(id);
             })
             .catch(error => console.log(error));
@@ -74,7 +67,6 @@ class MyCourses extends React.Component{
         event.preventDefault(); //blocca comportamento predefinito: reload pagina e cancellazione di tutto
         this.setState({event_target: event.target, courseName: event.target[1].name, courseId: event.target[1].value},
             () => this.showModal());
-        console.log("course id 1", this.state.courseId, " event", event.target[1].value)
     }
 
 
@@ -97,7 +89,9 @@ class MyCourses extends React.Component{
                     </div>);
         }
 
-
+        const divStyle = {
+            backgroundColor: 'white',
+        };
 
         let buttonNext;
         if (this.props.page !== this.props.last_page && !this.props.disabledNext && this.state.search===''){
@@ -111,7 +105,7 @@ class MyCourses extends React.Component{
         let items = filteredCourses.map((item) => {
 
             if (item.teachers.length ===0){
-                return "sedds from course "+item.id+"teachers sno ancora da fare"
+                return "seeds from course "+item.id+" teachers sono ancora da fare"
             }
 
             let teachers = item.teachers.map( teacher => {
@@ -121,6 +115,7 @@ class MyCourses extends React.Component{
                     </li>
                 )
             } );
+
 
 
             //bisognerebbe fare tornare direttamente dal controller l'array ordinato con limit 1 per l'anno di teacher courses (migliori prestazioni)
@@ -138,9 +133,13 @@ class MyCourses extends React.Component{
                     <div className={"absolute"}>
                         <form onSubmit={(e)=>this.buttonUnfollowClicked(e)}>
                             <input className="input" name="user_course[course_id]" value={item.id} type="hidden" />
-                            <button name={item.name}  className="unfollow" value={ item.id}>
-                                <div>Unfollow</div>
-                            </button>
+                            <div className="grid-buttons">
+                                <button name={item.name}  className="unfollow" value={ item.id}>
+                                    <div>Unfollow</div>
+                                </button>
+                                <a className="button unfollow" style={divStyle} href={"/publications/"+item.id}>Bacheca</a>
+                                <a className="button unfollow" style={divStyle} href={"/resources/"+item.id}>Materiale</a>
+                            </div>
                         </form>
                     </div>
                 </div>

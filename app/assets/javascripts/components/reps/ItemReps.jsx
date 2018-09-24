@@ -20,7 +20,7 @@ class ItemReps extends React.Component {
     }
 
     updateWindowDimensions() {
-        this.setState({ width_windows: window.innerWidth }, console.log("windows width: ", window.innerWidth, "this.state.width_wind: ",this.state.width_windows));//, height: window.innerHeight });
+        this.setState({ width_windows: window.innerWidth });//, height: window.innerHeight });
     }
 
     handleDelete(id){
@@ -68,7 +68,6 @@ class ItemReps extends React.Component {
 
             let deleteButton;
             let updateButton;
-            console.log("itemuserid = currentuserid: ", item.user.id, "=", this.props.current_user.id);
             if (item.user.id === this.props.current_user.id){
                 deleteButton = <div>
                                     <button className="delete is-danger" onClick={()=>this.handleDelete(item.id)} color="red"/>
@@ -99,7 +98,6 @@ class ItemReps extends React.Component {
                 home_service="Non indicato";
             else home_service="No";
 
-            console.log("avatar: ", item.user.avatar_url, " User: ", item.user);
 
             return(
                 <section key={item.id} className="relative gap ">
@@ -136,7 +134,7 @@ class ItemReps extends React.Component {
                                 <div className="dropdown is-right is-hoverable">
                                     <div className="dropdown-trigger">
                                         <div  aria-haspopup="true" aria-controls="dropdown-menu2">
-                                            <i className="fas fa-ellipsis-h fa-2x"/>
+                                            <i className="fas fa-ellipsis-v fa-2x"/>
                                         </div>
                                     </div>
                                     <div className="dropdown-menu" id="dropdown-menu2" role="menu">

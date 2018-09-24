@@ -27,7 +27,6 @@ class IndexTheses extends React.Component {
 
 
     componentDidMount(){
-        console.log("last_page", this.props.last_page);
         this.getAllTheses();
         updateIndexTheses = updateIndexTheses.bind(this);
 

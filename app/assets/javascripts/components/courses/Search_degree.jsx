@@ -15,46 +15,41 @@ class Search_degree extends React.Component {
     componentDidMount(){
         const token = localStorage.getItem('token');
         const refreshToken = localStorage.getItem('refreshToken');
-        console.log("token: ", token, "refreshToken; ", refreshToken);
         getDegreesName('')
             .then(data => {
-                console.log("sto per aggiornare: "+data);
                 this.setState({degreesType: data});
             })
             .catch(this.handleError);
     }
 
     shouldComponentUpdate(nextProps, nextState){
-        console.log("nextState: ", nextState, this.state.degrees, this.state.chooseDegree);
         if((nextProps.selectType === '- Select -') &&
             ( nextProps.selectName === '- Select -')
             && this.state.degreesType === nextState.degreesType){
-            console.log("torna falso");
             return false
         }
-        console.log("torna true");
         return true;
     }
 
-    componentDidUpdate(nextProps, nextState) {
-        console.log("componentDidUpdate");
-    }
 
     selectTypeChanged(e){
+        if(e.target.value === '- Select -')
+            return false;
+
         const value = e.target.value;
-        console.log("selectType cliccato, si cercano i degree json: "+ value);
         getDegreesName('degree='+value)
             .then(data => {
-                console.log("sto per aggiornare: "+data);
                 this.setState({degrees: data, chooseDegree: ''});
                 this.props.setSelectType(value);
             })
             .catch(this.handleError);
-        console.log("degrees dopo setstate: "+ this.state.degrees)
     }
 
 
     selectDegreeChanged(e){
+        if(e.target.value === '- Select -')
+            return false;
+
         const value = e.target.value; //new name of select degree
         e.preventDefault();
         if (value !== this.props.selectName){
@@ -73,18 +68,15 @@ class Search_degree extends React.Component {
         });
 
         //########### NAME #############
-        console.log("degrees: "+ this.state.degrees);
         let optionsDegree='';
         if (this.state.degrees !== []){
             optionsDegree = this.state.degrees.map((opt) => {
-                console.log("key: "+opt.id);
                 return(
                     <option key={opt.name} value={opt.name}>{opt.name}</option>
                 )
             });
         }
 
-        console.log(this.props.selectType, "props clicked all");
         let selectType;
         if (this.props.selectType === ''){
             selectType = 'is-invisible'
@@ -98,20 +90,25 @@ class Search_degree extends React.Component {
                 <div className={'myRow gap'}>
                     <div className={'columns'}>
                         <div className=' myColumn-sm '>
-                            <select required className='mySelect gap' onChange={(e) => this.selectTypeChanged(e)}
-                                    value={this.props.selectType ? this.props.selectType : ''}
-                            >
-                                <option key={'- Select -'} >- Select -</option>
-                                {optionsSelectTypes}
-                            </select>
+                            <div className="select gap">
+                                <select required  onChange={(e) => this.selectTypeChanged(e)}
+                                        value={this.props.selectType ? this.props.selectType : ''}
+                                >
+                                    <option key={'- Select -'} >- Select -</option>
+                                    {optionsSelectTypes}
+                                </select>
+                            </div>
                         </div>
+
                         <div className={'myColumn-sm '+this.state.chooseDegree}>
-                            <select required className={"mySelect gap "+selectType} onChange={(e) => this.selectDegreeChanged(e)}
-                                    value={this.props.selectName ? this.props.selectName : '' }
-                            >
-                                <option key={'- Select -'}>- Select -</option>
-                                {optionsDegree}
-                            </select>
+                            <div className={"select gap "+selectType}>
+                                <select required onChange={(e) => this.selectDegreeChanged(e)}
+                                        value={this.props.selectName ? this.props.selectName : '' }
+                                >
+                                    <option key={'- Select -'}>- Select -</option>
+                                    {optionsDegree}
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
