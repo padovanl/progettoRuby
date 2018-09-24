@@ -8,6 +8,13 @@
   overflow: hidden;
   line-height: normal;
 
+  svg{
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+    display:inline-block;
+  }
+
   @include sm {
     margin-top: 9vh;
   }
@@ -55,10 +62,20 @@
     margin-top: 15px;
   }
 
+  .submit-button{
+    margin-top: 30px;
+    margin-left: 8px;
+  }
+  .modal-buttons{
+    text-align: center;
+  }
+  .load-spinner{
+    text-align: center;
+  }
+
   .tag-search {
     position: relative;
     margin-top: 20px;
-    margin-bottom: 40px;
     .button {
       cursor: pointer;
     }
