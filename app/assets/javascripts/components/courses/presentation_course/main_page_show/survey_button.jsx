@@ -62,10 +62,10 @@ class SurveyButton extends React.Component {
         };
 
         const { course_id, user_id } = this.props;
-        const follow_id = this.state.followed.follow ? this.state.followed.id : null
+        const follow_id = this.state.followed && this.state.followed.follow ? this.state.followed.id : null
         const linkSondaggio = "/course/" + course_id + "/survey/" + follow_id
 
-        let bottone = !this.state.followed.passed ? <a className="button is-rounded is-warning" href={linkSondaggio}>Compila il sondaggio</a> :
+        let bottone = this.state.followed != null && !this.state.followed.passed ? <a className="button is-rounded is-warning" href={linkSondaggio}>Compila il sondaggio</a> :
             <div className="is-size-5 has-text-success"><span>Corso superato </span><i className="fas fa-check"></i></div>
 
 
@@ -81,7 +81,7 @@ class SurveyButton extends React.Component {
 
         return(
             <div>
-                { this.state.followed.follow ? <div>{unfollowButton} <br/> { link_risorse }{ bottone }</div> :
+                { this.state.followed  && this.state.followed.follow ? <div>{unfollowButton} <br/> { link_risorse }{ bottone }</div> :
 
                     <form onSubmit={ (e) => this.followCourse(e) }>
                         <input className="input" name="user_course[course_id]" type="hidden" value={course_id} />

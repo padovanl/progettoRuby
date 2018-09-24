@@ -240,7 +240,7 @@ class BodyQuestion extends React.Component {
 
         return(
             <div>
-                { this.state.followed.passed ?
+                { this.state.followed && this.state.followed.passed ?
                     <div className="has-text-left link-resources">{gestisci_le_tue_domande_button} <span> </span>{gestisci_quote_button}</div> : null}
                 <AllQuestions questions={this.state.questions}
                               course_id={this.props.course_id}
@@ -255,7 +255,7 @@ class BodyQuestion extends React.Component {
                 <br/>
                 <table className="table is-fullwidth">
                     <tbody>
-                    { this.state.followed.passed ?
+                    { this.state.followed && this.state.followed.passed ?
                         <NewQuestionCourse course_id={this.props.course_id}
                                            user_id={this.props.user_id}
                                            handleFormSubmit={this.handleFormSubmit}
