@@ -15,6 +15,9 @@ class BodySurvey extends React.Component {
     }
 
     handleFormSubmit(course_rate, material_quality, explanation, average_attempts, average_days) {
+        var myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+        myHeaders.append('Content-Type', 'application/json');
         let body = JSON.stringify({userCourses: {course_rate: course_rate,
                 material_quality: material_quality,
                 explanation: explanation,
@@ -30,9 +33,7 @@ class BodySurvey extends React.Component {
                         method: 'PUT',
                         credentials: 'same-origin',
                         body: body,
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
+                        headers: myHeaders
                     }).then((response) => {
                     return response.json()
                 })

@@ -20,4 +20,26 @@ module UtilFunction
     notification = Notification.where(recipient: current_user).where("updated_at = created_at").unread
     ActionCable.server.broadcast 'notification', notification
   end
+
+  def user_compile_survey?
+    #byebug
+    if request.format.html?
+      if UserCourse.where(user_id: current_user.id, course_id:  params[:course_id], passed: true).exists?
+        #redirect_to controller: '/controllers/courses', action: 'show', id: params[:course_id]
+        #redirect_to(root_path, notice: 'Incorrect number of photos!')
+        redirect_to course_path(params[:course_id])
+        flash[:alert] = 'Questionatio già compilato'
+      end
+    end
+  end
+
+  def user_follows_course_for_survey?
+    if request.format.html?
+      if !UserCourse.where(user_id: current_user.id, course_id: params[:course_id], follow: true).exists?
+        flash[:alert] = 'Prima di compilare il questionario devi seguire il corso!'
+        redirect_to course_path(params[:course_id])
+      end
+    end
+  end
+
 end

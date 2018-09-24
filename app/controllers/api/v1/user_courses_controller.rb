@@ -1,5 +1,8 @@
 class Api::V1::UserCoursesController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  before_action :authenticate_user!
+  before_action :user_compile_survey?, only: [:show]
+  before_action :user_follows_course_for_survey?, only: [:show]
+
 
   def show
     course_followed = UserCourse.where("course_id = ? AND user_id = ?", params['id'], params['user_id']).first
