@@ -69,8 +69,8 @@ class SurveyButton extends React.Component {
             <div className="is-size-5 has-text-success"><span>Corso superato </span><i className="fas fa-check"></i></div>
 
 
-        const link_risorse = <div className="link-resources"><a className="button is-rounded is-warning" href={ '/publications/' + course_id }>Bacheca</a> <span> </span>
-                <a className="button is-rounded is-warning" href={ '/resources/' + course_id }>Materiale didattico</a></div>;
+        const link_risorse = <div className="link-resources"><a className="button is-rounded is-link" href={ '/publications/' + course_id }>Bacheca</a> <span> </span>
+                <a className="button is-rounded is-link" href={ '/resources/' + course_id }>Materiale didattico</a></div>;
 
          const unfollowButton = <form onSubmit={ (e) => this.unfollowCourse(e) }>
              <input className="input" name="user_course[course_id]" type="hidden" value={course_id} />

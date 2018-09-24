@@ -251,7 +251,7 @@ class BodyQuestion extends React.Component {
                               show_quotes = {this.state.show_quotes}
                               handleQuoteUp = {this.handleQuoteUp}
                               handleQuoteDown = {this.handleQuoteDown}
-                               />
+                              activeModal = {this.activeModal}/>
                 <br/>
                 <table className="table is-fullwidth">
                     <tbody>
