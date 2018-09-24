@@ -46,9 +46,10 @@ class RepsController < ApplicationController
   end
 
   def update
-    rep = Rep.current_user_rep(current_user, params[:id]).first.update(rep_params)
-   # rep.course_id = get_course_name[:course_name]
-   # rep.update
+    rep = Rep.current_user_rep(current_user, params[:id]).first
+    rep.update(rep_params)
+    rep.course_id = Rep.get_course_id(get_course_name[:course_name])
+    rep.save
     if !rep
       render_json_validation_error rep
       return
