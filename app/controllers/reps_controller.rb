@@ -36,13 +36,8 @@ class RepsController < ApplicationController
       render_json_validation_error rep
       return
     end
-    #notifica
-    @course = Course.find(course_id)
-    #(@course.users.uniq - [current_user]).each do |user|
-    @course.users.uniq.each do |user|
-      Notification.create(recipient: user, actor: current_user, action: "", notifiable: rep)
-    end
 
+    Notification.send_notifications(course_id, current_user, "", rep)
     render json: rep, :include => {:course => {:only => :name}, :user => {:only => [:id, :name, :image, :email, :last_sign_in_at, :current_sign_in_ip]} }, status: :created
   end
 

@@ -19,11 +19,7 @@ class DocumentsController < ApplicationController
       return
     end
 
-    course = Course.find(document_params[:course_id])
-    course.users.uniq.each do |user|
-      Notification.create!(recipient: user, actor: current_user, action: "ha condiviso un nuovo", notifiable: resource.document)
-    end
-
+    Notification.send_notifications(document_params['course_id'], current_user, "ha condiviso un nuovo", resource.document)
     render json: resource.document, include: %w(user tags), status: :created
   end
 
