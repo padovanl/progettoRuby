@@ -84,7 +84,7 @@ class Search_degree extends React.Component {
         else selectType='';
 
         return(
-            <section className="search-degree">
+            <section className="search-degree container">
                 <hr/>
 
                 <div className={'myRow gap'}>

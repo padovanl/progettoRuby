@@ -258,9 +258,8 @@ class SearchItem2 extends React.Component {
             <section>
                 <div className='myRow'>
                     <div className="gap" align="center">
-                        <div className="box" >
+                        <div className="container" >
                             <form className='search-form' onSubmit={(e)=>this.searchCourses(e)}>
-                                <h3><b><font color="#8b0000">Advanced Search:</font></b></h3>
                                 <div className='columns'>
                                     <div className=' myColumn-sm'>
                                         <div className="select gap" >
