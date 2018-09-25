@@ -28,14 +28,13 @@ class CommentsController < ApplicationController
   end
 
   def reportComment
-    reason = params[:reportReason][:reason]
-    report = Report.where(:reportable_id => params[:id]).where(:reportable_type => "Comment").first
-    if (report != nil)
-      UserReport.create!(user_id: current_user.id, report_id: report.id, reason: reason)
-    else
-      comment = Comment.find(params[:id])
-      r = Report.create(action: "È stato segnalato un post", reportable: comment)
-      UserReport.create!(user_id: current_user.id, report_id: r.id, reason: reason)
+    Report.send_report(params[:id], current_user.id,
+                       params[:reportReason][:reason],
+                       Comment.find(params[:id]),
+                       "Comment",
+                       "È stato segnalato un")
+    respond_to do |format|
+      format.json { head :ok }
     end
   end
 

@@ -88,15 +88,13 @@ class RepsController < ApplicationController
   end
 
   def reportRep
-    reason = params[:reportReason][:reason]
-    rep = Rep.find(params[:id])
-    report = Report.where(:reportable_id => params[:id]).where(:reportable_type => "Rep").first
-
-    if (report != nil)
-      UserReport.create!(user_id: current_user.id, report_id: report.id, reason: reason)
-    else
-      r = Report.create(action: "È stata segnalata un", reportable: rep)
-      UserReport.create!(user_id: current_user.id, report_id: r.id, reason: reason)
+    Report.send_report(params[:id], current_user.id,
+                       params[:reportReason][:reason],
+                       Rep.find(params[:id]),
+                       "Rep",
+                       "È stata segnalata un")
+    respond_to do |format|
+      format.json { head :ok }
     end
   end
 

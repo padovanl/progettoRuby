@@ -40,15 +40,13 @@ class DocumentsController < ApplicationController
   end
 
   def reportDocument
-    reason = params[:reportReason][:reason]
-    document = Document.find(params[:id])
-    report = Report.where(:reportable_id => params[:id]).where(:reportable_type => "Document").first
-
-    if (report != nil)
-      UserReport.create!(user_id: current_user.id, report_id: report.id, reason: reason)
-    else
-      r = Report.create(action: "È stato segnalato un", reportable: document)
-      UserReport.create!(user_id: current_user.id, report_id: r.id, reason: reason)
+    Report.send_report(params[:id], current_user.id,
+                       params[:reportReason][:reason],
+                       Document.find(params[:id]),
+                       "Document",
+                       "È stato segnalato un")
+    respond_to do |format|
+      format.json { head :ok }
     end
   end
 
