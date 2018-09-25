@@ -95,11 +95,11 @@ class MyCourses extends React.Component{
 
         let buttonNext;
         if (this.props.page !== this.props.last_page && !this.props.disabledNext && this.state.search===''){
-            buttonNext= <div className='buttonnext' onClick={() => this.props.onChangePage()}>
-                <span> Next </span> </div>
+            buttonNext= <button className='button is-rounded is-info' onClick={() => this.props.onChangePage()}>
+                <span> Next </span> </button>
         }
         else {
-            buttonNext=<div className='buttonnext disabled'>Next</div>
+            buttonNext=<button className='button is-rounded is-info disabled'>Next</button>
         }
 
         let items = filteredCourses.map((item) => {
@@ -120,25 +120,25 @@ class MyCourses extends React.Component{
 
             //bisognerebbe fare tornare direttamente dal controller l'array ordinato con limit 1 per l'anno di teacher courses (migliori prestazioni)
             return(
-                <div key={item.id} className={'box relative is-marginless'}>
-                    <div className="nested infinite-item font-size">
-                        <div><strong>Materia:</strong>  <a href={"/courses/"+item.id}>{item.name}</a></div>
+                <div key={item.id} className={'box relative is-marginless course-card'}>
+                    <div className="nested infinite-item">
+                        <h3 className="title" id="course-name-second"><a href={"/courses/"+item.id}>{item.name}</a></h3>
                         <div><strong>Livello:</strong> {item.degreet}</div>
                         <div><strong>Corso:</strong> {item.degreen}</div>
                         <div><strong>Anno:</strong> {item.year}</div>
-                        <div><strong>Professori:</strong>
+                        {/* <div><strong>Professori:</strong>
                             <courses-ol>{teachers}</courses-ol>
-                        </div>
+                        </div> */}
                     </div>
                     <div className={"absolute"}>
-                        <form onSubmit={(e)=>this.buttonUnfollowClicked(e)}>
+                        <form onSubmit={ (e)=>this.buttonUnfollowClicked(e) }>
                             <input className="input" name="user_course[course_id]" value={item.id} type="hidden" />
                             <div className="grid-buttons">
-                                <button name={item.name}  className="unfollow" value={ item.id}>
-                                    <div>Unfollow</div>
+                                <a className="button is-rounded" href={ "/resources/" + item.id }>Documenti</a>
+                                <a className="button is-rounded" href={ "/publications/" + item.id }>Bacheca</a>
+                                <button name={ item.name }  className="button is-rounded is-danger" value={ item.id}>
+                                    <div>Smetti di seguire</div>
                                 </button>
-                                <a className="button unfollow" style={divStyle} href={"/publications/"+item.id}>Bacheca</a>
-                                <a className="button unfollow" style={divStyle} href={"/resources/"+item.id}>Materiale</a>
                             </div>
                         </form>
                     </div>
@@ -147,13 +147,13 @@ class MyCourses extends React.Component{
         });
 
         return(
-            <div className='myColumn-lg' id="modal">
+            <div className='myColumn-lg container' id="modal">
                 <hr className='gap'/>
                 <div className="wrapper infinite-container">{items}</div>
-                <div className='row'>
-                    {buttonNext}
-                    <input className='input-form gap' type="text"  value={this.state.search}
-                           onChange={this.updateSearch.bind(this)} placeholder="Filter courses by name"/>
+                <div className='row next-button'>
+                    { buttonNext }
+                    { /*<input className='input-form gap' type="text"  value={this.state.search}
+                           onChange={this.updateSearch.bind(this)} placeholder="Filter courses by name"/> */ }
                 </div>
 
                 <div className={"modal " + (this.state.modalState ? "is-active" : "")}>
@@ -172,8 +172,8 @@ class MyCourses extends React.Component{
                                         <br/>
                                         <span>Perché non rimani per aiutare i tuoi colleghi? :)</span>
                                     </p>
-                                    <button className="unfollow" onClick={() => this.handleUnfollow()} >
-                                        <span>Unfollow</span>
+                                    <button className="button is-danger is-rounded" onClick={() => this.handleUnfollow()} >
+                                        <span>Smetti di seguire</span>
                                     </button>
 
                                     <button className="modal-close is-large" aria-label="close"

@@ -16,21 +16,18 @@
           <h2 class="title">
             I miei corsi
           </h2>
-          <h3 class="subtitle">
-            Qui vengono visualizzati solo i corsi che stai seguendo!
-          </h3>
         </div>
       </div>
     </section>
 
-    <%= render partial: "/per_page", locals:  {path: mycourses_path, per_page: @per_page}%>
+
 
 
     <div class="myColumn-lg">
       <div class="row">
         <%= react_component 'SearchItem2', tcs: @cs, categories: @categories, last_page: @last_page, url: "/mycourses.json", per_page: @per_page%>
       </div>
-
+      <%= render partial: "/per_page", locals:  {path: mycourses_path, per_page: @per_page}%>
 
     </div>
 

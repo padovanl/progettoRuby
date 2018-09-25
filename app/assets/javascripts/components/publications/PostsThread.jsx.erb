@@ -1,3 +1,5 @@
+
+
 class PostsThread extends React.Component {
     constructor(props) {
         super(props);
@@ -33,7 +35,6 @@ class PostsThread extends React.Component {
         this.setState({adding_post: false});
     }
 
-    // Toggle currently active tab
     handleTabClick(tabIndex) {
         if (tabIndex !== this.state.activeTabIndex) {
             this.fetchPosts(tabIndex)
@@ -48,8 +49,6 @@ class PostsThread extends React.Component {
     disableModal() {
         this.setState({modalIsActive: false});
     }
-
-
 
     render() {
         const {current_user, current_user_avatar, course_id, course_name} = this.props
@@ -94,18 +93,20 @@ class PostsThread extends React.Component {
                     <div className={"modal " + (adding_post ? "is-active" : "")}>
                         <div className="modal-background" onClick={this.closeNewPostModal.bind(this)} />
 
-                        <NewPost addNewPost={this.addNewPost.bind(this)} current_user={current_user}
-                                 current_user_avatar={current_user_avatar} course_id={course_id}/>
+                        <NewPost addNewPost={ this.addNewPost.bind(this) } current_user={ current_user }
+                                 current_user_avatar={ current_user_avatar } course_id={ course_id }
+                                 closeModal={this.closeNewPostModal.bind(this)}/>
 
                         <button className="modal-close is-large" aria-label="close"
-                                onClick={this.closeNewPostModal.bind(this)} />
+                                onClick={ this.closeNewPostModal.bind(this) } />
                     </div>
 
                     <div className={"modal " + (this.state.modalIsActive ? "is-active" : "")}>
                         <div className="modal-background" onClick={this.disableModal.bind(this)} />
 
-                        <ReportModal  linkReport={this.state.linkReport}
-                                      disableModal={this.disableModal.bind(this)} title={"Segnalazione suggerimento"}/>
+                        <ReportModal  linkReport={ this.state.linkReport }
+                                      disableModal={ this.disableModal.bind(this) }
+                                      title={ "Segnalazione suggerimento" }/>
 
                         <button className="modal-close is-large" aria-label="close"
                                 onClick={this.disableModal.bind(this)} />

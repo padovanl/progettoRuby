@@ -112,11 +112,11 @@ class IndexCourses2 extends React.Component{
 
         let buttonNext;
         if (this.props.page !== this.props.last_page && !this.props.disabledNext && this.state.search=== ''){
-            buttonNext= <div className='buttonnext' onClick={() => this.props.onChangePage()}>
-                        <span> Next </span> </div>
+            buttonNext= <button className='button is-rounded is-info' onClick={() => this.props.onChangePage()}>
+                        <span> Next </span> </button>
         }
         else {
-            buttonNext=<div className='buttonnext disabled'>Next</div>
+            buttonNext=<button className='button is-rounded is-info disabled'>Next</button>
         }
 
         let items = filteredCourses.map((item) => {
@@ -136,22 +136,22 @@ class IndexCourses2 extends React.Component{
 
             //bisognerebbe fare tornare direttamente dal controller l'array ordinato con limit 1 per l'anno di teacher courses (migliori prestazioni)
             return(
-                <div key={item.id} className="box relative is-marginless">
-                    <div className="nested infinite-item font-size">
-                        <div><strong>Materia:</strong> <a href={"/courses/"+item.id}>{item.name}</a></div>
+                <div key={item.id} className="box relative is-marginless course-card">
+                    <div className="nested infinite-item">
+                        <h3 className="title" id="course-name-second"><a href={"/courses/"+item.id}>{item.name}</a></h3>
                         <div><strong>Livello:</strong> {item.degreet}</div>
                         <div><strong>Corso:</strong> {item.degreen}</div>
                         <div><strong>Anno:</strong> {item.year}</div>
-                        <div><strong>Professori:</strong>
+                        { /*<div><strong>Professori:</strong>
                             <courses-ol>{teachers}</courses-ol>
-                        </div>
+                        </div>*/ }
                     </div>
                     <div className={"absolute"}>
                         <form onSubmit={(e)=>this.buttonFollowClicked(e)}>
                             <input className="input" name="user_course[course_id]" value={item.id} type="hidden" />
                             <input className="input" name="user_course[follow]" value={true} type="hidden" />
-                            <button name={item.name}  className="segui" value={ item.id}>
-                                <div>Follow</div>
+                            <button name={item.name}  className="button is-success is-rounded" value={ item.id}>
+                                <div>Segui</div>
                             </button>
                         </form>
                     </div>
@@ -160,13 +160,13 @@ class IndexCourses2 extends React.Component{
         });
 
         return(
-            <div className='myColumn-lg'>
+            <div className='myColumn-lg container'>
                 <hr className='gap'/>
-                <div className="wrapper infinite-container">{items}</div>
-                <div className='row'>
-                    {buttonNext}
-                    <input className='input-form gap left-gap' type="text"  value={this.state.search}
-                           onChange={this.updateSearch.bind(this)} placeholder="Filter courses by name"/>
+                <div className="wrapper infinite-container">{ items }</div>
+                <div className='row next-button'>
+                    { buttonNext }
+                    { /*<input className='input-form gap left-gap' type="text"  value={this.state.search}
+                           onChange={this.updateSearch.bind(this)} placeholder="Filter courses by name"/>*/ }
                 </div>
 
                 <div className={"modal " + (this.state.modalState ? "is-active" : "")}>
@@ -185,8 +185,8 @@ class IndexCourses2 extends React.Component{
                                         <br/>
                                         <span>Vuoi visualizzarlo?</span>
                                     </p>
-                                    <a className="segui" href={this.linkToCourseView()} >
-                                        Show Course                                    </a>
+                                    <a className="button is-rounded is-success" href={this.linkToCourseView()} >
+                                        Mostra Corso</a>
 
                                     <button className="modal-close is-large" aria-label="close"
                                             onClick={this.closeModal.bind(this)} />

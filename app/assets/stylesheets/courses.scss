@@ -185,10 +185,6 @@ body {
 }
 
 .wrapper > div {
-  #background: #eee;
-  border: solid;
-  border-color: gray;
-  border-radius: 12px;
   padding: 1em;
 }
 
@@ -379,7 +375,7 @@ courses-ol li {
 .react-autosuggest__input {
   margin-top: 1em;
   width: 200px;
-  height: 30px;
+  height: 35px;
   padding: 10px 20px;
   font-family: Helvetica, sans-serif;
   font-weight: 300;
@@ -456,4 +452,20 @@ courses-ol li {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1em;
+}
+
+.course-card{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.next-button{
+  text-align: center;
+  margin-top: 1.5rem;
+  button {
+    font-size: 19px;
+  }
+}
+
+.search-degree{
+  text-align: center;
 }

@@ -219,7 +219,7 @@ class SearchItem2 extends React.Component {
 
 
 
-        const  value =this.state.query;
+        const value =this.state.query;
         const suggestions = this.state.suggestions;
         const inputProps = {
             placeholder:"Search courses",
@@ -258,9 +258,8 @@ class SearchItem2 extends React.Component {
             <section>
                 <div className='myRow'>
                     <div className="gap" align="center">
-                        <div className="box" >
+                        <div className="container" >
                             <form className='search-form' onSubmit={(e)=>this.searchCourses(e)}>
-                                <h3><b><font color="#8b0000">Advanced Search:</font></b></h3>
                                 <div className='columns'>
                                     <div className=' myColumn-sm'>
                                         <div className="select gap" >
@@ -277,11 +276,11 @@ class SearchItem2 extends React.Component {
                                             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
                                             getSuggestionValue={getSuggestionValue}
                                             renderSuggestion={renderSuggestion}
-                                            inputProps={inputProps}
+                                            inputProps={ inputProps }
                                             />
 
                                     </div>
-                                    <div className=' myColumn-sm'> {searchButton} </div>
+                                    <div className=' myColumn-sm'>{ searchButton }</div>
                                 </div>
                             </form>
                         </div>
@@ -290,9 +289,9 @@ class SearchItem2 extends React.Component {
                         <div align="center" className="gap">
                             <Search_degree onSubmit={(degreen, degreet) => this.onSubmit(degreen, degreet)}
                                            resetAdvancedSearch ={this.resetAdvancedSearch}
-                                           selectType={this.state.selectType}
-                                           selectName={this.state.selectName}
-                                           setSelectType={this.setSelectType}
+                                           selectType={ this.state.selectType }
+                                           selectName={ this.state.selectName }
+                                           setSelectType={ this.setSelectType }
 
                             />
                         </div>
