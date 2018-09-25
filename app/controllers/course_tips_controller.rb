@@ -29,9 +29,10 @@ class CourseTipsController < ApplicationController
   end
 
   def update
-    quest = CourseTip.find(params[:id])
-    unless !quest.update_attributes(tip_params)
-      json_response(quest.to_json)
+    tip = CourseTip.find(params[:id])
+    unless !tip.update_attributes(tip_params)
+      json_response(tip.to_json)
+      return
     end
   end
 

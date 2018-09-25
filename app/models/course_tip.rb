@@ -1,7 +1,6 @@
 class CourseTip < ApplicationRecord
   belongs_to :course
   belongs_to :user
-  has_many :notifications
 
   validates_presence_of :tip
 
