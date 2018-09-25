@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!
-  after_action :broadcast_notification, only: :create
+  after_action :broadcast_notification, only: [:create, :destroy]
   after_action ->(type_object) { destroy_report_and_notification('CourseQuestion') }, only: [:destroy]
 
 

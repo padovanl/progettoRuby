@@ -2,7 +2,7 @@ class DocumentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_course, only: [:index, :destroy]
   before_action :user_follow_course?, only: [:index, :destroy]
-  after_action :broadcast_notification, only: [:create]
+  after_action :broadcast_notification, only: [:create, :destroy]
   after_action ->(type_object) { destroy_report_and_notification('Document') }, only: [:destroy]
 
   def index
