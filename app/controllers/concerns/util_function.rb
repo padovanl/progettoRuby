@@ -47,6 +47,13 @@ module UtilFunction
   end
 end
 
+def destroy_report_comment_of_post
+  post = Post.find(params[:id])
+  post.comments.each do |comment|
+    Report.where(:reportable_id => comment.id).where(:reportable_type => 'Comment').destroy_all
+  end
+end
+
 def destroy_report_and_notification(type_object)
   Notification.where(:notifiable_id => params[:id]).where(:notifiable_type => type_object).destroy_all
   Report.where(:reportable_id => params[:id]).where(:reportable_type => type_object).destroy_all

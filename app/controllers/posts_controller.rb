@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   before_action :user_follow_course?, only: [:index, :destroy]
   after_action :broadcast_notification, only: [:create]
   after_action ->(type_object) { destroy_report_and_notification('Post') }, only: [:destroy]
+  before_action :destroy_report_comment_of_post, only: :destroy
 
   def index
     posts = Post.reduce(params).order(created_at: :desc).uniq
