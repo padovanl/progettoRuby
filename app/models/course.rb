@@ -181,7 +181,7 @@ class Course < ApplicationRecord
     degree_course_name = course.degree_course.attributes.slice("name")
 
     if (!course.teacher_courses.order(year: :desc).empty?)
-      current_teacher = get_history_teachers(course)
+      teacher_history = get_history_teachers(course)
     else
       current_teacher = nil
     end
@@ -190,7 +190,8 @@ class Course < ApplicationRecord
 
     course_details['course_name'] = course.name
     course_details['degree_course_name'] = degree_course_name['name']
-    course_details['current_teacher'] = current_teacher
+    course_details['teacher_history'] = teacher_history
+    course_details['current_teacher'] = teacher_history.first[:teacher]
     course_details['mapping_statistiche'] = mapping_statistiche
 
     return course_details
@@ -240,13 +241,11 @@ class Course < ApplicationRecord
   end
 
   def self.get_history_teachers(course)
-    #arr = Array.new
-    current_teacher = course.teacher_courses.order(year: :desc).distinct.first.teacher
-    #array_teacher_courses.each do |teacher_course|
-     # arr.append(teacher_course.teacher)
-   # end
-    #return arr
-    return current_teacher
+    teacher_courses = course.teacher_courses.order(year: :desc)
+    teacher_history = ActiveModel::Serializer::CollectionSerializer
+        .new(teacher_courses, each_serializer: TeacherCourseSerializer)
+        .as_json(:include => {:teacher =>{:only => [:name, :surname, :link_cv]} } )
+    return teacher_history
   end
 
 end
