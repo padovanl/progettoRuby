@@ -134,10 +134,10 @@ class MyCourses extends React.Component{
                         <form onSubmit={ (e)=>this.buttonUnfollowClicked(e) }>
                             <input className="input" name="user_course[course_id]" value={item.id} type="hidden" />
                             <div className="grid-buttons">
-                                <a className="button is-rounded" href={ "/resources/" + item.id }>Materiale didattico</a>
+                                <a className="button is-rounded" href={ "/resources/" + item.id }>Documenti</a>
                                 <a className="button is-rounded" href={ "/publications/" + item.id }>Bacheca</a>
                                 <button name={ item.name }  className="button is-rounded is-danger" value={ item.id}>
-                                    <div>Unfollow</div>
+                                    <div>Smetti di seguire</div>
                                 </button>
                             </div>
                         </form>
@@ -172,8 +172,8 @@ class MyCourses extends React.Component{
                                         <br/>
                                         <span>Perché non rimani per aiutare i tuoi colleghi? :)</span>
                                     </p>
-                                    <button className="unfollow" onClick={() => this.handleUnfollow()} >
-                                        <span>Unfollow</span>
+                                    <button className="button is-danger is-rounded" onClick={() => this.handleUnfollow()} >
+                                        <span>Smetti di seguire</span>
                                     </button>
 
                                     <button className="modal-close is-large" aria-label="close"

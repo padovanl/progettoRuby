@@ -151,7 +151,7 @@ class IndexCourses2 extends React.Component{
                             <input className="input" name="user_course[course_id]" value={item.id} type="hidden" />
                             <input className="input" name="user_course[follow]" value={true} type="hidden" />
                             <button name={item.name}  className="button is-success is-rounded" value={ item.id}>
-                                <div>Follow</div>
+                                <div>Segui</div>
                             </button>
                         </form>
                     </div>
@@ -186,7 +186,7 @@ class IndexCourses2 extends React.Component{
                                         <span>Vuoi visualizzarlo?</span>
                                     </p>
                                     <a className="button is-rounded is-success" href={this.linkToCourseView()} >
-                                        Show Course</a>
+                                        Mostra Corso</a>
 
                                     <button className="modal-close is-large" aria-label="close"
                                             onClick={this.closeModal.bind(this)} />
