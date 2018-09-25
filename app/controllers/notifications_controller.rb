@@ -14,7 +14,7 @@ class NotificationsController < ApplicationController
     #@notifications = Notification.where(recipient: current_user).unread
     respond_to do |format|
       format.html
-      format.json {render json: @notifications, :include => {:recipient => {:only => [:id, :email, :avatar_url, :name, :admin]}, :notifiable => {}} }
+      format.json {render json: @notifications, :include => {:actor => {:only => [:id, :email, :avatar_url, :name, :admin]}, :notifiable => {}} }
     end
     #render json: @notifications, include: %w(recipient notifiable notifiable.post notifiable.post.course), status: :created
   end
@@ -26,10 +26,10 @@ class NotificationsController < ApplicationController
   end
 
   def notificationsNavBar
-    @notifications_nav = Notification.where(recipient: current_user).unread.limit(3)
+    @notifications_nav = Notification.order(created_at: :desc).where(recipient: current_user).unread.limit(3)
     #json_response(@notifications_nav) -> crea problemi con il jsonbuilder come se lo vedesse in parte
     respond_to do |format|
-      format.json {render json: @notifications_nav, :include => {:recipient => {:only => [:id, :email, :avatar_url, :name, :admin]}, :notifiable =>{} } }
+      format.json {render json: @notifications_nav, :include => {:actor => {:only => [:id, :email, :avatar_url, :name, :admin]}, :notifiable =>{} } }
     end
   end
 

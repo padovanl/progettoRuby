@@ -17,8 +17,12 @@ module UtilFunction
   end
 
   def broadcast_notification
-    notification = Notification.where(recipient: current_user).where("updated_at = created_at").unread
-    ActionCable.server.broadcast 'notification', notification
+    notification_len = Notification.where(recipient: current_user).where("updated_at = created_at").order(created_at: :desc).unread.size
+    notification = Notification.order(created_at: :desc).where(recipient: current_user).unread.limit(3)
+    notification = ActiveModel::Serializer::CollectionSerializer
+                       .new(notification, each_serializer: NotificationSerializer)
+                       .as_json(:include => {:actor => {:only => [:id, :email, :avatar_url, :name, :admin]}, :notifiable =>{} })
+    ActionCable.server.broadcast 'notification', { length: notification_len, notifications: notification }
   end
 
   def user_compile_survey?
