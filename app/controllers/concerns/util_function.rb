@@ -46,3 +46,8 @@ module UtilFunction
     end
   end
 end
+
+def destroy_report_and_notification(type_object)
+  Notification.where(:notifiable_id => params[:id]).where(:notifiable_type => type_object).destroy_all
+  Report.where(:reportable_id => params[:id]).where(:reportable_type => type_object).destroy_all
+end
