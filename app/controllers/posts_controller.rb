@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   before_action :set_course, only: [:index, :destroy]
   before_action :user_follow_course?, only: [:index, :destroy]
   after_action :broadcast_notification, only: [:create]
+  after_action ->(type_object) { destroy_report_and_notification('Post') }, only: [:destroy]
 
   def index
     posts = Post.reduce(params).order(created_at: :desc).uniq
@@ -36,8 +37,6 @@ class PostsController < ApplicationController
       return
     end
 
-    Notification.where(notifiable_id: params[:id]).where(notifiable_type: "Post").destroy_all
-    Report.where(reportable_id: params[:id]).where(reportable_type: "Post").destroy_all
     head :no_content
   end
 

@@ -1,6 +1,7 @@
 class RepsController < ApplicationController
   before_action :authenticate_user!
   after_action :broadcast_notification, only: [:create]
+  after_action ->(type_object) { destroy_report_and_notification('Rep') }, only: [:destroy]
 
   def index
   #  if validate_per_page
@@ -64,10 +65,7 @@ class RepsController < ApplicationController
       render_json_validation_error @rep
       return
     end
-    #elimina notifica ripetizione per quel corso
-    Notification.where(:notifiable_id => params[:id]).where(:notifiable_type => "Rep").destroy_all
-    Report.where(:reportable_id => params[:id]).where(:reportable_type => "Rep").destroy_all
-    ###
+
     head :no_content
   end
 

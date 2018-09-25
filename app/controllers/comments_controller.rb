@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   after_action :broadcast_to_channel, only: [:create, :destroy]
+  after_action ->(type_object) { destroy_report_and_notification('Comment') }, only: [:destroy]
 
   def create
     @course = Course.find(comment_params[:course_id])
@@ -23,7 +24,6 @@ class CommentsController < ApplicationController
       return
     end
 
-    Report.where(:reportable_id => params[:id]).where(:reportable_type => "Comment").destroy_all
     head :no_content
   end
 
