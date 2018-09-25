@@ -76,7 +76,8 @@ class Post extends React.Component {
 
 
                             <CommentsList course_id={course_id} post_id={post.id} comments={post.comments} current_user={current_user}
-                                          current_user_avatar={current_user_avatar} deleteComment={ this.deleteComment.bind(this) }/>
+                                          current_user_avatar={current_user_avatar} deleteComment={ this.deleteComment.bind(this) }
+                                          activeModal={ this.props.activeModal } />
 
                         </div>
                         <div className="media-right">

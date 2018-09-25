@@ -10,6 +10,6 @@ class CommentMailer < ApplicationMailer
     @current_user = c_u
     @content = content
     @rep = rep
-    mail to: rep.user.email, subject: "Ripetizione per '#{ rep.course.name }'"
+    mail to: rep.user.email, subject: "Ripetizione per '#{rep.course.name}'"
   end
 end

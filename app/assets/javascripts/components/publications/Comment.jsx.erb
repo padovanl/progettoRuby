@@ -28,7 +28,8 @@ class Comment extends React.Component {
                     </div>
                 </div>
                 <div className="media-right">
-                    <DropMenu cancella={deleteComment} id={id} can_delete={can_delete_comment} risorsa="commento"/>
+                    <DropMenu cancella={deleteComment} id={id} can_delete={can_delete_comment} risorsa="commento" activeModal={ this.props.activeModal}
+                    course_id={this.props.comment.course_id}/>
                 </div>
             </article>
         );

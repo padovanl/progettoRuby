@@ -112,14 +112,14 @@ class Notification extends React.Component{
                 break;
         }
 
-        links[''+report_id.toString()+''] = link
+        links[''+this.props.notification.id.toString()+''] = link
         new_notification = this.props.notification.read_at == null ? <span className="icon has-text-danger"><i className="fas fa-dot-circle"></i></span> : <span className="icon"><i className="fas fa-dot-circle"></i></span>;
 
         return(
 
             <tr key={this.props.notification.id} style={stile_background_notifica}>
                     <td>
-                        <a style={style_link_row} onClick={() => this.props.handleMarkAndRedirect(links[report_id], id_notification)}>
+                        <a style={style_link_row} onClick={() => this.props.handleMarkAndRedirect(links[this.props.notification.id], id_notification)}>
                             <article className="media gap">
                                 <figure className="media-left">
                                     <p className="image is-16x16">

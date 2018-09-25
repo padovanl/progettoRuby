@@ -28,7 +28,6 @@ class AddRep extends React.Component {
     }
 
     validate(){
-        console.log("SOno in validate");
 
         const formLength = this.formEl.length;
 
@@ -123,7 +122,7 @@ class AddRep extends React.Component {
         if (e.target.id === 'home_service')
             this.setState({[e.target.id]: !e.target.value});
         else if (e.target.id === 'offer'){
-            this.setState({[e.target.id]: e.target.value, select_offer: true, selectedRadio: key},console.log("sono in offer"));
+            this.setState({[e.target.id]: e.target.value, select_offer: true, selectedRadio: key});
 
         }
         else if (e.target.id === 'course')
@@ -135,7 +134,6 @@ class AddRep extends React.Component {
 
     closeModal(){
         this.props.closeModal();
-        console.log("modalstate: ",this.state.modalState);
         //reset form
         this.setState({
             select_offer: false,
@@ -280,7 +278,6 @@ class AddRep extends React.Component {
 
         if (this.state.isValidated) {
             classNames.push('.was-validated');
-            console.log("pushato .was-validated")
         }
 
         return(

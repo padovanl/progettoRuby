@@ -22,7 +22,7 @@ const getNames=(category)=>{
       url = '/teachers_name.json';
 
     const errorMessage = 'Errore durante il download dei dati';
-    console.log("url usato nella ricerca dei NOMI: "+url);
+  //  console.log("url usato nella ricerca dei NOMI: "+url);
     return makeReq(url, errorMessage);
 };
 
@@ -42,14 +42,14 @@ const updateUrlReps = (props_url, props_per_page, url, page) => {
 
 const getItems = (url) => {
     const errorMessage = 'Errore durante il download dei dati';
-    console.log("url usato nella ricerca: "+url);
+   // console.log("url usato nella ricerca: "+url);
     return makeReq(url, errorMessage);
 };
 
 const getDegreesName = (degree) => {
     let url = "/search_degrees.json?utf8=✓&"+degree;
     const errorMessage = 'Errore durante il download dei dati';
-    console.log("url usato nella ricerca: "+url);
+ //   console.log("url usato nella ricerca: "+url);
     return makeReq(url, errorMessage);
 };
 
