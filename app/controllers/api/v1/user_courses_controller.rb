@@ -16,8 +16,10 @@ class Api::V1::UserCoursesController < ApplicationController
 
   def update
     user_course = UserCourse.find(params[:id])
-    user_course.update_attributes(user_courses_params)
-    json_response(user_course.to_json)
+    unless !user_course.update_attributes(user_courses_params)
+      json_response(user_course.to_json)
+      return
+    end
   end
 
   private

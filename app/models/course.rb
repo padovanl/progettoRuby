@@ -205,9 +205,8 @@ class Course < ApplicationRecord
 
     lista_giudizi = ['insufficiente', 'sufficiente','discreto','buono','molto buono' ];
     mapping_statistiche = Hash.new
+
     if record_collection.size > 0
-
-
       passed_number = record_collection.collect.size
       course_rate = record_collection.collect {|i| i.course_rate}
       material_quality = record_collection.collect {|i| i.material_quality}

@@ -24,7 +24,7 @@ class Notification < ApplicationRecord
     course = Course.find(course_id)
     #(course.users.uniq - [current_user]).each do |user|
     course.users.uniq.each do |user|
-      Notification.create(recipient: user, actor: current_user, action: action, notifiable: tip)
+      create(recipient: user, actor: current_user, action: action, notifiable: tip)
     end
   end
 
