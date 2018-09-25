@@ -84,7 +84,7 @@ class Search_degree extends React.Component {
         else selectType='';
 
         return(
-            <section>
+            <section className="search-degree">
                 <hr/>
 
                 <div className={'myRow gap'}>
@@ -101,11 +101,12 @@ class Search_degree extends React.Component {
                         </div>
 
                         <div className={'myColumn-sm '+this.state.chooseDegree}>
-                            <div className={"select gap "+selectType}>
+                            <div className={"select gap "+ selectType}>
                                 <select required onChange={(e) => this.selectDegreeChanged(e)}
                                         value={this.props.selectName ? this.props.selectName : '' }
                                 >
                                     <option key={'- Select -'}>- Select -</option>
+
                                     {optionsDegree}
                                 </select>
                             </div>

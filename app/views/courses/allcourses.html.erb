@@ -16,24 +16,17 @@
           <h2 class="title">
             Corsi disponibili
           </h2>
-          <h3 class="subtitle">
-            I corsi seguiti non vengono qui visualizzati!
-          </h3>
         </div>
       </div>
     </section>
 
 
 
-
-    <%= render partial: "/per_page", locals:  {path: allcourses_path, per_page: @per_page}%>
-
-
     <div class="myColumn-lg">
       <div class="row">
         <%= react_component 'SearchItem2',  categories: @categories, last_page: @last_page, url: "/allcourses.json", per_page: @per_page%>
       </div>
-
+      <%= render partial: "/per_page", locals:  {path: allcourses_path, per_page: @per_page}%>
 
     </div>
 
