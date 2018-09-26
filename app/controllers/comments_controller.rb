@@ -17,7 +17,11 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = current_user.comments.find(params[:id])
+    if current_user.admin
+      @comment = Comment.find(params[:id])
+    else
+      @comment = current_user.comments.find(params[:id])
+    end
 
     if !@comment.destroy
       render_json_validation_error @comment
