@@ -10,7 +10,7 @@ class AllUsers extends React.Component {
     render(){
         var users = this.props.users.map((user) => {
             return(
-                <User user={user} handleSetAdmin={this.props.handleSetAdmin}/>
+                <User user={user} handleSetAdmin={this.props.handleSetAdmin} handleRemoveBlockUser={this.props.handleRemoveBlockUser} handleBlockUser={this.props.handleBlockUser}/>
             )
         });
 
