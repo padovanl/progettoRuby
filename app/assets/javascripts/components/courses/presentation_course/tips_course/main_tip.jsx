@@ -6,7 +6,9 @@ class MainTip extends React.Component {
     render(){
         return(
             <div>
-                <BodyTip course_id={this.props.course_id} user_id={this.props.user_id} />
+                <BodyTip course_id={this.props.course_id}
+                         user_id={this.props.user_id}
+                         details_follow_course={this.props.details_follow_course}/>
             </div>
         )
     }

@@ -1,5 +1,4 @@
 <% content_for :title, "Courses" %>
-
 <br>
 <div>
   <section class="hero is-small">
@@ -15,7 +14,7 @@
           <%= react_component('TeacherSubtitle', {teacher: @course_details['current_teacher']}) %>
         </div>
         <h6>
-          <%= react_component('SurveyButton', {course_id: params['id'], user_id: current_user[:id].to_s}) %>
+          <%= react_component('SurveyButton', {course_id: params['id'], user_id: current_user[:id].to_s, details_follow_course: @course_details['details_follow_course']}) %>
         </h6>
       </div>
     </div>
@@ -52,10 +51,10 @@
             </div>
           </section>
           <section id="rauchbier" class="tab-panel">
-            <%= react_component('MainQuestion', {course_id: params['id'], user_id: current_user[:id].to_s}) %>
+            <%= react_component('MainQuestion', {course_id: params['id'], user_id: current_user[:id].to_s, details_follow_course: @course_details['details_follow_course']}) %>
           </section>
           <section id="dunkles" class="tab-panel">
-            <%= react_component('MainTip', {course_id: params['id'], user_id: current_user[:id].to_s}) %>
+            <%= react_component('MainTip', {course_id: params['id'], user_id: current_user[:id].to_s, details_follow_course: @course_details['details_follow_course']}) %>
           </section>
           <section id="history_teachers" class="tab-panel">
             <br />

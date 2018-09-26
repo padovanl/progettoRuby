@@ -1,4 +1,3 @@
-
 class DocumentsPage extends React.Component {
     constructor(props) {
         super(props);
@@ -26,6 +25,8 @@ class DocumentsPage extends React.Component {
         });
     }
 
+    // effetua la ricerca per il testo inserito, viene preson in considerazione
+    // il nome del file e i tag collegati
     handleChangeSearch(event) {
         this.setState({search_string: event.target.value});
         this.fetchDocuments(this.state.activeTabIndex, event.target.value);
@@ -39,20 +40,19 @@ class DocumentsPage extends React.Component {
         this.setState({adding_doc: false, search_string: ""});
     }
 
-    // Toggle currently active tab
+    // diattivo la tab attualmente in uso e visualizzo i documenti
+    // per la nuova tab
     handleTabClick(tabIndex) {
         if (tabIndex !== this.state.activeTabIndex) {
-            this.fetchDocuments(tabIndex)
+            this.fetchDocuments(tabIndex);
             this.setState({
                 search_string: ""
             })
         }
     }
 
-    activeModal(link){
-        console.log("afadasdasdads")
-        this.setState({modalIsActive: true})
-        this.setState({linkReport: link})
+    activeModal(link) {
+        this.setState({modalIsActive: true, linkReport: link});
     }
 
     disableModal() {
@@ -61,38 +61,45 @@ class DocumentsPage extends React.Component {
 
 
     render() {
-        const {current_user, current_user_avatar, course_id, course_name} = this.props;
-        const { data, adding_doc, activeTabIndex } = this.state;
-        const activeModal = this.activeModal
+        const { current_user, current_user_avatar, course_id, course_name } = this.props;
+        const { data, adding_doc, activeTabIndex, search_string  } = this.state;
+        const activeModal = this.activeModal;
 
         let documents_list = data.map(function (doc) {
-            return (<DocumentFrame key={doc.id} document={doc} current_user={current_user} course_id={course_id} activeModal = {activeModal}></DocumentFrame>)
+            return (<DocumentFrame key={doc.id}
+                                   document={doc}
+                                   current_user={current_user}
+                                   course_id={course_id}
+                                   activeModal={activeModal} />)
         });
 
         return (
             <div>
                 <div className="container resources-thread">
                     <h3 class="title" id="course-name-second">
-                        <a href={ '/courses/' + course_id }>{ course_name }</a>
+                        <a href={'/courses/' + course_id}>{ course_name }</a>
                     </h3>
 
                     <div className="level is-mobile">
 
                         <div className="level-left" id="search-input">
                             <div className="control">
-                                <input className="input is-medium is-rounded"  onChange={(e) => this.handleChangeSearch(e)}
-                                       type="email" placeholder="Cerca" value={this.state.search_string} />
+                                <input className="input is-medium is-rounded"
+                                       onChange={(e) => this.handleChangeSearch(e)}
+                                       type="email" placeholder="Cerca" value={ search_string }/>
                             </div>
                         </div>
-                        <div className="level-item"><div id="style-2" className="tabs is-centered">
-                            <ul>
-                                <li className={activeTabIndex === 0 ? "is-active" : ""}><a
-                                    onClick={() => this.handleTabClick(0)}><strong>Tutti i file</strong></a></li>
-                                <li className={activeTabIndex === 1 ? "is-active" : ""}><a
-                                    onClick={() => this.handleTabClick(1)}><strong>I miei file</strong></a></li>
-                            </ul>
+                        <div className="level-item">
+                            <div id="style-2" className="tabs is-centered">
+                                <ul>
+                                    <li className={activeTabIndex === 0 ? "is-active" : ""}><a
+                                        onClick={() => this.handleTabClick(0)}><strong>Tutti i file</strong></a></li>
+                                    <li className={activeTabIndex === 1 ? "is-active" : ""}><a
+                                        onClick={() => this.handleTabClick(1)}><strong>I miei file</strong></a></li>
+                                </ul>
 
-                        </div></div>
+                            </div>
+                        </div>
 
                     </div>
 
@@ -104,17 +111,17 @@ class DocumentsPage extends React.Component {
                     </div>
 
                     <div className={"modal " + (this.state.modalIsActive ? "is-active" : "")}>
-                        <div className="modal-background" onClick={this.disableModal.bind(this)} />
+                        <div className="modal-background" onClick={this.disableModal.bind(this)}/>
 
-                        <ReportModal  linkReport={this.state.linkReport}
-                                      disableModal={this.disableModal.bind(this)} title={"Segnalazione Documento"}/>
+                        <ReportModal linkReport={this.state.linkReport}
+                                     disableModal={this.disableModal.bind(this)} title={"Segnalazione Documento"}/>
 
                         <button className="modal-close is-large" aria-label="close"
-                                onClick={this.disableModal.bind(this)} />
+                                onClick={this.disableModal.bind(this)}/>
                     </div>
 
                     <div className={"modal " + (adding_doc ? "is-active" : "")}>
-                        <div className="modal-background" onClick={this.closeNewDocModal.bind(this)} />
+                        <div className="modal-background" onClick={this.closeNewDocModal.bind(this)}/>
 
                         <NewDoc closeModal={this.closeNewDocModal.bind(this)}
                                 addNewDoc={this.addNewDoc.bind(this)}
@@ -123,7 +130,7 @@ class DocumentsPage extends React.Component {
                                 current_user_avatar={current_user_avatar}/>
 
                         <button className="modal-close is-large" aria-label="close"
-                                onClick={this.closeNewDocModal.bind(this)} />
+                                onClick={this.closeNewDocModal.bind(this)}/>
                     </div>
 
                     <figure className="add-button" onClick={this.viewNewDocModal.bind(this)}>
@@ -138,25 +145,24 @@ class DocumentsPage extends React.Component {
     }
 
     componentDidMount() {
-        const {activeTabIndex} = this.state
-        this.fetchDocuments(activeTabIndex)
+        this.fetchDocuments(this.state.activeTabIndex)
     }
 
-    fetchDocuments(activeTabIndex, search_string='') {
-        const {course_id, current_user} = this.props
+    fetchDocuments(activeTabIndex, search_string = '') {
+        const {course_id, current_user} = this.props;
 
-        URL = '/documents?course_id=' + course_id
+        let URL = '/documents?course_id=' + course_id;
         if (activeTabIndex === 1)
-          URL += '&user_id=' + current_user.id
+            URL += '&user_id=' + current_user.id;
 
         if (search_string !== '')
-            URL += '&search_string=' + search_string
+            URL += '&search_string=' + search_string;
 
         if (this.state.document_id !== null)
-            URL += '&document_id=' + this.state.document_id
+            URL += '&document_id=' + this.state.document_id;
 
         fetch(URL, {
-          credentials: 'same-origin'
+            credentials: 'same-origin'
         })
         .then(response => response.json())
         .then(data => this.setState({

@@ -4,12 +4,12 @@ class BodyQuestion extends React.Component {
         super(props);
         this.state = {
             questions: [],
-            followed: '',
+            followed: this.props.details_follow_course,
             show_details: false,
             show_quotes: false,
             content_question: '',
             modalIsActive: false,
-            linkReport: ''
+            linkReport: '',
         };
 
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -24,9 +24,6 @@ class BodyQuestion extends React.Component {
         this.handleQuoteDown = this.handleQuoteDown.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.activeModal = this.activeModal.bind(this)
-
-
-
 
     }
 
@@ -46,19 +43,14 @@ class BodyQuestion extends React.Component {
         let linkGet =  '/courses/' + this.props.course_id + '/questions';
         fetch(linkGet, {credentials: "same-origin"})
             .then((response) => {return response.json()})
-            .then((data) => {this.setState({ questions: data }) });
-    }
-
-    getData2() {
-        let linkGet =  '/api/v1/users/' + this.props.user_id + '/user_courses/' + this.props.course_id + '.json';
-        fetch(linkGet, {credentials: "same-origin"})
-            .then((response) => {return response.json()})
-            .then((data) => {this.setState({ followed: data }) });
+            .then((data) => {
+                this.setState({ questions: data })
+                //this.setState({ questions: data, n_your_question: n_your_question,  n_other_question: n_other_question})
+            });
     }
 
     componentDidMount(){
         this.getData1();
-        this.getData2();
     }
 
     handleFormSubmit(course_id, user_id, question_text) {
@@ -160,12 +152,6 @@ class BodyQuestion extends React.Component {
         this.setState({
             questions: newCourseQuestion
         })
-
-        /*
-        const index = this.state.questions.findIndex((emp) => emp.id === courseQuestion.id);
-        const updatedQuestions = update(this.state.questions, {$splice: [[index, 1, question]]});  // array.splice(start, deleteCount, item1)
-        this.setState({questions: updatedQuestions});
-        */
     }
 
     handleQuoteUp(course_question_id) {
@@ -226,8 +212,12 @@ class BodyQuestion extends React.Component {
 
     render(){
 
-        const gestisci_le_tue_domande_button = <a className="button is-rounded is-warning" onClick={ () => this.handleShowDetails()}>Gestisci le tue domande</a>;
-        const gestisci_quote_button = <a className="button is-rounded is-warning" onClick={ () => this.handleShowQuotes()}>Quote domande</a>;
+        const n_your_question = this.state.questions.filter((q) => q.user_id == this.props.user_id).length;
+        const n_other_question = this.state.questions.filter((q) => q.user_id != this.props.user_id).length;
+
+        const gestisci_le_tue_domande_button = (this.state.questions.length && n_your_question > 0) ?
+            <a className="button is-rounded is-warning" onClick={ () => this.handleShowDetails()}>Gestisci le tue domande</a> : null;
+        const gestisci_quote_button = (this.state.questions.length && n_other_question > 0) ? <a className="button is-rounded is-warning" onClick={ () => this.handleShowQuotes()}>Quote domande</a> : null;
 
         return(
             <div>

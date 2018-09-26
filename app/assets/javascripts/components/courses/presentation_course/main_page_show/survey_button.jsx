@@ -2,15 +2,8 @@ class SurveyButton extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            followed: '',
+            followed: this.props.details_follow_course,
         };
-    }
-
-    getDataFollowed() {
-        let linkGet =  '/api/v1/users/' + this.props.user_id + '/user_courses/' + this.props.course_id + '.json';
-        fetch(linkGet, { credentials: 'same-origin' })
-            .then((response) => {return response.json()})
-            .then((data) => {this.setState({ followed: data }) });
     }
 
     followCourse(event) {
@@ -31,7 +24,6 @@ class SurveyButton extends React.Component {
                 followed.follow = true;
                 this.setState({followed})
             });
-        //this.setState({...this.state.followed, follow: true})
     }
 
     unfollowCourse(event) {
@@ -47,14 +39,9 @@ class SurveyButton extends React.Component {
             body: data } )
             .then((response) => {return response.json()});
 
-        //this.setState({...this.state.followed.follow, follow: false})
-        let followed = {...this.state.followed}    //creating copy of object
-        followed.follow = false;                        //updating value
+        let followed = {...this.state.followed}
+        followed.follow = false;
         this.setState({followed});
-    }
-
-    componentDidMount(){
-        this.getDataFollowed();
     }
 
     render(){

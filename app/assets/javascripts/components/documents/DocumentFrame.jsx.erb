@@ -11,10 +11,10 @@ class DocumentFrame extends React.Component {
     }
 
     render() {
-        const { document, view_doc_menu } = this.state
-        const { current_user, course_id }  = this.props
+        const { document } = this.state;
+        const { current_user, course_id }  = this.props;
         const linkReport = '/report_document/' + document.id + '?course_id=' + course_id;
-        let can_delete_post = (document.user.id === current_user.id) ? true : false;
+        let can_delete_post = (document.user.id === current_user.id);
 
 
         if (this.state.view_doc)
@@ -43,7 +43,7 @@ class DocumentFrame extends React.Component {
                                                   <div className="columns is-mobile">
                                                     <div className="column is-two-fifths">
                                                     <span className="icon">
-                                                    <i className="fas fa-download"></i>
+                                                    <i className="fas fa-download" />
                                                     </span>
                                                       </div>
                                                   <div className="column">
@@ -58,7 +58,7 @@ class DocumentFrame extends React.Component {
                                           <div className="columns is-mobile">
                                               <div className="column is-two-fifths">
                                                     <span className="icon">
-                                                    <i className="fas fa-bug"></i>
+                                                    <i className="fas fa-bug" />
                                                     </span>
                                               </div>
                                               <div className="column">
@@ -72,7 +72,7 @@ class DocumentFrame extends React.Component {
                                           <div className="columns is-mobile">
                                               <div className="column is-two-fifths">
                                                     <span className="icon">
-                                                    <i className="far fa-trash-alt"></i>
+                                                    <i className="far fa-trash-alt" />
                                                     </span>
                                               </div>
                                               <div className="column">
@@ -87,11 +87,11 @@ class DocumentFrame extends React.Component {
                   </article>
                     { (document.tags.length > 0) ? <div className="tag-content" id="style-1">
                         { document.tags.map(function (tag) {
-                            return (<span className="tag is-info is-rounded"> {tag.name} </span>)
+                            return (<span className="tag is-info is-rounded"> { tag.name } </span>)
                         }) }
                     </div> : ""}
                 </div>
-            </div>)
+            </div>);
         else
             return null
     }
@@ -104,99 +104,26 @@ class DocumentFrame extends React.Component {
         var myHeaders = new Headers();
         myHeaders.append('X-CSRF-Token', Rails.csrfToken());
 
-        fetch(`/documents/${document_id}?course_id=${course_id}`, {
+        fetch(`/documents/${ document_id }?course_id=${ course_id }`, {
             method: 'DELETE',
             headers: myHeaders,
             credentials: 'same-origin'
         })
-            .then((response) => response)
-            .then((response) => {
-                this.setState({
-                    view_doc: false
-                })
+        .then((response) => response)
+        .then((response) => {
+            this.setState({
+                view_doc: false
             })
-            .catch((error) => {
-                console.error(error);
-            });
+        })
+        .catch((error) => console.error(error));
     }
 
     viewMenuModal() {
-        this.setState({view_doc_menu: true});
+        this.setState({ view_doc_menu: true });
     }
 
     closeMenuModal() {
-        this.setState({view_doc_menu: false});
+        this.setState({ view_doc_menu: false });
     }
 
 }
-
-/*
-class DocumentFrameOld extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            document: this.props.document,
-            view_doc: true
-        };
-    }
-
-    render() {
-        const { document } = this.state
-        const { current_user }  = this.props
-        let can_delete_post = (document.user.id === current_user.id) ? true : false;
-
-        if (this.state.view_doc)
-          return (<div className="tile is-parent"><article className="tile is-child box">
-              <a href={ document.path } target="_blank">
-                <div className="thumbnail">
-
-                      <img src={ document.file_url } className="portrait" alt="Image" />
-
-                </div>
-              </a>
-
-              <article className="media">
-                  <div className="media-content">
-                      <p className="resource-name"><strong> { document.filename } </strong></p>
-                      <p className="content-date">{(new  Date(Date.parse(document.created_at))).toLocaleDateString('it-IT', options)}</p>
-                      <p>#subtitle #cose</p>
-                  </div>
-                  <div className="media-right">
-                      <DropMenu cancella={ this.deleteDocument.bind(this) } id={document.id} can_delete={can_delete_post} risorsa="file"/>
-                  </div>
-              </article>
-
-
-
-          </article></div>)
-        else
-            return ''
-    }
-
-    deleteDocument(event, document_id) {
-        event.preventDefault();
-        if(this.state.document.user.id !== this.props.current_user.id)
-            return;
-
-        var myHeaders = new Headers();
-        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
-
-        fetch(`/documents/${post_id}`, {
-            method: 'DELETE',
-            headers: myHeaders,
-            credentials: 'same-origin'
-        })
-            .then((response) => response)
-            .then((response) => {
-                this.setState({
-                    view_post: false
-                })
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    }
-}
-
-*/

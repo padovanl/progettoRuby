@@ -4,7 +4,7 @@ class BodyTip extends React.Component {
         super(props);
         this.state = {
             tips: [],
-            followed: '',
+            followed: this.props.details_follow_course,
             show_details: false,
             content_tip: '',
             modalIsActive: false,
@@ -40,16 +40,9 @@ class BodyTip extends React.Component {
             .then((data) => {this.setState({ tips: data }) });
     }
 
-    getData2() {
-        let linkGet =  '/api/v1/users/' + this.props.user_id + '/user_courses/' + this.props.course_id + '.json';
-        fetch(linkGet, {credentials: "same-origin"})
-            .then((response) => {return response.json()})
-            .then((data) => {this.setState({ followed: data }) });
-    }
 
     componentDidMount(){
         this.getData1();
-        this.getData2();
     }
 
     handleFormSubmit(course_id, user_id, tip_text) {
@@ -168,11 +161,13 @@ class BodyTip extends React.Component {
 
     render(){
 
-        const gestisci_i_tuoi_tips_button = <td><a className="button is-rounded is-warning" onClick={ () => this.handleShowDetails()}>Gestisci i tuoi suggerimenti</a></td>;
+        const n_your_tips = this.state.tips.filter((q) => q.user_id == this.props.user_id).length;
+
+        const gestisci_i_tuoi_tips_button = (this.state.tips.length && n_your_tips > 0) ? <a className="button is-rounded is-warning" onClick={ () => this.handleShowDetails()}>Gestisci i tuoi suggerimenti</a> : null;
 
         return(
             <div>
-                { this.state.followed && this.state.followed.passed ? <table className="table"><tbody><tr>{gestisci_i_tuoi_tips_button}</tr></tbody></table> : null}
+                { this.state.followed && this.state.followed.passed ? <div className="has-text-left link-resources"> {gestisci_i_tuoi_tips_button}</div> : null}
                 <AllTips tips={this.state.tips}
                               course_id={this.props.course_id}
                               user_id={this.props.user_id}
