@@ -4,7 +4,7 @@ class BodyQuestion extends React.Component {
         super(props);
         this.state = {
             questions: [],
-            followed: '',
+            followed: this.props.details_follow_course,
             show_details: false,
             show_quotes: false,
             content_question: '',
@@ -49,16 +49,8 @@ class BodyQuestion extends React.Component {
             .then((data) => {this.setState({ questions: data }) });
     }
 
-    getData2() {
-        let linkGet =  '/api/v1/users/' + this.props.user_id + '/user_courses/' + this.props.course_id + '.json';
-        fetch(linkGet, {credentials: "same-origin"})
-            .then((response) => {return response.json()})
-            .then((data) => {this.setState({ followed: data }) });
-    }
-
     componentDidMount(){
         this.getData1();
-        this.getData2();
     }
 
     handleFormSubmit(course_id, user_id, question_text) {

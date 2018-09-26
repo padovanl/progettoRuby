@@ -54,7 +54,7 @@ class CoursesController < ApplicationController
    end
 
   def show
-    @course_details = Course.get_all_courses_details(params[:id])
+    @course_details = Course.get_all_courses_details(params[:id], current_user)
   end
 
   private

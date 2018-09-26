@@ -173,7 +173,7 @@ class Course < ApplicationRecord
 
 
 
-  def self.get_all_courses_details(course_id)
+  def self.get_all_courses_details(course_id, current_user)
 
     course_details = Hash.new
 
@@ -188,11 +188,13 @@ class Course < ApplicationRecord
 
     mapping_statistiche = get_statistical_informations(course_id)
 
+
     course_details['course_name'] = course.name
     course_details['degree_course_name'] = degree_course_name['name']
     course_details['teacher_history'] = teacher_history
     course_details['current_teacher'] = teacher_history.first[:teacher]
     course_details['mapping_statistiche'] = mapping_statistiche
+    course_details['details_follow_course'] = current_user.user_courses.where(:course_id => course_id).first
 
     return course_details
 

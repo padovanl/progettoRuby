@@ -6,7 +6,9 @@ class MainQuestion extends React.Component {
     render(){
         return(
             <div>
-                <BodyQuestion course_id={this.props.course_id} user_id={this.props.user_id} />
+                <BodyQuestion course_id={this.props.course_id}
+                              user_id={this.props.user_id}
+                              details_follow_course={this.props.details_follow_course} />
             </div>
         )
     }

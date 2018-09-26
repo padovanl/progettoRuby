@@ -4,7 +4,7 @@ class BodyTip extends React.Component {
         super(props);
         this.state = {
             tips: [],
-            followed: '',
+            followed: this.props.details_follow_course,
             show_details: false,
             content_tip: '',
             modalIsActive: false,
@@ -40,16 +40,9 @@ class BodyTip extends React.Component {
             .then((data) => {this.setState({ tips: data }) });
     }
 
-    getData2() {
-        let linkGet =  '/api/v1/users/' + this.props.user_id + '/user_courses/' + this.props.course_id + '.json';
-        fetch(linkGet, {credentials: "same-origin"})
-            .then((response) => {return response.json()})
-            .then((data) => {this.setState({ followed: data }) });
-    }
 
     componentDidMount(){
         this.getData1();
-        this.getData2();
     }
 
     handleFormSubmit(course_id, user_id, tip_text) {
