@@ -1,4 +1,3 @@
-
 class BodyQuestion extends React.Component {
 
     constructor(props) {
@@ -8,7 +7,9 @@ class BodyQuestion extends React.Component {
             followed: '',
             show_details: false,
             show_quotes: false,
-            content_question: ''
+            content_question: '',
+            modalIsActive: false,
+            linkReport: ''
         };
 
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -22,6 +23,8 @@ class BodyQuestion extends React.Component {
         this.handleQuoteUp = this.handleQuoteUp.bind(this)
         this.handleQuoteDown = this.handleQuoteDown.bind(this)
         this.handleChange = this.handleChange.bind(this)
+        this.activeModal = this.activeModal.bind(this)
+
 
 
 
@@ -41,14 +44,14 @@ class BodyQuestion extends React.Component {
 
     getData1() {
         let linkGet =  '/courses/' + this.props.course_id + '/questions';
-        fetch(linkGet)
+        fetch(linkGet, {credentials: "same-origin"})
             .then((response) => {return response.json()})
             .then((data) => {this.setState({ questions: data }) });
     }
 
     getData2() {
         let linkGet =  '/api/v1/users/' + this.props.user_id + '/user_courses/' + this.props.course_id + '.json';
-        fetch(linkGet)
+        fetch(linkGet, {credentials: "same-origin"})
             .then((response) => {return response.json()})
             .then((data) => {this.setState({ followed: data }) });
     }
@@ -59,15 +62,16 @@ class BodyQuestion extends React.Component {
     }
 
     handleFormSubmit(course_id, user_id, question_text) {
+        var myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+        myHeaders.append('Content-Type', 'application/json');
         let body = JSON.stringify({courseQuestion: {course_id: course_id, user_id: user_id, question: question_text}});
         // /courses/:course_id/questions
         let linkNew = '/courses/' + this.props.course_id + '/questions';
         if (question_text != '') {
             fetch(linkNew, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: myHeaders,
                 body: body,
                 credentials: 'same-origin'
             }).then((response) => {
@@ -97,15 +101,15 @@ class BodyQuestion extends React.Component {
     }
 
     handleDelete(id){
-        // /courses/:course_id/questions/:id(.:format)
-        let linkDelete = '/courses/' + this.props.course_id + '/questions/' + id
+        var myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+        myHeaders.append('Content-Type', 'application/json');        let linkDelete = '/courses/' + this.props.course_id + '/questions/' + id
         if(confirm('Sei sicuro di voler eliminare questa domanda?')){
             fetch(linkDelete,
                 {
                     method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
+                    headers: myHeaders,
+                    credentials: "same-origin"
                 }).then((response) => {
                 if (response.ok){
                     this.deleteCourseQuestion(id)
@@ -122,8 +126,9 @@ class BodyQuestion extends React.Component {
     }
 
     handleUpdate(question_text, id){
-        //console.log(edit_question.id);
-        let body = JSON.stringify({courseQuestion: {question: question_text}});
+        var myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+        myHeaders.append('Content-Type', 'application/json');        let body = JSON.stringify({courseQuestion: {question: question_text}});
         let linkUpdate = '/courses/' + this.props.course_id + '/questions/' + id
         if(confirm('Sei sicuro di voler modificare questa domanda?')) {
             if (question_text != '') {
@@ -132,9 +137,7 @@ class BodyQuestion extends React.Component {
                         method: 'PUT',
                         credentials: 'same-origin',
                         body: body,
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
+                        headers: myHeaders
                     }).then((response) => {
                     return response.json()
                 })
@@ -171,15 +174,16 @@ class BodyQuestion extends React.Component {
 
     handleQuoteUp(course_question_id) {
         let body = JSON.stringify({frequencyQuestion: {course_question_id: course_question_id, user_id: this.props.user_id}});
-        // /courses/:course_id/questions/:question_id/frequency_questions(.:format)
+        var myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+        myHeaders.append('Content-Type', 'application/json');
         let linkNew = '/courses/' + this.props.course_id + '/questions/' + course_question_id + '/frequency_questions';
 
         fetch(linkNew, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: myHeaders,
             body: body,
+            credentials: "same-origin"
         }).then((response) => {
             return response.json()
         })
@@ -193,17 +197,16 @@ class BodyQuestion extends React.Component {
     }
 
     handleQuoteDown(course_question_id, frequency_question_id){
-        // /courses/:course_id/questions/:id(.:format)
-        console.log("question id: ", course_question_id)
-        console.log("frequency_question_id: ", frequency_question_id)
-
+        var myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+        myHeaders.append('Content-Type', 'application/json');
         let linkDelete = '/courses/' + this.props.course_id + '/questions/' + course_question_id + '/frequency_questions/' + frequency_question_id;
+
         fetch(linkDelete,
             {
                 method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
+                headers: myHeaders,
+                credentials: "same-origin"
             }).then((response) => {
             return response.json()
         })
@@ -217,17 +220,25 @@ class BodyQuestion extends React.Component {
             })
     }
 
+    activeModal(link){
+        console.log("afadasdasdads")
+        this.setState({modalIsActive: true})
+        this.setState({linkReport: link})
+    }
+
+    disableModal() {
+        this.setState({modalIsActive: false});
+    }
+
     render(){
-        //console.log(this.state.followed.length > 0 ? this.state.followed[0].passed : 'Items not loaded yet');        //this.state.tubedata.length > 0 && this.state.tubedata[0].id
 
-        const gestisci_le_tue_domande_button = <td><a className="button is-rounded is-warning" onClick={ () => this.handleShowDetails()}>Gestisci le tue domande</a></td>;
-
-        const gestisci_quote_button = <td><a className="button is-rounded is-warning" onClick={ () => this.handleShowQuotes()}>Quote domande</a></td>;
-
+        const gestisci_le_tue_domande_button = <a className="button is-rounded is-warning" onClick={ () => this.handleShowDetails()}>Gestisci le tue domande</a>;
+        const gestisci_quote_button = <a className="button is-rounded is-warning" onClick={ () => this.handleShowQuotes()}>Quote domande</a>;
 
         return(
             <div>
-                { this.state.followed.length > 0 && this.state.followed[0].passed ? <table className="table"><tbody><tr>{gestisci_le_tue_domande_button}{gestisci_quote_button}</tr></tbody></table> : null}
+                { this.state.followed && this.state.followed.passed ?
+                    <div className="has-text-left link-resources">{gestisci_le_tue_domande_button} <span> </span>{gestisci_quote_button}</div> : null}
                 <AllQuestions questions={this.state.questions}
                               course_id={this.props.course_id}
                               user_id={this.props.user_id}
@@ -236,11 +247,12 @@ class BodyQuestion extends React.Component {
                               show_details = {this.state.show_details}
                               show_quotes = {this.state.show_quotes}
                               handleQuoteUp = {this.handleQuoteUp}
-                              handleQuoteDown = {this.handleQuoteDown} />
+                              handleQuoteDown = {this.handleQuoteDown}
+                              activeModal = {this.activeModal}/>
                 <br/>
                 <table className="table is-fullwidth">
                     <tbody>
-                    { this.state.followed.length > 0 && this.state.followed[0].passed ?
+                    { this.state.followed && this.state.followed.passed ?
                         <NewQuestionCourse course_id={this.props.course_id}
                                            user_id={this.props.user_id}
                                            handleFormSubmit={this.handleFormSubmit}
@@ -248,6 +260,15 @@ class BodyQuestion extends React.Component {
                                            handleChange={this.handleChange} /> : null}
                     </tbody>
                 </table>
+                <div className={"modal " + (this.state.modalIsActive ? "is-active" : "")}>
+                    <div className="modal-background" onClick={this.disableModal.bind(this)} />
+
+                    <ReportModal  linkReport={this.state.linkReport}
+                                  disableModal={this.disableModal.bind(this)} title={"Segnalazione domanda"}/>
+
+                    <button className="modal-close is-large" aria-label="close"
+                            onClick={this.disableModal.bind(this)} />
+                </div>
             </div>
         )
     }

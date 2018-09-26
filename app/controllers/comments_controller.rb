@@ -1,10 +1,11 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   after_action :broadcast_to_channel, only: [:create, :destroy]
-  before_action :set_course, only: [:create]
-  before_action :user_follow_course?, only: [:create]
+  after_action ->(type_object) { destroy_report_and_notification('Comment') }, only: [:destroy]
 
   def create
+    @course = Course.find(comment_params[:course_id])
+    #user_follow_course?
     @comment = current_user.comments.new(comment_params)
 
     if !@comment.save
@@ -23,19 +24,17 @@ class CommentsController < ApplicationController
       return
     end
 
-    Report.where(:reportable_id => params[:id]).where(:reportable_type => "Comment").destroy_all
     head :no_content
   end
 
   def reportComment
-
-    report = Report.where(:reportable_id => params[:id]).where(:reportable_type => "Comment").first
-    if (report != nil)
-      UserReport.create!(user_id: current_user.id, report_id: report.id)
-    else
-      comment = Comment.find(params[:id])
-      r = Report.create(action: "È stato segnalato un post", reportable: comment)
-      UserReport.create!(user_id: current_user.id, report_id: r.id)
+    Report.send_report(params[:id], current_user.id,
+                       params[:reportReason][:reason],
+                       Comment.find(params[:id]),
+                       "Comment",
+                       "È stato segnalato un")
+    respond_to do |format|
+      format.json { head :ok }
     end
   end
 

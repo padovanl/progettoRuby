@@ -5,6 +5,13 @@ class PublicationsController < ApplicationController
     @course = Course.find(params[:id])
     user_follow_course?
     @current_user_avatar = get_avatar_image
+
+    if params['post_id']
+      @post = Post.find(params['post_id'])
+    end
+    if params['comment_id']
+      @comment = Comment.find(params['comment_id'])
+    end
   end
 
   private

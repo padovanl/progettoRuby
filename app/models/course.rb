@@ -159,13 +159,9 @@ class Course < ApplicationRecord
     .references(:teacher_courses).select(:year).order(:year).limit(1)
   }
 
-
   def self.get_names
     select(:name).order(:name)
   end
-
-
-
 
   def self.allcourses_mycourses(type, params, current_user)
     if type === "allcourses"
@@ -177,6 +173,32 @@ class Course < ApplicationRecord
 
 
 
+  def self.get_all_courses_details(course_id)
+
+    course_details = Hash.new
+
+    course = Course.find(course_id)
+    degree_course_name = course.degree_course.attributes.slice("name")
+
+    if (!course.teacher_courses.order(year: :desc).empty?)
+      teacher_history = get_history_teachers(course)
+    else
+      current_teacher = nil
+    end
+
+    mapping_statistiche = get_statistical_informations(course_id)
+
+    course_details['course_name'] = course.name
+    course_details['degree_course_name'] = degree_course_name['name']
+    course_details['teacher_history'] = teacher_history
+    course_details['current_teacher'] = teacher_history.first[:teacher]
+    course_details['mapping_statistiche'] = mapping_statistiche
+
+    return course_details
+
+  end
+
+  private
 
   def self.get_statistical_informations(course_id)
 
@@ -184,9 +206,8 @@ class Course < ApplicationRecord
 
     lista_giudizi = ['insufficiente', 'sufficiente','discreto','buono','molto buono' ];
     mapping_statistiche = Hash.new
+
     if record_collection.size > 0
-
-
       passed_number = record_collection.collect.size
       course_rate = record_collection.collect {|i| i.course_rate}
       material_quality = record_collection.collect {|i| i.material_quality}
@@ -220,13 +241,11 @@ class Course < ApplicationRecord
   end
 
   def self.get_history_teachers(course)
-    arr = Array.new
-    array_teacher_courses = course.teacher_courses.order(year: :desc).distinct.to_a
-    array_teacher_courses.each do |teacher_course|
-      arr.append(teacher_course.teacher)
-    end
-    return arr
+    teacher_courses = course.teacher_courses.order(year: :desc)
+    teacher_history = ActiveModel::Serializer::CollectionSerializer
+        .new(teacher_courses, each_serializer: TeacherCourseSerializer)
+        .as_json(:include => {:teacher =>{:only => [:name, :surname, :link_cv]} } )
+    return teacher_history
   end
-
 
 end

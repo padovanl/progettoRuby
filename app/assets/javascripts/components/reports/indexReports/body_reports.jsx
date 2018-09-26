@@ -41,15 +41,15 @@ class BodyReports extends React.Component {
 
     handleMarkAndRedirect(redirect_url, id){
         console.log(redirect_url)
-        // /api/v1/users/:user_id/user_courses/:id(.:format)
         let linkUpdate = '/mark_as_read_report/' + id;
+        var myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+        myHeaders.append('Content-Type', 'application/json');
         fetch(linkUpdate,
             {
                 method: 'PUT',
                 credentials: 'same-origin',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
+                headers: myHeaders
             }).then((response) => {
             return response.json()
         })
@@ -66,13 +66,14 @@ class BodyReports extends React.Component {
         // /courses/:course_id/questions/:id(.:format)
         let linkDelete = '/reports/' + id
         if(confirm('Confermi di aver risolto questa segnalazione?')){
+            var myHeaders = new Headers();
+            myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+            myHeaders.append('Content-Type', 'application/json');
             fetch(linkDelete,
                 {
                     method: 'DELETE',
                     credentials: 'same-origin',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
+                    headers: myHeaders
                 }).then((response) => {
                 if (response.ok){
                     console.log("risposta ok")

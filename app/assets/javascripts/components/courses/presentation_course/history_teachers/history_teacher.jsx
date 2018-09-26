@@ -7,7 +7,8 @@ class HistoryTeacher extends React.Component{
     render(){
         return(
             <tr key={this.props.teacher.teacher_id}>
-                <td className="has-text-centered"><a target="_blank" href={this.props.teacher.link_cv}>{this.props.teacher.name} {this.props.teacher.surname}</a></td>
+                <td><a target="_blank" href={this.props.teacher.teacher.link_cv}>{this.props.teacher.teacher.name} {this.props.teacher.teacher.surname}</a></td>
+                <td>{this.props.teacher.year}</td>
             </tr>
         )
     }

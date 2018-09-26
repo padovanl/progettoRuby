@@ -1,6 +1,7 @@
 class RepsController < ApplicationController
   before_action :authenticate_user!
-  after_action :broadcast_notification, only: [:create]
+  after_action :broadcast_notification, only: [:create, :destroy]
+  after_action ->(type_object) { destroy_report_and_notification('Rep') }, only: [:destroy]
 
   def index
   #  if validate_per_page
@@ -35,13 +36,8 @@ class RepsController < ApplicationController
       render_json_validation_error rep
       return
     end
-    #notifica
-    @course = Course.find(course_id)
-    #(@course.users.uniq - [current_user]).each do |user|
-    @course.users.uniq.each do |user|
-      Notification.create(recipient: user, actor: current_user, action: "", notifiable: rep)
-    end
 
+    Notification.send_notifications(course_id, current_user, "", rep)
     render json: rep, :include => {:course => {:only => :name}, :user => {:only => [:id, :name, :image, :email, :last_sign_in_at, :current_sign_in_ip]} }, status: :created
   end
 
@@ -64,10 +60,7 @@ class RepsController < ApplicationController
       render_json_validation_error @rep
       return
     end
-    #elimina notifica ripetizione per quel corso
-    Notification.where(:notifiable_id => params[:id]).where(:notifiable_type => "Rep").destroy_all
-    Report.where(:reportable_id => params[:id]).where(:reportable_type => "Rep").destroy_all
-    ###
+
     head :no_content
   end
 
@@ -88,14 +81,13 @@ class RepsController < ApplicationController
   end
 
   def reportRep
-    rep = Rep.find(params[:id])
-    report = Report.where(:reportable_id => params[:id]).where(:reportable_type => "Rep").first
-
-    if (report != nil)
-      UserReport.create!(user_id: current_user.id, report_id: report.id)
-    else
-      r = Report.create(action: "È stata segnalata un", reportable: rep)
-      UserReport.create!(user_id: current_user.id, report_id: r.id)
+    Report.send_report(params[:id], current_user.id,
+                       params[:reportReason][:reason],
+                       Rep.find(params[:id]),
+                       "Rep",
+                       "È stata segnalata un")
+    respond_to do |format|
+      format.json { head :ok }
     end
   end
 

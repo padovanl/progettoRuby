@@ -58,6 +58,16 @@ class NewPost extends React.Component {
         document.getElementById("post_attachments").value = null;
     }
 
+    handleCloseModal(event) {
+        event.preventDefault();
+        this.setState({
+            message: '',
+            count_files: 0,
+            showError: false
+        });
+        this.props.closeModal();
+    }
+
     render() {
         return (
             <form onSubmit={ (e) => this.handleSubmit(e) } className="modal-card">
@@ -93,9 +103,14 @@ class NewPost extends React.Component {
                                     </p>
                                     <input type="hidden" name="post[course_id]" value={this.props.course_id}/>
                                 </div>
-                                <button className="button is-medium submit-button" type="submit" name="commit">
-                                    Salva
-                                </button>
+                                <div className="modal-buttons">
+                                    <button className="button submit-button is-info is-rounded" type="submit" name="commit">
+                                        Salva
+                                    </button>
+                                    <button className="button submit-button is-rounded" onClick={(e) => this.handleCloseModal(e)}>
+                                        Annulla
+                                    </button>
+                                </div>
                             </div>
                         </article>
 

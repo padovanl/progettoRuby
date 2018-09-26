@@ -17,8 +17,44 @@ module UtilFunction
   end
 
   def broadcast_notification
-    notification = Notification.where(recipient: current_user).where("updated_at = created_at").unread
-    ActionCable.server.broadcast 'notification', notification
+    notification_len = Notification.where(recipient: current_user).where("updated_at = created_at").order(created_at: :desc).unread.size
+    notification = Notification.order(created_at: :desc).where(recipient: current_user).unread.limit(3)
+    notification = ActiveModel::Serializer::CollectionSerializer
+                       .new(notification, each_serializer: NotificationSerializer)
+                       .as_json(:include => {:actor => {:only => [:id, :email, :avatar_url, :name, :admin]}, :notifiable =>{} })
+    ActionCable.server.broadcast 'notification', { length: notification_len, notifications: notification }
   end
 
+  def user_compile_survey?
+    #byebug
+    if request.format.html?
+      if UserCourse.where(user_id: current_user.id, course_id:  params[:course_id], passed: true).exists?
+        #redirect_to controller: '/controllers/courses', action: 'show', id: params[:course_id]
+        #redirect_to(root_path, notice: 'Incorrect number of photos!')
+        redirect_to course_path(params[:course_id])
+        flash[:alert] = 'Questionatio già compilato'
+      end
+    end
+  end
+
+  def user_follows_course_for_survey?
+    if request.format.html?
+      if !UserCourse.where(user_id: current_user.id, course_id: params[:course_id], follow: true).exists?
+        flash[:alert] = 'Prima di compilare il questionario devi seguire il corso!'
+        redirect_to course_path(params[:course_id])
+      end
+    end
+  end
+end
+
+def destroy_report_comment_of_post
+  post = Post.find(params[:id])
+  post.comments.each do |comment|
+    Report.where(:reportable_id => comment.id).where(:reportable_type => 'Comment').destroy_all
+  end
+end
+
+def destroy_report_and_notification(type_object)
+  Notification.where(:notifiable_id => params[:id]).where(:notifiable_type => type_object).destroy_all
+  Report.where(:reportable_id => params[:id]).where(:reportable_type => type_object).destroy_all
 end

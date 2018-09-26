@@ -1,6 +1,7 @@
 class ReportsController < ApplicationController
-  skip_before_action :verify_authenticity_token
+
   before_action :authenticate_user!
+  before_action :current_user_admin?
 
   def getCount
     #n = Notification.where(recipient: current_user).where(:read_at => nil).all

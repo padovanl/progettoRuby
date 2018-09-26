@@ -2,7 +2,8 @@ class DocumentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_course, only: [:index, :destroy]
   before_action :user_follow_course?, only: [:index, :destroy]
-  after_action :broadcast_notification, only: [:create]
+  after_action :broadcast_notification, only: [:create, :destroy]
+  after_action ->(type_object) { destroy_report_and_notification('Document') }, only: [:destroy]
 
   def index
     documents = Document.reduce(params).order(created_at: :desc).uniq
@@ -18,11 +19,7 @@ class DocumentsController < ApplicationController
       return
     end
 
-    course = Course.find(document_params[:course_id])
-    course.users.uniq.each do |user|
-      Notification.create!(recipient: user, actor: current_user, action: "ha condiviso un nuovo", notifiable: resource.document)
-    end
-
+    Notification.send_notifications(document_params['course_id'], current_user, "ha condiviso un nuovo", resource.document)
     render json: resource.document, include: %w(user tags), status: :created
   end
 
@@ -33,21 +30,18 @@ class DocumentsController < ApplicationController
       render_json_validation_error document
       return
     end
-    Notification.where(notifiable_id: params[:id]).where(notifiable_type: "Document").destroy_all
-    Report.where(reportable_id: params[:id]).where(reportable_type: "Document").destroy_all
 
     head :no_content
   end
 
   def reportDocument
-    document = Document.find(params[:id])
-    report = Report.where(:reportable_id => params[:id]).where(:reportable_type => "Document").first
-
-    if (report != nil)
-      UserReport.create!(user_id: current_user.id, report_id: report.id)
-    else
-      r = Report.create(action: "È stato segnalato un", reportable: document)
-      UserReport.create!(user_id: current_user.id, report_id: r.id)
+    Report.send_report(params[:id], current_user.id,
+                       params[:reportReason][:reason],
+                       Document.find(params[:id]),
+                       "Document",
+                       "È stato segnalato un")
+    respond_to do |format|
+      format.json { head :ok }
     end
   end
 

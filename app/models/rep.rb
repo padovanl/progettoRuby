@@ -28,7 +28,7 @@ class Rep < ApplicationRecord
 
   def self.send_email(current_user, content, id)
     rep = Rep.find(id)
-    CommentMailer.new_comment(rep,current_user, content).deliver_now
+    CommentMailer.new_comment(rep, current_user, content).deliver_now
   end
 
   scope :current_user_rep,   ->(user, id){ where(user_id: user.id, id: id) }

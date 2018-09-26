@@ -28,8 +28,8 @@ class NotificationsNavBarMain extends React.Component {
             });
     }
 
-    updateCountNotifications(notification){
-        this.setState({num: notification.length})
+    updateCountNotifications(notification) {
+        this.setState({num: notification.length, notifications: notification.notifications})
     }
 
 
@@ -44,14 +44,15 @@ class NotificationsNavBarMain extends React.Component {
         if (this.state.isActive == "navbar-item has-dropdown"){
             this.setState({isActive: "navbar-item has-dropdown is-active"})
             if (this.state.num > 0){
+                var myHeaders = new Headers();
+                myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+                myHeaders.append('Content-Type', 'application/json');
                 let linkUpdate = '/update_is_selected_notification';
                 fetch(linkUpdate,
                     {
                         method: 'PUT',
                         credentials: 'same-origin',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
+                        headers: myHeaders
                     }).then((response) => {
                     return response.json()
                 })

@@ -4,4 +4,28 @@ class Notification < ApplicationRecord
   belongs_to :notifiable, polymorphic: true
 
   scope :unread, -> {where read_at: nil}
+
+  scope :get_user_recent_notification, -> (current_user) {
+    where(recipient: current_user)
+        .where("updated_at = created_at")
+  }
+
+  scope :get_user_notifications, -> (current_user) {
+    order(created_at: :desc)
+        .where(recipient: current_user)
+  }
+
+  scope :notifications_page, -> (page, number) {
+        page(page)
+            .per(number)
+  }
+
+  def self.send_notifications(course_id, current_user, action, tip)
+    course = Course.find(course_id)
+    #(course.users.uniq - [current_user]).each do |user|
+    course.users.uniq.each do |user|
+      create(recipient: user, actor: current_user, action: action, notifiable: tip)
+    end
+  end
+
 end

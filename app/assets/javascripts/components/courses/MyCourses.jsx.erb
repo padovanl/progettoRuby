@@ -15,13 +15,7 @@ class MyCourses extends React.Component{
         this.buttonUnfollowClicked = this.buttonUnfollowClicked.bind(this);
     }
 
-    componentWillReceiveProps(nextProps){
- /*       console.log("IC receive props");
-        console.log("IC props courses: "+nextProps.courses);
-        console.log("IC props page: "+nextProps.page);
-        console.log("IC props last_page: "+nextProps.last_page);
-        console.log("IC props url: "+nextProps.url);
-   */ }
+
 
     updateSearch(event){
         this.setState({search: event.target.value.substr(0,20)});
@@ -61,7 +55,6 @@ class MyCourses extends React.Component{
 
         fetch(request)
             .then(function () {
-                console.log("course id 2: ", id);
                 deleteCourse(id);
             })
             .catch(error => console.log(error));
@@ -74,7 +67,6 @@ class MyCourses extends React.Component{
         event.preventDefault(); //blocca comportamento predefinito: reload pagina e cancellazione di tutto
         this.setState({event_target: event.target, courseName: event.target[1].name, courseId: event.target[1].value},
             () => this.showModal());
-        console.log("course id 1", this.state.courseId, " event", event.target[1].value)
     }
 
 
@@ -97,21 +89,23 @@ class MyCourses extends React.Component{
                     </div>);
         }
 
-
+        const divStyle = {
+            backgroundColor: 'white',
+        };
 
         let buttonNext;
         if (this.props.page !== this.props.last_page && !this.props.disabledNext && this.state.search===''){
-            buttonNext= <div className='buttonnext' onClick={() => this.props.onChangePage()}>
-                <span> Next </span> </div>
+            buttonNext= <button className='button is-rounded is-info' onClick={() => this.props.onChangePage()}>
+                <span> Next </span> </button>
         }
         else {
-            buttonNext=<div className='buttonnext disabled'>Next</div>
+            buttonNext=<button className='button is-rounded is-info disabled'>Next</button>
         }
 
         let items = filteredCourses.map((item) => {
 
             if (item.teachers.length ===0){
-                return "sedds from course "+item.id+"teachers sno ancora da fare"
+                return "seeds from course "+item.id+" teachers sono ancora da fare"
             }
 
             let teachers = item.teachers.map( teacher => {
@@ -123,24 +117,29 @@ class MyCourses extends React.Component{
             } );
 
 
+
             //bisognerebbe fare tornare direttamente dal controller l'array ordinato con limit 1 per l'anno di teacher courses (migliori prestazioni)
             return(
-                <div key={item.id} className={'box relative is-marginless'}>
-                    <div className="nested infinite-item font-size">
-                        <div><strong>Materia:</strong>  <a href={"/courses/"+item.id}>{item.name}</a></div>
+                <div key={item.id} className={'box relative is-marginless course-card'}>
+                    <div className="nested infinite-item">
+                        <h3 className="title" id="course-name-second"><a href={"/courses/"+item.id}>{item.name}</a></h3>
                         <div><strong>Livello:</strong> {item.degreet}</div>
                         <div><strong>Corso:</strong> {item.degreen}</div>
                         <div><strong>Anno:</strong> {item.year}</div>
-                        <div><strong>Professori:</strong>
+                        {/* <div><strong>Professori:</strong>
                             <courses-ol>{teachers}</courses-ol>
-                        </div>
+                        </div> */}
                     </div>
                     <div className={"absolute"}>
-                        <form onSubmit={(e)=>this.buttonUnfollowClicked(e)}>
+                        <form onSubmit={ (e)=>this.buttonUnfollowClicked(e) }>
                             <input className="input" name="user_course[course_id]" value={item.id} type="hidden" />
-                            <button name={item.name}  className="unfollow" value={ item.id}>
-                                <div>Unfollow</div>
-                            </button>
+                            <div className="grid-buttons">
+                                <a className="button is-rounded" href={ "/resources/" + item.id }>Documenti</a>
+                                <a className="button is-rounded" href={ "/publications/" + item.id }>Bacheca</a>
+                                <button name={ item.name }  className="button is-rounded is-danger" value={ item.id}>
+                                    <div>Smetti di seguire</div>
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -148,13 +147,13 @@ class MyCourses extends React.Component{
         });
 
         return(
-            <div className='myColumn-lg' id="modal">
+            <div className='myColumn-lg container' id="modal">
                 <hr className='gap'/>
                 <div className="wrapper infinite-container">{items}</div>
-                <div className='row'>
-                    {buttonNext}
-                    <input className='input-form gap' type="text"  value={this.state.search}
-                           onChange={this.updateSearch.bind(this)} placeholder="Filter courses by name"/>
+                <div className='row next-button'>
+                    { buttonNext }
+                    { /*<input className='input-form gap' type="text"  value={this.state.search}
+                           onChange={this.updateSearch.bind(this)} placeholder="Filter courses by name"/> */ }
                 </div>
 
                 <div className={"modal " + (this.state.modalState ? "is-active" : "")}>
@@ -173,8 +172,8 @@ class MyCourses extends React.Component{
                                         <br/>
                                         <span>Perché non rimani per aiutare i tuoi colleghi? :)</span>
                                     </p>
-                                    <button className="unfollow" onClick={() => this.handleUnfollow()} >
-                                        <span>Unfollow</span>
+                                    <button className="button is-danger is-rounded" onClick={() => this.handleUnfollow()} >
+                                        <span>Smetti di seguire</span>
                                     </button>
 
                                     <button className="modal-close is-large" aria-label="close"

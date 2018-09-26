@@ -3,11 +3,15 @@ class BodyHistoryTeachers extends React.Component {
     constructor(props){
         super(props);
     }
+
+    componentDidMount(){
+    }
+
     render(){
 
         return(
             <div>
-                <AllHistoryTeachers teachers={this.props.teachers} />
+                <AllHistoryTeachers teacher_history={this.props.teacher_history}/>
             </div>
         )
     }

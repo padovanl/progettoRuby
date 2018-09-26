@@ -71,16 +71,22 @@ class Post extends React.Component {
 
                                 <br/>
                                 <a className={ `button ${this.state.user_upvoted ? "is-info" : "is-light"} is-rounded upvote-button` }
-                                   onClick={() => this.toggleUpvote()}>{ `Upvote ${upvoters_count}` }</a>
+                                   onClick={ () => this.toggleUpvote()}>{ `Upvote ${upvoters_count}` }</a>
                             </div>
 
 
                             <CommentsList course_id={course_id} post_id={post.id} comments={post.comments} current_user={current_user}
-                                          current_user_avatar={current_user_avatar} deleteComment={ this.deleteComment.bind(this) }/>
+                                          current_user_avatar={current_user_avatar} deleteComment={ this.deleteComment.bind(this) }
+                                          activeModal={ this.props.activeModal } />
 
                         </div>
                         <div className="media-right">
-                            <DropMenu cancella={ this.deletePost.bind(this) } id={post.id} can_delete={can_delete_post} risorsa="post" course_id={this.state.course_id}/>
+                            <DropMenu cancella={ this.deletePost.bind(this) }
+                                      id={post.id}
+                                      can_delete={can_delete_post}
+                                      risorsa="post"
+                                      course_id={ this.state.course_id }
+                                      activeModal={ this.props.activeModal } />
                         </div>
                     </article>
 

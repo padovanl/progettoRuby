@@ -5,8 +5,8 @@ class SearchItem2 extends React.Component {
 
         this.state = {
             //degree
-            selectType: "- Select -",
-            selectName: "- Select -",
+            selectType: "",
+            selectName: "",
             //selectAdvanced: 'Name',
             degreen: '',
             degreet: '',
@@ -16,7 +16,7 @@ class SearchItem2 extends React.Component {
             courses: [],
             //next button
             page: 1,
-            disabledNext: true,
+            disabledNext: false,
             //error or advertisement
             message: '',
             //allcourses or mycourses
@@ -51,6 +51,10 @@ class SearchItem2 extends React.Component {
 
     componentWillMount(){
         this.getAllNames(this.state.category)
+    }
+
+    componentDidMount(){
+        this.getNextCourses();
     }
 
     resetAdvancedSearch(){
@@ -197,11 +201,15 @@ class SearchItem2 extends React.Component {
 
 
     render(){
+        const style = {
+            width: 150
+        };
+
         let searchButton;
         if (this.state.query === '' || (this.props.last_page === true && this.state.changedInputSearch===false))
-            searchButton = <button className=' button-search gap' onClick={(e)=>this.searchCourses(e)} value='All' > <span>All</span> </button>;
+            searchButton = <button className='is-link button is-rounded gap' style={style} onClick={(e)=>this.searchCourses(e)} value='All' > <span>All</span> </button>;
         else
-            searchButton = <button className=' button-search gap' type={"submit"} > <span>Search</span></button>;
+            searchButton = <button className='is-link button is-rounded gap' style={style} type={"submit"} > <span>Search</span></button>;
 
         let options = this.props.categories.map((opt) => {
             return(
@@ -209,7 +217,9 @@ class SearchItem2 extends React.Component {
             )
         });
 
-        const  value =this.state.query;
+
+
+        const value =this.state.query;
         const suggestions = this.state.suggestions;
         const inputProps = {
             placeholder:"Search courses",
@@ -248,14 +258,15 @@ class SearchItem2 extends React.Component {
             <section>
                 <div className='myRow'>
                     <div className="gap" align="center">
-                        <div className="box" >
+                        <div className="container" >
                             <form className='search-form' onSubmit={(e)=>this.searchCourses(e)}>
-                                <h3><b><font color="#8b0000">Advanced Search:</font></b></h3>
                                 <div className='columns'>
                                     <div className=' myColumn-sm'>
-                                        <select required className='mySelect gap' onChange={this.selectChanged.bind(this)}>
-                                            {options}
-                                        </select>
+                                        <div className="select gap" >
+                                            <select required style={style} onChange={this.selectChanged.bind(this)}>
+                                                {options}
+                                            </select>
+                                        </div>
                                     </div>
                                     <div className=' myColumn-md'>
 
@@ -265,11 +276,11 @@ class SearchItem2 extends React.Component {
                                             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
                                             getSuggestionValue={getSuggestionValue}
                                             renderSuggestion={renderSuggestion}
-                                            inputProps={inputProps}
+                                            inputProps={ inputProps }
                                             />
 
                                     </div>
-                                    <div className=' myColumn-sm'> {searchButton} </div>
+                                    <div className=' myColumn-sm'>{ searchButton }</div>
                                 </div>
                             </form>
                         </div>
@@ -278,9 +289,9 @@ class SearchItem2 extends React.Component {
                         <div align="center" className="gap">
                             <Search_degree onSubmit={(degreen, degreet) => this.onSubmit(degreen, degreet)}
                                            resetAdvancedSearch ={this.resetAdvancedSearch}
-                                           selectType={this.state.selectType}
-                                           selectName={this.state.selectName}
-                                           setSelectType={this.setSelectType}
+                                           selectType={ this.state.selectType }
+                                           selectName={ this.state.selectName }
+                                           setSelectType={ this.setSelectType }
 
                             />
                         </div>

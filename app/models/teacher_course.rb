@@ -117,6 +117,7 @@ class TeacherCourse < ApplicationRecord
                           })
   }
 
+  scope :get_history_teachers_course, ->(course_id) { where(:course_id => course_id).order(year: :desc) }
 
   #scope :with_name_like, lambda { |name|
    # includes(:course, :teacher).where('courses.name LIKE ?', "%#{name}%")

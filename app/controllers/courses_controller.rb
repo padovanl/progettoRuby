@@ -54,17 +54,8 @@ class CoursesController < ApplicationController
    end
 
   def show
-    @course = Course.find(params[:id])
-    @degree_course = DegreeCourse.find(@course.degree_course_id)
-
-    if (!@course.teacher_courses.order(year: :desc).empty?)
-      @history_teacher_course = Course.get_history_teachers(@course)
-    else
-      @history_teacher_course = nil
-    end
-    @mapping_statistiche = Course.get_statistical_informations(params[:id])
+    @course_details = Course.get_all_courses_details(params[:id])
   end
-
 
   private
     def user_course_param

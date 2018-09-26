@@ -6,13 +6,13 @@
     <div class="hero-body">
       <div class="container">
         <h2 class="title" id="course-name">
-          <%= @course.name %>
+          <%= @course_details['course_name'] %>
         </h2>
         <div class="subtitle">
           <div class="is-size-4">
-            <%= @degree_course.name %>
+            <%= @course_details['degree_course_name'] %>
           </div>
-          <%= react_component('TeacherSubtitle', {teacher: @history_teacher_course[0]}) %>
+          <%= react_component('TeacherSubtitle', {teacher: @course_details['current_teacher']}) %>
         </div>
         <h6>
           <%= react_component('SurveyButton', {course_id: params['id'], user_id: current_user[:id].to_s}) %>
@@ -46,7 +46,7 @@
             <div class="columns">
               <div class="column"></div>
               <div class="column is-8">
-                <%= react_component ('MainStatisticCourse'), {statistic_values: @mapping_statistiche} %>
+                <%= react_component ('MainStatisticCourse'), {statistic_values: @course_details['mapping_statistiche']} %>
               </div>
               <div class="column"></div>
             </div>
@@ -62,7 +62,7 @@
             <div class="columns">
               <div class="column"></div>
               <div class="column is-8">
-                <%= react_component('MainHistoryTeachers', {teachers: @history_teacher_course}) %>
+                <%= react_component('MainHistoryTeachers', {course_id: params['id'], teacher_history: @course_details['teacher_history']}) %>
               </div>
               <div class="column"></div>
             </div>

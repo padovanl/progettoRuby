@@ -2,7 +2,9 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_course, only: [:index, :destroy]
   before_action :user_follow_course?, only: [:index, :destroy]
-  after_action :broadcast_notification, only: [:create]
+  after_action :broadcast_notification, only: [:create, :destroy]
+  after_action ->(type_object) { destroy_report_and_notification('Post') }, only: [:destroy]
+  before_action :destroy_report_comment_of_post, only: :destroy
 
   def index
     posts = Post.reduce(params).order(created_at: :desc).uniq
@@ -18,12 +20,7 @@ class PostsController < ApplicationController
       return
     end
 
-    #invio notifica
-    course = Course.find(post_params[:course_id])
-    course.users.uniq.each do |user|
-      Notification.create(recipient: user, actor: current_user, action: "ha inserito un nuovo", notifiable: publication.post)
-    end
-
+    Notification.send_notifications(post_params['course_id'], current_user, "ha inserito un nuovo", publication.post)
     render json: publication.post, include: %w(upvoters user comments comments.user documents), status: :created
   end
 
@@ -36,23 +33,15 @@ class PostsController < ApplicationController
       return
     end
 
-    Notification.where(notifiable_id: params[:id]).where(notifiable_type: "Post").destroy_all
-    Report.where(reportable_id: params[:id]).where(reportable_type: "Post").destroy_all
     head :no_content
   end
 
   def reportPost
-    post = Post.find(params[:id])
-    report = Report.where(:reportable_id => params[:id]).where(:reportable_type => "Post").first
-
-    if (report != nil)
-      UserReport.create!(user_id: current_user.id, report_id: report.id)
-    else
-      r = Report.create(action: "È stato segnalato un", reportable: post)
-      UserReport.create!(user_id: current_user.id, report_id: r.id)
-    end
-
-    #end
+    Report.send_report(params[:id], current_user.id,
+                       params[:reportReason][:reason],
+                       Post.find(params[:id]),
+                       "Post",
+                       "È stato segnalato un")
     respond_to do |format|
       format.json { head :ok }
     end
@@ -62,6 +51,4 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit( :course_id, :message, attachments: [] )
   end
-
-
 end

@@ -6,7 +6,7 @@ class AllHistoryTeachers extends React.Component {
 
     render(){
 
-        var teachers = this.props.teachers.map((teacher) => {
+        var teachers = this.props.teacher_history.map((teacher) => {
             return(
                 <HistoryTeacher teacher={teacher} />
             )
@@ -15,6 +15,12 @@ class AllHistoryTeachers extends React.Component {
         return(
             <div>
                 <table className="table is-hoverable is-fullwidth is-centered">
+                    <thead>
+                    <tr>
+                        <th>Professore</th>
+                        <th>Anno</th>
+                    </tr>
+                    </thead>
                     <tbody>
                     {teachers}
                     </tbody>

@@ -70,11 +70,9 @@ class SearchRep extends React.Component {
         const item = e.target.name;
         if (item === "selected_my_post"){
             this.setState(prevState => ({ [item]: !prevState.selected_my_post}));
-            console.log(item+ ": ", this.state.selected_my_post);
         }
         else if (item === "selected_home_service"){
             this.setState(prevState => ({ [item]: !prevState.selected_home_service}));
-            console.log(item+ ": ", this.state.selected_home_service);
         }
         else
             this.setState({[e.target.name]: e.target.value});

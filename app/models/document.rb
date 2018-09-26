@@ -21,6 +21,7 @@ class Document < ApplicationRecord
   reduces self.all, filters: [
       ->(course_id:) { where course_id: course_id },
       ->(user_id:) { where user_id: user_id },
+      ->(document_id:) { where id: document_id },
       ->(search_string:) { left_outer_joins(:tags).where('lower(tags.name) similar to ? OR lower(file_name) similar to ?',
                                               "%(#{search_string.downcase.split.join('|')})%",
                                               "%(#{search_string.downcase.split.join('|')})%") }

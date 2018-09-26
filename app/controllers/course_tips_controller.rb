@@ -1,49 +1,47 @@
 class CourseTipsController < ApplicationController
-
-  skip_before_action :verify_authenticity_token
-  after_action :broadcast_notification, only: [:create]
+  before_action :authenticate_user!
+  after_action :broadcast_notification, only: [:create, :destroy]
+  after_action ->(type_object) { destroy_report_and_notification('CourseTip') }, only: [:destroy]
 
   def index
-    courseTips = CourseTip.where(:course_id => params['course_id']).includes([:user, :course])
+    courseTips = CourseTip.get_course_tips(params['course_id'])
     json_response(courseTips.to_json(include: [:user, :course]))
   end
 
   def create
-    q = CourseTip.create(tip_params)
-    courseTips = CourseTip.where(:id => q.id).includes([:user, :course])
-    @course = Course.find(tip_params[:course_id])
-    #(@course.users.uniq - [current_user]).each do |user|
-    @course.users.uniq.each do |user|
-      Notification.create(recipient: user, actor: current_user, action: "ha inserito un nuovo", notifiable: q)
+    tip = CourseTip.create!(tip_params)
+    unless tip.valid?
+      render_json_validation_error tip
+      return
     end
-    json_response(courseTips.to_json(include: [:user, :course]))
+
+    Notification.send_notifications(params['course_id'], current_user, "ha inserito un nuovo", tip)
+
+    json_response(tip.to_json(include: [:user, :course]))
   end
 
   def destroy
-    CourseTip.destroy(params[:id])
-    Notification.where(:notifiable_id => params[:id]).where(:notifiable_type => "CourseTip").destroy_all
-    Report.where(:reportable_id => params[:id]).where(:reportable_type => "CourseTip").destroy_all
-
+    unless CourseTip.destroy(params[:id])
+      render_json_validation_error course_tip
+      return
+    end
+    head :no_content
   end
 
   def update
-    quest = CourseTip.find(params[:id])
-    quest.update_attributes(tip_params)
-    json_response(quest.to_json)
+    tip = CourseTip.find(params[:id])
+    unless !tip.update_attributes(tip_params)
+      json_response(tip.to_json)
+      return
+    end
   end
 
   def reportTip
-    tip = CourseTip.find(params[:id])
-    report = Report.where(:reportable_id => params[:id]).where(:reportable_type => "CourseTip").first
-
-    if (report != nil)
-      UserReport.create!(user_id: current_user.id, report_id: report.id)
-    else
-      r = Report.create(action: "È stata segnalato un", reportable: tip)
-      UserReport.create!(user_id: current_user.id, report_id: r.id)
-    end
-
-    #end
+    Report.send_report(params[:id], current_user.id,
+                       params[:reportReason][:reason],
+                       CourseTip.find(params[:id]),
+                       "CourseTip",
+                       "È stata segnalato un")
     respond_to do |format|
       format.json { head :ok }
     end
