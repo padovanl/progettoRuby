@@ -75,7 +75,7 @@ class MyCourses extends React.Component{
 
 
     render(){
-        let filteredCourses;
+        let filteredCourses = [];
         if (this.props.message === '')
             filteredCourses = this.props.courses.filter((item) => {
                     return item.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1; //tutti
@@ -104,24 +104,24 @@ class MyCourses extends React.Component{
 
         let items = filteredCourses.map((item) => {
 
-            if (item.teachers.length ===0){
+            /*if (item.teachers.length ===0){
                 return "seeds from course "+item.id+" teachers sono ancora da fare"
-            }
+            }*/
 
-            let teachers = item.teachers.map( teacher => {
+            /*let teachers = item.teachers.map( teacher => {
                 return (
                     <li key={teacher.link_cv}>
                         <a href={teacher.link_cv}> {teacher.surname} {teacher.name}</a>
                     </li>
                 )
-            } );
+            } );*/
 
 
 
             //bisognerebbe fare tornare direttamente dal controller l'array ordinato con limit 1 per l'anno di teacher courses (migliori prestazioni)
             return(
                 <div key={item.id} className={'box relative is-marginless course-card'}>
-                    <div className="nested infinite-item">
+                    <div className="my-nested infinite-item">
                         <h3 className="title" id="course-name-second"><a href={"/courses/"+item.id}>{item.name}</a></h3>
                         <div><strong>Livello:</strong> {item.degreet}</div>
                         <div><strong>Corso:</strong> {item.degreen}</div>
@@ -130,7 +130,7 @@ class MyCourses extends React.Component{
                             <courses-ol>{teachers}</courses-ol>
                         </div> */}
                     </div>
-                    <div className={"absolute"}>
+                    <div className="my-absolute">
                         <form onSubmit={ (e)=>this.buttonUnfollowClicked(e) }>
                             <input className="input" name="user_course[course_id]" value={item.id} type="hidden" />
                             <div className="grid-buttons">
@@ -142,9 +142,20 @@ class MyCourses extends React.Component{
                             </div>
                         </form>
                     </div>
+
                 </div>
             )
         });
+
+        if (this.props.show_plus)
+            items = <div className={'box relative is-marginless course-card plus-card'}>
+              <a href="/allcourses?per_page=10">
+                <figure class="image is-64x64">
+                  <%= image_tag "plus-course.png" %>
+                </figure>
+                <p>Inizia a seguire un corso</p>
+              </a>
+            </div>
 
         return(
             <div className='myColumn-lg container' id="modal">

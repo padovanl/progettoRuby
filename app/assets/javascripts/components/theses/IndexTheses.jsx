@@ -58,11 +58,11 @@ class IndexTheses extends React.Component {
 
         let buttonNext;
         if (this.state.page !== this.props.last_page && !this.state.disabledNext){
-            buttonNext= <div className='buttonnext' onClick={() => this.onChangePage()}>
+            buttonNext= <div className='button is-rounded is-info' onClick={() => this.onChangePage()}>
                 <span> Next </span> </div>
         }
         else{
-            buttonNext=<div className='buttonnext disabled'>Next</div>;
+            buttonNext=<div className='button is-rounded is-info disabled'>Next</div>;
         }
 
         let message;
@@ -86,7 +86,7 @@ class IndexTheses extends React.Component {
 
 
 
-                <div className='myRow'>
+                <div className='myRow next-button' style={{marginBottom: '20px'}}>
                     {buttonNext}
                 </div>
 

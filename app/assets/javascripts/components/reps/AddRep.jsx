@@ -307,7 +307,7 @@ class AddRep extends React.Component {
                     </section>
 
                     <footer className="modal-card-foot">
-                        <button className="button is-success" type={"submit"}>Save post</button>
+                        <button className="button is-rounded is-success" type={"submit"}>Save post</button>
                     </footer>
                 </form>
 

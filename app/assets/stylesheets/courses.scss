@@ -143,6 +143,16 @@ body {
   padding: auto;
 }
 
+.my-nested{
+  display: grid;
+  grid-template-rows: repeat(11, 0fr);
+  grid-gap: 1em;
+}
+
+.my-nested > div{
+  padding: auto;
+}
+
 .wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -183,6 +193,8 @@ body {
     border-radius:10px;
   }
 }
+
+
 
 .wrapper > div {
   padding: 1em;
@@ -355,6 +367,15 @@ div.absolute {
   height: 40px;
 }
 
+div.my-absolute {
+  position: absolute;
+  margin-top: 1em;
+  bottom: 4em;
+  left: 1em;
+  width: 83px;
+  height: 40px;
+}
+
 
 courses-ol {
   padding: 20px;
@@ -448,11 +469,21 @@ courses-ol li {
 }
 
 
-.grid-buttons{
+/*.grid-buttons{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1em;
+}*/
+
+.grid-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 40px 40px;
+  grid-column-gap: 1em;
+  grid-row-gap: 0.5em;
 }
+
+
 
 .course-card{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -468,4 +499,95 @@ courses-ol li {
 
 .search-degree{
   text-align: center;
+}
+
+/*Tab show courses*/
+
+   /*
+  CSS for the main interaction
+ */
+ .tabset > input[type="radio"] {
+   position: absolute;
+   left: -200vw;
+ }
+
+.tabset .tab-panel {
+  display: none;
+}
+
+.tabset > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
+.tabset > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(2),
+.tabset > input:nth-child(5):checked ~ .tab-panels > .tab-panel:nth-child(3),
+.tabset > input:nth-child(7):checked ~ .tab-panels > .tab-panel:nth-child(4),
+.tabset > input:nth-child(9):checked ~ .tab-panels > .tab-panel:nth-child(5),
+.tabset > input:nth-child(11):checked ~ .tab-panels > .tab-panel:nth-child(6) {
+  display: block;
+}
+
+/*
+ Styling
+*/
+body {
+  font: 16px/1.5em "Overpass", "Open Sans", Helvetica, sans-serif;
+  color: #333;
+  font-weight: 300;
+}
+
+.tabset > label {
+  position: relative;
+  display: inline-block;
+  padding: 15px 15px 25px;
+  border: 1px solid transparent;
+  border-bottom: 0;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.tabset > label::after {
+  content: "";
+  position: absolute;
+  left: 15px;
+  bottom: 10px;
+  width: 22px;
+  height: 4px;
+  background: #8d8d8d;
+}
+
+.tabset > label:hover,
+.tabset > input:focus + label {
+  color: #06c;
+}
+
+.tabset > label:hover::after,
+.tabset > input:focus + label::after,
+.tabset > input:checked + label::after {
+  background: #06c;
+}
+
+.tabset > input:checked + label {
+  border-color: #ccc;
+  border-bottom: 1px solid #fff;
+  margin-bottom: -1px;
+}
+
+.tab-panel {
+  padding: 30px 0;
+  border-top: 1px solid #ccc;
+}
+
+.plus-card{
+  figure {
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  text-align: center;
+  p{
+    margin-top: 20px;
+    margin-bottom: 25px;
+  }
+}
+
+.teacher_subtitle_course{
+  padding-top: 4px;
 }

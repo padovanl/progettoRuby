@@ -5,8 +5,6 @@ class Notification extends React.Component{
     }
 
     handleMarkAndRedirect(redirect_url, id){
-        console.log(redirect_url)
-        // /api/v1/users/:user_id/user_courses/:id(.:format)
         let linkUpdate = '/mark_as_read/' + id;
                 fetch(linkUpdate,
                     {
@@ -30,29 +28,6 @@ class Notification extends React.Component{
 
     render(){
 
-        let style_not_read = {
-            backgroundColor: 'rgb(237, 242, 250)'
-        };
-
-        let style_read = {
-            backgroundColor: 'white'
-        };
-
-        let style_time ={
-            fontFamily: 'Arial',
-            color: 'black'
-        };
-
-        let style_link_row = {
-            textDecoration: 'none',
-            color: 'black'
-        };
-
-        let style_padding = {
-            paddingRight: 10,
-        };
-
-
         let links = {}
         const actor = this.props.notification.actor.name;
         const action = this.props.notification.action;
@@ -66,9 +41,9 @@ class Notification extends React.Component{
         let scritta_annuncio;
 
         if(this.props.notification.read_at == null){
-            stile_background_notifica = style_not_read
+            stile_background_notifica = 'is-not-read-not'
         }else{
-            stile_background_notifica = style_read
+            stile_background_notifica = 'is-read-not'
         }
 
         switch(type) {
@@ -76,39 +51,39 @@ class Notification extends React.Component{
                 type = 'domanda'
                 link = '/courses/' + id_corso
                 icon = <span className="icon has-text-link"><i className="fas fa-question-circle"></i></span>;
-                scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>nel corso di {nome_corso}</div>
+                scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>nel corso di {nome_corso}</div>
                 break;
             case 'CourseTip':
                 type = 'suggerimento'
                 link = '/courses/' + id_corso
                 icon = <span className="icon has-text-link"><i className="fas fa-glasses"></i></span>;
-                scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>nel corso di {nome_corso}</div>
+                scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>nel corso di {nome_corso}</div>
                 break;
             case 'Post':
                 type = 'post'
                 link = '/publications/' + id_corso + '?post_id=' + this.props.notification.notifiable.post.id
                 icon = <span className="icon has-text-link"><i className="fas fa-envelope"></i></span>;
-                scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>nel corso di {nome_corso}</div>
+                scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>nel corso di {nome_corso}</div>
                 break;
             case 'Rep':
                     if(this.props.notification.notifiable.rep.offer){
                         type = 'ripetizioni'
                         link = '/reps'
                         icon = <span className="icon has-text-link"><i className="fas fa-book"></i></span>;
-                        scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span> offre <span className="has-text-weight-bold" style={style_padding}> {type}</span>per il corso di {nome_corso}</div>
+                        scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span> offre <span className="has-text-weight-bold style_padding_row"> {type}</span>per il corso di {nome_corso}</div>
                         break;
                     }else{
                         type = 'ripetizioni'
                         link = '/reps'
                         icon = <span className="icon has-text-link"><i className="fas fa-book"></i></span>;
-                        scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span> cerca <span className="has-text-weight-bold" style={style_padding}> {type}</span>per il corso di {nome_corso}</div>
+                        scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span> cerca <span className="has-text-weight-bold style_padding_row"> {type}</span>per il corso di {nome_corso}</div>
                         break;
                     }
             case 'Document':
                 type = 'documento'
                 link = '/resources/' + id_corso + '?document_id=' + this.props.notification.notifiable.document.id
                 icon = <span className="icon has-text-link"><i className="fas fa-envelope"></i></span>;
-                scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>per il corso di {nome_corso}</div>
+                scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>per il corso di {nome_corso}</div>
                 break;
         }
 
@@ -117,9 +92,9 @@ class Notification extends React.Component{
 
         return(
 
-            <tr key={this.props.notification.id} style={stile_background_notifica}>
+            <tr key={this.props.notification.id} className={stile_background_notifica}>
                     <td>
-                        <a style={style_link_row} onClick={() => this.props.handleMarkAndRedirect(links[this.props.notification.id], id_notification)}>
+                        <a className="style_link_row" onClick={() => this.props.handleMarkAndRedirect(links[this.props.notification.id], id_notification)}>
                             <article className="media gap">
                                 <figure className="media-left">
                                     <p className="image is-24x24">
@@ -160,7 +135,7 @@ class Notification extends React.Component{
                         <article className="media gap">
                             <div className="media-content">
                                 <div className="content">
-                                    <div style={style_time}>
+                                    <div className="is-arial-black">
                                         {new_notification}
                                     </div>
                                 </div>

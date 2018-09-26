@@ -94,7 +94,6 @@ class BodyQuestion extends React.Component {
     }
 
     addNewQuestionCourse(questionCourse){
-        console.log(questionCourse)
         this.setState({
             questions: this.state.questions.concat(questionCourse)
         })
@@ -156,11 +155,8 @@ class BodyQuestion extends React.Component {
     }
 
     updateCourseQuestion(courseQuestion){
-        console.log(courseQuestion)
         let newCourseQuestion = this.state.questions.filter((f) => f.id !== courseQuestion.id)
-        console.log(newCourseQuestion)
         newCourseQuestion.push(courseQuestion)
-        console.log("sono dopo la push")
         this.setState({
             questions: newCourseQuestion
         })
@@ -211,7 +207,6 @@ class BodyQuestion extends React.Component {
             return response.json()
         })
             .then((frequencyQuestion) => {
-                console.log(frequencyQuestion)
                 if (frequencyQuestion.error) {
                     alert("Errore!")
                 } else {
@@ -221,7 +216,6 @@ class BodyQuestion extends React.Component {
     }
 
     activeModal(link){
-        console.log("afadasdasdads")
         this.setState({modalIsActive: true})
         this.setState({linkReport: link})
     }

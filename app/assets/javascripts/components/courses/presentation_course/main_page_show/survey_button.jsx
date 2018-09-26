@@ -59,13 +59,8 @@ class SurveyButton extends React.Component {
 
     render(){
 
-        let style = {
-            marginRight: 2
-        };
-
         const { course_id, user_id } = this.props;
         const follow_id = this.state.followed && this.state.followed.follow ? this.state.followed.id : null
-        console.log(follow_id)
         const linkSondaggio = "/course/" + course_id + "/survey/" + follow_id
 
         let bottone = this.state.followed != null && !this.state.followed.passed ? <a className="button is-rounded is-warning" href={linkSondaggio}>Compila il sondaggio</a> :

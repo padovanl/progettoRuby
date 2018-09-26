@@ -16,6 +16,5 @@ const update_url_notifications = (props_url, url, page) => {
 
 const get_items = (url) => {
     const errorMessage = 'Errore durante il download dei dati';
-    console.log("url usato nella ricerca: "+url);
     return make_request(url, errorMessage);
 };

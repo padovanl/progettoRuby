@@ -148,18 +148,14 @@ class BodyTip extends React.Component {
     }
 
     updateCourseTip(courseTip){
-        console.log(courseTip)
         let newCourseTip = this.state.tips.filter((f) => f.id !== courseTip.id)
-        console.log(newCourseTip)
         newCourseTip.push(courseTip)
-        console.log("sono dopo la push")
         this.setState({
             tips: newCourseTip
         })
     }
 
     activeModal(link){
-        console.log("afadasdasdads")
         this.setState({modalIsActive: true})
         this.setState({linkReport: link})
     }
@@ -171,7 +167,6 @@ class BodyTip extends React.Component {
 
 
     render(){
-        //console.log(this.state.followed.length > 0 ? this.state.followed[0].passed : 'Items not loaded yet');        //this.state.tubedata.length > 0 && this.state.tubedata[0].id
 
         const gestisci_i_tuoi_tips_button = <td><a className="button is-rounded is-warning" onClick={ () => this.handleShowDetails()}>Gestisci i tuoi suggerimenti</a></td>;
 

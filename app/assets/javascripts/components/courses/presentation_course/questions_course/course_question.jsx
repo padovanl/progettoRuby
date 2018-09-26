@@ -12,8 +12,6 @@ class CourseQuestion extends React.Component{
         if(this.state.editable){
             let question_text = this.question_text.value;
             let id = this.props.courseQuestion.id;
-            //let courseQuestion = {id: id, question: question_text};
-            //console.log(edit_question);
             this.props.handleUpdate(question_text, id);
         }
         this.setState({

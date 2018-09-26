@@ -53,26 +53,21 @@ class BodySurvey extends React.Component {
     }
 
     updateCourseQuestion(){
-        console.log("Update avvenuto con successo")
         window.location.href = "/courses/" + this.props.course_id
         toastr.success("survey_course compilato con successo")
     }
 
     onChangeAttempts(evt) {
-        console.log("dentro")
         const re = /^[0-9\b]+$/;
         if (evt.target.value == '' || re.test(evt.target.value)) {
             this.setState({value_number_attempts: evt.target.value});
-            console.log(evt.target.value)
         }
     }
 
     onChangeDays(evt) {
-        console.log("dentro")
         const re = /^[0-9\b]+$/;
         if (evt.target.value == '' || re.test(evt.target.value)) {
             this.setState({value_number_days: evt.target.value});
-            console.log(evt.target.value)
         }
     }
 
@@ -85,7 +80,6 @@ class BodySurvey extends React.Component {
             voteList.push(i);
         }
 
-        //array associativo con 1 - insufficiente -> 4 - buono
         var lista_giudizi = ['insufficiente', 'sufficiente','discreto','buono','molto buono' ];
 
 // course rate sarebbe il voto conseguito

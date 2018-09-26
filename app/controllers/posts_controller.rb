@@ -20,7 +20,7 @@ class PostsController < ApplicationController
       return
     end
 
-    Notification.send_notifications(post_params['course_id'], current_user, "ha inserito un nuovo", publication.post)
+    Notification.send_notifications(post_params['course_id'], current_user, "ha pubblicato un nuovo", publication.post)
     render json: publication.post, include: %w(upvoters user comments comments.user documents), status: :created
   end
 

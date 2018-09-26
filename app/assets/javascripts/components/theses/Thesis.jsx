@@ -32,7 +32,7 @@ class Thesis extends React.Component {
 
 
         return(
-            <section key={item.id} >
+            <section key={item.id} className="card-tesi" >
                 <div className="box ">
                     <div className="card">
                         <header className="myRow card-header ">
@@ -94,7 +94,6 @@ class Thesis extends React.Component {
 
                     </div>
                 </div>
-                <div className={"is-divider gap"}/>
 
             </section>
         )
