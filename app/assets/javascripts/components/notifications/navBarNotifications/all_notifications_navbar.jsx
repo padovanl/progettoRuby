@@ -8,7 +8,7 @@ class AllNotificationsNavBar extends React.Component {
     render(){
 
         let style_margin_top = {
-            marginTop: 2,
+            marginTop: 1,
             width: 350
         };
 

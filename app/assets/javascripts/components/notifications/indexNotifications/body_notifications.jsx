@@ -35,7 +35,6 @@ class BodyNotifications extends React.Component {
     }
 
     handleShowMore() {
-        console.log("dentro showmore")
         this.setState({page: this.state.page +=1},this.getAllNotifications());
     }
 

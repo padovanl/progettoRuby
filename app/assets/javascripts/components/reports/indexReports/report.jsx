@@ -9,27 +9,7 @@ class Report extends React.Component{
 
     render(){
 
-        let style_not_read = {
-            backgroundColor: 'rgb(237, 242, 250)'
-        };
 
-        let style_read = {
-            backgroundColor: 'white'
-        };
-
-        let style_time ={
-            fontFamily: 'Arial',
-            color: 'black'
-        };
-
-        let style_link_row = {
-            textDecoration: 'none',
-            color: 'black'
-        };
-
-        let style_padding = {
-            paddingRight: 10,
-        };
 
 
 
@@ -43,67 +23,65 @@ class Report extends React.Component{
         let scritta_annuncio;
 
         if(this.props.report.read_at == null){
-            stile_background_notifica = style_not_read
+            stile_background_notifica = 'is-not-read-not'
         }else{
-            stile_background_notifica = style_read
+            stile_background_notifica = 'is-read-not'
         }
 
         let links = {}
 
-        console.log(type)
         switch(type) {
             case 'CourseQuestion':
                 type = 'domanda'
                 link = '/courses/' + id_corso
                 icon = <span className="icon has-text-link"><i className="fas fa-question-circle"></i></span>;
-                scritta_annuncio = <div>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>nel corso di {nome_corso}</div>
+                scritta_annuncio = <div>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>nel corso di {nome_corso}</div>
                 break;
             case 'CourseTip':
                 type = 'suggerimento'
                 link = '/courses/' + id_corso
                 icon = <span className="icon has-text-link"><i className="fas fa-question-circle"></i></span>;
-                scritta_annuncio = <div>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>nel corso di {nome_corso}</div>
+                scritta_annuncio = <div>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>nel corso di {nome_corso}</div>
                 break;
             case 'Post':
                 type = 'post'
                 link = '/publications/' + id_corso + '?post_id=' + this.props.report.reportable.post.id
                 icon = <span className="icon has-text-link"><i className="fas fa-envelope"></i></span>;
-                scritta_annuncio = <div>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>del corso di {nome_corso}</div>
+                scritta_annuncio = <div>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>del corso di {nome_corso}</div>
                 break;
             case 'Document':
                 type = 'documento'
                 link = '/resources/' + id_corso + '?document_id=' + this.props.report.reportable.document.id
                 icon = <span className="icon has-text-link"><i className="fas fa-envelope"></i></span>;
-                scritta_annuncio = <div>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>condiviso nel corso di {nome_corso}</div>
+                scritta_annuncio = <div>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>condiviso nel corso di {nome_corso}</div>
                 break;
             case 'Rep':
                     if(this.props.report.reportable.rep.offer){
                         type = 'ripetizioni'
                         link = '/reps'
                         icon = <span className="icon has-text-link"><i className="fas fa-book"></i></span>;
-                        scritta_annuncio = <div>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>per il corso di {nome_corso}</div>
+                        scritta_annuncio = <div>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>per il corso di {nome_corso}</div>
                         break;
                     }else{
                         type = 'ripetizioni'
                         link = '/reps'
                         icon = <span className="icon has-text-link"><i className="fas fa-book"></i></span>;
-                        scritta_annuncio = <div>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>per il corso di {nome_corso}</div>
+                        scritta_annuncio = <div>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>per il corso di {nome_corso}</div>
                         break;
                     }
             case 'Comment':
                 type = 'commento'
                 link = '/publications/' + id_corso + '?comment_id=' + this.props.report.reportable.comment.id
                 icon = <span className="icon has-text-link"><i className="fas fa-envelope"></i></span>;
-                scritta_annuncio = <div>{action}<span className="has-text-weight-bold" style={style_padding}> {type}</span>del corso di {nome_corso}</div>
+                scritta_annuncio = <div>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>del corso di {nome_corso}</div>
                 break;
         }
         links[''+report_id.toString()+''] = link
-        console.log(links)
         return(
 
-            <tr key={report_id} style={stile_background_notifica}>
+            <tr key={report_id} className={stile_background_notifica}>
                     <td>
-                        <a style={style_link_row} onClick={() => this.props.handleMarkAndRedirect(links[report_id], report_id)}>
+                        <a className="style_link_row" onClick={() => this.props.handleMarkAndRedirect(links[report_id], report_id)}>
                             <article className="media gap">
                                 <figure className="media-left">
                                     <p className="image is-16x16  is-danger">

@@ -35,12 +35,10 @@ class BodyReports extends React.Component {
     }
 
     handleShowMore() {
-        console.log("dentro showmore")
         this.setState({page: this.state.page +=1},this.getAllReports());
     }
 
     handleMarkAndRedirect(redirect_url, id){
-        console.log(redirect_url)
         let linkUpdate = '/mark_as_read_report/' + id;
         var myHeaders = new Headers();
         myHeaders.append('X-CSRF-Token', Rails.csrfToken());
@@ -76,7 +74,6 @@ class BodyReports extends React.Component {
                     headers: myHeaders
                 }).then((response) => {
                 if (response.ok){
-                    console.log("risposta ok")
                     this.deleteReport(id);
                 }else{
                     alert("errore")
@@ -86,7 +83,6 @@ class BodyReports extends React.Component {
     }
 
     deleteReport(id){
-        console.log("dentro delete", id)
         let newReports = this.state.reports.filter((f) => f.id !== id)
         this.setState({reports: newReports})
     }

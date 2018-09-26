@@ -4,3 +4,26 @@
 .list-group > .list-group-item:last-child {
   border-radius: 0 0 4px 4px;
 }
+
+.is-not-read-not {
+  background-color: rgb(237, 242, 250);
+}
+
+.is-read-not {
+  background-color: white;
+}
+
+.is-arial-black {
+  font-family: Arial;
+  color: black;
+}
+
+.style_link_row {
+  text-decoration: none;
+  color: black;
+};
+
+.style_padding_row {
+  padding-right: 10px,
+};
+

@@ -19,7 +19,6 @@ class ReportsNavbarMain extends React.Component {
     }
 
     handleUpdateIsSelected(){
-        console.log("update report count")
             if (this.state.num > 0){
                 var myHeaders = new Headers();
                 myHeaders.append('X-CSRF-Token', Rails.csrfToken());
@@ -43,13 +42,12 @@ class ReportsNavbarMain extends React.Component {
     }
 
     render(){
+
         let style = {
             marginLeft: 15,
             marginBottom: 4
         };
 
-        //this.getCountNew();
-        //this.getCountNew();
         return(
             <a className="navbar-item level" onClick={() => this.handleUpdateIsSelected()} href="/reports">
                 <div className="level-left">
