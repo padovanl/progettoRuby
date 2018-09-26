@@ -58,7 +58,7 @@ class SurveyButton extends React.Component {
     }
 
     render(){
-
+        console.log(this.state.followed)
         let style = {
             marginRight: 2
         };
