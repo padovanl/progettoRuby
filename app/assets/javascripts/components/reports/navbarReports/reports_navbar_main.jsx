@@ -44,23 +44,16 @@ class ReportsNavbarMain extends React.Component {
     render(){
 
         let style = {
-            marginLeft: 15,
-            marginBottom: 4
+            paddingTop: 2,
+            paddingRight: 10
         };
 
         return(
-            <a className="navbar-item level" onClick={() => this.handleUpdateIsSelected()} href="/reports">
-                <div className="level-left">
-                    <div className="level-item">
-                        Segnalazioni
-                    </div>
-                </div>
-                <div className="level-right">
-                    <div className="level-item">
-                        <div className="badge is-badge-primary bd-emoji" data-badge={this.state.num} style={style}></div>
-                    </div>
-                </div>
+            <div>
+            <a className="navbar-item" onClick={() => this.handleUpdateIsSelected()} href="/reports">
+                <span className="badge is-badge-primary bd-emoji is-badge-right" data-badge={this.state.num}><span style={style}>Segnalazioni</span></span>
             </a>
+            </div>
         )
     }
 }

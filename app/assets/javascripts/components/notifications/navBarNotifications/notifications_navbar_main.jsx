@@ -40,27 +40,21 @@ class NotificationsNavBarMain extends React.Component {
     }
 
     handleUpdateIsSelected(type_device){
-
-        if(type_device != 'touch') {
+        if (type_device != 'touch') {
             if (this.state.isActive == "navbar-item has-dropdown") {
                 this.setState({isActive: "navbar-item has-dropdown is-active"})
                 if (this.state.num > 0) {
-                    this.updateCall()
+                    this.callUpdate()
                 }
             } else {
                 this.setState({isActive: "navbar-item has-dropdown"})
             }
         }else{
-            const value = this.updateCall()
-            console.log(value)
-            if(value){
-                console.log("dentro if value")
-                window.location.href = "/notifications"
-            }
+            this.callUpdate()
         }
     }
 
-    updateCall(){
+    callUpdate(){
         var myHeaders = new Headers();
         myHeaders.append('X-CSRF-Token', Rails.csrfToken());
         myHeaders.append('Content-Type', 'application/json');
@@ -78,8 +72,6 @@ class NotificationsNavBarMain extends React.Component {
                     alert("Errore!")
                 } else {
                     this.getDataCountNotifications();
-                    console.log("dopo get data")
-                    return true
                 }
             })
     }
@@ -90,11 +82,11 @@ class NotificationsNavBarMain extends React.Component {
             <div className="navbar-item">
                 <NotificationsWebSocket data-updateApp={ this.updateCountNotifications.bind(this)} />
                 <div className={this.state.isActive}>
-                    <a className="navbar-link is-hidden-desktop" onClick={() => this.handleUpdateIsSelected('touch')}>
-                       <span className="badge is-badge-primary bd-emoji" data-badge={this.state.num}><i className="fas fa-globe-americas"></i></span>
+                    <a className="navbar-link is-hidden-desktop" onClick={() => this.handleUpdateIsSelected('touch')} href="/notifications">
+                        <span className="badge is-badge-primary bd-emoji" data-badge={this.state.num}><i className="fas fa-globe-americas"></i></span>
                     </a>
-                    <a className="navbar-link is-hidden-touch" onClick={() => this.handleUpdateIsSelected()}>
-                       <span className="badge is-badge-primary bd-emoji" data-badge={this.state.num}><i className="fas fa-globe-americas"></i></span>
+                    <a className="navbar-link is-hidden-touch" onClick={() => this.handleUpdateIsSelected('desktop')}>
+                        <span className="badge is-badge-primary bd-emoji" data-badge={this.state.num}><i className="fas fa-globe-americas"></i></span>
                     </a>
                     <AllNotificationsNavBar notifications={this.state.notifications}/>
                 </div>
