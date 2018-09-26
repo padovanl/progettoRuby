@@ -18,7 +18,7 @@ class AllTips extends React.Component {
 
         return(
             <div>
-                <table className="table is-hoverable is-fullwidth is-centered">
+                {tips.length ? <table className="table is-hoverable is-fullwidth is-centered">
                     <thead>
                     <tr>
                         <th className="question-text-column">Suggerimento</th>
@@ -29,7 +29,7 @@ class AllTips extends React.Component {
                     <tbody>
                     {tips}
                     </tbody>
-                </table>
+                </table> :  <div>Nessun suggerimento inserito</div>}
             </div>
         )
     }

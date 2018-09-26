@@ -22,7 +22,7 @@ class AllQuestions extends React.Component {
 
         return(
             <div>
-                <table className="table is-hoverable is-fullwidth is-centered">
+                {questions.length ? <table className="table is-hoverable is-fullwidth is-centered">
                     <thead>
                     <tr>
                         <th className="question-text-column">Domanda</th>
@@ -34,7 +34,7 @@ class AllQuestions extends React.Component {
                     <tbody>
                     {questions}
                     </tbody>
-                </table>
+                </table> :  <div>Nessuna domanda inserita</div>}
             </div>
         )
     }
