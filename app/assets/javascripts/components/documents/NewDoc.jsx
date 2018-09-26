@@ -25,7 +25,7 @@ class NewDoc extends React.Component {
     }
 
     handleAddTag() {
-        if (this.state.query_string != '')
+        if (this.state.query_string !== '')
             this.setState((prevState) => {
                 return {
                     doc_tags: prevState.doc_tags.concat({name: prevState.query_string, id: ""}),
@@ -43,9 +43,10 @@ class NewDoc extends React.Component {
         });
     }
 
+    // mentre aggiungo un tag al documento, cerco se nel DB il tag esiste già
+    // e lo propongo all'utente
     handleChangeQuery(event) {
-        this.setState({query_string: event.target.value});
-
+        this.setState({ query_string: event.target.value });
         this.fetchTags(event.target.value);
     }
 
@@ -57,8 +58,8 @@ class NewDoc extends React.Component {
         }
 
         const data = new FormData(event.target);
-        const that = this
-        const addNewDoc = this.props.addNewDoc
+        const that = this;
+        const addNewDoc = this.props.addNewDoc;
 
         var myHeaders = new Headers();
         myHeaders.append('X-CSRF-Token', Rails.csrfToken());
@@ -102,7 +103,8 @@ class NewDoc extends React.Component {
     }
 
     render() {
-        const {tags, query_string, doc_tags, uploading } = this.state
+        const { tags, query_string, doc_tags, uploading, file_name, showError } = this.state;
+        const { current_user_avatar, current_user, course_id } = this.props;
 
         return (
             <form onSubmit={(e) => this.handleSubmit(e)} className="modal-card">
@@ -110,12 +112,12 @@ class NewDoc extends React.Component {
                     <article className="media">
                         <figure className="media-left">
                             <p className="image is-48x48">
-                                <img src={this.props.current_user_avatar}/>
+                                <img src={ current_user_avatar }/>
                             </p>
                         </figure>
                         <div className="media-content">
                             { uploading == false ? <div className="content">
-                                <p className="content-author"><strong>{this.props.current_user.name}</strong></p>
+                                <p className="content-author"><strong>{ current_user.name }</strong></p>
                                 <div className="file has-name">
                                     <label className="file-label">
                                         <input className="file-input" type="file" name="document[attachment]"
@@ -130,35 +132,36 @@ class NewDoc extends React.Component {
                                                   </span>
                                                 </span>
                                         <span className="file-name">
-                                                  {this.state.file_name}
+                                                  { file_name }
                                                 </span>
                                     </label>
                                 </div>
-                                {this.state.showError ? <ErrorMessage message="Allegare un file"/> : ""}
+                                { showError ? <ErrorMessage message="Allegare un file"/> : "" }
 
-                                <input type="hidden" name="document[course_id]" value={this.props.course_id}/>
+                                <input type="hidden" name="document[course_id]" value={ course_id }/>
 
                                 <div className="field has-addons tag-search">
                                     <p className="control">
-                                        <input className="input" value={this.state.query_string}
-                                               id="query-tag" type="text" placeholder="Aggiungi tag..."
+                                        <input className="input" id="query-tag" type="text" placeholder="Aggiungi tag..."
+                                               value={this.state.query_string}
                                                onChange={(e) => this.handleChangeQuery(e)}/>
                                     </p>
-                                    <p className="control" id="new-tag" onClick={() => this.handleAddTag()}>
+                                    <p className="control" id="new-tag"
+                                       onClick={() => this.handleAddTag()}>
                                         <a className="button is-static">
                                              <span className="icon">
-                                                    <i className="fas fa-plus"></i>
+                                                    <i className="fas fa-plus" />
                                              </span>
                                         </a>
                                     </p>
-                                    {(tags.length > 0 && query_string != '') ?
+                                    {(tags.length > 0 && query_string !== '') ?
                                         <div id="style-1" className="tag-list box">
                                             <ul>
                                                 {tags.map(function (tag) {
                                                     return (
                                                         <li key={tag.id} className="level is-mobile"><a> {tag.name} </a><span
                                                             className="icon">
-                                                    <i className="fas fa-plus" onClick={() => this.handleAddExistingTag(tag)}></i>
+                                                    <i className="fas fa-plus" onClick={() => this.handleAddExistingTag(tag)} />
                                                  </span></li>)
                                                 }, this)}
                                             </ul>
@@ -171,7 +174,7 @@ class NewDoc extends React.Component {
                                         return (<div className="control">
                                             <div className="tags has-addons">
                                                 <a className="tag is-link"> {tag.name} </a>
-                                                <a className="tag is-delete" onClick={() => this.handleDeleteTag(tag.name)} ></a>
+                                                <a className="tag is-delete" onClick={() => this.handleDeleteTag(tag.name)} />
                                                 <input type="hidden" name="document[tags][][id]" value={tag.id}/>
                                                 <input type="hidden" name="document[tags][][name]" value={tag.name}/>
                                             </div>
@@ -181,6 +184,8 @@ class NewDoc extends React.Component {
 
 
                             </div> : null }
+
+                            { /* viene visualizzato uno spinner durante l'uploading del documento */}
                             { uploading == true ? <div className="load-spinner">
                                 <svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                   viewBox="0 0 100 100" enableBackground="new 0 0 0 0" xmlSpace="preserve">
