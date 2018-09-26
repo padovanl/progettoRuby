@@ -1,6 +1,7 @@
 class CourseTipsController < ApplicationController
   before_action :authenticate_user!
-  after_action :broadcast_notification, only: [:create]
+  after_action :broadcast_notification, only: [:create, :destroy]
+  after_action ->(type_object) { destroy_report_and_notification('CourseTip') }, only: [:destroy]
 
   def index
     courseTips = CourseTip.get_course_tips(params['course_id'])
@@ -8,47 +9,39 @@ class CourseTipsController < ApplicationController
   end
 
   def create
-    tip = CourseTip.new(tip_params)
-
-    unless tip.save
+    tip = CourseTip.create!(tip_params)
+    unless tip.valid?
       render_json_validation_error tip
       return
     end
 
     Notification.send_notifications(params['course_id'], current_user, "ha inserito un nuovo", tip)
 
-    courseTips = CourseTip.where(:id => tip.id).includes([:user, :course])
-    json_response(courseTips.to_json(include: [:user, :course]))
+    json_response(tip.to_json(include: [:user, :course]))
   end
 
   def destroy
-    course_tip = CourseTip.find(params[:id])
-
-    if !course_tip.destroy
+    unless CourseTip.destroy(params[:id])
       render_json_validation_error course_tip
       return
     end
-
-    Notification.where(:notifiable_id => params[:id]).where(:notifiable_type => "CourseTip").destroy_all
-    Report.where(:reportable_id => params[:id]).where(:reportable_type => "CourseTip").destroy_all
-
     head :no_content
   end
 
   def update
-    quest = CourseTip.find(params[:id])
-    quest.update_attributes(tip_params)
-    json_response(quest.to_json)
+    tip = CourseTip.find(params[:id])
+    unless !tip.update_attributes(tip_params)
+      json_response(tip.to_json)
+      return
+    end
   end
 
   def reportTip
-
     Report.send_report(params[:id], current_user.id,
                        params[:reportReason][:reason],
                        CourseTip.find(params[:id]),
                        "CourseTip",
                        "È stata segnalato un")
-    #end
     respond_to do |format|
       format.json { head :ok }
     end

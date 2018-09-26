@@ -28,8 +28,8 @@ class NotificationsNavBarMain extends React.Component {
             });
     }
 
-    updateCountNotifications(notification){
-        this.setState({num: notification.length})
+    updateCountNotifications(notification) {
+        this.setState({num: notification.length, notifications: notification.notifications})
     }
 
 

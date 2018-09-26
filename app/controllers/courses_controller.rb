@@ -57,12 +57,6 @@ class CoursesController < ApplicationController
     @course_details = Course.get_all_courses_details(params[:id])
   end
 
-   def getTeachersHistory
-     teacherCourses = TeacherCourse.get_history_teachers_course(params['course_id'])
-     json_response(teacherCourses.to_json(include: [:teacher]))
-   end
-
-
   private
     def user_course_param
       params.require(:user_course).permit(:course_id, :follow)

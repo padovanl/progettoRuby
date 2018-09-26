@@ -147,8 +147,6 @@ Rails.application.routes.draw do
   get "/api/v1/users", to: "api/v1/users#index"
   post "/api/v1/users/set_admin/:user_id", to: "api/v1/users#setAdmin"
 
-  get "/get_teachers_history/:course_id", to: "courses#getTeachersHistory"
-
   #report post, document, repetition
   post "/report_post/:id", to: "posts#reportPost"
   post "/report_document/:id", to: "documents#reportDocument"
