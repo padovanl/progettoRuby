@@ -123,10 +123,9 @@ class SearchRep extends React.Component {
         return(
             <form onSubmit={(e) => this.handleSearch(e)}>
                 <li className="drawer-menu-item">
-
                     <div className="field">
                         <div className="control">
-                            <div className="select is-primary">
+                            <div className="select">
                                 <select className=" mySelect select-width" onChange={(e)=>this.onChange(e)}>
                                     <option value={''}>- Select -</option>
                                     {opts}
@@ -134,8 +133,6 @@ class SearchRep extends React.Component {
                             </div>
                         </div>
                     </div>
-
-
                 </li>
                 <li className="drawer-menu-item">
                     <div className="control ">
@@ -191,7 +188,9 @@ class SearchRep extends React.Component {
                                onChange={(e)=>this.handleChange(e)}/> Miei post
                     </label>
                 </li>
-                <button className="hero-buttons button-search" type="submit"> Search </button>
+                <div className="search-hero">
+                    <button className="button is-rounded is-info" type="submit">Cerca</button>
+                </div>
             </form>
         )
     }

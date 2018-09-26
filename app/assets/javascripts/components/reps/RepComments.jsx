@@ -73,14 +73,14 @@ class RepComments extends React.Component {
                 </nav>
                 <article className="media gap">
                     <figure className="media-left">
-                        <p className="image is-64x64">
+                        <p className="image is-32x32">
                             <img src={this.props.current_user_image}/>
                         </p>
                     </figure>
                     <form className="media-content" onSubmit={(e) => this.handleClick(e)}>
                         <div className="field">
                             <p className="control">
-                                <textarea className="textarea" value={this.state.valueTextarea} placeholder="Write email..." onChange={(e)=>this.handleChangeComment(e)}/>
+                                <textarea rows="3" className="textarea" value={this.state.valueTextarea} placeholder="Write email..." onChange={(e)=>this.handleChangeComment(e)}/>
                             </p>
                         </div>
                         <div className="field">

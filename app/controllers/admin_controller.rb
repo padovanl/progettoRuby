@@ -36,7 +36,7 @@ class AdminController < ApplicationController
       UserNotifierMailer.send_signup_email(u, text, titolo).deliver
     end
 
-    json_response({error: "Tag gia collegato"})
+    json_response({error: "Errore"})
     return
   end
 end
