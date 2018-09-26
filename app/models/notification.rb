@@ -22,8 +22,8 @@ class Notification < ApplicationRecord
 
   def self.send_notifications(course_id, current_user, action, tip)
     course = Course.find(course_id)
-    (course.users.uniq - [current_user]).each do |user|
-      #course.users.uniq.each do |user|
+    #(course.users.uniq - [current_user]).each do |user|
+      course.users.uniq.each do |user|
         follow_details = user.user_courses.where(:course_id => course_id).where(:follow => true).exists?
         if follow_details
           create(recipient: user, actor: current_user, action: action, notifiable: tip)

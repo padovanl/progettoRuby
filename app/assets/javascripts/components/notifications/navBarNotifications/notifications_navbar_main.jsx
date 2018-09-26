@@ -39,34 +39,49 @@ class NotificationsNavBarMain extends React.Component {
         this.getDataNotifications();
     }
 
-    handleUpdateIsSelected(){
+    handleUpdateIsSelected(type_device){
 
-        if (this.state.isActive == "navbar-item has-dropdown"){
-            this.setState({isActive: "navbar-item has-dropdown is-active"})
-            if (this.state.num > 0){
-                var myHeaders = new Headers();
-                myHeaders.append('X-CSRF-Token', Rails.csrfToken());
-                myHeaders.append('Content-Type', 'application/json');
-                let linkUpdate = '/update_is_selected_notification';
-                fetch(linkUpdate,
-                    {
-                        method: 'PUT',
-                        credentials: 'same-origin',
-                        headers: myHeaders
-                    }).then((response) => {
-                    return response.json()
-                })
-                    .then((notification) => {
-                        if (notification.error) {
-                            alert("Errore!")
-                        } else {
-                            this.getDataCountNotifications();
-                        }
-                    })
+        if(type_device != 'touch') {
+            if (this.state.isActive == "navbar-item has-dropdown") {
+                this.setState({isActive: "navbar-item has-dropdown is-active"})
+                if (this.state.num > 0) {
+                    this.updateCall()
+                }
+            } else {
+                this.setState({isActive: "navbar-item has-dropdown"})
             }
         }else{
-            this.setState({isActive: "navbar-item has-dropdown"})
+            const value = this.updateCall()
+            console.log(value)
+            if(value){
+                console.log("dentro if value")
+                window.location.href = "/notifications"
+            }
         }
+    }
+
+    updateCall(){
+        var myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+        myHeaders.append('Content-Type', 'application/json');
+        let linkUpdate = '/update_is_selected_notification';
+        fetch(linkUpdate,
+            {
+                method: 'PUT',
+                credentials: 'same-origin',
+                headers: myHeaders
+            }).then((response) => {
+            return response.json()
+        })
+            .then((notification) => {
+                if (notification.error) {
+                    alert("Errore!")
+                } else {
+                    this.getDataCountNotifications();
+                    console.log("dopo get data")
+                    return true
+                }
+            })
     }
 
     render(){
@@ -75,8 +90,11 @@ class NotificationsNavBarMain extends React.Component {
             <div className="navbar-item">
                 <NotificationsWebSocket data-updateApp={ this.updateCountNotifications.bind(this)} />
                 <div className={this.state.isActive}>
-                    <a className="navbar-link" onClick={() => this.handleUpdateIsSelected()}>
-                        <span className="badge is-badge-primary bd-emoji" data-badge={this.state.num}><i className="fas fa-globe-americas"></i></span>
+                    <a className="navbar-link is-hidden-desktop" onClick={() => this.handleUpdateIsSelected('touch')}>
+                       <span className="badge is-badge-primary bd-emoji" data-badge={this.state.num}><i className="fas fa-globe-americas"></i></span>
+                    </a>
+                    <a className="navbar-link is-hidden-touch" onClick={() => this.handleUpdateIsSelected()}>
+                       <span className="badge is-badge-primary bd-emoji" data-badge={this.state.num}><i className="fas fa-globe-americas"></i></span>
                     </a>
                     <AllNotificationsNavBar notifications={this.state.notifications}/>
                 </div>
