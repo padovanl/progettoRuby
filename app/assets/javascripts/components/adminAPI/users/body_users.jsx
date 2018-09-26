@@ -12,6 +12,8 @@ class BodyUsers extends React.Component {
         this.handleUpdate = this.handleUpdate.bind(this);
         this.updateTeacher = this.updateTeacher.bind(this)*/
         this.handleSetAdmin = this.handleSetAdmin.bind(this);
+        this.handleBlockUser = this.handleBlockUser.bind(this);
+        this.handleRemoveBlockUser = this.handleRemoveBlockUser.bind(this);
     }
 
 
@@ -41,11 +43,46 @@ class BodyUsers extends React.Component {
         }
     }
 
+    handleBlockUser(id){
+        if(confirm('Sei sicuro di voler bloccare questo utente?')){
+            fetch('/api/v1/users/block/' + id,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then((response) => {
+                if (response.ok){
+                    this.componentDidMount()
+                }else{
+                    alert("errore")
+                }
+            })
+        }
+    }
+
+    handleRemoveBlockUser(id){
+        if(confirm('Sei sicuro di voler sbloccare questo utente?')){
+            fetch('/api/v1/users/unblock/' + id,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then((response) => {
+                if (response.ok){
+                    this.componentDidMount()
+                }else{
+                    alert("errore")
+                }
+            })
+        }
+    }
 
     render(){
         return(
             <div>
-                <AllUsers users={this.state.users} handleSetAdmin={this.handleSetAdmin}/>
+                <AllUsers users={this.state.users} handleSetAdmin={this.handleSetAdmin} handleBlockUser={this.handleBlockUser} handleRemoveBlockUser={this.handleRemoveBlockUser}/>
             </div>
         )
     }

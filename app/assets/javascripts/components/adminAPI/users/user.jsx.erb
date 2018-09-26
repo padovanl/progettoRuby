@@ -51,6 +51,14 @@ class User extends React.Component{
             pulsante = <a className="button is-rounded is-success" title="Promuovi ad amministratore" onClick={() => this.props.handleSetAdmin(this.props.user.id)}><i className="fas fa-level-up-alt"></i></a>;
         else
             pulsante = '';
+        var pulsanteBan = '';
+        if(this.props.user.confirmed_at != null && !this.props.user.admin){
+            if (this.props.user.ban)
+                pulsanteBan = <a className="button is-rounded is-danger" title="Rimuovi blocco utente" onClick={() => this.props.handleRemoveBlockUser(this.props.user.id)}><i class="fas fa-user-check"></i></a>;
+            else
+                pulsanteBan = <a className="button is-rounded is-danger" title="Blocca utente" onClick={() => this.props.handleBlockUser(this.props.user.id)}><i class="fas fa-ban"></i></a>;
+        }
+
         return(
             <tr key={this.props.user.id}>
                 <td>{image}</td>
@@ -58,7 +66,8 @@ class User extends React.Component{
                 <td>{email}</td>
                 <td>{ruolo}</td>
                 <td>
-                    {pulsante}
+                    {pulsante} &nbsp;
+                    {pulsanteBan}
                 </td>
             </tr>
 

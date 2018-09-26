@@ -43,7 +43,16 @@ class User < ApplicationRecord
   end
 
 
+  def active_for_authentication?
+    # Uncomment the below debug statement to view the properties of the returned self model values.
+    # logger.debug self.to_yaml
 
+    super && !ban?
+  end
+
+  def inactive_message
+    ban? ? "Your account is blocked." : super
+  end
 
 
   # validations

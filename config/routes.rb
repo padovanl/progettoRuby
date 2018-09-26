@@ -146,6 +146,8 @@ Rails.application.routes.draw do
 
   get "/api/v1/users", to: "api/v1/users#index"
   post "/api/v1/users/set_admin/:user_id", to: "api/v1/users#setAdmin"
+  post "/api/v1/users/block/:user_id", to: "api/v1/users#blockUser"
+  post "/api/v1/users/unblock/:user_id", to: "api/v1/users#unblockUser"
 
   #report post, document, repetition
   post "/report_post/:id", to: "posts#reportPost"

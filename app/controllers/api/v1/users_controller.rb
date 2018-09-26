@@ -10,4 +10,19 @@ class Api::V1::UsersController < ApplicationController
     user.save
     render json: user
   end
+
+  def blockUser
+    user = User.find(params[:user_id])
+    user.ban = true;
+    user.save
+    render json: user
+  end
+
+  def unblockUser
+    user = User.find(params[:user_id])
+    user.ban = false;
+    user.save
+    render json: user
+  end
+
 end
