@@ -82,7 +82,6 @@ class IndexReps extends React.Component {
     }
 
     activeModal(link){
-        console.log("afadasdasdads")
         this.setState({modalIsActive: true})
         this.setState({linkReport: link})
     }
@@ -94,11 +93,11 @@ class IndexReps extends React.Component {
     render(){
         let buttonNext;
         if (this.state.page !== this.props.last_page && !this.state.disabledNext){
-            buttonNext= <div className='buttonnext' onClick={() => this.onChangePage()}>
+            buttonNext= <div className='button is-rounded is-info' onClick={() => this.onChangePage()}>
                 <span> Next </span> </div>
         }
         else{
-            buttonNext=<div className='buttonnext disabled'>Next</div>;
+            buttonNext=<div className='button is-rounded is-info disabled'>Next</div>;
         }
 
 
@@ -113,12 +112,14 @@ class IndexReps extends React.Component {
                               activeModal={this.activeModal}
                     />
                 </div>
-                <div className='myRow'>
+                <div className='myRow next-button' style={{marginBottom: '20px'}}>
                     {buttonNext}
                 </div>
 
-                <a className={"fixed"} onClick={() => this.showModal()}>
-                    <i className={"fas fa-plus-circle fa-3x"} title={"Add post"}/>
+                <a className="fixed" onClick={() => this.showModal()}>
+                    <p className="image is-64x64">
+                      <%= image_tag "add_post.png" %>
+                    </p>
                 </a>
                 <div className={"modal " + (this.state.modalState ? "is-active" : "")}>
                     <div className="modal-background" onClick={this.closeModal} />

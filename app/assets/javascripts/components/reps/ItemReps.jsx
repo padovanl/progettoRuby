@@ -105,7 +105,7 @@ class ItemReps extends React.Component {
                     <div className="box is-centered">
                         <article className="media gap">
                             <figure className="media-left">
-                                <p className="image is-64x64">
+                                <p className="image is-48x48">
                                     <img src={item.user.avatar_url}/>
                                 </p>
                             </figure>
@@ -132,7 +132,7 @@ class ItemReps extends React.Component {
                                 <div className="dropdown is-right is-hoverable">
                                     <div className="dropdown-trigger">
                                         <div  aria-haspopup="true" aria-controls="dropdown-menu2">
-                                            <i className="fas fa-ellipsis-v fa-2x"/>
+                                            <i className="fas fa-ellipsis-v"/>
                                         </div>
                                     </div>
                                     <div className="dropdown-menu" id="dropdown-menu2" role="menu">
@@ -150,7 +150,6 @@ class ItemReps extends React.Component {
                         <RepComments current_user_image={this.props.current_user_image} item={item} user_name={item.user.name} title={title}
                         />
                     </div>
-                    <div className={"is-divider"}/>
 
                 </section>
                )

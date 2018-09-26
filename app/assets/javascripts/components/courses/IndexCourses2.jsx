@@ -121,7 +121,7 @@ class IndexCourses2 extends React.Component{
 
         let items = filteredCourses.map((item) => {
 
-            if (item.teachers.length ===0){
+            /*if (item.teachers.length ===0){
                 return "seeds from course "+item.id+"teachers sno ancora da fare"
             }
 
@@ -131,7 +131,7 @@ class IndexCourses2 extends React.Component{
                             <a href={teacher.link_cv}> {teacher.surname} {teacher.name}</a>
                         </li>
                 )
-            } );
+            } );*/
 
 
             //bisognerebbe fare tornare direttamente dal controller l'array ordinato con limit 1 per l'anno di teacher courses (migliori prestazioni)

@@ -44,8 +44,9 @@ User.destroy_all
       { id:5, name: "Analisi Matematica I.A", year: 1 },
       { id:6, name: "Geometria e Algebra", year: 1 },
       { id:7, name: "Analisi matematica I.B", year: 1 },
-      { id:8, name: "Fisica I", year: 1 }
-    ])
+      { id:8, name: "Fisica I", year: 1 },
+      { id: 30, name: "SICUREZZA DEI SISTEMI INFORMATICI IN INTERNET", year: 1 }
+])
 
   degree_course = DegreeCourse.create!( id: 3, name: "Ingegneria meccanica", tipo: "Triennale" )
 

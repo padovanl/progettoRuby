@@ -143,6 +143,16 @@ body {
   padding: auto;
 }
 
+.my-nested{
+  display: grid;
+  grid-template-rows: repeat(11, 0fr);
+  grid-gap: 1em;
+}
+
+.my-nested > div{
+  padding: auto;
+}
+
 .wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -183,6 +193,8 @@ body {
     border-radius:10px;
   }
 }
+
+
 
 .wrapper > div {
   padding: 1em;
@@ -355,6 +367,15 @@ div.absolute {
   height: 40px;
 }
 
+div.my-absolute {
+  position: absolute;
+  margin-top: 1em;
+  bottom: 4em;
+  left: 1em;
+  width: 83px;
+  height: 40px;
+}
+
 
 courses-ol {
   padding: 20px;
@@ -448,11 +469,21 @@ courses-ol li {
 }
 
 
-.grid-buttons{
+/*.grid-buttons{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1em;
+}*/
+
+.grid-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 40px 40px;
+  grid-column-gap: 1em;
+  grid-row-gap: 0.5em;
 }
+
+
 
 .course-card{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -468,4 +499,18 @@ courses-ol li {
 
 .search-degree{
   text-align: center;
+}
+
+
+.plus-card{
+  figure {
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  text-align: center;
+  p{
+    margin-top: 20px;
+    margin-bottom: 25px;
+  }
 }
