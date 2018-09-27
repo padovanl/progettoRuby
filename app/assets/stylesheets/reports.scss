@@ -1,3 +1,9 @@
 // Place all the styles related to the Reports controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@include custom-range(500, 2000) {
+  td.report_context_column_mobile {
+    white-space: nowrap
+  }
+}

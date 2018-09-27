@@ -24,7 +24,7 @@ class CourseQuestion extends React.Component{
         let question_freq = <i>{this.props.courseQuestion.frequency_questions.length}</i>;
         let question_id = this.props.courseQuestion.frequency_questions[0].course_question_id;
         let quote_id = this.props.courseQuestion.frequency
-        let hasBeenQuotedID = this.props.courseQuestion.frequency_questions.filter((f) => f.user_id == this.props.user_id)
+        let hasBeenQuotedID = this.props.courseQuestion.frequency_questions.filter((f) => f.user_id == this.props.current_user.id)
         const frequency_question_id = hasBeenQuotedID.length > 0 ? hasBeenQuotedID[0].id : null
         let pulsante = !this.state.editable ? <i className="fas fa-pen"></i> : <i className="fas fa-check"></i>;
         let linkReport = '/report_question/' + this.props.courseQuestion.id + '?course_id=' + this.props.course_id;
@@ -58,12 +58,12 @@ class CourseQuestion extends React.Component{
 
         return(
             <tr key={this.props.courseQuestion.id}>
-                <td>{question_text}</td>
-                <td className="has-text-centered">{question_freq}</td>
+                <td className="question_text_column_desktop">{question_text}</td>
+                <td className="has-text-centered ">{question_freq}</td>
                 {this.props.show_details || this.props.show_quotes  ? <td>
-                    { this.props.courseQuestion.user_id == this.props.user_id && this.props.show_details ? <div> {update_button_item} <span> </span>{delete_button_item} </div> : null}
-                    { this.props.courseQuestion.user_id != this.props.user_id && this.props.show_quotes && hasBeenQuotedID.length == 0 ? <div> {quote_up_button_item} </div>  :  null}
-                    { this.props.courseQuestion.user_id != this.props.user_id && this.props.show_quotes && hasBeenQuotedID.length != 0 ? <div> {quote_down_button_item} </div>  :  null}
+                    { (this.props.courseQuestion.user_id == this.props.current_user.id && this.props.show_details) || this.props.current_user.admin  ? <div> {update_button_item} <span> </span>{delete_button_item} </div> : null}
+                    { this.props.courseQuestion.user_id != this.props.current_user.id && this.props.show_quotes && hasBeenQuotedID.length == 0 ? <div> {quote_up_button_item} </div>  :  null}
+                    { this.props.courseQuestion.user_id != this.props.current_user.id && this.props.show_quotes && hasBeenQuotedID.length != 0 ? <div> {quote_down_button_item} </div>  :  null}
                 </td> : null}
                 <td className="has-text-right"><a title="Reporting" onClick={() => this.props.activeModal(linkReport)}><i className="fas fa-bug"/></a></td>
             </tr>

@@ -47,9 +47,9 @@ class CourseTip extends React.Component{
 
         return(
             <tr key={this.props.courseTip.id}>
-                <td>{tip_text}</td>
+                <td className="question_text_column_desktop">{tip_text}</td>
                 {this.props.show_details  ? <td>
-                    { this.props.courseTip.user_id == this.props.user_id && this.props.show_details ? <div> {update_button_item} <span> </span>{delete_button_item} </div> : null}
+                    { (this.props.courseTip.user_id == this.props.current_user.id && this.props.show_details) || this.props.current_user.admin ? <div> {update_button_item} <span> </span>{delete_button_item} </div> : null}
                 </td> : null}
                 <td className="has-text-right"><a title="Reporting" onClick={() => this.props.activeModal(linkReport)}><i className="fas fa-bug"/></a></td>
             </tr>

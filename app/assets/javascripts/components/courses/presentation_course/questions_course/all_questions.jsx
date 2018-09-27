@@ -8,7 +8,7 @@ class AllQuestions extends React.Component {
         var questions = this.props.questions.map((courseQuestion) => {
             return(
                 <CourseQuestion courseQuestion={courseQuestion}
-                                user_id={this.props.user_id}
+                                current_user={this.props.current_user}
                                 handleDelete={this.props.handleDelete}
                                 handleUpdate={this.props.handleUpdate}
                                 show_details = {this.props.show_details}
@@ -20,8 +20,13 @@ class AllQuestions extends React.Component {
             )
         })
 
+        var scroolStyle = {
+            overflowX: "auto",
+        };
+
+
         return(
-            <div>
+            <div style={scroolStyle}>
                 {questions.length ? <table className="table is-hoverable is-fullwidth is-centered">
                     <thead>
                     <tr>

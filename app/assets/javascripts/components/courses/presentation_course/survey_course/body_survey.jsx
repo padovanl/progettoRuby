@@ -28,24 +28,30 @@ class BodySurvey extends React.Component {
         let linkUpdate = '/api/v1/users/' + this.props.user_id + '/user_courses/' + this.props.user_courses_id
         if(confirm('Sei sicuro di voler confermare il questionario?')) {
             if (average_attempts != '' && average_days != '') {
-                fetch(linkUpdate,
-                    {
-                        method: 'PUT',
-                        credentials: 'same-origin',
-                        body: body,
-                        headers: myHeaders
-                    }).then((response) => {
-                    return response.json()
-                })
-                    .then((courseQuestion) => {
-                        if (courseQuestion.error) {
-                            alert("Errore!")
-                        } else {
-                            this.updateCourseQuestion();
-                            
-                        }
-
-                    })
+                if (average_attempts <= 50) {
+                    if (average_days <= 720) {
+                        fetch(linkUpdate,
+                            {
+                                method: 'PUT',
+                                credentials: 'same-origin',
+                                body: body,
+                                headers: myHeaders
+                            }).then((response) => {
+                            return response.json()
+                        })
+                            .then((courseQuestion) => {
+                                if (courseQuestion.error) {
+                                    alert("Errore!")
+                                } else {
+                                    this.updateCourseQuestion();
+                                }
+                            })
+                    }else{
+                        alert("Numero giorni di studio troppo alto")
+                    }
+                }else{
+                    alert("Numero tentativi troppo alto")
+                }
             } else {
                 alert("I campi non possono essere vuoti!")
             }
@@ -58,14 +64,14 @@ class BodySurvey extends React.Component {
     }
 
     onChangeAttempts(evt) {
-        const re = /^[0-9\b]+$/;
+        const re = /^[1-9][0-9]*$/;
         if (evt.target.value == '' || re.test(evt.target.value)) {
             this.setState({value_number_attempts: evt.target.value});
         }
     }
 
     onChangeDays(evt) {
-        const re = /^[0-9\b]+$/;
+        const re = /^[1-9][0-9]*$/;
         if (evt.target.value == '' || re.test(evt.target.value)) {
             this.setState({value_number_days: evt.target.value});
         }

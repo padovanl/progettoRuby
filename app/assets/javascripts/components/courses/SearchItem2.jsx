@@ -55,7 +55,6 @@ class SearchItem2 extends React.Component {
     }
 
     componentDidMount(){
-        console.log("Sono nel component did mount")
         this.getNextCourses();
     }
 
@@ -123,7 +122,7 @@ class SearchItem2 extends React.Component {
                     /* console.log("URL AGGIORNATO searchCourses: ", this.state.url);
                     console.log("data.len: ", data.length); */
                     if (data.length === 0){
-                        this.setState({disabledNext: true, message: "Corsi non trovati!", courses: data});
+                        this.setState({disabledNext: true, message: "Nessun corso trovato!", courses: data});
                         // console.log("**DisabledNext : true perché data.len = 0 in searchCourse**")
                     }
                     else if (data.length < this.props.per_page){
@@ -151,7 +150,7 @@ class SearchItem2 extends React.Component {
                 .then(data => {
                     this.setState({courses: data});
                     if (data.length ===0){
-                        this.setState({disabledNext: true, message: "Corsi non trovati!",});
+                        this.setState({disabledNext: true, message: "Nessun corso trovato!",});
                         console.log("**DisabledNext : true perché data.len =0 in onSubmit**")
                     }
                     else if (data.length < this.props.per_page){
@@ -163,7 +162,7 @@ class SearchItem2 extends React.Component {
                 })
                 .catch(this.handleError)
         );
-        console.log("Nuovi corsi dopo submit di Search_degree: ", this.state.courses)
+        // console.log("Nuovi corsi dopo submit di Search_degree: ", this.state.courses)
     };
 
 
@@ -181,7 +180,7 @@ class SearchItem2 extends React.Component {
     };
 
     onSuggestionsFetchRequested({ value }){
-        console.log("AutoSuggestName: ", this.state.autoSuggestNames);
+        // console.log("AutoSuggestName: ", this.state.autoSuggestNames);
 
         this.setState({
             suggestions: getSuggestions(value, this.state.autoSuggestNames, this.state.category)

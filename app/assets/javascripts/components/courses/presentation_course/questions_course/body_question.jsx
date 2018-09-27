@@ -117,6 +117,7 @@ class BodyQuestion extends React.Component {
     }
 
     handleUpdate(question_text, id){
+        console.log(question_text)
         var myHeaders = new Headers();
         myHeaders.append('X-CSRF-Token', Rails.csrfToken());
         myHeaders.append('Content-Type', 'application/json');        let body = JSON.stringify({courseQuestion: {question: question_text}});
@@ -155,7 +156,7 @@ class BodyQuestion extends React.Component {
     }
 
     handleQuoteUp(course_question_id) {
-        let body = JSON.stringify({frequencyQuestion: {course_question_id: course_question_id, user_id: this.props.user_id}});
+        let body = JSON.stringify({frequencyQuestion: {course_question_id: course_question_id, user_id: this.props.current_user.id}});
         var myHeaders = new Headers();
         myHeaders.append('X-CSRF-Token', Rails.csrfToken());
         myHeaders.append('Content-Type', 'application/json');
@@ -212,20 +213,20 @@ class BodyQuestion extends React.Component {
 
     render(){
 
-        const n_your_question = this.state.questions.filter((q) => q.user_id == this.props.user_id).length;
-        const n_other_question = this.state.questions.filter((q) => q.user_id != this.props.user_id).length;
+        const n_your_question = this.state.questions.filter((q) => q.user_id == this.props.current_user.id).length;
+        const n_other_question = this.state.questions.filter((q) => q.user_id != this.props.current_user.id).length;
 
-        const gestisci_le_tue_domande_button = (this.state.questions.length && n_your_question > 0) ?
-            <a className="button is-rounded is-warning" onClick={ () => this.handleShowDetails()}>Gestisci le tue domande</a> : null;
+        const gestisci_le_tue_domande_button = (this.state.questions.length && n_your_question > 0 || this.state.questions.length && this.props.current_user.admin) ?
+            <a className="button is-rounded is-warning details_padding" onClick={ () => this.handleShowDetails()}>Gestisci le tue domande</a> : null;
         const gestisci_quote_button = (this.state.questions.length && n_other_question > 0) ? <a className="button is-rounded is-warning" onClick={ () => this.handleShowQuotes()}>Quote domande</a> : null;
 
         return(
             <div>
-                { this.state.followed && this.state.followed.passed ?
+                { this.state.followed && this.state.followed.passed || this.props.current_user.admin ?
                     <div className="has-text-left link-resources">{gestisci_le_tue_domande_button} <span> </span>{gestisci_quote_button}</div> : null}
                 <AllQuestions questions={this.state.questions}
                               course_id={this.props.course_id}
-                              user_id={this.props.user_id}
+                              current_user={this.props.current_user}
                               handleDelete={this.handleDelete}
                               handleUpdate = {this.handleUpdate}
                               show_details = {this.state.show_details}
@@ -238,7 +239,7 @@ class BodyQuestion extends React.Component {
                     <tbody>
                     { this.state.followed && this.state.followed.passed ?
                         <NewQuestionCourse course_id={this.props.course_id}
-                                           user_id={this.props.user_id}
+                                           current_user={this.props.current_user}
                                            handleFormSubmit={this.handleFormSubmit}
                                            content_question={this.state.content_question}
                                            handleChange={this.handleChange} /> : null}

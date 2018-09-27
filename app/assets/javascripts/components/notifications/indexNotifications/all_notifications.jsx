@@ -5,6 +5,10 @@ class AllNotifications extends React.Component {
 
     render(){
 
+        var scroolStyle = {
+            overflowX: "auto",
+        };
+
         let show_more_button;
         if (this.props.page !== this.props.last_page && !this.props.disabledNext){
             show_more_button= <a className="button is-link is-rounded" onClick={() => this.props.handleShowMore()}>
@@ -20,34 +24,40 @@ class AllNotifications extends React.Component {
             )
         })
 
-
         return(
-            <div className="columns">
-                <div className="column is-1"></div>
-                <div className="column">
-                    <table className="table is-hoverable is-narrow is-centered is-fullwidth">
-                        <tbody>
-                        {notifications}
-                        </tbody>
-                    </table>
-                    <table className="table is-striped is-centered is-fullwidth">
-                        <thead>
-                        <tr>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>
-                                <p className="has-text-centered">
-                                {show_more_button}
-                                </p>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+            <div>
+                <div className="columns">
+                    <div className="column is-1"></div>
+                    {notifications.length ? <div className="column" style={scroolStyle}>
+                        <table className="table is-hoverable is-fullwidth">
+                            <tbody>
+                            {notifications}
+                            </tbody>
+                        </table>
+                    </div> :  <div className="column"><div className="is-fullwidth has-text-centered has-text-weight-bold"> Nessuna notifica presente </div></div>}
+                        <div className="column is-1"></div>
                 </div>
-                <div className="column is-1"></div>
+
+
+                <div className="columns">
+                    <div className="column is-1"></div>
+                    {notifications.length ? <div className="column" style={scroolStyle}>
+                        <table className="table is-fullwidth">
+                            <thead>
+                            <tr>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <div className="has-text-centered">
+                                <br/>
+                                {show_more_button}
+                            </div>
+                            </tbody>
+                        </table>
+                    </div> :  null}
+                    <div className="column is-1"></div>
+                </div>
             </div>
         )
     }

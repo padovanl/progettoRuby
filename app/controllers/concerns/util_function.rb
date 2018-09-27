@@ -26,7 +26,6 @@ module UtilFunction
   end
 
   def user_compile_survey?
-    #byebug
     if request.format.html?
       if UserCourse.where(user_id: current_user.id, course_id:  params[:course_id], passed: true).exists?
         #redirect_to controller: '/controllers/courses', action: 'show', id: params[:course_id]
@@ -47,10 +46,29 @@ module UtilFunction
   end
 end
 
-def destroy_report_comment_of_post
+def destroy_notification_comment_unfollow_upvote
+  Post.joins(:upvotes).where("upvotes.upvoter_id = ?", current_user.id).where(:course_id => user_course_param[:course_id]).each do |post|
+    post.comments.each do |comment|
+      notifica = Notification.where(:notifiable_id => comment.id).where(:notifiable_type => 'Comment').first
+      if notifica.present?
+        notifica.destroy
+      end
+    end
+  end
+end
+
+def destroy_report_and_notification_comment_of_post
   post = Post.find(params[:id])
   post.comments.each do |comment|
-    Report.where(:reportable_id => comment.id).where(:reportable_type => 'Comment').destroy_all
+    report = Report.where(:reportable_id => comment.id).where(:reportable_type => 'Comment').first
+    notification = Notification.where(:notifiable_id => comment.id).where(:notifiable_type => 'Comment').first
+    if report.present?
+      report.destroy
+    end
+
+    if notification.present?
+      notification.destroy
+    end
   end
 end
 
