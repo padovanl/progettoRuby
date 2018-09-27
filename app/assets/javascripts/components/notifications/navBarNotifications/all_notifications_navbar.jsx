@@ -21,7 +21,7 @@ class AllNotificationsNavBar extends React.Component {
 
         return(
             <div>
-                <div className="navbar-dropdown is-hidden-mobile" style={style_margin_top}>
+                <div className="navbar-dropdown is-hidden-touch" style={style_margin_top}>
                     {notifications}
                     <hr className="navbar-divider" />
                     <a className="navbar-item is-active show-all has-text-weight-bold" href="/notifications">

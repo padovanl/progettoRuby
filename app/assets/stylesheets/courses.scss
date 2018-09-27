@@ -591,3 +591,9 @@ body {
 .teacher_subtitle_course{
   padding-top: 4px;
 }
+
+@include custom-range(319, 1199) {
+  section.margin-top-title-tablet {
+    margin-top: 24px;
+  }
+}

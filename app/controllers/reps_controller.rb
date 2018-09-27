@@ -56,7 +56,7 @@ class RepsController < ApplicationController
   def destroy
     @rep = Rep.current_user_rep(current_user, params[:id]).first
 
-    if !@rep.destroyupdated_rep
+    if !@rep.destroy
       render_json_validation_error @rep
       return
     end
