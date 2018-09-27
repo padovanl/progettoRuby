@@ -162,7 +162,7 @@ class UpdateRep extends React.Component {
                     <div className="modal-background" onClick={this.closeModal} />
                     <div className="modal-card">
                         <header className="modal-card-head">
-                            <p className="modal-card-title">Update post: {this.props.title}</p>
+                            <p className="modal-card-title">Aggiorna post: {this.props.title}</p>
                             <button className="delete" aria-label="close" onClick={this.closeModal} />
                         </header>
 
@@ -183,7 +183,7 @@ class UpdateRep extends React.Component {
                                 </div>
 
                                 <div className={"field "}>
-                                    <label className="label">Course*</label>
+                                    <label className="label">Corso*</label>
                                     <div className="control">
                                         <div className="select">
                                             <select required  value={this.state.course} name={"rep[course_name]"} id="course" onChange={(e)=>this.handleChange(e)}>
@@ -212,7 +212,7 @@ class UpdateRep extends React.Component {
                                 </div>
 
                                 <div className=" field">
-                                    <label className="label">Price*</label>
+                                    <label className="label">Prezzo*</label>
                                     <div className={"control has-icons-left " }>
                                         <input required className="input " type="number" placeholder="Price" maxLength={10}//999.999,99=10
                                                min={0} max={9999.99}
@@ -226,7 +226,7 @@ class UpdateRep extends React.Component {
                                 </div>
 
                                 <div className="field">
-                                    <label className="label">Place</label>
+                                    <label className="label">Posto</label>
                                     <div className={"control has-icons-left " }>
                                         <input className="input " type="text" placeholder="Place"
                                                pattern="[a-zA-Zàèéìòù,.!'?()_ -]*"
@@ -256,7 +256,7 @@ class UpdateRep extends React.Component {
 
 
                                 <div className="field">
-                                    <label className="label">Week days</label>
+                                    <label className="label">Giorni della settimana</label>
                                     <div className={"control has-icons-left " }>
                                         <input className="input " type="text" placeholder="Week days of lessons "
                                                title={"Può contenere solo: lettere , . "}
@@ -271,7 +271,7 @@ class UpdateRep extends React.Component {
                                 </div>
 
                                 <div className="field">
-                                    <label className="label">Description</label>
+                                    <label className="label">Descrizione</label>
                                     <div className={"control has-icons-left " }>
                                         <input className="input " type="text" placeholder="Description"
                                                pattern="[a-zA-Zàèéìòù,.!'?()_ -]*"
@@ -286,8 +286,8 @@ class UpdateRep extends React.Component {
                             </section>
 
                             <footer className="modal-card-foot">
-                                <button className="button is-success" type={"submit"}>Save post</button>
-                                <button className="button" onClick={this.closeModal}>Cancel</button>
+                                <button className="button is-success" type={"submit"}>Salva post</button>
+                                <button className="button" onClick={this.closeModal}>Cancella</button>
                             </footer>
                         </form>
 

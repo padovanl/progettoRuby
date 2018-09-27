@@ -101,11 +101,11 @@ class IndexCourses2 extends React.Component{
                 }
             );
         else{
-            return (<div className={"message is-danger gap"}  >
-                        <div className="message-body">
-                            {this.props.message }
-                        </div>
-                    </div>);
+            return (<div className="is-danger container" style={{textAlign: 'center', background: '#ffa726', padding: '20px'}} >
+                <div>
+                    {this.props.message }
+                </div>
+            </div>);
         }
 
 
