@@ -6,23 +6,23 @@ class Notification extends React.Component{
 
     handleMarkAndRedirect(redirect_url, id){
         let linkUpdate = '/mark_as_read/' + id;
-                fetch(linkUpdate,
-                    {
-                        method: 'PUT',
-                        credentials: 'same-origin',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                    }).then((response) => {
-                    return response.json()
-                })
-                    .then((notification) => {
-                        if (notification.error) {
-                            alert("Errore!")
-                        } else {
-                            window.location.href = redirect_url;
-                        }
-                    })
+        fetch(linkUpdate,
+            {
+                method: 'PUT',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            }).then((response) => {
+            return response.json()
+        })
+            .then((notification) => {
+                if (notification.error) {
+                    alert("Errore!")
+                } else {
+                    window.location.href = redirect_url;
+                }
+            })
     }
 
 
@@ -66,19 +66,19 @@ class Notification extends React.Component{
                 scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>nel corso di {nome_corso}</div>
                 break;
             case 'Rep':
-                    if(this.props.notification.notifiable.rep.offer){
-                        type = 'ripetizioni'
-                        link = '/reps'
-                        icon = <span className="icon has-text-link"><i className="fas fa-book"></i></span>;
-                        scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span> offre <span className="has-text-weight-bold style_padding_row"> {type}</span>per il corso di {nome_corso}</div>
-                        break;
-                    }else{
-                        type = 'ripetizioni'
-                        link = '/reps'
-                        icon = <span className="icon has-text-link"><i className="fas fa-book"></i></span>;
-                        scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span> cerca <span className="has-text-weight-bold style_padding_row"> {type}</span>per il corso di {nome_corso}</div>
-                        break;
-                    }
+                if(this.props.notification.notifiable.rep.offer){
+                    type = 'ripetizioni'
+                    link = '/reps'
+                    icon = <span className="icon has-text-link"><i className="fas fa-book"></i></span>;
+                    scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span> offre <span className="has-text-weight-bold style_padding_row"> {type}</span>per il corso di {nome_corso}</div>
+                    break;
+                }else{
+                    type = 'ripetizioni'
+                    link = '/reps'
+                    icon = <span className="icon has-text-link"><i className="fas fa-book"></i></span>;
+                    scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span> cerca <span className="has-text-weight-bold style_padding_row"> {type}</span>per il corso di {nome_corso}</div>
+                    break;
+                }
             case 'Document':
                 type = 'documento'
                 link = '/resources/' + id_corso + '?document_id=' + this.props.notification.notifiable.document.id
@@ -90,30 +90,58 @@ class Notification extends React.Component{
         links[''+this.props.notification.id.toString()+''] = link
         new_notification = this.props.notification.read_at == null ? <span className="icon has-text-danger"><i className="fas fa-dot-circle"></i></span> : <span className="icon"><i className="fas fa-dot-circle"></i></span>;
 
-        let style1 = {
-
-        };
-
-
         return(
 
             <tr key={this.props.notification.id} className={stile_background_notifica}>
-                <td>
-                    <span className="image is-24x24"><img src={url_actor} className="is-rounded"/></span>
+                <td className="notification_text_column_mobile">
+                    <a className="style_link_row" onClick={() => this.props.handleMarkAndRedirect(links[this.props.notification.id], id_notification)}>
+                        <article className="media gap">
+                            <figure className="media-left">
+                                <p className="image is-24x24">
+                                    <img className="is-rounded" src={url_actor}/>
+                                </p>
+                            </figure>
+                            <div className="media-content">
+                                <div className="content">
+                                    {scritta_annuncio}
+                                </div>
+                            </div>
+                        </article>
+                    </a>
                 </td>
-                    <td className="is-hidden-touch">
-                        <a className="style_link_row" onClick={() => this.props.handleMarkAndRedirect(links[this.props.notification.id], id_notification)}>
-                            {scritta_annuncio}
-                        </a>
-                    </td>
-                    <td className="is-hidden-desktop notification_text_column_mobile">
-                        <a className="style_link_row" onClick={() => this.props.handleMarkAndRedirect(links[this.props.notification.id], id_notification)}>
-                            {scritta_annuncio}
-                        </a>
-                    </td>
-                    <td>{icon}</td>
-                    <td className="notification_text_column_mobile">{notification_time}</td>
-                    <td>{new_notification}</td>
+                <td>
+                    <article className="media gap">
+                        <div className="media-content">
+                            <div className="content">
+                                <div>
+                                    {icon}
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </td>
+                <td className="notification_text_column_mobile">
+                    <article className="media gap">
+                        <div className="media-content">
+                            <div className="content">
+                                <div>
+                                    {notification_time}
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </td>
+                <td>
+                    <article className="media gap">
+                        <div className="media-content">
+                            <div className="content">
+                                <div className="is-arial-black">
+                                    {new_notification}
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </td>
             </tr>
         )
     }

@@ -8,7 +8,7 @@ class AllTips extends React.Component {
         var tips = this.props.tips.map((courseTip) => {
             return(
                 <CourseTip courseTip={courseTip}
-                                user_id={this.props.user_id}
+                                current_user={this.props.current_user}
                                 handleDelete={this.props.handleDelete}
                                 handleUpdate={this.props.handleUpdate}
                                 show_details = {this.props.show_details}

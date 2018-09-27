@@ -161,16 +161,16 @@ class BodyTip extends React.Component {
 
     render(){
 
-        const n_your_tips = this.state.tips.filter((q) => q.user_id == this.props.user_id).length;
+        const n_your_tips = this.state.tips.filter((q) => q.user_id == this.props.current_user.id).length;
 
-        const gestisci_i_tuoi_tips_button = (this.state.tips.length && n_your_tips > 0) ? <a className="button is-rounded is-warning" onClick={ () => this.handleShowDetails()}>Gestisci i tuoi suggerimenti</a> : null;
+        const gestisci_i_tuoi_tips_button = (this.state.tips.length && n_your_tips > 0) || this.props.current_user.admin ? <a className="button is-rounded is-warning" onClick={ () => this.handleShowDetails()}>Gestisci i tuoi suggerimenti</a> : null;
 
         return(
             <div>
-                { this.state.followed && this.state.followed.passed ? <div className="has-text-left link-resources"> {gestisci_i_tuoi_tips_button}</div> : null}
+                { this.state.followed && this.state.followed.passed || this.props.current_user.admin ? <div className="has-text-left link-resources"> {gestisci_i_tuoi_tips_button}</div> : null}
                 <AllTips tips={this.state.tips}
                               course_id={this.props.course_id}
-                              user_id={this.props.user_id}
+                              current_user={this.props.current_user}
                               handleDelete={this.handleDelete}
                               handleUpdate = {this.handleUpdate}
                               show_details = {this.state.show_details}
@@ -180,7 +180,7 @@ class BodyTip extends React.Component {
                     <tbody>
                     { this.state.followed && this.state.followed.passed ?
                         <NewTipCourse course_id={this.props.course_id}
-                                      user_id={this.props.user_id}
+                                      current_user={this.props.current_user}
                                       handleFormSubmit={this.handleFormSubmit}
                                       content_tip={this.state.content_tip}
                                       handleChange={this.handleChange} /> : null}

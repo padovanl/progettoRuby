@@ -32,10 +32,8 @@ class QuestionsController < ApplicationController
 
   def update
     question = CourseQuestion.find(params[:id])
-    unless !question.update_attributes(question_params)
-      json_response(question.to_json(include: [:frequency_questions]))
-      return
-    end
+    question.update_attributes(question_params)
+    json_response(question.to_json(include: [:frequency_questions]))
   end
 
   def reportQuestion
