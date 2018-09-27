@@ -92,8 +92,6 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-
-
   
   # Setup the mailer config
   config.action_mailer.default_url_options = { host: 'https://brain-steam.herokuapp.com' }
@@ -108,6 +106,4 @@ Rails.application.configure do
       authentication: :plain,
       enable_starttls_auto: true
   }
-
-
 end
