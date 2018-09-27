@@ -58,8 +58,9 @@ class CourseQuestion extends React.Component{
 
         return(
             <tr key={this.props.courseQuestion.id}>
-                <td>{question_text}</td>
-                <td className="has-text-centered">{question_freq}</td>
+                <td className="is-hidden-touch question_text_column_desktop">{question_text}</td>
+                <td className="is-hidden-desktop question_text_column_mobile">{question_text}</td>
+                <td className="has-text-centered ">{question_freq}</td>
                 {this.props.show_details || this.props.show_quotes  ? <td>
                     { this.props.courseQuestion.user_id == this.props.user_id && this.props.show_details ? <div> {update_button_item} <span> </span>{delete_button_item} </div> : null}
                     { this.props.courseQuestion.user_id != this.props.user_id && this.props.show_quotes && hasBeenQuotedID.length == 0 ? <div> {quote_up_button_item} </div>  :  null}

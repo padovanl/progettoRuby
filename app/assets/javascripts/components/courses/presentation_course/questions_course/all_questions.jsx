@@ -20,8 +20,13 @@ class AllQuestions extends React.Component {
             )
         })
 
+        var scroolStyle = {
+            overflowX: "auto",
+        };
+
+
         return(
-            <div>
+            <div style={scroolStyle}>
                 {questions.length ? <table className="table is-hoverable is-fullwidth is-centered">
                     <thead>
                     <tr>

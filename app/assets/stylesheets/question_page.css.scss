@@ -1,5 +1,5 @@
 th.question-text-column {
-  width: 50%;
+  width: 64%;
 }
 
 th.frequency-column {
@@ -17,3 +17,14 @@ td.new-question-text {
 td.new-question-button {
   width: 20%;
 }
+
+td.question_text_column_desktop {
+  max-width: 250px;
+  word-wrap: break-word;
+}
+
+td.question_text_column_mobile {
+  max-width: 1000px;
+  word-wrap: break-word;
+}
+

@@ -90,58 +90,30 @@ class Notification extends React.Component{
         links[''+this.props.notification.id.toString()+''] = link
         new_notification = this.props.notification.read_at == null ? <span className="icon has-text-danger"><i className="fas fa-dot-circle"></i></span> : <span className="icon"><i className="fas fa-dot-circle"></i></span>;
 
+        let style1 = {
+
+        };
+
+
         return(
 
             <tr key={this.props.notification.id} className={stile_background_notifica}>
-                    <td>
+                <td>
+                    <span className="image is-24x24"><img src={url_actor} className="is-rounded"/></span>
+                </td>
+                    <td className="is-hidden-touch">
                         <a className="style_link_row" onClick={() => this.props.handleMarkAndRedirect(links[this.props.notification.id], id_notification)}>
-                            <article className="media gap">
-                                <figure className="media-left">
-                                    <p className="image is-24x24">
-                                        <img className="is-rounded" src={url_actor}/>
-                                    </p>
-                                </figure>
-                                <div className="media-content">
-                                    <div className="content">
-                                        {scritta_annuncio}
-                                    </div>
-                                </div>
-                            </article>
+                            {scritta_annuncio}
                         </a>
                     </td>
-                    <td>
-                        <article className="media gap">
-                            <div className="media-content">
-                                <div className="content">
-                                    <div>
-                                        {icon}
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
+                    <td className="is-hidden-desktop notification_text_column_mobile">
+                        <a className="style_link_row" onClick={() => this.props.handleMarkAndRedirect(links[this.props.notification.id], id_notification)}>
+                            {scritta_annuncio}
+                        </a>
                     </td>
-                    <td>
-                            <article className="media gap">
-                                <div className="media-content">
-                                    <div className="content">
-                                        <div>
-                                            {notification_time}
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                    </td>
-                    <td>
-                        <article className="media gap">
-                            <div className="media-content">
-                                <div className="content">
-                                    <div className="is-arial-black">
-                                        {new_notification}
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </td>
+                    <td>{icon}</td>
+                    <td className="notification_text_column_mobile">{notification_time}</td>
+                    <td>{new_notification}</td>
             </tr>
         )
     }

@@ -5,6 +5,10 @@ class AllNotifications extends React.Component {
 
     render(){
 
+        var scroolStyle = {
+            overflowX: "auto",
+        };
+
         let show_more_button;
         if (this.props.page !== this.props.last_page && !this.props.disabledNext){
             show_more_button= <a className="button is-link is-rounded" onClick={() => this.props.handleShowMore()}>
@@ -24,8 +28,17 @@ class AllNotifications extends React.Component {
         return(
             <div className="columns">
                 <div className="column is-1"></div>
-                <div className="column">
-                    <table className="table is-hoverable is-narrow is-centered is-fullwidth">
+                {notifications.length ? <div className="column" style={scroolStyle}>
+                    <table className="table is-hoverable is-fullwidth">
+                        <thead>
+                        <tr>
+                            <th className='notification-icon-column'></th>
+                            <th className="notification-text-column"></th>
+                            <th className='notification-icon-column'></th>
+                            <th className='notification-time-column'></th>
+                            <th className='notification-icon-column'></th>
+                        </tr>
+                        </thead>
                         <tbody>
                         {notifications}
                         </tbody>
@@ -46,7 +59,7 @@ class AllNotifications extends React.Component {
                         </tr>
                         </tbody>
                     </table>
-                </div>
+                </div> :  <div> Nessuna notifica presente </div>}
                 <div className="column is-1"></div>
             </div>
         )

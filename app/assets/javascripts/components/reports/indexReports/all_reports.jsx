@@ -23,10 +23,14 @@ class AllReports extends React.Component {
             )
         })
 
+        var scroolStyle = {
+            overflowX: "auto",
+        };
+
         return(
             <div className="columns">
                 <div className="column is-1"></div>
-                <div className="column">
+                {reports.length ? <div className="column" style={scroolStyle}>
                     <table className="table is-hoverable is-narrow is-centered is-fullwidth">
                         <tbody>
                         {reports}
@@ -48,7 +52,7 @@ class AllReports extends React.Component {
                         </tr>
                         </tbody>
                     </table>
-                </div>
+                </div> :  <div> Nessun report presente </div>}
                 <div className="column is-1"></div>
             </div>
         )
