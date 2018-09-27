@@ -61,14 +61,19 @@ class ReportDetails extends React.Component {
                 break;
         }
 
+
+        var scroolStyle = {
+            overflowX: "auto",
+        };
+
         return(
             <div className="columns">
                 <div className="column is-3"></div>
-                        <div className="column">
+                        <div className="column" style={scroolStyle}>
                     <h3 className="title is-5">Descrizione</h3>
                     <table className="table is-centered is-fullwidth">
                         <thead>
-                        <tr><th></th><th></th></tr>
+                        <tr><th></th><th className="question-text-column"></th></tr>
                         </thead>
                         <tbody>
                         <tr>
@@ -85,7 +90,7 @@ class ReportDetails extends React.Component {
                         </tr>
                         <tr>
                             <td className="has-text-weight-bold">Contenuto</td>
-                            <td>{contenuto}</td>
+                            <td className="question_text_column_desktop">{contenuto}</td>
                         </tr>
                         </tbody>
                     </table>
