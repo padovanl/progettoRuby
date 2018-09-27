@@ -47,10 +47,11 @@ module UtilFunction
   end
 end
 
-def destroy_report_comment_of_post
+def destroy_report_and_notification_comment_of_post
   post = Post.find(params[:id])
   post.comments.each do |comment|
     Report.where(:reportable_id => comment.id).where(:reportable_type => 'Comment').destroy_all
+    Notification.where(:notifiable_id => comment.id).where(:notifiable_type => 'Comment').destroy_all
   end
 end
 

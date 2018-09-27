@@ -13,6 +13,8 @@ class CommentsController < ApplicationController
       return
     end
 
+    Notification.send_notifications(comment_params[:course_id], current_user, "commentato", @comment)
+
     render json: @comment, status: :created
   end
 

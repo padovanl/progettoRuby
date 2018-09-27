@@ -20,13 +20,27 @@ class Notification < ApplicationRecord
             .per(number)
   }
 
-  def self.send_notifications(course_id, current_user, action, tip)
+  def self.send_notifications(course_id, current_user, action, object)
+
     course = Course.find(course_id)
-    (course.users.uniq - [current_user]).each do |user|
-      #course.users.uniq.each do |user|
+
+    if (object.class.name == 'Comment')
+      upvoters_post = object.post.upvoters.uniq
+      (upvoters_post - [current_user]).each do |user|
+        #course.users.uniq.each do |user|
         follow_details = user.user_courses.where(:course_id => course_id).where(:follow => true).exists?
         if follow_details
-          create(recipient: user, actor: current_user, action: action, notifiable: tip)
+          create(recipient: user, actor: current_user, action: action, notifiable: object)
+        end
+      end
+
+    else
+      (course.users.uniq - [current_user]).each do |user|
+        #course.users.uniq.each do |user|
+          follow_details = user.user_courses.where(:course_id => course_id).where(:follow => true).exists?
+          if follow_details
+            create(recipient: user, actor: current_user, action: action, notifiable: object)
+        end
       end
     end
   end

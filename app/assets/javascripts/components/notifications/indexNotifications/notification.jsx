@@ -85,6 +85,12 @@ class Notification extends React.Component{
                 icon = <span className="icon has-text-link"><i className="fas fa-envelope"></i></span>;
                 scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>per il corso di {nome_corso}</div>
                 break;
+            case 'Comment':
+                type = ''
+                link = '/publications/' + id_corso + '?comment_id=' + this.props.notification.notifiable.comment.id
+                icon = <span className="icon has-text-link"><i className="fas fa-question-circle"></i></span>;
+                scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span>ha <span className="has-text-weight-bold"> {action}</span> un post nel corso di {nome_corso}</div>
+                break;
         }
 
         links[''+this.props.notification.id.toString()+''] = link
