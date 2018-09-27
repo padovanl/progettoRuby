@@ -33,10 +33,15 @@ class Teacher extends React.Component{
         }else{
             pulsante = <i className="fas fa-check"></i>;
         }
+
+        let style = {
+            maxWidth: 100,
+            wordWrap: "break-word",
+        };
         return(
             <tr key={this.props.teacher.id}>
-                <td>{name}</td>
-                <td>{surname}</td>
+                <td style={style}>{name}</td>
+                <td style={style}>{surname}</td>
                 <td>{link_cv}</td>
                 <td>
                     <a className="button is-rounded is-success" onClick={() => this.handleEdit()} title="Modifica">{pulsante}</a>&nbsp;

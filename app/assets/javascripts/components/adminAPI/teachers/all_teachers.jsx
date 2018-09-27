@@ -6,13 +6,16 @@ const AllTeachers = (props) => {
         )
     })
 
+    let style = {
+        width: "15%",
+    };
     return(
         <div>
             <table className="table is-hoverable is-fullwidth">
                 <thead>
                 <tr>
-                    <th>Nome</th>
-                    <th>Cognome</th>
+                    <th style={style}>Nome</th>
+                    <th style={style}>Cognome</th>
                     <th>Link</th>
                     <th>Opzioni</th>
                 </tr>
