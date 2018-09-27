@@ -294,7 +294,7 @@ end
 courses = Course.all
 courses.each {|x| x.teacher_courses.create!(teacher: Teacher.create!(name: Faker::Name.first_name, surname: Faker::Name.last_name, link_cv: "http://unife.it"), year: '2017-2018')}
 
-
+=begin
 user = User.second
 course = Course.first
 5.times do
@@ -323,3 +323,4 @@ end
       week_days: "Giovedì e Sabato"
   )
 end
+=end

@@ -51,7 +51,7 @@
             </div>
           </section>
           <section id="rauchbier" class="tab-panel">
-            <%= react_component('MainQuestion', {course_id: params['id'], user_id: current_user[:id].to_s, details_follow_course: @course_details['details_follow_course']}) %>
+            <%= react_component('MainQuestion', {course_id: params['id'], current_user: current_user, details_follow_course: @course_details['details_follow_course']}) %>
           </section>
           <section id="dunkles" class="tab-panel">
             <%= react_component('MainTip', {course_id: params['id'], user_id: current_user[:id].to_s, details_follow_course: @course_details['details_follow_course']}) %>

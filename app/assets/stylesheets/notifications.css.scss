@@ -27,9 +27,6 @@
   padding-right: 10px,
 };
 
-td.notification_text_column_mobile {
-  white-space: nowrap
-}
 
 th.notification-text-column {
   width: 73%;
@@ -41,6 +38,12 @@ th.notification-icon-column {
 
 th.notification-time-column {
   width: 18%;
+}
+
+@include custom-range(319, 1199) {
+  td.notification_text_column_mobile {
+    white-space: nowrap
+  }
 }
 
 

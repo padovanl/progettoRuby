@@ -34,45 +34,45 @@ class Report extends React.Component{
             case 'CourseQuestion':
                 type = 'domanda'
                 link = '/courses/' + id_corso
-                icon = <span className="icon has-text-link"><i className="fas fa-question-circle"></i></span>;
+                icon = <span className="icon has-text-link"><i className="fas fa-lg fa-question-circle"></i></span>;
                 scritta_annuncio = <div>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>nel corso di {nome_corso}</div>
                 break;
             case 'CourseTip':
                 type = 'suggerimento'
                 link = '/courses/' + id_corso
-                icon = <span className="icon has-text-link"><i className="fas fa-question-circle"></i></span>;
+                icon = <span className="icon has-text-link"><i className="fas fa-lg fa-question-circle"></i></span>;
                 scritta_annuncio = <div>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>nel corso di {nome_corso}</div>
                 break;
             case 'Post':
                 type = 'post'
                 link = '/publications/' + id_corso + '?post_id=' + this.props.report.reportable.post.id
-                icon = <span className="icon has-text-link"><i className="fas fa-envelope"></i></span>;
+                icon = <span className="icon has-text-link"><i className="fas fa-lg fa-envelope"></i></span>;
                 scritta_annuncio = <div>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>del corso di {nome_corso}</div>
                 break;
             case 'Document':
                 type = 'documento'
                 link = '/resources/' + id_corso + '?document_id=' + this.props.report.reportable.document.id
-                icon = <span className="icon has-text-link"><i className="fas fa-envelope"></i></span>;
+                icon = <span className="icon has-text-link"><i className="fas fa-lg fa-envelope"></i></span>;
                 scritta_annuncio = <div>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>condiviso nel corso di {nome_corso}</div>
                 break;
             case 'Rep':
                     if(this.props.report.reportable.rep.offer){
                         type = 'ripetizioni'
                         link = '/reps'
-                        icon = <span className="icon has-text-link"><i className="fas fa-book"></i></span>;
+                        icon = <span className="icon has-text-link"><i className="fas fa-lg fa-book"></i></span>;
                         scritta_annuncio = <div>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>per il corso di {nome_corso}</div>
                         break;
                     }else{
                         type = 'ripetizioni'
                         link = '/reps'
-                        icon = <span className="icon has-text-link"><i className="fas fa-book"></i></span>;
+                        icon = <span className="icon has-text-link"><i className="fas fa-lg fa-book"></i></span>;
                         scritta_annuncio = <div>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>per il corso di {nome_corso}</div>
                         break;
                     }
             case 'Comment':
                 type = 'commento'
                 link = '/publications/' + id_corso + '?comment_id=' + this.props.report.reportable.comment.id
-                icon = <span className="icon has-text-link"><i className="fas fa-envelope"></i></span>;
+                icon = <span className="icon has-text-link"><i className="fas fa-lg fa-envelope"></i></span>;
                 scritta_annuncio = <div>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>del corso di {nome_corso}</div>
                 break;
         }
@@ -80,7 +80,7 @@ class Report extends React.Component{
         return(
 
             <tr key={report_id} className={stile_background_notifica}>
-                    <td>
+                    <td className="notification_text_column_mobile">
                         <a className="style_link_row" onClick={() => this.props.handleMarkAndRedirect(links[report_id], report_id)}>
                             <article className="media gap">
                                 <figure className="media-left">
@@ -107,7 +107,7 @@ class Report extends React.Component{
                             </div>
                         </article>
                     </td>
-                    <td>
+                    <td className="notification_text_column_mobile">
                         <article className="media gap">
                             <div className="media-content">
                                 <div className="content">
@@ -118,25 +118,25 @@ class Report extends React.Component{
                             </div>
                         </article>
                     </td>
-                    <td>
+                    <td className="report_context_column_mobile">
                         <article className="media gap">
                             <div className="media-content">
                                 <div className="content">
-                                    <a className="tags has-addons" onClick={() => this.props.handleDelete(report_id)}>
-                                        <span className="tag is-success">Risolto</span>
-                                        <span className="tag is-success"><i className="fas fa-check"></i></span>
+                                    <a className="button is-success" onClick={() => this.props.handleDelete(report_id)}>
+                                            <span className="icon is-success"><i className="fas fa-check-circle"></i></span>
+                                        <span className="is-success">Risolto</span>
                                     </a>
                                 </div>
                             </div>
                         </article>
                     </td>
-                    <td>
+                    <td className="report_context_column_mobile">
                         <article className="media gap">
                             <div className="media-content">
                                 <div className="content">
-                                    <a className="tags has-addons" href={"/reports/" + report_id}>
-                                        <span className="tag is-warning">Dettagli</span>
-                                        <span className="tag is-warning"><i className="fas fa-info-circle"></i></span>
+                                    <a className="button is-warning" href={"/reports/" + report_id}>
+                                        <span className="icon is-warning"><i className="fas fa-info-circle"></i></span>
+                                        <span className="is-warning">Dettagli</span>
                                     </a>
                                 </div>
                             </div>

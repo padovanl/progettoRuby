@@ -17,14 +17,16 @@ td.new-question-text {
 td.new-question-button {
   width: 20%;
 }
-
-td.question_text_column_desktop {
-  max-width: 250px;
-  word-wrap: break-word;
+@include custom-range(1200,2000) {
+  td.question_text_column_desktop {
+    max-width: 250px;
+    word-wrap: break-word;
+  }
 }
 
-td.question_text_column_mobile {
-  max-width: 1000px;
-  word-wrap: break-word;
+@include custom-range(319, 1199) {
+  td.question_text_column_desktop {
+    max-width: 1000px;
+    word-wrap: break-word;
+  }
 }
-

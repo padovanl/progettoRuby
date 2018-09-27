@@ -20,7 +20,7 @@ class NewQuestionCourse extends React.Component {
                 <td>
                 </td>
                 <td>
-                    <a className="button is-rounded is-link" onClick={ () => this.props.handleFormSubmit(this.props.course_id, this.props.user_id, formFields.question_text.value)}>Inserisci</a>
+                    <a className="button is-rounded is-link" onClick={ () => this.props.handleFormSubmit(this.props.course_id, this.props.current_user.id, formFields.question_text.value)}>Inserisci</a>
                 </td>
             </tr>
         )
