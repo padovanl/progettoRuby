@@ -4,14 +4,7 @@ class Report extends React.Component{
         super(props);
     }
 
-
-
-
     render(){
-
-
-
-
 
         const action = this.props.report.action;
         const nome_corso = this.props.report.course.name;
@@ -40,7 +33,7 @@ class Report extends React.Component{
             case 'CourseTip':
                 type = 'suggerimento'
                 link = '/courses/' + id_corso
-                icon = <span className="icon has-text-link"><i className="fas fa-lg fa-question-circle"></i></span>;
+                icon = <span className="icon has-text-link"><i className="fas fa-lg fa-lightbulb"></i></span>;
                 scritta_annuncio = <div>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>nel corso di {nome_corso}</div>
                 break;
             case 'Post':
@@ -52,7 +45,7 @@ class Report extends React.Component{
             case 'Document':
                 type = 'documento'
                 link = '/resources/' + id_corso + '?document_id=' + this.props.report.reportable.document.id
-                icon = <span className="icon has-text-link"><i className="fas fa-lg fa-envelope"></i></span>;
+                icon = <span className="icon has-text-link"><i className="fas fa-lg fa-file-alt"></i></span>;
                 scritta_annuncio = <div>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>condiviso nel corso di {nome_corso}</div>
                 break;
             case 'Rep':
@@ -72,7 +65,7 @@ class Report extends React.Component{
             case 'Comment':
                 type = 'commento'
                 link = '/publications/' + id_corso + '?comment_id=' + this.props.report.reportable.comment.id
-                icon = <span className="icon has-text-link"><i className="fas fa-lg fa-envelope"></i></span>;
+                icon = <span className="icon has-text-link"><i className="fas fa-lg fa-comment-alt"></i></span>;
                 scritta_annuncio = <div>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>del corso di {nome_corso}</div>
                 break;
         }
@@ -122,7 +115,7 @@ class Report extends React.Component{
                         <article className="media gap">
                             <div className="media-content">
                                 <div className="content">
-                                    <a className="button is-success" onClick={() => this.props.handleDelete(report_id)}>
+                                    <a className="button is-success is-rounded" onClick={() => this.props.handleDelete(report_id)}>
                                             <span className="icon is-success"><i className="fas fa-check-circle"></i></span>
                                         <span className="is-success">Risolto</span>
                                     </a>
@@ -134,7 +127,7 @@ class Report extends React.Component{
                         <article className="media gap">
                             <div className="media-content">
                                 <div className="content">
-                                    <a className="button is-warning" href={"/reports/" + report_id}>
+                                    <a className="button is-warning is-rounded" href={"/reports/" + report_id}>
                                         <span className="icon is-warning"><i className="fas fa-info-circle"></i></span>
                                         <span className="is-warning">Dettagli</span>
                                     </a>

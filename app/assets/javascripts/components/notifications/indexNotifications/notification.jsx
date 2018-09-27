@@ -28,45 +28,45 @@ class Notification extends React.Component{
             case 'CourseQuestion':
                 type = 'domanda'
                 link = '/courses/' + id_corso
-                icon = <span className="icon has-text-link"><i className="fas fa-question-circle"></i></span>;
+                icon = <span className="icon has-text-link"><i className="fas fa-lg fa-question-circle"></i></span>;
                 scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>nel corso di {nome_corso}</div>
                 break;
             case 'CourseTip':
                 type = 'suggerimento'
                 link = '/courses/' + id_corso
-                icon = <span className="icon has-text-link"><i className="fas fa-glasses"></i></span>;
+                icon = <span className="icon has-text-link"><i className="fas fa-lg fa-lightbulb"></i></span>;
                 scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>nel corso di {nome_corso}</div>
                 break;
             case 'Post':
                 type = 'post'
                 link = '/publications/' + id_corso + '?post_id=' + this.props.notification.notifiable.post.id
-                icon = <span className="icon has-text-link"><i className="fas fa-envelope"></i></span>;
+                icon = <span className="icon has-text-link"><i className="fas fa-lg fa-envelope"></i></span>;
                 scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>nel corso di {nome_corso}</div>
                 break;
             case 'Rep':
                 if(this.props.notification.notifiable.rep.offer){
                     type = 'ripetizioni'
                     link = '/reps'
-                    icon = <span className="icon has-text-link"><i className="fas fa-book"></i></span>;
+                    icon = <span className="icon has-text-link"><i className="fas fa-lg fa-book"></i></span>;
                     scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span> offre <span className="has-text-weight-bold style_padding_row"> {type}</span>per il corso di {nome_corso}</div>
                     break;
                 }else{
                     type = 'ripetizioni'
                     link = '/reps'
-                    icon = <span className="icon has-text-link"><i className="fas fa-book"></i></span>;
+                    icon = <span className="icon has-text-link"><i className="fas fa-lg fa-book"></i></span>;
                     scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span> cerca <span className="has-text-weight-bold style_padding_row"> {type}</span>per il corso di {nome_corso}</div>
                     break;
                 }
             case 'Document':
                 type = 'documento'
                 link = '/resources/' + id_corso + '?document_id=' + this.props.notification.notifiable.document.id
-                icon = <span className="icon has-text-link"><i className="fas fa-envelope"></i></span>;
+                icon = <span className="icon has-text-link"><i className="fas fa-lg fa-file-alt"></i></span>;
                 scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span>{action}<span className="has-text-weight-bold style_padding_row"> {type}</span>per il corso di {nome_corso}</div>
                 break;
             case 'Comment':
                 type = ''
                 link = '/publications/' + id_corso + '?comment_id=' + this.props.notification.notifiable.comment.id
-                icon = <span className="icon has-text-link"><i className="fas fa-question-circle"></i></span>;
+                icon = <span className="icon has-text-link"><i className="fas fa-lg fa-comment-alt"></i></span>;
                 scritta_annuncio = <div><span className="has-text-weight-bold">{actor} </span>ha <span className="has-text-weight-bold"> {action}</span> un post nel corso di {nome_corso}</div>
                 break;
         }

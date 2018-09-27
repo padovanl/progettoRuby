@@ -49,12 +49,13 @@ class SurveyButton extends React.Component {
         const { course_id, user_id } = this.props;
         const follow_id = this.state.followed && this.state.followed.follow ? this.state.followed.id : null
         const linkSondaggio = "/course/" + course_id + "/survey/" + follow_id
+        let padding_style_compiled = {marginTop: 3}
 
         let bottone = this.state.followed != null && !this.state.followed.passed ? <a className="button is-rounded is-warning" href={linkSondaggio}>Compila il sondaggio</a> :
-            <div className="is-size-5 has-text-success"><span>Corso superato </span><i className="fas fa-check"></i></div>
+            <div className="is-size-5 has-text-success" style={padding_style_compiled}><span>Corso superato </span><i className="fas fa-check"></i></div>
 
-        const link_risorse = <div className="link-resources"><a className="button is-rounded is-link details_padding" href={ '/publications/' + course_id }>Bacheca</a> <span> </span>
-                <a className="button is-rounded is-link" href={ '/resources/' + course_id }>Materiale didattico</a></div>;
+        const link_risorse = <div className="link-resources"><a className="button is-rounded is-link details_padding is-outlined" href={ '/publications/' + course_id }>Bacheca</a> <span> </span>
+                <a className="button is-rounded is-link is-outlined" href={ '/resources/' + course_id }>Materiale didattico</a></div>;
 
          const unfollowButton = <form onSubmit={ (e) => this.unfollowCourse(e) }>
              <input className="input" name="user_course[course_id]" type="hidden" value={course_id} />
@@ -65,7 +66,8 @@ class SurveyButton extends React.Component {
 
         return(
             <div>
-                { this.state.followed  && this.state.followed.follow ? <div>{unfollowButton} <br/> { link_risorse }{ bottone }</div> :
+                { this.state.followed  && this.state.followed.follow ? <div>{unfollowButton} <br/>
+                        <div className="buttons has-addons">{ link_risorse }</div> { bottone }</div> :
 
                     <form onSubmit={ (e) => this.followCourse(e) }>
                         <input className="input" name="user_course[course_id]" type="hidden" value={course_id} />

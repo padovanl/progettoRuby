@@ -37,45 +37,45 @@ class NotificationNavbar extends React.Component {
                 type = 'domanda'
                 link = '/courses/' + id_corso
                 icon = <span className="icon has-text-link" style={style_body_notification}><i className="fas fa-question-circle"></i></span>;
-                scritta_annuncio = <div>{action}<span className="has-text-weight-bold"> {type}</span><div> nel corso di {nome_corso}</div><div className="has-text-right" style={style_color_time}>{notification_time}</div></div>
+                scritta_annuncio = <div>{action}<span className="has-text-weight-bold"> {type}</span><div> nel corso di {nome_corso}</div><div className="level"><span className="level-left">{icon}</span><span className="level-right" style={style_color_time}>{notification_time}</span></div></div>
                 break;
             case 'CourseTip':
                 type = 'suggerimento'
                 link = '/courses/' + id_corso
-                icon = <span className="icon has-text-link" style={style_body_notification}><i className="fas fa-glasses"></i></span>;
-                scritta_annuncio = <div>{action}<span className="has-text-weight-bold"> {type}</span><div> nel corso di {nome_corso}</div><div className="has-text-right" style={style_color_time}>{notification_time}</div></div>
+                icon = <span className="icon has-text-link" style={style_body_notification}><i className="fas fa-lightbulb"></i></span>;
+                scritta_annuncio = <div>{action}<span className="has-text-weight-bold"> {type}</span><div> nel corso di {nome_corso}</div><div className="level"><span className="level-left">{icon}</span><span className="level-right" style={style_color_time}>{notification_time}</span></div></div>
                 break;
             case 'Post':
                 type = 'post'
                 link = '/publications/' + id_corso + '?post_id=' + this.props.notification.notifiable.post.id
                 icon = <span className="icon has-text-link" style={style_body_notification}><i className="fas fa-envelope"></i></span>;
-                scritta_annuncio = <div>{action}<span className="has-text-weight-bold"> {type}</span><div> nel corso di {nome_corso}</div><div className="has-text-right" style={style_color_time}>{notification_time}</div></div>
+                scritta_annuncio = <div>{action}<span className="has-text-weight-bold"> {type}</span><div> nel corso di {nome_corso}</div><div className="level"><span className="level-left">{icon}</span><span className="level-right" style={style_color_time}>{notification_time}</span></div></div>
                 break;
             case 'Rep':
                 if(this.props.notification.notifiable.rep.offer){
                     type = 'ripetizioni'
                     link = '/reps'
                     icon = <span className="icon has-text-link" style={style_body_notification}><i className="fas fa-book"></i></span>;
-                    scritta_annuncio = <div>offre <span className="has-text-weight-bold"> {type}</span>per il corso di <div>{nome_corso}</div><div className="has-text-right" style={style_color_time}>{notification_time}</div></div>
+                    scritta_annuncio = <div>offre <span className="has-text-weight-bold"> {type}</span>per il corso di <div>{nome_corso}</div><div className="level"><span className="level-left">{icon}</span><span className="level-right" style={style_color_time}>{notification_time}</span></div></div>
                     break;
                 }else{
                     type = 'ripetizioni'
                     link = '/reps'
                     icon = <span className="icon has-text-link" style={style_body_notification}><i className="fas fa-book"></i></span>;
-                    scritta_annuncio = <div>cerca <span className="has-text-weight-bold"> {type}</span>per il corso di <div>{nome_corso}</div><div className="has-text-right" style={style_color_time}>{notification_time}</div></div>
+                    scritta_annuncio = <div>cerca <span className="has-text-weight-bold"> {type}</span>per il corso di <div>{nome_corso}</div><div className="level"><span className="level-left">{icon}</span><span className="level-right" style={style_color_time}>{notification_time}</span></div></div>
                     break;
                 }
             case 'Document':
                 type = 'documento'
                 link = '/resources/' + id_corso + '?document_id=' + this.props.notification.notifiable.document.id
-                icon = <span className="icon has-text-link" style={style_body_notification}><i className="fas fa-envelope"></i></span>;
-                scritta_annuncio = <div>{action}<div><span className="has-text-weight-bold"> {type}</span>per il corso di <div>{nome_corso}</div></div><div className="has-text-right" style={style_color_time}>{notification_time}</div></div>
+                icon = <span className="icon has-text-link" style={style_body_notification}><i className="fas fa-file-alt"></i></span>;
+                scritta_annuncio = <div>{action}<div><span className="has-text-weight-bold"> {type}</span>per il corso di <div>{nome_corso}</div></div><div className="level"><span className="level-left">{icon}</span><span className="level-right" style={style_color_time}>{notification_time}</span></div></div>
                 break;
             case 'Comment':
                 type = ''
                 link = '/publications/' + id_corso + '?comment_id=' + this.props.notification.notifiable.comment.id
-                icon = <span className="icon has-text-link" style={style_body_notification}><i className="fas fa-question-circle"></i></span>;
-                scritta_annuncio = <div>ha <span className="has-text-weight-bold"> {action}</span> un post nel corso <div> di {nome_corso}</div><div className="has-text-right" style={style_color_time}>{notification_time}</div></div>
+                icon = <span className="icon has-text-link" style={style_body_notification}><i className="fas fa-comment-alt"></i></span>;
+                scritta_annuncio = <div>ha <span className="has-text-weight-bold"> {action}</span> un post nel corso <div> di {nome_corso}</div><div className="level"><span className="level-left">{icon}</span><span className="level-right" style={style_color_time}>{notification_time}</span></div></div>
                 break;
         }
 
