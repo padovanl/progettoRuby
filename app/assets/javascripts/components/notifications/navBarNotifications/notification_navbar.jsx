@@ -84,6 +84,7 @@ class NotificationNavbar extends React.Component {
         return(
 
     <div className="navbar-item is-centered is-wrapped">
+        <a className="is-not-read" onClick={() => this.props.handleMarkAndRedirect(links[this.props.notification.id], this.props.notification.id)}>
         <article className="media gap">
             <figure className="media-left">
             <p className="image is-24x24">
@@ -99,6 +100,7 @@ class NotificationNavbar extends React.Component {
                 </div>
             </div>
         </article>
+        </a>
     </div>
         )
     }

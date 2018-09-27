@@ -14,7 +14,7 @@ class AllNotificationsNavBar extends React.Component {
 
         var notifications = this.props.notifications.map((notification) => {
                 return(
-                    <NotificationNavbar notification={notification} />
+                    <NotificationNavbar notification={notification} handleMarkAndRedirect={this.props.handleMarkAndRedirect}/>
                 )
             })
 
