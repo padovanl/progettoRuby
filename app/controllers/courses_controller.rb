@@ -1,5 +1,7 @@
 class CoursesController < ApplicationController
    before_action :authenticate_user!
+   before_action :destroy_notification_comment_unfollow_upvote, only: [:unfollow]
+   after_action :broadcast_notification, only: [:unfollow]
 
   def courses_name
     render json: Course.all
