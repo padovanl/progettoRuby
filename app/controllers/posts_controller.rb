@@ -26,7 +26,12 @@ class PostsController < ApplicationController
 
 
   def destroy
-    @post = Post.current_user_post(current_user, params[:id]).first
+    if current_user.admin
+      @post = Post.find(params[:id])
+    else
+      @post = Post.current_user_post(current_user, params[:id]).first
+    end
+
 
     if !@post.destroy
       render_json_validation_error @post

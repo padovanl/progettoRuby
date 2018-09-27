@@ -43,7 +43,7 @@ class Post extends React.Component {
             }
         })
 
-        let can_delete_post = (post.user.id === current_user.id) ? true : false;
+        let can_delete_post = (post.user.id === current_user.id || current_user.admin) ? true : false;
         if (this.state.view_post)
             return (
                 <div className="box">
@@ -148,7 +148,7 @@ class Post extends React.Component {
 
     deletePost(event, post_id) {
         event.preventDefault();
-        if(this.state.post.user.id !== this.props.current_user.id)
+        if(this.state.post.user.id !== this.props.current_user.id && !this.props.current_user.admin)
             return;
 
         var myHeaders = new Headers();
