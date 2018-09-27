@@ -34,7 +34,7 @@ class AllNotifications extends React.Component {
                             {notifications}
                             </tbody>
                         </table>
-                    </div> :  <div> Nessuna notifica presente </div>}
+                    </div> :  <div className="column"><div className="is-fullwidth has-text-centered has-text-weight-bold"> Nessuna notifica presente </div></div>}
                         <div className="column is-1"></div>
                 </div>
 

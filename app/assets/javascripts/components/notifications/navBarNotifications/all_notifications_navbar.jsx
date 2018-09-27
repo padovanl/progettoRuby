@@ -22,7 +22,7 @@ class AllNotificationsNavBar extends React.Component {
         return(
             <div>
                 <div className="navbar-dropdown is-hidden-touch" style={style_margin_top}>
-                    {notifications}
+                    {notifications.length ? <div>{notifications}</div> : <div className="has-text-centered"> Nessuna notifica da leggere </div>}
                     <hr className="navbar-divider" />
                     <a className="navbar-item is-active show-all has-text-weight-bold" href="/notifications">
                         Mostra tutte

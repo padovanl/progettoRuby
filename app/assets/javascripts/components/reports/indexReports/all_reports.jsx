@@ -37,7 +37,7 @@ class AllReports extends React.Component {
                             {reports}
                             </tbody>
                         </table>
-                    </div> :  <div> Nessun report presente </div>}
+                    </div> :  <div className="column"><div className="is-fullwidth has-text-centered has-text-weight-bold"> Nessun report presente </div></div>}
                     <div className="column is-1"></div>
                 </div>
 

@@ -163,7 +163,7 @@ class BodyTip extends React.Component {
 
         const n_your_tips = this.state.tips.filter((q) => q.user_id == this.props.current_user.id).length;
 
-        const gestisci_i_tuoi_tips_button = (this.state.tips.length && n_your_tips > 0) || this.props.current_user.admin ? <a className="button is-rounded is-warning" onClick={ () => this.handleShowDetails()}>Gestisci i tuoi suggerimenti</a> : null;
+        const gestisci_i_tuoi_tips_button = (this.state.tips.length && n_your_tips > 0) || (this.state.tips.length && this.props.current_user.admin) ? <a className="button is-rounded is-warning" onClick={ () => this.handleShowDetails()}>Gestisci i tuoi suggerimenti</a> : null;
 
         return(
             <div>
