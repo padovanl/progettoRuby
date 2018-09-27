@@ -217,7 +217,7 @@ class BodyQuestion extends React.Component {
         const n_other_question = this.state.questions.filter((q) => q.user_id != this.props.current_user.id).length;
 
         const gestisci_le_tue_domande_button = (this.state.questions.length && n_your_question > 0 || this.state.questions.length && this.props.current_user.admin) ?
-            <a className="button is-rounded is-warning" onClick={ () => this.handleShowDetails()}>Gestisci le tue domande</a> : null;
+            <a className="button is-rounded is-warning details_padding" onClick={ () => this.handleShowDetails()}>Gestisci le tue domande</a> : null;
         const gestisci_quote_button = (this.state.questions.length && n_other_question > 0) ? <a className="button is-rounded is-warning" onClick={ () => this.handleShowQuotes()}>Quote domande</a> : null;
 
         return(

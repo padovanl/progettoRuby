@@ -30,3 +30,9 @@ td.new-question-button {
     word-wrap: break-word;
   }
 }
+
+@include custom-range(0, 394) {
+  a.details_padding {
+    margin-bottom: 10px;
+  }
+}
