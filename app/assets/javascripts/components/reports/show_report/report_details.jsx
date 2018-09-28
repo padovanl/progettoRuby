@@ -7,6 +7,7 @@ class ReportDetails extends React.Component {
     render(){
 
         let type = this.props.report_type
+        let colonna;
         switch(type) {
             case 'CourseQuestion':
                 type = 'Domanda'
@@ -14,6 +15,7 @@ class ReportDetails extends React.Component {
                 nome_corso = this.props.course_details.name
                 anno_corso = this.props.course_details.year == 1 ? "Primo" : "Secondo"
                 contenuto = this.props.report_details.question
+                testo = 'Testo inserito'
                 break;
             case 'CourseTip':
                 type = 'Suggerimento'
@@ -21,6 +23,7 @@ class ReportDetails extends React.Component {
                 nome_corso = this.props.course_details.name
                 anno_corso = this.props.course_details.year == 1 ? "Primo" : "Secondo"
                 contenuto = this.props.report_details.tip
+                testo = 'Testo inserito'
                 break;
             case 'Post':
                 type = 'Post'
@@ -28,6 +31,7 @@ class ReportDetails extends React.Component {
                 nome_corso = this.props.course_details.name
                 anno_corso = this.props.course_details.year == 1 ? "Primo" : "Secondo"
                 contenuto = this.props.report_details.post.message
+                testo = 'Testo inserito'
                 break;
             case 'Document':
                 type = 'Documento'
@@ -35,6 +39,7 @@ class ReportDetails extends React.Component {
                 nome_corso = this.props.course_details.name
                 anno_corso = this.props.course_details.year == 1 ? "Primo" : "Secondo"
                 contenuto = this.props.report_details.document.filename
+                testo = 'Nome file'
                 break;
             case 'Rep':
                 if(this.props.report_details.rep.offer){
@@ -43,6 +48,7 @@ class ReportDetails extends React.Component {
                     nome_corso = this.props.course_details.name
                     anno_corso = this.props.course_details.year == 1 ? "Primo" : "Secondo"
                     contenuto = this.props.report_details.rep.description
+                    testo = 'Descrizione'
                     break;
                 }else{
                     type = 'Cerca Ripetizione'
@@ -50,6 +56,7 @@ class ReportDetails extends React.Component {
                     nome_corso = this.props.course_details.name
                     anno_corso = this.props.course_details.year == 1 ? "Primo" : "Secondo"
                     contenuto = this.props.report_details.rep.description
+                    testo = 'Descrizione'
                     break;
                 }
             case 'Comment':
@@ -58,6 +65,7 @@ class ReportDetails extends React.Component {
                 nome_corso = this.props.course_details.name
                 anno_corso = this.props.course_details.year == 1 ? "Primo" : "Secondo"
                 contenuto = this.props.report_details.comment.content
+                testo = 'Testo inserito'
                 break;
         }
 
@@ -89,7 +97,7 @@ class ReportDetails extends React.Component {
                         <td>{type}</td>
                         </tr>
                         <tr>
-                            <td className="has-text-weight-bold">Contenuto</td>
+                            <td className="has-text-weight-bold">{testo}</td>
                             <td className="question_text_column_desktop">{contenuto}</td>
                         </tr>
                         </tbody>

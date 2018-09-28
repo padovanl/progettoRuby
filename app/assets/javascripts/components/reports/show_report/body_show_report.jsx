@@ -5,6 +5,7 @@ class BodyShowReport extends React.Component {
         this.state = {
             report: {},
         };
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     getData1() {
@@ -18,6 +19,26 @@ class BodyShowReport extends React.Component {
         this.getData1();
     }
 
+    handleDelete(url){
+        console.log(url)
+        var myHeaders = new Headers();
+        myHeaders.append('X-CSRF-Token', Rails.csrfToken());
+        myHeaders.append('Content-Type', 'application/json');
+        if(confirm('Sei sicuro di voler eliminare l\' oggetto segnalato?')){
+            fetch(url,
+                {
+                    method: 'DELETE',
+                    headers: myHeaders,
+                    credentials: "same-origin"
+                }).then((response) => {
+                if (response.ok){
+                    window.location.href = "/reports"
+                }else{
+                    alert("errore")
+                }
+            })
+        }
+    }
 
     render(){
 
@@ -28,13 +49,15 @@ class BodyShowReport extends React.Component {
 
         let reporters = this.state.report.user_reports  ? <div><AllShowReporters reporters={this.state.report.user_reports} /></div> : <div></div>
 
+        let button_delete = this.state.report ? <ButtonDelete handleDelete = {this.handleDelete} report = {this.state.report} /> : <div></div>;
 
         return(
             <div>
+                {button_delete}
                 <div>
-                {report_details}
-                <br/><br/><br/>
-                {reporters}
+                    {report_details}
+                    <br/><br/><br/>
+                    {reporters}
                 </div>
             </div>
         )
