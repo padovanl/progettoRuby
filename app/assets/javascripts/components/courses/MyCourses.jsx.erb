@@ -134,8 +134,13 @@ class MyCourses extends React.Component{
                         <form onSubmit={ (e)=>this.buttonUnfollowClicked(e) }>
                             <input className="input" name="user_course[course_id]" value={item.id} type="hidden" />
                             <div className="grid-buttons">
-                                <a className="button is-rounded" href={ "/resources/" + item.id }>Documenti</a>
-                                <a className="button is-rounded" href={ "/publications/" + item.id }>Bacheca</a>
+                                <div className="buttons has-addons">
+                                    <div className="link-resources">
+                                        <a className="button is-rounded is-link details_padding is-outlined" href={ '/publications/' + item.id }>Bacheca</a>
+                                        <span> </span>
+                                        <a className="button is-rounded is-link is-outlined" href={ '/resources/' + item.id }>Materiale didattico</a>
+                                    </div>
+                                </div>
                                 <button name={ item.name }  className="button is-rounded is-danger" value={ item.id}>
                                     <div>Smetti di seguire</div>
                                 </button>
