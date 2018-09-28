@@ -61,9 +61,9 @@ class CourseQuestion extends React.Component{
                 <td className="question_text_column_desktop">{question_text}</td>
                 <td className="has-text-centered ">{question_freq}</td>
                 {this.props.show_details || this.props.show_quotes  ? <td>
-                    { (this.props.courseQuestion.user_id == this.props.current_user.id && this.props.show_details) || this.props.current_user.admin  ? <div> {update_button_item} <span> </span>{delete_button_item} </div> : null}
-                    { this.props.courseQuestion.user_id != this.props.current_user.id && this.props.show_quotes && hasBeenQuotedID.length == 0 ? <div> {quote_up_button_item} </div>  :  null}
-                    { this.props.courseQuestion.user_id != this.props.current_user.id && this.props.show_quotes && hasBeenQuotedID.length != 0 ? <div> {quote_down_button_item} </div>  :  null}
+                    { (this.props.courseQuestion.user_id == this.props.current_user.id && this.props.show_details) || this.props.current_user.admin && this.props.show_details  ? <span> {update_button_item} <span> </span>{delete_button_item} </span> : null}
+                    { this.props.courseQuestion.user_id != this.props.current_user.id && this.props.show_quotes && hasBeenQuotedID.length == 0 ? <span> {quote_up_button_item} </span>  :  null}
+                    { this.props.courseQuestion.user_id != this.props.current_user.id && this.props.show_quotes && hasBeenQuotedID.length != 0 ? <span> {quote_down_button_item} </span>  :  null}
                 </td> : null}
                 <td className="has-text-right"><a title="Reporting" onClick={() => this.props.activeModal(linkReport)}><i className="fas fa-bug"/></a></td>
             </tr>
