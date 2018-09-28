@@ -370,7 +370,7 @@ div.absolute {
 div.my-absolute {
   position: absolute;
   margin-top: 1em;
-  bottom: 4em;
+  bottom: 2em;
   left: 1em;
   width: 83px;
   height: 40px;
@@ -458,6 +458,9 @@ courses-ol li {
 .link-resources {
   margin-bottom: 10px;
 }
+.button.is-link.is-outlined{
+  background-color: white;
+}
 
 
 .max-width{
@@ -477,8 +480,8 @@ courses-ol li {
 
 .grid-buttons {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 40px 40px;
+  grid-template-columns: 265px;
+  grid-template-rows: 10px;
   grid-column-gap: 1em;
   grid-row-gap: 0.5em;
 }
@@ -596,4 +599,8 @@ body {
   section.margin-top-title-tablet {
     margin-top: 24px;
   }
+}
+
+.butt-unfollow{
+  max-width: 200px;
 }

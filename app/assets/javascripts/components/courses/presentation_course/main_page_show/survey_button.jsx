@@ -54,8 +54,11 @@ class SurveyButton extends React.Component {
         let bottone = this.state.followed != null && !this.state.followed.passed ? <a className="button is-rounded is-warning" href={linkSondaggio}>Compila il sondaggio</a> :
             <div className="is-size-5 has-text-success" style={padding_style_compiled}><span>Corso superato </span><i className="fas fa-check"></i></div>
 
-        const link_risorse = <div className="link-resources"><a className="button is-rounded is-link details_padding is-outlined" href={ '/publications/' + course_id }>Bacheca</a> <span> </span>
-                <a className="button is-rounded is-link is-outlined" href={ '/resources/' + course_id }>Materiale didattico</a></div>;
+        const link_risorse = <div className="link-resources">
+                <a className="button is-rounded is-link details_padding is-outlined" href={ '/publications/' + course_id }>Bacheca</a>
+                <span> </span>
+                <a className="button is-rounded is-link is-outlined" href={ '/resources/' + course_id }>Materiale didattico</a>
+            </div>;
 
          const unfollowButton = <form onSubmit={ (e) => this.unfollowCourse(e) }>
              <input className="input" name="user_course[course_id]" type="hidden" value={course_id} />
