@@ -3,10 +3,10 @@ module UtilFunction
     @course = Course.find(params['course_id'])
   end
 
-  def user_follow_course?
-    if !UserCourse.where(user_id: current_user.id, course_id: @course.id, follow: true).exists?
+  def user_follow_course(course_id)
+    if !UserCourse.where(user_id: current_user.id, course_id: course_id, follow: true).exists?
       flash[:alert] = 'Per visualizzare la pagina segui il corso!'
-      redirect_to controller: 'courses', action: 'show', id: @course.id
+      redirect_to controller: 'courses', action: 'show', id: course_id
     end
   end
 

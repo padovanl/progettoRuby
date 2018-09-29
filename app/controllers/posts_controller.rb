@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_course, only: [:index, :destroy]
-  before_action :user_follow_course?, only: [:index, :destroy]
+  # before_action :set_course, only: [:index, :destroy]
+  before_action ->(pram=params[:course_id]) { user_follow_course pram }, only: [:index, :destroy]
   after_action :broadcast_notification, only: [:create, :destroy]
   after_action -> { destroy_report_and_notification('Post') }, only: [:destroy]
   before_action :destroy_report_and_notification_comment_of_post, only: :destroy
@@ -14,6 +14,8 @@ class PostsController < ApplicationController
   end
 
   def create
+    # mi assicuro che l'utente stia seguendo il corso prima di inserire il post
+    user_follow_course post_params[:course_id]
     publication = Publication.new(post_params)
     publication.user = current_user
 
