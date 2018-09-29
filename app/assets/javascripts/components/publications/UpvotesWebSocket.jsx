@@ -1,4 +1,3 @@
-
 class UpvotesWebSocket extends React.Component {
     componentDidMount() {
         window.App.post = window.App.cable.subscriptions

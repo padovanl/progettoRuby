@@ -7,7 +7,7 @@ class Comment extends React.Component {
         const { id, content, created_at, user} = this.props.comment
         const { deleteComment, current_user } = this.props
 
-        let can_delete_comment = (user.id === current_user.id || current_user.admin) ? true : false;
+        let can_delete_comment = !!(user.id === current_user.id || current_user.admin);
 
         return (
             <article className="media">

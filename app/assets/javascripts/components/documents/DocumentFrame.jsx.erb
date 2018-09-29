@@ -1,4 +1,3 @@
-
 class DocumentFrame extends React.Component {
     constructor(props) {
         super(props);
@@ -11,8 +10,8 @@ class DocumentFrame extends React.Component {
     }
 
     render() {
-        const { document } = this.state;
-        const { current_user, course_id }  = this.props;
+        const {document} = this.state;
+        const {current_user, course_id} = this.props;
         const linkReport = '/report_document/' + document.id + '?course_id=' + course_id;
         let can_delete_post = (document.user.id === current_user.id);
 
@@ -20,75 +19,78 @@ class DocumentFrame extends React.Component {
         if (this.state.view_doc)
             return (<div className="container__item box">
                 <div className="thumbnail">
-                    <a href={ document.path } target="_blank">
-                      <img src={ document.file_url } className="portrait" alt="Image" />
+                    <a href={document.path} target="_blank">
+                        <img src={document.file_url} className="portrait" alt="Image"/>
                     </a>
                 </div>
 
                 <div className="doc-info">
-                  <article className="media">
-                      <div className="media-content">
-                          <p className="truncate"> { document.filename } </p>
-                      </div>
-                      <div className="dropdown is-right is-hoverable is-up">
-                          <div className="dropdown-trigger">
-                              <div  aria-haspopup="true">
-                                  <i className="fas fa-ellipsis-h"/>
-                              </div>
-                          </div>
-                          <div className="dropdown-menu" role="menu">
-                              <div className="dropdown-content" align="center">
-                                          <div className="dropdown-item">
-                                              <a href={ document.path } download>
-                                                  <div className="columns is-mobile">
+                    <article className="media">
+                        <div className="media-content">
+                            <p className="truncate"> {document.filename} </p>
+                        </div>
+                        <div className="dropdown is-right is-hoverable is-up">
+                            <div className="dropdown-trigger">
+                                <div aria-haspopup="true">
+                                    <i className="fas fa-ellipsis-h"/>
+                                </div>
+                            </div>
+                            <div className="dropdown-menu" role="menu">
+                                <div className="dropdown-content" align="center">
+                                    <div className="dropdown-item">
+                                        <a href={document.path} download>
+                                            <div className="columns is-mobile">
+                                                <div className="column is-two-fifths">
+                                                    <span className="icon">
+                                                    <i className="fas fa-download"/>
+                                                    </span>
+                                                </div>
+                                                <div className="column">
+                                                    Scarica file
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <hr className="dropdown-divider"/>
+                                    <div className="dropdown-item">
+                                        <a onClick={() => this.props.activeModal(linkReport)}>
+                                            <div className="columns is-mobile">
+                                                <div className="column is-two-fifths">
+                                                    <span className="icon">
+                                                    <i className="fas fa-bug"/>
+                                                    </span>
+                                                </div>
+                                                <div className="column">
+                                                    Segnala
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    {can_delete_post ? <div>
+                                        <hr className="dropdown-divider"/>
+                                        <div className="dropdown-item">
+                                            <a onClick={(e) => this.deleteDocument(e, document.id, course_id)}>
+                                                <div className="columns is-mobile">
                                                     <div className="column is-two-fifths">
                                                     <span className="icon">
-                                                    <i className="fas fa-download" />
+                                                    <i className="far fa-trash-alt"/>
                                                     </span>
-                                                      </div>
-                                                  <div className="column">
-                                                      Scarica file
-                                                  </div>
-                                                  </div>
-                                              </a>
-                                          </div>
-                                  <hr className="dropdown-divider"/>
-                                  <div className="dropdown-item">
-                                      <a onClick={() => this.props.activeModal(linkReport)}>
-                                          <div className="columns is-mobile">
-                                              <div className="column is-two-fifths">
-                                                    <span className="icon">
-                                                    <i className="fas fa-bug" />
-                                                    </span>
-                                              </div>
-                                              <div className="column">
-                                                  Segnala
-                                              </div>
-                                          </div>
-                                      </a>
-                                  </div>
-                                  { can_delete_post ? <div> <hr className="dropdown-divider"/> <div className="dropdown-item">
-                                      <a onClick={ (e) => this.deleteDocument(e, document.id, course_id)}>
-                                          <div className="columns is-mobile">
-                                              <div className="column is-two-fifths">
-                                                    <span className="icon">
-                                                    <i className="far fa-trash-alt" />
-                                                    </span>
-                                              </div>
-                                              <div className="column">
-                                                  Elimina
-                                              </div>
-                                          </div>
-                                      </a>
-                                  </div></div> : null }
-                              </div>
-                          </div>
-                      </div>
-                  </article>
-                    { (document.tags.length > 0) ? <div className="tag-content" id="style-1">
-                        { document.tags.map(function (tag) {
-                            return (<span className="tag is-info is-rounded"> { tag.name } </span>)
-                        }) }
+                                                    </div>
+                                                    <div className="column">
+                                                        Elimina
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div> : null}
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    {(document.tags.length > 0) ? <div className="tag-content" id="style-1">
+                        {document.tags.map(function (tag) {
+                            return (<span className="tag is-info is-rounded"> {tag.name} </span>)
+                        })}
                     </div> : ""}
                 </div>
             </div>);
@@ -98,7 +100,7 @@ class DocumentFrame extends React.Component {
 
     deleteDocument(event, document_id, course_id) {
         event.preventDefault();
-        if(this.state.document.user.id !== this.props.current_user.id)
+        if (this.state.document.user.id !== this.props.current_user.id)
             return;
 
         var myHeaders = new Headers();
@@ -109,21 +111,21 @@ class DocumentFrame extends React.Component {
             headers: myHeaders,
             credentials: 'same-origin'
         })
-        .then((response) => response)
-        .then((response) => {
-            this.setState({
-                view_doc: false
+            .then((response) => response)
+            .then((response) => {
+                this.setState({
+                    view_doc: false
+                })
             })
-        })
-        .catch((error) => console.error(error));
+            .catch((error) => console.error(error));
     }
 
     viewMenuModal() {
-        this.setState({ view_doc_menu: true });
+        this.setState({view_doc_menu: true});
     }
 
     closeMenuModal() {
-        this.setState({ view_doc_menu: false });
+        this.setState({view_doc_menu: false});
     }
 
 }

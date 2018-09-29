@@ -1,4 +1,4 @@
-
+// opzioni per la visulizzazione della data nei post e commenti
 const options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
 
 class Post extends React.Component {
@@ -30,20 +30,20 @@ class Post extends React.Component {
         if(post.documents.length > 0)
           attachments = (<div className="level"> <div className="level-left">
             { post.documents.map(function (doc) {
-                        return <div className="level-item"><Document key={doc.id} document={doc}></Document></div>
+                        return <div className="level-item"><Document key={doc.id} document={doc} /></div>
                     }) }
             </div></div>);
         let upvoters_count = "";
 
-        if (post.upvotes.length > 0) upvoters_count = "· " + post.upvotes.length
+        if (post.upvotes.length > 0) upvoters_count = "· " + post.upvotes.length;
         post.upvotes.forEach((up) => {
             if (up.upvoter_id === current_user.id) {
-                this.state.user_upvoted = true
+                this.state.user_upvoted = true;
                 this.state.upvote_id = up.id
             }
-        })
+        });
 
-        let can_delete_post = (post.user.id === current_user.id || current_user.admin) ? true : false;
+        let can_delete_post = !!(post.user.id === current_user.id || current_user.admin);
         if (this.state.view_post)
             return (
                 <div className="box">
@@ -93,7 +93,7 @@ class Post extends React.Component {
                 </div>
             );
         else
-            return <div></div>
+            return <div/>
     }
 
     toggleUpvote() {
@@ -159,15 +159,15 @@ class Post extends React.Component {
             headers: myHeaders,
             credentials: 'same-origin'
         })
-            .then((response) => response)
-            .then((response) => {
-                this.setState({
-                    view_post: false
-                })
+        .then((response) => response)
+        .then((response) => {
+            this.setState({
+                view_post: false
             })
-            .catch((error) => {
-                console.error(error);
-            });
+        })
+        .catch((error) => {
+            console.error(error);
+        });
     }
 }
 
