@@ -2,6 +2,8 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!
   after_action :broadcast_notification, only: [:create, :destroy]
   after_action ->(type_object) { destroy_report_and_notification('CourseQuestion') }, only: [:destroy]
+  before_action ->(type_object) {can_insert_tip_or_question?('CourseQuestion')}, only: [:create]
+  before_action ->(type_object) {can_update_or_delete_tip_or_question?('CourseQuestion')}, only: [:update, :destroy]
 
 
   def index

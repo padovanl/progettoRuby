@@ -2,6 +2,8 @@ class CourseTipsController < ApplicationController
   before_action :authenticate_user!
   after_action :broadcast_notification, only: [:create, :destroy]
   after_action ->(type_object) { destroy_report_and_notification('CourseTip') }, only: [:destroy]
+  before_action ->(type_object) {can_insert_tip_or_question?('CourseTip')}, only: [:create]
+  before_action ->(type_object) {can_update_or_delete_tip_or_question?('CourseTip')}, only: [:update, :destroy]
 
   def index
     courseTips = CourseTip.get_course_tips(params['course_id'])

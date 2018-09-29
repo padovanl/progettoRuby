@@ -81,3 +81,32 @@ def destroy_report_and_notification(type_object)
   Notification.where(:notifiable_id => params[:id]).where(:notifiable_type => type_object).destroy_all
   Report.where(:reportable_id => params[:id]).where(:reportable_type => type_object).destroy_all
 end
+
+###################
+def can_insert_tip_or_question?(type_object)
+  if type_object == 'CourseTip'
+    course_id = params[:courseTip][:course_id]
+  else
+    course_id = params[:courseQuestion][:course_id]
+  end
+
+  if !UserCourse.where(user_id: current_user.id, course_id: course_id, passed: true).exists?
+    flash[:alert] = 'Operazione non permessa: non hai completato il sondaggio'
+    redirect_to controller: 'courses', action: 'show', id: course_id
+  end
+
+end
+
+def can_update_or_delete_tip_or_question?(type_object)
+
+  if type_object == 'CourseTip'
+    object = CourseTip.find(params[:id])
+  else
+    object = CourseQuestion.find(params[:id])
+  end
+
+  if  current_user.id != object.user_id && !current_user.admin?
+    flash[:alert] = 'Operazione non permessa: non hai inserito tu l\'oggetto'
+    redirect_to controller: 'courses', action: 'show', id: params[:course_id]
+  end
+end
