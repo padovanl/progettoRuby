@@ -30,8 +30,11 @@ class BodyTip extends React.Component {
     }
 
     handleShowDetails(){
+        this.show_details_active = !this.state.show_details ? this.active_button :
+            null;
         this.setState({show_details: !this.state.show_details});
     }
+
 
     getData1() {
         let linkGet =  '/courses/' + this.props.course_id + '/course_tips';
@@ -43,6 +46,7 @@ class BodyTip extends React.Component {
 
     componentDidMount(){
         this.getData1();
+        this.show_details_active = null
     }
 
     handleFormSubmit(course_id, user_id, tip_text) {
@@ -161,9 +165,14 @@ class BodyTip extends React.Component {
 
     render(){
 
+        this.active_button = {
+            borderColor: 'black',
+        };
+
+
         const n_your_tips = this.state.tips.filter((q) => q.user_id == this.props.current_user.id).length;
 
-        const gestisci_i_tuoi_tips_button = (this.state.tips.length && n_your_tips > 0) || (this.state.tips.length && this.props.current_user.admin) ? <a className="button is-rounded is-warning" onClick={ () => this.handleShowDetails()}>Gestisci i tuoi suggerimenti</a> : null;
+        const gestisci_i_tuoi_tips_button = (this.state.tips.length && n_your_tips > 0) || (this.state.tips.length && this.props.current_user.admin) ? <a className="button is-rounded is-warning" onClick={ () => this.handleShowDetails()} style={this.show_details_active}>Gestisci i tuoi suggerimenti</a> : null;
 
         return(
             <div>

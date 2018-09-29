@@ -32,10 +32,14 @@ class BodyQuestion extends React.Component {
     }
 
     handleShowDetails(){
+        this.show_details_active = !this.state.show_details ? this.active_button :
+            null;
         this.setState({show_details: !this.state.show_details});
     }
 
     handleShowQuotes(){
+        this.show_quotes_active = !this.state.show_quotes ? this.active_button :
+            null;
         this.setState({show_quotes: !this.state.show_quotes});
     }
 
@@ -51,6 +55,8 @@ class BodyQuestion extends React.Component {
 
     componentDidMount(){
         this.getData1();
+        this.show_details_active = null
+        this.show_quotes_active = null
     }
 
     handleFormSubmit(course_id, user_id, question_text) {
@@ -217,8 +223,13 @@ class BodyQuestion extends React.Component {
         const n_other_question = this.state.questions.filter((q) => q.user_id != this.props.current_user.id).length;
 
         const gestisci_le_tue_domande_button = (this.state.questions.length && n_your_question > 0 || this.state.questions.length && this.props.current_user.admin) ?
-            <a className="button is-rounded is-warning details_padding" onClick={ () => this.handleShowDetails()}>Gestisci le tue domande</a> : null;
-        const gestisci_quote_button = (this.state.questions.length && n_other_question > 0) ? <a className="button is-rounded is-warning" onClick={ () => this.handleShowQuotes()}>Quote domande</a> : null;
+            <a className="button is-rounded is-warning details_padding color_details" onClick={ () => this.handleShowDetails()} style={this.show_details_active}>Gestisci le tue domande</a> : null;
+        const gestisci_quote_button = (this.state.questions.length && n_other_question > 0) ? <a className="button is-rounded is-warning" onClick={ () => this.handleShowQuotes()} style={this.show_quotes_active}>Quote domande</a> : null;
+
+         this.active_button = {
+          borderColor: 'black',
+        };
+
 
         return(
             <div>

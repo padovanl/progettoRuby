@@ -1,7 +1,8 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   after_action :broadcast_to_channel, only: [:create, :destroy]
-  after_action -> { destroy_report_and_notification('Comment') }, only: [:destroy]
+  after_action ->(type_object) { destroy_report_and_notification('Comment') }, only: [:destroy]
+  after_action :broadcast_notification, only: [:create, :destroy]
 
   def create
     @course = Course.find(comment_params[:course_id])
@@ -50,8 +51,6 @@ class CommentsController < ApplicationController
       params.require(:comment).permit( :content, :post_id, :course_id )
     end
 
-    # Aggiorno in modalità push il post visualizzato da altri utenti
-    # funzione eseguita dopo in seguito alle action di create e destroy
     def broadcast_to_channel
       post = @comment.post
 
