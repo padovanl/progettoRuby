@@ -17,12 +17,17 @@ module UtilFunction
   end
 
   def broadcast_notification
-    notification_len = Notification.where(recipient: current_user).where("updated_at = created_at").order(created_at: :desc).unread.size
-    notification = Notification.order(created_at: :desc).where(recipient: current_user).unread.limit(3)
-    notification = ActiveModel::Serializer::CollectionSerializer
-                       .new(notification, each_serializer: NotificationSerializer)
-                       .as_json(:include => {:actor => {:only => [:id, :email, :avatar_url, :name, :admin]}, :notifiable => {}})
-    ActionCable.server.broadcast 'notification', {length: notification_len, notifications: notification}
+    users_to_notify = Notification.select(:recipient_id).where.not(recipient: current_user).distinct(:recipient_id).unread
+
+    users_to_notify.each do |nott|
+        notification_len = Notification.where(recipient_id: nott.recipient_id).where("updated_at = created_at").order(created_at: :desc).unread.size
+        notification = Notification.order(created_at: :desc).where(recipient_id: nott.recipient_id).unread.limit(3)
+        notification = ActiveModel::Serializer::CollectionSerializer
+                           .new(notification, each_serializer: NotificationSerializer)
+                           .as_json(:include => {:actor => {:only => [:id, :email, :avatar_url, :name, :admin]}, :notifiable => {}})
+
+        NotificationChannel.broadcast_to User.find( nott.recipient_id), {length: notification_len, notifications: notification}
+    end
   end
 
   def user_compile_survey?

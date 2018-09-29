@@ -77,7 +77,7 @@
         <% if user_signed_in? %>
 
           <!--icona notifiche-->
-          <%= react_component 'NotificationsNavBarMain' %>
+          <%= react_component 'NotificationsNavBarMain', current_user: current_user %>
 
           <% if current_user.admin %>
             <div class="navbar-item has-dropdown is-hoverable">

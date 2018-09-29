@@ -27,8 +27,8 @@ class Notification < ApplicationRecord
       (upvoters_post - [current_user]).each do |user|
         #course.users.uniq.each do |user|
         follow_details = user.user_courses.where(:course_id => course_id).where(:follow => true).exists?
-        if follow_details && user.id != current_user.id
-          create(recipient: user, actor: current_user, action: action, notifiable: object)
+        if follow_details
+          create(recipient: user, actor: current_user, action: action, notifiable: object, course_id: course_id)
         end
       end
 
@@ -38,7 +38,7 @@ class Notification < ApplicationRecord
         #course.users.uniq.each do |user|
           follow_details = user.user_courses.where(:course_id => course_id).where(:follow => true).exists?
           if follow_details
-            create(recipient: user, actor: current_user, action: action, notifiable: object)
+            create(recipient: user, actor: current_user, action: action, notifiable: object, course_id: course_id)
         end
       end
     end

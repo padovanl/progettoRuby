@@ -1,7 +1,7 @@
 class NotificationChannel < ApplicationCable::Channel
   def subscribed
-    #@notification = Notification.all
-    stream_from "notification"
+    user = User.find_by(id: params[:user_id])
+    stream_for user
   end
 
   def unsubscribed

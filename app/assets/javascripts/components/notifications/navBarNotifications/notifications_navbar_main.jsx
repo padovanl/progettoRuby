@@ -104,7 +104,7 @@ class NotificationsNavBarMain extends React.Component {
 
         return(
             <div className="navbar-item">
-                <NotificationsWebSocket data-updateApp={ this.updateCountNotifications.bind(this)} />
+                <NotificationsWebSocket current_user={this.props.current_user} data-updateApp={ this.updateCountNotifications.bind(this)} />
                 <div className={this.state.isActive}>
                     <a className="navbar-link is-hidden-desktop" onClick={() => this.handleUpdateIsSelected('touch')} href="/notifications">
                         <span className="badge is-badge-primary bd-emoji" data-badge={this.state.num}><i className="fas fa-globe-americas"></i></span>
