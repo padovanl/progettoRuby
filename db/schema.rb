@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_29_135348) do
+ActiveRecord::Schema.define(version: 2018_09_26_133207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,7 +131,6 @@ ActiveRecord::Schema.define(version: 2018_09_29_135348) do
     t.integer "notifiable_id"
     t.string "notifiable_type"
     t.boolean "isSelected"
-    t.integer "course_id"
   end
 
   create_table "posts", force: :cascade do |t|

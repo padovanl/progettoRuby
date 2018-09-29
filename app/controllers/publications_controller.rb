@@ -1,9 +1,9 @@
 class PublicationsController < ApplicationController
   before_action :authenticate_user!
+  before_action ->(pram=params[:id]) { user_follow_course pram }, only: [:show]
 
   def show
     @course = Course.find(params[:id])
-    user_follow_course?
     @current_user_avatar = get_avatar_image
 
     # Questi paramentri permetto di visualizzare un singolo post, in base al post_id

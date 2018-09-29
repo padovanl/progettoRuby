@@ -1,7 +1,7 @@
 class DocumentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_course, only: [:index, :destroy]
-  before_action :user_follow_course?, only: [:index, :destroy]
+  # before_action :set_course, only: [:index, :destroy]
+  before_action ->(pram=params[:course_id]) { user_follow_course pram }, only: [:index, :destroy]
   after_action :broadcast_notification, only: [:create, :destroy]
   after_action -> { destroy_report_and_notification('Document') }, only: [:destroy]
 
@@ -13,6 +13,8 @@ class DocumentsController < ApplicationController
   end
 
   def create
+    # mi assicuro che l'utente stia seguendo il corso prima di inserire il file
+    user_follow_course document_params[:course_id]
     resource = Resourse.new(document_params)
     resource.user = current_user
 

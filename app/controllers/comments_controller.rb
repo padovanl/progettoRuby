@@ -5,8 +5,8 @@ class CommentsController < ApplicationController
   after_action :broadcast_notification, only: [:create, :destroy]
 
   def create
-    @course = Course.find(comment_params[:course_id])
-    user_follow_course?
+    # mi assicuro che l'utente stia seguendo il corso prima di inserire il commento
+    user_follow_course comment_params[:course_id]
     @comment = current_user.comments.new(comment_params)
 
     if !@comment.save
