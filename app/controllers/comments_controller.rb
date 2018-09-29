@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   after_action :broadcast_to_channel, only: [:create, :destroy]
-  after_action ->(type_object) { destroy_report_and_notification('Comment') }, only: [:destroy]
+  after_action -> { destroy_report_and_notification('Comment') }, only: [:destroy]
   after_action :broadcast_notification, only: [:create, :destroy]
 
   def create

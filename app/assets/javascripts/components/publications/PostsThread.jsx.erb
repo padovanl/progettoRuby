@@ -149,6 +149,7 @@ class PostsThread extends React.Component {
         fetch(URL, {
             credentials: 'same-origin'
         }).then(response => response.json())
-        .then(data => this.setState({data, activeTabIndex, post_id: null, comment_id: null}));
+        .then(data => this.setState({data, activeTabIndex, post_id: null, comment_id: null}))
+        .catch(error => console.log(error));
     }
 }
