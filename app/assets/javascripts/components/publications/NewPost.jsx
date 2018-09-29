@@ -25,7 +25,7 @@ class NewPost extends React.Component {
         }
 
         const data = new FormData(event.target);
-        const addNewPost = this.props.addNewPost
+        const addNewPost = this.props.addNewPost;
 
         var myHeaders = new Headers();
         myHeaders.append('X-CSRF-Token', Rails.csrfToken());
@@ -95,7 +95,7 @@ class NewPost extends React.Component {
                                                        name="post[attachments][]" id="post_attachments" onChange={ (e) => this.handleChange(e.target.files) } />
                                                 <span className="file-cta">
                                         <span className="file-icon">
-                                          <i className="fas fa-upload"></i>
+                                          <i className="fas fa-upload" />
                                         </span>
                                     </span>
                                             </label>

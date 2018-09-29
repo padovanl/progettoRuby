@@ -2,12 +2,11 @@
 
 <% content_for :title, "Recupera password" %>
 
-<section class="hero is-fullheight">
+<section class="hero is-fullheight oblivion">
   <div class="hero-body">
     <div class="container main-content">
-      <div class="columns is-desktop is-vcentered">
-        <div class="column"></div>
-        <div class="column">
+      <div class="level">
+        <div class="level-item">
           <div class="box">
             <p class="title is-4"><strong>Dimenticato la password?</strong></p>
             <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
@@ -24,7 +23,6 @@
             <% end %>
           </div>
         </div>
-        <div class="column"></div>
       </div>
     </div>
   </div>

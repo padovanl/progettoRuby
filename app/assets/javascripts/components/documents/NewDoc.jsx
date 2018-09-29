@@ -116,7 +116,7 @@ class NewDoc extends React.Component {
                             </p>
                         </figure>
                         <div className="media-content">
-                            { uploading == false ? <div className="content">
+                            { uploading === false ? <div className="content">
                                 <p className="content-author"><strong>{ current_user.name }</strong></p>
                                 <div className="file has-name">
                                     <label className="file-label">
@@ -125,7 +125,7 @@ class NewDoc extends React.Component {
                                                id="document_attachment"/>
                                         <span className="file-cta">
                                                   <span className="file-icon">
-                                                    <i className="fas fa-upload"></i>
+                                                    <i className="fas fa-upload" />
                                                   </span>
                                                   <span className="file-label">
                                                     Scegli un file…
@@ -186,7 +186,7 @@ class NewDoc extends React.Component {
                             </div> : null }
 
                             { /* viene visualizzato uno spinner durante l'uploading del documento */}
-                            { uploading == true ? <div className="load-spinner">
+                            { uploading === true ? <div className="load-spinner">
                                 <svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                   viewBox="0 0 100 100" enableBackground="new 0 0 0 0" xmlSpace="preserve">
                                     <path fill="#424242" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50">

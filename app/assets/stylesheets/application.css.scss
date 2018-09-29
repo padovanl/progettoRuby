@@ -31,7 +31,7 @@ html {
 .navbar {
   position: fixed;
   top: 0;
-  width: 100%;
+  width: 100vw;
   margin: 0 auto;
   filter: alpha(opacity=30); /* For IE8 and earlier */
   height: 6vh;

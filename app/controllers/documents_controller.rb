@@ -3,9 +3,11 @@ class DocumentsController < ApplicationController
   before_action :set_course, only: [:index, :destroy]
   before_action :user_follow_course?, only: [:index, :destroy]
   after_action :broadcast_notification, only: [:create, :destroy]
-  after_action ->(type_object) { destroy_report_and_notification('Document') }, only: [:destroy]
+  after_action -> { destroy_report_and_notification('Document') }, only: [:destroy]
 
   def index
+    # La funzione reduce() seleziona i parametri presenti per costruire
+    # la query di filtraggio
     documents = Document.reduce(params).order(created_at: :desc).uniq
     render json: documents, include: %w(user tags)
   end
@@ -18,8 +20,12 @@ class DocumentsController < ApplicationController
       render_json_validation_error resource
       return
     end
+    # Ivio una notifica a tutti gli utenti che segui il corso per è
+    # stato caricato il documento
+    Notification.send_notifications(document_params['course_id'],
+                                    current_user, "ha condiviso un nuovo",
+                                    resource.document)
 
-    Notification.send_notifications(document_params['course_id'], current_user, "ha condiviso un nuovo", resource.document)
     render json: resource.document, include: %w(user tags), status: :created
   end
 
@@ -46,7 +52,7 @@ class DocumentsController < ApplicationController
   end
 
   private
-  def document_params
-    params.require(:document).permit( :course_id, :attachment, tags: [:id, :name] )
-  end
+    def document_params
+      params.require(:document).permit( :course_id, :attachment, tags: [:id, :name] )
+    end
 end

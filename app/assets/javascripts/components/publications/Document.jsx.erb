@@ -2,13 +2,14 @@ class Document extends React.Component {
     render() {
         const { document } = this.props
 
-        return (<a className="link-to-commets" href={ document.path } target="_blank">
-            { document.file_url ? <p className="image is-64x64">
-                    <img src={ document.file_url } />
-                  </p> : '' }
-                  <p className="truncate">
-                    { document.filename }
-                  </p>
-                </a>)
+        return (
+            <a className="link-to-commets" href={ document.path } target="_blank">
+                { document.file_url ? <p className="image is-64x64">
+                  <img src={ document.file_url } />
+                </p> : '' }
+                <p className="truncate">
+                  { document.filename }
+                </p>
+            </a>)
     }
 }

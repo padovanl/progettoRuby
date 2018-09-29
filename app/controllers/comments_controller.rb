@@ -1,25 +1,26 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   after_action :broadcast_to_channel, only: [:create, :destroy]
-  after_action ->(type_object) { destroy_report_and_notification('Comment') }, only: [:destroy]
+  after_action -> { destroy_report_and_notification('Comment') }, only: [:destroy]
   after_action :broadcast_notification, only: [:create, :destroy]
 
   def create
     @course = Course.find(comment_params[:course_id])
-    #user_follow_course?
+    user_follow_course?
     @comment = current_user.comments.new(comment_params)
 
     if !@comment.save
       render_json_validation_error @comment
       return
     end
-
+    # Invio una notifica a ogni utente che sta seguendo un posto tramite gli upvotes
     Notification.send_notifications(comment_params[:course_id], current_user, "commentato", @comment)
 
     render json: @comment, status: :created
   end
 
   def destroy
+    # Solo gli admin e quelli che hanno creato il commento lo possono cancellare
     if current_user.admin
       @comment = Comment.find(params[:id])
     else
