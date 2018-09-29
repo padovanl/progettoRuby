@@ -10,7 +10,7 @@ class ReportsController < ApplicationController
   end
 
   def index
-    @reports = Report.order(created_at: :desc).page(params[:page]).per(2)
+    @reports = Report.order(created_at: :desc).page(params[:page]).per(30)
     @last_page = @reports.total_pages
     #@notifications = Notification.where(recipient: current_user).unread
     respond_to do |format|

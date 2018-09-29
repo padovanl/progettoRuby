@@ -8,7 +8,7 @@ class NotificationsController < ApplicationController
   end
 
   def index
-    notifications = Notification.get_user_notifications(current_user).notifications_page(params[:page], 1)
+    notifications = Notification.get_user_notifications(current_user).notifications_page(params[:page], 30)
     @last_page = notifications.total_pages
     respond_to do |format|
       format.html
