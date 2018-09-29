@@ -21,13 +21,13 @@ module UtilFunction
     notification = Notification.order(created_at: :desc).where(recipient: current_user).unread.limit(3)
     notification = ActiveModel::Serializer::CollectionSerializer
                        .new(notification, each_serializer: NotificationSerializer)
-                       .as_json(:include => {:actor => {:only => [:id, :email, :avatar_url, :name, :admin]}, :notifiable =>{} })
-    ActionCable.server.broadcast 'notification', { length: notification_len, notifications: notification }
+                       .as_json(:include => {:actor => {:only => [:id, :email, :avatar_url, :name, :admin]}, :notifiable => {}})
+    ActionCable.server.broadcast 'notification', {length: notification_len, notifications: notification}
   end
 
   def user_compile_survey?
     if request.format.html?
-      if UserCourse.where(user_id: current_user.id, course_id:  params[:course_id], passed: true).exists?
+      if UserCourse.where(user_id: current_user.id, course_id: params[:course_id], passed: true).exists?
         #redirect_to controller: '/controllers/courses', action: 'show', id: params[:course_id]
         #redirect_to(root_path, notice: 'Incorrect number of photos!')
         redirect_to course_path(params[:course_id])

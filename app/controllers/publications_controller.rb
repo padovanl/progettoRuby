@@ -6,6 +6,8 @@ class PublicationsController < ApplicationController
     user_follow_course?
     @current_user_avatar = get_avatar_image
 
+    # Questi paramentri permetto di visualizzare un singolo post, in base al post_id
+    # o ad un commento che appartiene ad un post
     if params['post_id']
       @post = Post.find(params['post_id'])
     end

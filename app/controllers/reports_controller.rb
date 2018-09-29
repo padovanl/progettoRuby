@@ -1,5 +1,4 @@
 class ReportsController < ApplicationController
-
   before_action :authenticate_user!
   before_action :current_user_admin?
 
@@ -36,7 +35,8 @@ class ReportsController < ApplicationController
     respond_to do |format|
       format.html
       #format.json {render json: report, :include => {:users => {:only => [:id, :email, :avatar_url, :name, :admin]}, :reportable => {}} }
-      format.json {render json: @report, :include => {:user_reports => {}, :reportable => {}}}
+      format.json {render json: @report, :include => {:user_reports => {}, :reportable => {}}
+      }
     end
   end
 
