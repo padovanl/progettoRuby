@@ -110,3 +110,18 @@ def can_update_or_delete_tip_or_question?(type_object)
     redirect_to controller: 'courses', action: 'show', id: params[:course_id]
   end
 end
+
+def can_quote?
+  if (!UserCourse.where(user_id: current_user.id, course_id: params[:course_id], passed: true).exists? || FrequencyQuestion.where(:user_id => current_user.id).where(:course_question_id =>  params[:frequencyQuestion][:course_question_id]).exists?)
+    flash[:alert] = 'Operazione non permessa: non hai completato il sondaggio'
+    redirect_to controller: 'courses', action: 'show', id: params[:course_id]
+  end
+end
+
+def can_unquote?
+  f = FrequencyQuestion.find(params[:id])
+  if (!UserCourse.where(user_id: current_user.id, course_id: params[:course_id], passed: true).exists? || current_user.id != f.user_id)
+    flash[:alert] = 'Operazione non permessa: non hai completato il sondaggio'
+    redirect_to controller: 'courses', action: 'show', id: params[:course_id]
+  end
+end

@@ -1,5 +1,8 @@
 class FrequencyQuestionsController < ApplicationController
   before_action :authenticate_user!
+  before_action :can_quote?, only: [:create]
+  before_action :can_unquote?, only: [:destroy]
+
 
   #l'index mi sa che neanche lo uso
   def index
