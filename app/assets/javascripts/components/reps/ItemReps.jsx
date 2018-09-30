@@ -67,7 +67,7 @@ class ItemReps extends React.Component {
 
             let deleteButton;
             let updateButton;
-            if (item.user.id === this.props.current_user.id){
+            if (item.user.id === this.props.current_user.id || this.props.current_user.admin){
                 deleteButton = <div>
                                     <button className="delete is-danger" onClick={()=>this.handleDelete(item.id)} color="red"/>
                                     <hr className="dropdown-divider"/>
