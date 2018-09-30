@@ -54,7 +54,13 @@ class RepsController < ApplicationController
   end
 
   def destroy
-    @rep = Rep.current_user_rep(current_user, params[:id]).first
+    # Solo gli admin e gli utenti che hanno creato il post lo possono cancellare
+    if current_user.admin
+      @rep = Rep.find(params[:id])
+    else
+      @rep = Rep.current_user_rep(current_user, params[:id]).first
+    end
+
 
     if !@rep.destroy
       render_json_validation_error @rep

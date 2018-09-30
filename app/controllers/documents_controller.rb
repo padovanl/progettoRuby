@@ -32,7 +32,7 @@ class DocumentsController < ApplicationController
   end
 
   def destroy
-    # Solo gli admin e gli utenti che hanno creato il post lo possono cancellare
+    # Solo gli admin e gli utenti che hanno creato il documento lo possono cancellare
     if current_user.admin
       document = Document.find(params[:id])
     else
