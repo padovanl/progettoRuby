@@ -2,6 +2,7 @@ class Api::V1::UserCoursesController < ApplicationController
   before_action :authenticate_user!
   before_action :user_compile_survey?, only: [:show]
   before_action :user_follows_course_for_survey?, only: [:show]
+  before_action :can_survey_update?, only: :update
 
 
   def show

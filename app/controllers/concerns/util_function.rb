@@ -111,17 +111,28 @@ def can_update_or_delete_tip_or_question?(type_object)
   end
 end
 
+#non posso eseguire i quote altrui
 def can_quote?
   if (!UserCourse.where(user_id: current_user.id, course_id: params[:course_id], passed: true).exists? || FrequencyQuestion.where(:user_id => current_user.id).where(:course_question_id =>  params[:frequencyQuestion][:course_question_id]).exists?)
-    flash[:alert] = 'Operazione non permessa: non hai completato il sondaggio'
+    flash[:alert] = 'Operazione non permessa: non hai il permesso'
     redirect_to controller: 'courses', action: 'show', id: params[:course_id]
   end
 end
 
+#non posso eseguire gli unquote altrui
 def can_unquote?
   f = FrequencyQuestion.find(params[:id])
   if (!UserCourse.where(user_id: current_user.id, course_id: params[:course_id], passed: true).exists? || current_user.id != f.user_id)
-    flash[:alert] = 'Operazione non permessa: non hai completato il sondaggio'
+    flash[:alert] = 'Operazione non permessa: non hai il permesso'
     redirect_to controller: 'courses', action: 'show', id: params[:course_id]
+  end
+end
+
+#non posso compilare il questionario altrui via curl
+def can_survey_update?
+  uc = UserCourse.find(params[:id])
+  if uc.user_id != current_user.id
+    flash[:alert] = 'Operazione non permessa: non hai il permesso di compilare il questionario altrui'
+    redirect_to course_path(uc.course_id)
   end
 end
