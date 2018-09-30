@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  # before_action :set_course, only: [:index, :destroy]
   before_action ->(pram=params[:course_id]) { user_follow_course pram }, only: [:index, :destroy]
   after_action :broadcast_notification, only: [:create, :destroy]
   after_action -> { destroy_report_and_notification('Post') }, only: [:destroy]

@@ -13,7 +13,7 @@ class DocumentFrame extends React.Component {
         const {document} = this.state;
         const {current_user, course_id} = this.props;
         const linkReport = '/report_document/' + document.id + '?course_id=' + course_id;
-        let can_delete_post = (document.user.id === current_user.id);
+        let can_delete_post = (document.user.id === current_user.id) || (current_user.admin);
 
 
         if (this.state.view_doc)
@@ -66,7 +66,7 @@ class DocumentFrame extends React.Component {
                                             </div>
                                         </a>
                                     </div>
-                                    {can_delete_post ? <div>
+                                    { can_delete_post ? <div>
                                         <hr className="dropdown-divider"/>
                                         <div className="dropdown-item">
                                             <a onClick={(e) => this.deleteDocument(e, document.id, course_id)}>
@@ -82,7 +82,7 @@ class DocumentFrame extends React.Component {
                                                 </div>
                                             </a>
                                         </div>
-                                    </div> : null}
+                                    </div> : null }
                                 </div>
                             </div>
                         </div>
@@ -100,7 +100,7 @@ class DocumentFrame extends React.Component {
 
     deleteDocument(event, document_id, course_id) {
         event.preventDefault();
-        if (this.state.document.user.id !== this.props.current_user.id)
+        if ((this.state.document.user.id !== this.props.current_user.id) && (!this.props.current_user.admin))
             return;
 
         var myHeaders = new Headers();
@@ -111,13 +111,13 @@ class DocumentFrame extends React.Component {
             headers: myHeaders,
             credentials: 'same-origin'
         })
-            .then((response) => response)
-            .then((response) => {
-                this.setState({
-                    view_doc: false
-                })
+        .then((response) => response)
+        .then((response) => {
+            this.setState({
+                view_doc: false
             })
-            .catch((error) => console.error(error));
+        })
+        .catch((error) => console.error(error));
     }
 
     viewMenuModal() {

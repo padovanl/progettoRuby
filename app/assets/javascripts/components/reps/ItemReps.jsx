@@ -24,8 +24,6 @@ class ItemReps extends React.Component {
     }
 
     handleDelete(id){
-        event.preventDefault();
-
         const deleteRep = this.props.deleteRep;
 
         let myHeaders = new Headers();

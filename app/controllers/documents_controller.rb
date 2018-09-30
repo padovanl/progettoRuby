@@ -32,7 +32,12 @@ class DocumentsController < ApplicationController
   end
 
   def destroy
-    document = Document.current_user_document(current_user, params[:id]).first
+    # Solo gli admin e gli utenti che hanno creato il post lo possono cancellare
+    if current_user.admin
+      document = Document.find(params[:id])
+    else
+      document = Document.current_user_document(current_user, params[:id]).first
+    end
 
     if !document.destroy
       render_json_validation_error document
