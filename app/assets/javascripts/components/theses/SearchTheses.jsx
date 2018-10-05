@@ -136,6 +136,7 @@ class SearchTheses extends React.Component {
         return(
 
                         <form onSubmit={(e) => this.handleSearch(e)}>
+                            <li className="drawer-brand">Ricerca</li>
                             <li className="drawer-menu-item">
                                 <Autosuggest
                                     suggestions={suggestions}
@@ -146,11 +147,13 @@ class SearchTheses extends React.Component {
                                     inputProps={inputProps}
                                 />
                             </li>
-                            <br/>
                             <li className="drawer-menu-item ">
+                                <p>Tag</p>
                                 <div className="control has-icons-left">
                                     <div className={"select "}>
-                                        <select name="Tags" onClick={(e)=>this.handleChange(e)}>
+                                        <select name="Tags" onChange={(e)=>this.handleChange(e)}
+                                                value={this.state.Tags ? this.state.Tags : '' }
+                                        >
                                             <option value="">{"- Select -"}</option>
                                             {tags}
                                         </select>
@@ -160,11 +163,13 @@ class SearchTheses extends React.Component {
                                     </div>
                                 </div>
                             </li>
-                            <br/>
                             <li className="drawer-menu-item">
+                                <p>Insegnante</p>
                                 <div className="control has-icons-left">
                                     <div className={"select "}>
-                                        <select name="Teachers" onClick={(e)=>this.handleChange(e)}>
+                                        <select name="Teachers" onChange={(e)=>this.handleChange(e)}
+                                                value={this.state.Teachers ? this.state.Teachers : '' }
+                                        >
                                             <option value="">{"- Select -"}</option>
                                             {teachers}
                                         </select>
@@ -174,7 +179,18 @@ class SearchTheses extends React.Component {
                                     </div>
                                 </div>
                             </li>
-                            <button className="hero-buttons button-search" type="submit"> Search </button>
+                            <li className="drawer-menu-item">
+                                <div className="search-hero">
+                                    <button className="button is-rounded is-info" type="submit">Cerca</button>
+                                </div>
+                            </li>
+                            {/*servono per lo scroll*/}
+                            <li className="drawer-menu-item">
+                            </li>
+                            <li className="drawer-menu-item">
+                            </li>
+                            <li className="drawer-menu-item">
+                            </li>
                         </form>
 
 

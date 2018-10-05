@@ -53,7 +53,7 @@ class IndexTheses extends React.Component {
 
     render(){
         let items = this.state.theses.map(item => {
-            return <Thesis item={item}/>
+            return <Thesis item={item} key={item.id}/>
         });
 
         let buttonNext;

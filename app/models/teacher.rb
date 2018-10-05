@@ -9,6 +9,6 @@ class Teacher < ApplicationRecord
   validates_presence_of :link_cv
 
   def self.get_names_complete
-    select(:id, :surname,:name).order(:surname)
+    select(:id, :surname,:name, :link_cv,  :created_at, :updated_at).order(:surname)
   end
 end

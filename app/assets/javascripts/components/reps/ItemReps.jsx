@@ -141,7 +141,8 @@ class ItemReps extends React.Component {
                                             {updateButton}
                                             <a title={"Show"} href={"/reps/"+item.id}><i className="fas fa-eye"/></a>
                                             <hr className="dropdown-divider"/>
-                                            <a title="Reporting" onClick={() => this.props.activeModal(linkReport)}><i className="fas fa-bug"/></a>                                        </div>
+                                            <a title="Reporting" onClick={() => this.props.activeModal(linkReport)}><i className="fas fa-bug"/></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

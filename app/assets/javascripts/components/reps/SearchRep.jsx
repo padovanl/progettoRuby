@@ -122,6 +122,7 @@ class SearchRep extends React.Component {
 
         return(
             <form onSubmit={(e) => this.handleSearch(e)}>
+                <li className="drawer-brand">Ricerca</li>
                 <li className="drawer-menu-item">
                     <div className="field">
                         <div className="control">
@@ -173,7 +174,7 @@ class SearchRep extends React.Component {
                         Cerca secondo il luogo
                         <input name={"selected_place"} type={"search"}  pattern="[a-zA-Zàèéìòù ]*"
                                title={"Sono vietati i caratteri speciali e numeri."} value={this.state.place}
-                               onChange={(e)=>this.handleChange(e)}/>
+                               onChange={(e)=>this.handleChange(e)} className="is-rounded"/>
                     </label>
                 </li>
                 <li className="drawer-menu-item">
@@ -188,9 +189,18 @@ class SearchRep extends React.Component {
                                onChange={(e)=>this.handleChange(e)}/> Miei post
                     </label>
                 </li>
-                <div className="search-hero">
-                    <button className="button is-rounded is-info" type="submit">Cerca</button>
-                </div>
+                <li className="drawer-menu-item">
+                    <div className="search-hero">
+                        <button className="button is-rounded is-info" type="submit">Cerca</button>
+                    </div>
+                </li>
+                {/*servono per lo scroll*/}
+                <li className="drawer-menu-item">
+                </li>
+                <li className="drawer-menu-item">
+                </li>
+                <li className="drawer-menu-item">
+                </li>
             </form>
         )
     }

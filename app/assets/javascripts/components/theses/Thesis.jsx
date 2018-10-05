@@ -32,7 +32,7 @@ class Thesis extends React.Component {
 
 
         return(
-            <section key={item.id} className="card-tesi" >
+            <section className="card-tesi" >
                 <div className="box ">
                     <div className="card">
                         <header className="myRow card-header ">
@@ -47,9 +47,6 @@ class Thesis extends React.Component {
                                     <p className="left-gap">{item.title}</p>
                                 </div>
 
-
-
-
                                 <div className={"dropdown is-right "+show_tags}>
                                     <div className="dropdown-trigger">
 
@@ -60,19 +57,12 @@ class Thesis extends React.Component {
                                         </a>
                                     </div>
 
-
                                     <div className="dropdown-menu" id="dropdown-menu" role="menu">
                                         <div className="dropdown-content">
                                             {tags}
                                         </div>
                                     </div>
-
-
                                 </div>
-
-
-
-
                         </header>
 
                         <div className="card-content">

@@ -26,6 +26,22 @@ a.fixed {
   }
 }
 
+@media screen and (max-height: 450px) {
+  .overflow-modal {
+    max-height: 200px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+}
+
+@media screen and (max-height: 350px) {
+  .overflow-modal {
+    max-height: 150px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+}
+
 
 .select-width{
   max-width: 200px;

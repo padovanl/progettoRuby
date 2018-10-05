@@ -14,15 +14,13 @@
       </button>
       <nav class="drawer-nav top-gap" role="navigation">
         <ul class="drawer-menu top-gap">
-          <li class="drawer-brand">Cerca</li>
           <%= react_component 'SearchRep', current_user: @current_user%>
         </ul>
       </nav>
     </header>
+
+
     <main role="main">
-
-
-      <br/>
 
       <section class="hero is-info is-bold is-small bottom-gap">
         <div class="hero-body left-gap">
@@ -55,7 +53,30 @@
 
     <script>
       $(document).ready(function() {
-        $('.drawer').drawer();
+          $('.drawer').drawer({
+              class: {
+                  nav: 'drawer-nav',
+                  toggle: 'drawer-toggle',
+                  overlay: 'drawer-overlay',
+                  open: 'drawer-open',
+                  close: 'drawer-close',
+                  dropdown: 'drawer-dropdown'
+              },
+              iscroll: {
+                  // Configuring the iScroll
+                  // https://github.com/cubiq/iscroll#configuring-the-iscroll
+                  mouseWheel: true,
+                  preventDefault: false
+              },
+              showOverlay: true
+          });
+      });
+
+      let sumedges = $(window).width() + $(window).height();
+      $(window).resize(function(){
+          if($(window).width() + $(window).height() < sumedges) {
+              $('.drawer').drawer();
+          } 
       });
     </script>
 
