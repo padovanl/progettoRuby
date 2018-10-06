@@ -67,11 +67,11 @@ class IndexTheses extends React.Component {
 
         let message;
         if (this.state.message!==''){
-            message =   <div className={"message is-danger gap"}  >
-                <div className="message-body">
-                    {this.state.message }
-                </div>
-            </div>;
+            message =   <div className="is-danger container" style={{textAlign: 'center', background: '#ffa726', padding: '20px'}} >
+                            <div>
+                                {this.state.message }
+                            </div>
+                        </div>;
         }
         else message='';
 

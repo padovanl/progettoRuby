@@ -103,7 +103,7 @@ class ItemReps extends React.Component {
                 <section key={item.id} className="relative gap ">
 
                     <div className="box is-centered">
-                        <article className="media gap">
+                        <article className="media ">
                             <figure className="media-left">
                                 <p className="image is-48x48">
                                     <img src={item.user.avatar_url}/>
@@ -128,7 +128,7 @@ class ItemReps extends React.Component {
 
                                 </div>
                             </div>
-                            <div className={"media-right"}>
+                            <div className="media-right is-marginless">
                                 <div className="dropdown is-right is-hoverable">
                                     <div className="dropdown-trigger">
                                         <div  aria-haspopup="true" aria-controls="dropdown-menu2">

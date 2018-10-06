@@ -119,7 +119,7 @@ class SearchTheses extends React.Component {
             placeholder:"Search theses",
             value,
             onChange: this.onChange,
-            type: "search ",
+            type: "search",
             pattern: "[a-zA-Zàèéìòù0-9., ]*",
             title: "Sono vietati i caratteri speciali.",
         };

@@ -30,6 +30,9 @@ class Thesis extends React.Component {
         };
         let linkDetails = '/theses/' + item.id;
 
+        const content_overflow_hidden = {
+            overflow: 'hidden'
+        };
 
         return(
             <section className="card-tesi" >
@@ -65,7 +68,7 @@ class Thesis extends React.Component {
                                 </div>
                         </header>
 
-                        <div className="card-content">
+                        <div className="card-content" style={content_overflow_hidden}>
                             <div className="content">
                                 {item.content}
                             </div>
