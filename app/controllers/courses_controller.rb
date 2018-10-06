@@ -28,6 +28,10 @@ class CoursesController < ApplicationController
     @last_page = @cs.total_pages
     @categories = %w[Course Teacher Year] #%w[Course Data Teacher Year]
     @chose_per_page = %w[3 10 20 30]
+    respond_to do |format|
+      format.html
+      format.json { render json: @cs }
+    end
   end
 
   def mycourses
@@ -41,6 +45,10 @@ class CoursesController < ApplicationController
     @last_page = @cs.total_pages
     @categories = %w[Course Teacher Year] #%w[Course Data Teacher Year]
     @chose_per_page = %w[3 10 20 30]
+    respond_to do |format|
+      format.html
+      format.json { render json: @cs }
+    end
   end
 
   def follow

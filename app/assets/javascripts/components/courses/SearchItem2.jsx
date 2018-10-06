@@ -134,7 +134,9 @@ class SearchItem2 extends React.Component {
                         this.setState({courses: data, message:'',disabledNext: false});
                     // console.log("data: "+ data.length, " disablednext: ",this.state.disabledNext)
                 })
-                .catch(this.handleError)
+                .catch((error) => {
+                    console.error(error);
+                })
         )}
 
 
@@ -151,7 +153,7 @@ class SearchItem2 extends React.Component {
                     this.setState({courses: data});
                     if (data.length ===0){
                         this.setState({disabledNext: true, message: "Nessun corso trovato!",});
-                        console.log("**DisabledNext : true perché data.len =0 in onSubmit**")
+                        //console.log("**DisabledNext : true perché data.len =0 in onSubmit**")
                     }
                     else if (data.length < this.props.per_page){
                         this.setState({disabledNext: true,message: '',})
@@ -160,7 +162,9 @@ class SearchItem2 extends React.Component {
                         this.setState({disabledNext: false,message: '',})
                     }
                 })
-                .catch(this.handleError)
+                .catch((error) => {
+                    console.error(error);
+                })
         );
         // console.log("Nuovi corsi dopo submit di Search_degree: ", this.state.courses)
     };
@@ -208,9 +212,9 @@ class SearchItem2 extends React.Component {
 
         let searchButton;
         if (this.state.query === '' || (this.props.last_page === true && this.state.changedInputSearch===false))
-            searchButton = <button className='is-link button is-rounded gap' style={style} onClick={(e)=>this.searchCourses(e)} value='All' > <span>All</span> </button>;
+            searchButton = <button className='is-link button is-rounded gap' style={style} onClick={(e)=>this.searchCourses(e)} value='Tutti' > <span>Tutti</span> </button>;
         else
-            searchButton = <button className='is-link button is-rounded gap' style={style} type={"submit"} > <span>Search</span></button>;
+            searchButton = <button className='is-link button is-rounded gap' style={style} type={"submit"} > <span>Cerca</span></button>;
 
         let options = this.props.categories.map((opt) => {
             return(

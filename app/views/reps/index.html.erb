@@ -75,8 +75,8 @@
       let sumedges = $(window).width() + $(window).height();
       $(window).resize(function(){
           if($(window).width() + $(window).height() < sumedges) {
-              $('.drawer').drawer();
-          } 
+              $('.drawer').drawer('open');
+          }
       });
     </script>
 

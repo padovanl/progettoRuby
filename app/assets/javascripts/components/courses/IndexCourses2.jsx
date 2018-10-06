@@ -142,9 +142,12 @@ class IndexCourses2 extends React.Component{
                         <div><strong>Livello:</strong> {item.degreet}</div>
                         <div><strong>Corso:</strong> {item.degreen}</div>
                         <div><strong>Anno:</strong> {item.year}</div>
-                        { /*<div><strong>Professori:</strong>
-                            <courses-ol>{teachers}</courses-ol>
-                        </div>*/ }
+                        <div><strong>Professore:</strong>
+                            <a href={' '+item.current_teacher.teacher.link_cv}>
+                                {item.current_teacher.teacher.surname+' '+item.current_teacher.teacher.name }
+                            </a>
+                            {' '+item.current_teacher.year+''}
+                        </div>
                     </div>
                     <div className={"absolute"}>
                         <form onSubmit={(e)=>this.buttonFollowClicked(e)}>

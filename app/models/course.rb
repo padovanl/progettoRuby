@@ -172,6 +172,14 @@ class Course < ApplicationRecord
   end
 
 
+  def self.get_current_teacher(course_id)
+    course = Course.find(course_id)
+    teacher_courses = course.teacher_courses.order(year: :desc).first
+    current_teacher = TeacherCourseReducedSerializer.new(teacher_courses)
+                      .as_json(:include => {:teacher =>{:only => [:name, :surname, :link_cv]} } )
+    return current_teacher
+  end
+
 
   def self.get_all_courses_details(course_id, current_user)
 
