@@ -143,8 +143,8 @@ class IndexCourses2 extends React.Component{
                         <div><strong>Corso:</strong> {item.degreen}</div>
                         <div><strong>Anno:</strong> {item.year}</div>
                         <div><strong>Professore:</strong>
-                            <a href={' '+item.current_teacher.teacher.link_cv}>
-                                {item.current_teacher.teacher.surname+' '+item.current_teacher.teacher.name }
+                            <a href={item.current_teacher.teacher.link_cv}>
+                                {' '+item.current_teacher.teacher.surname+' '+item.current_teacher.teacher.name }
                             </a>
                             {' '+item.current_teacher.year+''}
                         </div>
