@@ -1,87 +1,12 @@
 <% content_for :title, "Repetitions" %>
 
-<html>
-
-  <body class="drawer drawer--left">
-    <noscript>
-      You need to enable JavaScript to run this app.
-    </noscript>
-
-    <header role="banner">
-      <button type="button" class="drawer-toggle drawer-hamburger top-gap">
-        <span class="sr-only">toggle navigation</span>
-        <span class="drawer-hamburger-icon"></span>
-      </button>
-      <nav class="drawer-nav top-gap" role="navigation">
-        <ul class="drawer-menu top-gap">
-          <%= react_component 'SearchRep', current_user: @current_user%>
-        </ul>
-      </nav>
-    </header>
+<%= react_component 'MainReps',
+                    last_page: @last_page,
+                    url: "/reps.json?page=",
+                    current_user_image: @current_user_image,
+                    current_user: @current_user,
+                    allreps: @reps,
+                    per_page: @per_page
+%>
 
 
-    <main role="main">
-
-      <section class="hero is-info is-bold is-small bottom-gap">
-        <div class="hero-body left-gap">
-          <div class="container left-gap">
-            <h2 class="title">
-              Trova o offri ripetizioni!
-            </h2>
-          </div>
-        </div>
-      </section>
-
-
-
-      <div class="myColumn-lg">
-        <div class="row">
-          <%= react_component 'IndexReps',
-                              last_page: @last_page,
-                              url: "/reps.json?page=",
-                              current_user_image: @current_user_image,
-                              current_user: @current_user,
-                              allreps: @reps,
-                              per_page: @per_page
-          %>
-        </div>
-      </div>
-
-    </main>
-
-
-
-    <script>
-      $(document).ready(function() {
-          $('.drawer').drawer({
-              class: {
-                  nav: 'drawer-nav',
-                  toggle: 'drawer-toggle',
-                  overlay: 'drawer-overlay',
-                  open: 'drawer-open',
-                  close: 'drawer-close',
-                  dropdown: 'drawer-dropdown'
-              },
-              iscroll: {
-                  // Configuring the iScroll
-                  // https://github.com/cubiq/iscroll#configuring-the-iscroll
-                  mouseWheel: true,
-                  preventDefault: false
-              },
-              showOverlay: true
-          });
-      });
-
-      let sumedges = $(window).width() + $(window).height();
-      $(window).resize(function(){
-          if($(window).width() + $(window).height() < sumedges) {
-              $('.drawer').drawer('open');
-          }
-      });
-    </script>
-
-  </body>
-
-
-
-</html>

@@ -70,9 +70,14 @@ class RepsController < ApplicationController
     head :no_content
   end
 
+  def get_places
+    @places = Rep.get_places
+    render json: @places, each_serializer: PlacesSerializer
+  end
+
 
   def send_email
-    logger.debug "PARAMETRI ****************** #{[params[:content], params[:course_id]]}"
+    #logger.debug "PARAMETRI ****************** #{[params[:content], params[:course_id]]}"
     email = Rep.send_email(current_user, params[:content], params[:course_id])
     if !email
       render_json_validation_error email

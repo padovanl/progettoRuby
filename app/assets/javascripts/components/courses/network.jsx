@@ -18,6 +18,8 @@ const getNames=(category)=>{
       url = '/tags.json';
   else if (category === 'Theses')
       url = '/theses_title.json';
+  else if (category === 'Places')
+      url = 'get_places.json';
   else
       url = '/teachers_name.json';
 

@@ -6,6 +6,8 @@ class SearchRep extends React.Component {
             suggestions: [],
             autoSuggestNames: [],
 
+            places: [],
+
             isValidated: false,
             showError: false,
 
@@ -30,11 +32,18 @@ class SearchRep extends React.Component {
             .then(data => {
                 this.setState({autoSuggestNames: data})
             })
+            .catch((e) => console.log(e));
+
+        getNames('Places')
+            .then(data => {
+                this.setState({places: data})
+            })
             .catch((e) => console.log(e))
     }
 
     handleSearch(e){
         e.preventDefault();
+        const updateIndexReps = this.props.updateIndexReps;
         const {selected_course,
             selected_my_post,
             selected_home_service,
@@ -84,7 +93,7 @@ class SearchRep extends React.Component {
 
     onChange(event){//, { newValue, method }){
         this.setState({
-            selected_course: event.target.value//newValue
+            [event.target.name]: event.target.value//newValue
         });
     };
 
@@ -120,20 +129,46 @@ class SearchRep extends React.Component {
             return <option key={course.id}  value={course.name}>{course.name}</option>
         });
 
+      /*  const style_place = {
+            height: 30
+        };
+*/
+        let places_opts = this.state.places.map( p => {
+            return <option key={p.place} value={p.place}>{ p.place }</option>
+        });
+
         return(
             <form onSubmit={(e) => this.handleSearch(e)}>
                 <li className="drawer-brand">Ricerca</li>
                 <li className="drawer-menu-item">
-                    <div className="field">
+                    <div className="label">
+                        Corso
                         <div className="control">
                             <div className="select">
-                                <select className=" mySelect select-width" onChange={(e)=>this.onChange(e)}>
+                                <select name={'selected_course'} className=" mySelect select-width" onChange={(e)=>this.onChange(e)}>
                                     <option value={''}>- Select -</option>
                                     {opts}
                                 </select>
                             </div>
                         </div>
                     </div>
+                </li>
+                <li className="drawer-menu-item">
+                    <label className="label">
+                        Luogo
+                        <div className="control">
+                            <div className="select">
+                                <select name={'selected_place'} className=" mySelect select-width" onChange={(e)=>this.onChange(e)}>
+                                    <option value={''}>- Select -</option>
+                                    {places_opts}
+                                </select>
+                            </div>
+                        </div>
+
+                        {/*<input name={"selected_place"} type={"search"}  pattern="[a-zA-Zàèéìòù ]*"
+                               title={"Sono vietati i caratteri speciali e numeri."} value={this.state.place}
+                               onChange={(e)=>this.handleChange(e)} className="is-rounded" style={style_place}/>*/}
+                    </label>
                 </li>
                 <li className="drawer-menu-item">
                     <div className="control ">
@@ -168,14 +203,6 @@ class SearchRep extends React.Component {
                                    onChange={(e)=>this.handleChange(e)} name={"selected_price"} value={undefined} /> Reset
                         </label>
                     </div>
-                </li>
-                <li className="drawer-menu-item">
-                    <label className="label">
-                        Cerca secondo il luogo
-                        <input name={"selected_place"} type={"search"}  pattern="[a-zA-Zàèéìòù ]*"
-                               title={"Sono vietati i caratteri speciali e numeri."} value={this.state.place}
-                               onChange={(e)=>this.handleChange(e)} className="is-rounded"/>
-                    </label>
                 </li>
                 <li className="drawer-menu-item">
                     <label className="label">

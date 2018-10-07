@@ -1,0 +1,158 @@
+class MainReps extends React.Component {
+    constructor(props){
+        super(props);
+
+        this.state = {
+            reps: [],
+            default_url: "/reps.json?page=",
+            url: '',
+            page:1,
+            disabledNext: false,
+            sumedges: 0
+        };
+
+        this.updateIndexReps = this.updateIndexReps.bind(this);
+        this.getAllReps = this.getAllReps.bind(this);
+        this.onChangePage = this.onChangePage.bind(this);
+        this.addNewRep = this.addNewRep.bind(this);
+        this.deleteRep = this.deleteRep.bind(this);
+        this.updateRep = this.updateRep.bind(this)
+
+    }
+
+
+    componentDidMount(){
+
+        this.getAllReps();
+
+        this.setState({sumedges: $(window).width() + $(window).height()});
+        $(document).ready(function() {
+            $('.drawer').drawer({
+                class: {
+                    nav: 'drawer-nav',
+                    toggle: 'drawer-toggle',
+                    overlay: 'drawer-overlay',
+                    open: 'drawer-open',
+                    close: 'drawer-close',
+                    dropdown: 'drawer-dropdown'
+                },
+                iscroll: {
+                    // Configuring the iScroll
+                    // https://github.com/cubiq/iscroll#configuring-the-iscroll
+                    mouseWheel: true,
+                    preventDefault: false
+                },
+                showOverlay: true            });
+        });
+    }
+
+    componentDidUpdate(){
+        if($(window).width() + $(window).height() !== this.state.sumedges) {
+            $('.drawer').drawer('open');
+        }
+    }
+
+    updateIndexReps(URL, reps){
+        if (reps.length < this.props.per_page)
+            this.setState({url: URL, reps: reps, page:1, disabledNext: true});
+        else
+            this.setState({url: URL, reps: reps, page:1, disabledNext: false})
+    }
+
+
+    onChangePage() {
+        this.setState({page: this.state.page +=1},this.getAllReps());
+    }
+
+    getAllReps(){
+        getItems(updateUrlReps(this.state.default_url, this.props.per_page, this.state.url, this.state.page))
+            .then(data => {
+                if (data.length < this.props.per_page){
+                    this.setState({disabledNext: true})
+                }
+                this.setState({reps: this.state.reps.concat(data)})
+            })
+            .catch(e => console.log(e)
+            )
+    }
+
+    addNewRep(rep){
+        this.setState((prevState) => {
+            return {reps: [rep].concat(prevState.reps)};
+        });
+    }
+
+    deleteRep(id){
+        let filteredArray = this.state.reps.filter(item => item.id !== id);
+        this.setState({reps: filteredArray});
+    }
+
+    updateRep(rep, id){
+        this.setState({reps: this.state.reps.map(elem => (elem.id === id ? elem=rep : elem))})
+    }
+
+
+    render(){
+        return(
+            <body className="drawer drawer--left">
+
+            <header role="banner">
+                <button type="button" className="drawer-toggle drawer-hamburger top-gap">
+                    <span className="sr-only">toggle navigation</span>
+                    <span className="drawer-hamburger-icon"/>
+                </button>
+                <nav className="drawer-nav top-gap" role="navigation">
+                    <ul className="drawer-menu top-gap">
+                      <SearchRep current_user = {this.props.current_user}
+                                 updateIndexReps={(URL, reps)=>this.updateIndexReps(URL, reps)}
+                      />
+                    </ul>
+                </nav>
+            </header>
+
+
+            <main role="main">
+
+                <section className="hero is-info is-bold is-small bottom-gap top-gap">
+                    <div className="hero-body left-gap">
+                        <div className="container left-gap">
+                            <h2 className="title">
+                                Trova o offri ripetizioni!
+                            </h2>
+                        </div>
+                    </div>
+                </section>
+
+                <div className="myColumn-lg">
+                    <div className="row">
+                        <IndexReps
+                                last_page = {this.props.last_page}
+                                reps = {this.state.reps}
+                                url ={ this.state.url}
+                                current_user_image = {this.props.current_user_image}
+                                current_user = {this.props.current_user}
+                                allreps ={this.props.reps}
+                                per_page = {this.props.per_page}
+                                onChangePage = {this.onChangePage}
+                                addNewRep = {(rep)=>this.addNewRep(rep)}
+                                deleteRep = {(id) => this.deleteRep(id)}
+                                updateRep = {(rep,id) => this.updateRep(rep,id)}
+
+                        />
+
+                    </div>
+                </div>
+
+            </main>
+
+
+            </body>
+
+
+        )
+    }
+
+}
+
+
+

@@ -31,6 +31,10 @@ class Rep < ApplicationRecord
     CommentMailer.new_comment(rep, current_user, content).deliver_now
   end
 
+  def self.get_places
+    Rep.select(:place).where("place NOT LIKE ''").order(place: :desc)
+  end
+
   scope :current_user_rep,   ->(user, id){ where(user_id: user.id, id: id) }
 
 end

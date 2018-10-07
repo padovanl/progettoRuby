@@ -56,6 +56,7 @@ Rails.application.routes.draw do
 
   #rep_mail
   post :send_email, controller: :reps
+  get :get_places, controller: :reps
 
   #get names
   get :teachers_name, controller: :teachers
