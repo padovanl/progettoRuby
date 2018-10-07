@@ -126,12 +126,13 @@ class MainReps extends React.Component {
                 <div className="myColumn-lg">
                     <div className="row">
                         <IndexReps
+                                page={this.state.page}
+                                disabledNext={this.state.disabledNext}
                                 last_page = {this.props.last_page}
                                 reps = {this.state.reps}
                                 url ={ this.state.url}
                                 current_user_image = {this.props.current_user_image}
                                 current_user = {this.props.current_user}
-                                allreps ={this.props.reps}
                                 per_page = {this.props.per_page}
                                 onChangePage = {this.onChangePage}
                                 addNewRep = {(rep)=>this.addNewRep(rep)}

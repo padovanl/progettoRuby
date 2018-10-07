@@ -60,6 +60,7 @@ class SearchTheses extends React.Component {
     handleSearch(e){
         e.preventDefault();
 
+        const updateIndexTheses = this.props.updateIndexTheses;
         const {
             selected_thesis_title,
             Tags,

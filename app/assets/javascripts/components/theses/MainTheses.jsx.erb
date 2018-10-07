@@ -1,0 +1,154 @@
+class MainTheses extends React.Component {
+    constructor(props){
+        super(props);
+
+        this.state = {
+            theses: [],
+            url: '',
+            page:1,
+            disabledNext: false,
+            sumedges: 0,
+            message: ''
+        };
+
+        this.updateIndexTheses = this.updateIndexTheses.bind(this);
+        this.getAllTheses = this.getAllTheses.bind(this);
+        this.onChangePage = this.onChangePage.bind(this);
+    }
+
+
+    componentDidMount(){
+        this.getAllTheses();
+
+        this.setState({sumedges: $(window).width() + $(window).height()});
+        $(document).ready(function() {
+            $('.drawer').drawer({
+                class: {
+                    nav: 'drawer-nav',
+                    toggle: 'drawer-toggle',
+                    overlay: 'drawer-overlay',
+                    open: 'drawer-open',
+                    close: 'drawer-close',
+                    dropdown: 'drawer-dropdown'
+                },
+                iscroll: {
+                    // Configuring the iScroll
+                    // https://github.com/cubiq/iscroll#configuring-the-iscroll
+                    mouseWheel: true,
+                    preventDefault: false
+                },
+                showOverlay: true            });
+        });
+    }
+
+    componentDidUpdate(){
+        if($(window).width() + $(window).height() !== this.state.sumedges) {
+            $('.drawer').drawer('open');
+        }
+        console.log("disabledNext: ", this.state.disabledNext)
+    }
+
+    updateIndexTheses(u, ts){
+        let disabled = false;
+        let message = '';
+        if (ts.length<this.props.per_page){
+            disabled = true;
+        }
+        if (ts.length ===0){
+            message = "Tesi non trovate!";
+        }
+        this.setState({url: u, theses: ts, page:1, disabledNext: disabled, message: message})
+    }
+
+
+    onChangePage() {
+        this.setState({page: this.state.page +=1},this.getAllTheses());
+        console.log("page: ",this.state.page);
+    }
+
+
+    getAllTheses(){
+        getItems(this.props.url+this.state.page+"&per_page="+this.props.per_page+this.state.url)
+            .then(data =>{
+                if (data.length === 0 && this.state.theses.length === 0)
+                    this.setState({message: "Tesi non trovate!", disabledNext: true});
+                else if (data.length<this.props.per_page)
+                    this.setState({disabledNext: true, theses: this.state.theses.concat(data)});
+                else{
+                    this.setState({theses: this.state.theses.concat(data), disabledNext: false})
+                }
+            })
+            .catch((e) => console.log(e))
+    }
+
+
+    render(){
+        return(
+            <body className="drawer drawer--left">
+
+            <header role="banner">
+                <button type="button" className="drawer-toggle drawer-hamburger top-gap">
+                    <span className="sr-only">toggle navigation</span>
+                    <span className="drawer-hamburger-icon"/>
+                </button>
+                <nav className="drawer-nav top-gap" role="navigation">
+                    <ul className="drawer-menu top-gap">
+                        <SearchTheses current_user = {this.props.current_user}
+                                      per_page={this.props.per_page}
+                                      updateIndexTheses={(URL, ts)=>this.updateIndexTheses(URL, ts)}
+                        />
+                    </ul>
+                </nav>
+            </header>
+
+
+            <main role="main">
+
+                <section className="hero is-info is-bold is-small bottom-gap">
+                    <div className="hero-body left-gap">
+                        <div className="container left-gap" >
+                            <h2 className="title" >
+                                Qui tutte le tesi disponibili
+                            </h2>
+                            <h3 className="subtitle">
+                                <lo>
+                                    <li>Per trovare più facilmente la testi che fa per te, prova ad effettuare una ricerca per tag :-)</li>
+                                    <li>Puoi anche inviare una email al prof per chiedergli più informazioni!</li>
+                                </lo>
+                            </h3>
+                        </div>
+                    </div>
+                </section>
+
+                <div className="myColumn-lg">
+                    <div className="row">
+                        <IndexTheses
+                            page={this.state.page}
+                            disabledNext={this.state.disabledNext}
+                            last_page = {this.props.last_page}
+                            theses = {this.state.theses}
+                            url ={ this.state.url}
+                            current_user_image = {this.props.current_user_image}
+                            current_user = {this.props.current_user}
+                            per_page = {this.props.per_page}
+                            message = {this.state.message}
+                            onChangePage = {this.onChangePage}
+
+                        />
+
+                    </div>
+                </div>
+
+            </main>
+
+
+            </body>
+
+
+        )
+    }
+
+}
+
+
+
