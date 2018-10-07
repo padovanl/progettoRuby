@@ -7,7 +7,7 @@ class MainTheses extends React.Component {
             url: '',
             page:1,
             disabledNext: false,
-            sumedges: 0,
+            windows_size: window.innerWidth + window.innerHeight,
             message: ''
         };
 
@@ -20,7 +20,6 @@ class MainTheses extends React.Component {
     componentDidMount(){
         this.getAllTheses();
 
-        this.setState({sumedges: $(window).width() + $(window).height()});
         $(document).ready(function() {
             $('.drawer').drawer({
                 class: {
@@ -41,12 +40,6 @@ class MainTheses extends React.Component {
         });
     }
 
-    componentDidUpdate(){
-        if($(window).width() + $(window).height() !== this.state.sumedges) {
-            $('.drawer').drawer('open');
-        }
-        console.log("disabledNext: ", this.state.disabledNext)
-    }
 
     updateIndexTheses(u, ts){
         let disabled = false;
@@ -63,7 +56,6 @@ class MainTheses extends React.Component {
 
     onChangePage() {
         this.setState({page: this.state.page +=1},this.getAllTheses());
-        console.log("page: ",this.state.page);
     }
 
 
@@ -83,6 +75,11 @@ class MainTheses extends React.Component {
 
 
     render(){
+        $(window).resize( function () {
+            if(($(window).width() + $(window).height()) < this.state.windows_size) {
+                $('.drawer').drawer('open');
+            }
+        });
         return(
             <body className="drawer drawer--left">
 
@@ -128,8 +125,6 @@ class MainTheses extends React.Component {
                             last_page = {this.props.last_page}
                             theses = {this.state.theses}
                             url ={ this.state.url}
-                            current_user_image = {this.props.current_user_image}
-                            current_user = {this.props.current_user}
                             per_page = {this.props.per_page}
                             message = {this.state.message}
                             onChangePage = {this.onChangePage}
